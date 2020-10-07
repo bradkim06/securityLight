@@ -1,0 +1,161 @@
+/* --COPYRIGHT--,BSD
+ * Copyright (c) 2017, Texas Instruments Incorporated
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * *  Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * *  Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * *  Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * --/COPYRIGHT--*/
+
+//#############################################################################
+//
+//! \file   emReactivePowerIIRCoeff.h
+//!
+//! \brief  This file contains EM Reactive Power Coefficients
+//!         
+//
+//!  Group:          MSP Embedded Software Development
+//!  Target Device:  MSP430F6736
+//
+//  (C) Copyright 2017, Texas Instruments, Inc.
+//#############################################################################
+// TI Release: MSP430_ENERGY_MEASUREMENT 
+// Release Date: 29Jul2020
+//#############################################################################
+
+#ifndef _EMREACTIVEPOWERIIRCOEFF_H_
+#define _EMREACTIVEPOWERIIRCOEFF_H_
+// IIR G Constant Table
+// Samp. Freq=4096Hz, Min Freq=58Hz, Max Freq=62Hz, Resolution=0.04Hz
+#define	IIR_COEFF_MIN_FREQ		5800
+#define	IIR_COEFF_MAX_FREQ		6200
+#define	IIR_COEFF_TABLE_LEN		101
+#define	IIR_COEFF_SHIFT			2
+
+const _iq30 G_CONSTANT[IIR_COEFF_TABLE_LEN] ={
+	0xC5747F1E, /* Freq 58.00 */
+	0xC5756B78, /* Freq 58.04 */
+	0xC57657CF, /* Freq 58.08 */
+	0xC5774422, /* Freq 58.12 */
+	0xC5783072, /* Freq 58.16 */
+	0xC5791CBE, /* Freq 58.20 */
+	0xC57A0907, /* Freq 58.24 */
+	0xC57AF54D, /* Freq 58.28 */
+	0xC57BE18F, /* Freq 58.32 */
+	0xC57CCDCE, /* Freq 58.36 */
+	0xC57DBA09, /* Freq 58.40 */
+	0xC57EA641, /* Freq 58.44 */
+	0xC57F9276, /* Freq 58.48 */
+	0xC5807EA7, /* Freq 58.52 */
+	0xC5816AD5, /* Freq 58.56 */
+	0xC58256FF, /* Freq 58.60 */
+	0xC5834326, /* Freq 58.64 */
+	0xC5842F4A, /* Freq 58.68 */
+	0xC5851B6A, /* Freq 58.72 */
+	0xC5860787, /* Freq 58.76 */
+	0xC586F3A1, /* Freq 58.80 */
+	0xC587DFB7, /* Freq 58.84 */
+	0xC588CBC9, /* Freq 58.88 */
+	0xC589B7D9, /* Freq 58.92 */
+	0xC58AA3E5, /* Freq 58.96 */
+	0xC58B8FED, /* Freq 59.00 */
+	0xC58C7BF2, /* Freq 59.04 */
+	0xC58D67F4, /* Freq 59.08 */
+	0xC58E53F3, /* Freq 59.12 */
+	0xC58F3FEE, /* Freq 59.16 */
+	0xC5902BE5, /* Freq 59.20 */
+	0xC59117DA, /* Freq 59.24 */
+	0xC59203CA, /* Freq 59.28 */
+	0xC592EFB8, /* Freq 59.32 */
+	0xC593DBA2, /* Freq 59.36 */
+	0xC594C789, /* Freq 59.40 */
+	0xC595B36C, /* Freq 59.44 */
+	0xC5969F4C, /* Freq 59.48 */
+	0xC5978B29, /* Freq 59.52 */
+	0xC5987702, /* Freq 59.56 */
+	0xC59962D8, /* Freq 59.60 */
+	0xC59A4EAA, /* Freq 59.64 */
+	0xC59B3A79, /* Freq 59.68 */
+	0xC59C2645, /* Freq 59.72 */
+	0xC59D120D, /* Freq 59.76 */
+	0xC59DFDD2, /* Freq 59.80 */
+	0xC59EE993, /* Freq 59.84 */
+	0xC59FD552, /* Freq 59.88 */
+	0xC5A0C10C, /* Freq 59.92 */
+	0xC5A1ACC4, /* Freq 59.96 */
+	0xC5A29878, /* Freq 60.00 */
+	0xC5A38428, /* Freq 60.04 */
+	0xC5A46FD6, /* Freq 60.08 */
+	0xC5A55B80, /* Freq 60.12 */
+	0xC5A64726, /* Freq 60.16 */
+	0xC5A732C9, /* Freq 60.20 */
+	0xC5A81E69, /* Freq 60.24 */
+	0xC5A90A06, /* Freq 60.28 */
+	0xC5A9F59F, /* Freq 60.32 */
+	0xC5AAE134, /* Freq 60.36 */
+	0xC5ABCCC6, /* Freq 60.40 */
+	0xC5ACB855, /* Freq 60.44 */
+	0xC5ADA3E1, /* Freq 60.48 */
+	0xC5AE8F69, /* Freq 60.52 */
+	0xC5AF7AEE, /* Freq 60.56 */
+	0xC5B0666F, /* Freq 60.60 */
+	0xC5B151ED, /* Freq 60.64 */
+	0xC5B23D68, /* Freq 60.68 */
+	0xC5B328DF, /* Freq 60.72 */
+	0xC5B41453, /* Freq 60.76 */
+	0xC5B4FFC4, /* Freq 60.80 */
+	0xC5B5EB31, /* Freq 60.84 */
+	0xC5B6D69B, /* Freq 60.88 */
+	0xC5B7C201, /* Freq 60.92 */
+	0xC5B8AD65, /* Freq 60.96 */
+	0xC5B998C4, /* Freq 61.00 */
+	0xC5BA8421, /* Freq 61.04 */
+	0xC5BB6F7A, /* Freq 61.08 */
+	0xC5BC5ACF, /* Freq 61.12 */
+	0xC5BD4622, /* Freq 61.16 */
+	0xC5BE3170, /* Freq 61.20 */
+	0xC5BF1CBC, /* Freq 61.24 */
+	0xC5C00804, /* Freq 61.28 */
+	0xC5C0F349, /* Freq 61.32 */
+	0xC5C1DE8A, /* Freq 61.36 */
+	0xC5C2C9C9, /* Freq 61.40 */
+	0xC5C3B503, /* Freq 61.44 */
+	0xC5C4A03B, /* Freq 61.48 */
+	0xC5C58B6F, /* Freq 61.52 */
+	0xC5C6769F, /* Freq 61.56 */
+	0xC5C761CD, /* Freq 61.60 */
+	0xC5C84CF7, /* Freq 61.64 */
+	0xC5C9381D, /* Freq 61.68 */
+	0xC5CA2340, /* Freq 61.72 */
+	0xC5CB0E60, /* Freq 61.76 */
+	0xC5CBF97D, /* Freq 61.80 */
+	0xC5CCE496, /* Freq 61.84 */
+	0xC5CDCFAB, /* Freq 61.88 */
+	0xC5CEBABE, /* Freq 61.92 */
+	0xC5CFA5CD, /* Freq 61.96 */
+	0xC5D090D9, /* Freq 62.00 */
+};
+#endif
