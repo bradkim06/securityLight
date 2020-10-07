@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_COMPB__
-#include "comp_b.h"
-
 #include <assert.h>
+
+#include "comp_b.h"
 
 bool Comp_B_init(uint16_t baseAddress, Comp_B_initParam *param) {
   bool retVal = STATUS_SUCCESS;
@@ -72,7 +72,7 @@ bool Comp_B_init(uint16_t baseAddress, Comp_B_initParam *param) {
   } else {
     // Reset and Set COMPB Control 2 Register
     HWREG16(baseAddress + OFS_CBCTL2) &=
-        ~(CBRSEL); // Set Vref to go to (+)terminal
+        ~(CBRSEL);  // Set Vref to go to (+)terminal
   }
 
   // Set the Negative Terminal
@@ -86,44 +86,44 @@ bool Comp_B_init(uint16_t baseAddress, Comp_B_initParam *param) {
   } else {
     // Reset and Set COMPB Control 2 Register
     HWREG16(baseAddress + OFS_CBCTL2) |=
-        CBRSEL; // Set Vref to go to (-) terminal
+        CBRSEL;  // Set Vref to go to (-) terminal
   }
 
   // Reset and Set COMPB Control 1 Register
   HWREG16(baseAddress + OFS_CBCTL1) =
-      param->powerModeSelect                   // Set the power mode
-      + param->outputFilterEnableAndDelayLevel // Set the filter enable bit and
-                                               // delay
-      + param->invertedOutputPolarity; // Set the polarity of the output
+      param->powerModeSelect                    // Set the power mode
+      + param->outputFilterEnableAndDelayLevel  // Set the filter enable bit and
+                                                // delay
+      + param->invertedOutputPolarity;  // Set the polarity of the output
 
   return (retVal);
 }
 
 void Comp_B_configureReferenceVoltage(
     uint16_t baseAddress, Comp_B_configureReferenceVoltageParam *param) {
-  HWREG16(baseAddress + OFS_CBCTL1) &= ~(CBMRVS); // Set to VREF0
+  HWREG16(baseAddress + OFS_CBCTL1) &= ~(CBMRVS);  // Set to VREF0
 
   // Reset COMPB Control 2 Bits (Except for CBRSEL which is set in Comp_Init() )
   HWREG16(baseAddress + OFS_CBCTL2) &= CBRSEL;
 
   // Set Voltage Source (Vcc | Vref, resistor ladder or not)
   if (COMP_B_VREFBASE_VCC == param->supplyVoltageReferenceBase) {
-    HWREG16(baseAddress + OFS_CBCTL2) |= CBRS_1; // Vcc with resistor ladder
+    HWREG16(baseAddress + OFS_CBCTL2) |= CBRS_1;  // Vcc with resistor ladder
   } else if (param->lowerLimitSupplyVoltageFractionOf32 == 32) {
     // If the lower limit is 32, then the upper limit has to be 32 due to the
     // assertion that upper must be >= to the lower limit. If the numerator is
     // equal to 32, then the equation would be 32/32 == 1, therefore no resistor
     // ladder is needed
-    HWREG16(baseAddress + OFS_CBCTL2) |= CBRS_3; // Vref, no resistor ladder
+    HWREG16(baseAddress + OFS_CBCTL2) |= CBRS_3;  // Vref, no resistor ladder
   } else {
-    HWREG16(baseAddress + OFS_CBCTL2) |= CBRS_2; // Vref with resistor ladder
+    HWREG16(baseAddress + OFS_CBCTL2) |= CBRS_2;  // Vref with resistor ladder
   }
 
   // Set COMPD Control 2 Register
   HWREG16(baseAddress + OFS_CBCTL2) |=
-      param->supplyVoltageReferenceBase // Set Supply Voltage Base
+      param->supplyVoltageReferenceBase  // Set Supply Voltage Base
       + ((param->upperLimitSupplyVoltageFractionOf32 - 1)
-         << 8) // Set Supply Voltage Num.
+         << 8)  // Set Supply Voltage Num.
       + (param->lowerLimitSupplyVoltageFractionOf32 - 1);
 
   HWREG16(baseAddress + OFS_CBCTL2) &= ~(CBREFACC);
@@ -187,7 +187,7 @@ void Comp_B_enableInputBuffer(uint16_t baseAddress, uint8_t inputPort) {
 }
 
 void Comp_B_swapIO(uint16_t baseAddress) {
-  HWREG16(baseAddress + OFS_CBCTL1) ^= CBEX; // Toggle CBEX bit
+  HWREG16(baseAddress + OFS_CBCTL1) ^= CBEX;  // Toggle CBEX bit
 }
 
 uint16_t Comp_B_outputValue(uint16_t baseAddress) {

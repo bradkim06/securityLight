@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_TxB7__
-#include "timer_b.h"
-
 #include <assert.h>
+
+#include "timer_b.h"
 
 void Timer_B_startCounter(uint16_t baseAddress, uint16_t timerMode) {
   HWREG16(baseAddress + OFS_TBxCTL) |= timerMode;
@@ -187,10 +187,9 @@ void Timer_B_clear(uint16_t baseAddress) {
   HWREG16(baseAddress + OFS_TBxCTL) |= TBCLR;
 }
 
-uint8_t
-Timer_B_getSynchronizedCaptureCompareInput(uint16_t baseAddress,
-                                           uint16_t captureCompareRegister,
-                                           uint16_t synchronized) {
+uint8_t Timer_B_getSynchronizedCaptureCompareInput(
+    uint16_t baseAddress, uint16_t captureCompareRegister,
+    uint16_t synchronized) {
   if (HWREG16(baseAddress + captureCompareRegister) & synchronized) {
     return (TIMER_B_CAPTURECOMPARE_INPUT_HIGH);
   } else {
@@ -198,9 +197,8 @@ Timer_B_getSynchronizedCaptureCompareInput(uint16_t baseAddress,
   }
 }
 
-uint8_t
-Timer_B_getOutputForOutputModeOutBitValue(uint16_t baseAddress,
-                                          uint16_t captureCompareRegister) {
+uint8_t Timer_B_getOutputForOutputModeOutBitValue(
+    uint16_t baseAddress, uint16_t captureCompareRegister) {
   if (HWREG16(baseAddress + captureCompareRegister) & OUT) {
     return (TIMER_B_OUTPUTMODE_OUTBITVALUE_HIGH);
   } else {

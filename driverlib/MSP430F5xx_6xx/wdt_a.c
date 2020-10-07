@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_WDT_A__
-#include "wdt_a.h"
-
 #include <assert.h>
+
+#include "wdt_a.h"
 
 void WDT_A_hold(uint16_t baseAddress) {
   // Set Hold bit

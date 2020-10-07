@@ -597,4 +597,4 @@ extern void EUSCI_A_UART_selectDeglitchTime(uint16_t baseAddress,
 #endif
 
 #endif
-#endif // __MSP430WARE_EUSCI_A_UART_H__
+#endif  // __MSP430WARE_EUSCI_A_UART_H__

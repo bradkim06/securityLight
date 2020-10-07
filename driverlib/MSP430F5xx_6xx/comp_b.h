@@ -312,9 +312,8 @@ extern bool Comp_B_init(uint16_t baseAddress, Comp_B_initParam *param);
 //! \return None
 //
 //*****************************************************************************
-extern void
-Comp_B_configureReferenceVoltage(uint16_t baseAddress,
-                                 Comp_B_configureReferenceVoltageParam *param);
+extern void Comp_B_configureReferenceVoltage(
+    uint16_t baseAddress, Comp_B_configureReferenceVoltageParam *param);
 
 //*****************************************************************************
 //
@@ -624,4 +623,4 @@ extern uint16_t Comp_B_outputValue(uint16_t baseAddress);
 #endif
 
 #endif
-#endif // __MSP430WARE_COMP_B_H__
+#endif  // __MSP430WARE_COMP_B_H__

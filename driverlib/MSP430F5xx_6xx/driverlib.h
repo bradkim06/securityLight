@@ -29,8 +29,6 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * --/COPYRIGHT--*/
-#include "inc/hw_memmap.h"
-
 #include "adc10_a.h"
 #include "adc12_a.h"
 #include "aes.h"
@@ -46,6 +44,7 @@
 #include "eusci_b_spi.h"
 #include "flashctl.h"
 #include "gpio.h"
+#include "inc/hw_memmap.h"
 #include "lcd_b.h"
 #include "ldopwr.h"
 #include "mpy32.h"

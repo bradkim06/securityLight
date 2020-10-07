@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_PORT1_R__
-#include "gpio.h"
-
 #include <assert.h>
+
+#include "gpio.h"
 
 static const uint16_t GPIO_PORT_TO_BASE[] = {0x00,
 #if defined(__MSP430_HAS_PORT1_R__)

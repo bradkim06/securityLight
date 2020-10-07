@@ -866,4 +866,4 @@ extern uint32_t USCI_B_I2C_getTransmitBufferAddressForDMA(uint16_t baseAddress);
 #endif
 
 #endif
-#endif // __MSP430WARE_USCI_B_I2C_H__
+#endif  // __MSP430WARE_USCI_B_I2C_H__

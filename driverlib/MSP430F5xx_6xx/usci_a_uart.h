@@ -533,8 +533,8 @@ extern uint32_t USCI_A_UART_getReceiveBufferAddressForDMA(uint16_t baseAddress);
 //! \return Address of TX Buffer
 //
 //*****************************************************************************
-extern uint32_t
-USCI_A_UART_getTransmitBufferAddressForDMA(uint16_t baseAddress);
+extern uint32_t USCI_A_UART_getTransmitBufferAddressForDMA(
+    uint16_t baseAddress);
 
 //*****************************************************************************
 //
@@ -546,4 +546,4 @@ USCI_A_UART_getTransmitBufferAddressForDMA(uint16_t baseAddress);
 #endif
 
 #endif
-#endif // __MSP430WARE_USCI_A_UART_H__
+#endif  // __MSP430WARE_USCI_A_UART_H__

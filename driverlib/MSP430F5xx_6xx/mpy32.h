@@ -441,4 +441,4 @@ extern void MPY32_preloadResult(uint64_t result);
 #endif
 
 #endif
-#endif // __MSP430WARE_MPY32_H__
+#endif  // __MSP430WARE_MPY32_H__

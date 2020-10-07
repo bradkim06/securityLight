@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_LCD_B__
-#include "lcd_b.h"
-
 #include <assert.h>
+
+#include "lcd_b.h"
 
 //*****************************************************************************
 //
@@ -61,20 +61,20 @@ const LCD_B_initParam LCD_B_INIT_PARAM = {
 static void setLCDFunction(uint16_t baseAddress, uint8_t index,
                            uint16_t value) {
   switch (index) {
-  case 0:
-    HWREG16(baseAddress + OFS_LCDBPCTL0) |= value;
-    break;
-  case 1:
-    HWREG16(baseAddress + OFS_LCDBPCTL1) |= value;
-    break;
-  case 2:
-    HWREG16(baseAddress + OFS_LCDBPCTL2) |= value;
-    break;
-  case 3:
-    HWREG16(baseAddress + OFS_LCDBPCTL3) |= value;
-    break;
-  default:
-    break;
+    case 0:
+      HWREG16(baseAddress + OFS_LCDBPCTL0) |= value;
+      break;
+    case 1:
+      HWREG16(baseAddress + OFS_LCDBPCTL1) |= value;
+      break;
+    case 2:
+      HWREG16(baseAddress + OFS_LCDBPCTL2) |= value;
+      break;
+    case 3:
+      HWREG16(baseAddress + OFS_LCDBPCTL3) |= value;
+      break;
+    default:
+      break;
   }
 }
 
@@ -196,20 +196,20 @@ void LCD_B_setPinAsPortFunction(uint16_t baseAddress, uint8_t pin) {
   uint16_t val = 1 << (pin & 0xF);
 
   switch (idx) {
-  case 0:
-    HWREG16(baseAddress + OFS_LCDBPCTL0) &= ~val;
-    break;
-  case 1:
-    HWREG16(baseAddress + OFS_LCDBPCTL1) &= ~val;
-    break;
-  case 2:
-    HWREG16(baseAddress + OFS_LCDBPCTL2) &= ~val;
-    break;
-  case 3:
-    HWREG16(baseAddress + OFS_LCDBPCTL3) &= ~val;
-    break;
-  default:
-    break;
+    case 0:
+      HWREG16(baseAddress + OFS_LCDBPCTL0) &= ~val;
+      break;
+    case 1:
+      HWREG16(baseAddress + OFS_LCDBPCTL1) &= ~val;
+      break;
+    case 2:
+      HWREG16(baseAddress + OFS_LCDBPCTL2) &= ~val;
+      break;
+    case 3:
+      HWREG16(baseAddress + OFS_LCDBPCTL3) &= ~val;
+      break;
+    default:
+      break;
   }
 }
 

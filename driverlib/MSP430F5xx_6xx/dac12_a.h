@@ -674,9 +674,8 @@ extern void DAC12_A_setInputDataFormat(uint16_t baseAddress,
 //! \return The address of the specified memory buffer
 //
 //*****************************************************************************
-extern uint32_t
-DAC12_A_getDataBufferMemoryAddressForDMA(uint16_t baseAddress,
-                                         uint8_t submoduleSelect);
+extern uint32_t DAC12_A_getDataBufferMemoryAddressForDMA(
+    uint16_t baseAddress, uint8_t submoduleSelect);
 
 //*****************************************************************************
 //
@@ -688,4 +687,4 @@ DAC12_A_getDataBufferMemoryAddressForDMA(uint16_t baseAddress,
 #endif
 
 #endif
-#endif // __MSP430WARE_DAC12_A_H__
+#endif  // __MSP430WARE_DAC12_A_H__

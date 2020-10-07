@@ -45,32 +45,32 @@
 #include "inc/hw_memmap.h"
 
 #if defined(__MSP430_HAS_DMAX_3__) || defined(__MSP430_HAS_DMAX_6__)
-#include "dma.h"
-
 #include <assert.h>
+
+#include "dma.h"
 
 void DMA_init(DMA_initParam *param) {
   uint8_t triggerOffset = (param->channelSelect >> 4);
 
   // Reset and Set DMA Control 0 Register
   HWREG16(DMA_BASE + param->channelSelect + OFS_DMA0CTL) =
-      param->transferModeSelect   // Set Transfer Mode
-      + param->transferUnitSelect // Set Transfer Unit Size
-      + param->triggerTypeSelect; // Set Trigger Type
+      param->transferModeSelect    // Set Transfer Mode
+      + param->transferUnitSelect  // Set Transfer Unit Size
+      + param->triggerTypeSelect;  // Set Trigger Type
 
   // Set Transfer Size Amount
   HWREG16(DMA_BASE + param->channelSelect + OFS_DMA0SZ) = param->transferSize;
 
-  if (triggerOffset & 0x01) // Odd Channel
+  if (triggerOffset & 0x01)  // Odd Channel
   {
-    HWREG16(DMA_BASE + (triggerOffset & 0x0E)) &= 0x00FF; // Reset Trigger
-                                                          // Select
+    HWREG16(DMA_BASE + (triggerOffset & 0x0E)) &= 0x00FF;  // Reset Trigger
+                                                           // Select
     HWREG16(DMA_BASE + (triggerOffset & 0x0E)) |=
         (param->triggerSourceSelect << 8);
-  } else // Even Channel
+  } else  // Even Channel
   {
-    HWREG16(DMA_BASE + (triggerOffset & 0x0E)) &= 0xFF00; // Reset Trigger
-                                                          // Select
+    HWREG16(DMA_BASE + (triggerOffset & 0x0E)) &= 0xFF00;  // Reset Trigger
+                                                           // Select
     HWREG16(DMA_BASE + (triggerOffset & 0x0E)) |= param->triggerSourceSelect;
   }
 }

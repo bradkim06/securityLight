@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_TxA7__
-#include "timer_a.h"
-
 #include <assert.h>
+
+#include "timer_a.h"
 
 void Timer_A_startCounter(uint16_t baseAddress, uint16_t timerMode) {
   HWREG16(baseAddress + OFS_TAxCTL) |= timerMode;
@@ -184,10 +184,9 @@ void Timer_A_clear(uint16_t baseAddress) {
   HWREG16(baseAddress + OFS_TAxCTL) |= TACLR;
 }
 
-uint8_t
-Timer_A_getSynchronizedCaptureCompareInput(uint16_t baseAddress,
-                                           uint16_t captureCompareRegister,
-                                           uint16_t synchronized) {
+uint8_t Timer_A_getSynchronizedCaptureCompareInput(
+    uint16_t baseAddress, uint16_t captureCompareRegister,
+    uint16_t synchronized) {
   if (HWREG16(baseAddress + captureCompareRegister) & synchronized) {
     return (TIMER_A_CAPTURECOMPARE_INPUT_HIGH);
   } else {
@@ -195,9 +194,8 @@ Timer_A_getSynchronizedCaptureCompareInput(uint16_t baseAddress,
   }
 }
 
-uint8_t
-Timer_A_getOutputForOutputModeOutBitValue(uint16_t baseAddress,
-                                          uint16_t captureCompareRegister) {
+uint8_t Timer_A_getOutputForOutputModeOutBitValue(
+    uint16_t baseAddress, uint16_t captureCompareRegister) {
   if (HWREG16(baseAddress + captureCompareRegister) & OUT) {
     return (TIMER_A_OUTPUTMODE_OUTBITVALUE_HIGH);
   } else {

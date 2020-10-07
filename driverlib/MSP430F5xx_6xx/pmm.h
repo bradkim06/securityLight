@@ -581,4 +581,4 @@ extern uint16_t PMM_getInterruptStatus(uint16_t mask);
 #endif
 
 #endif
-#endif // __MSP430WARE_PMM_H__
+#endif  // __MSP430WARE_PMM_H__

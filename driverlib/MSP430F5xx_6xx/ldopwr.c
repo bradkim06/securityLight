@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_PU__
-#include "ldopwr.h"
-
 #include <assert.h>
+
+#include "ldopwr.h"
 
 void LDOPWR_unLockConfiguration(uint16_t baseAddress) {
   HWREG16(baseAddress + OFS_LDOKEYPID) = 0x9628;

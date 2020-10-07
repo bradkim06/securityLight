@@ -45,15 +45,15 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_CTSD16__
-#include "ctsd16.h"
-
 #include <assert.h>
+
+#include "ctsd16.h"
 
 void CTSD16_init(uint16_t baseAddress, uint16_t chargePumpBurstRequest,
                  uint8_t referenceSelect) {
   // Reset all interrupts and flags
   HWREG16(baseAddress + OFS_CTSD16IE) &= 0x0000;  // Reset ALL interrupt enables
-  HWREG16(baseAddress + OFS_CTSD16IFG) &= 0x0000; // Reset ALL interrupt flags
+  HWREG16(baseAddress + OFS_CTSD16IFG) &= 0x0000;  // Reset ALL interrupt flags
 
   // Configure CTSD16
   HWREG16(baseAddress + OFS_CTSD16CTL) &=
@@ -222,7 +222,7 @@ uint32_t CTSD16_getResults(uint16_t baseAddress, uint8_t converter) {
     return ((highResult << 5) | lowResult);
   } else if (OSR == CTSD16_OVERSAMPLE_64) {
     return ((highResult << 2) | lowResult);
-  } else // OSR = CTSD16_OVERSAMPLE_32
+  } else  // OSR = CTSD16_OVERSAMPLE_32
   {
     return (highResult);
   }

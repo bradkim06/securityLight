@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_MPY32__
-#include "mpy32.h"
-
 #include <assert.h>
+
+#include "mpy32.h"
 
 void MPY32_setWriteDelay(uint16_t writeDelaySelect) {
   HWREG16(MPY32_BASE + OFS_MPY32CTL0) &= ~(MPYDLY32 + MPYDLYWRTEN);

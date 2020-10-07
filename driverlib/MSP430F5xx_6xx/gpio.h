@@ -1085,4 +1085,4 @@ extern void GPIO_setDriveStrength(uint8_t selectedPort, uint16_t selectedPins,
 #endif
 
 #endif
-#endif // __MSP430WARE_GPIO_H__
+#endif  // __MSP430WARE_GPIO_H__

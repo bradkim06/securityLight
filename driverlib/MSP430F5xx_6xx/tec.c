@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_TEV0__
-#include "tec.h"
-
 #include <assert.h>
+
+#include "tec.h"
 
 void TEC_initExternalClearInput(uint16_t baseAddress, uint8_t signalType,
                                 uint8_t signalHold, uint8_t polarityBit) {

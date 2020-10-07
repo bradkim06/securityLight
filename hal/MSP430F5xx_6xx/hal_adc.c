@@ -92,14 +92,14 @@ void HAL_ADC_initWholeSampleAlignment(HAL_ADC_SD24_B_Configuration *config) {
 
 void HAL_ADC_clearVariables(uint8_t phase) {
   switch (phase) {
-  case EM_PH_A_IDX:
-    phASA = 0;
-    phAVIdx = 0;
-    phAIIdx = 0;
-    phAProc = 0;
-    phAWriteVIdx = 0;
-    phAWriteIIdx = 0;
-    break;
+    case EM_PH_A_IDX:
+      phASA = 0;
+      phAVIdx = 0;
+      phAIIdx = 0;
+      phAProc = 0;
+      phAWriteVIdx = 0;
+      phAWriteIIdx = 0;
+      break;
   }
   chReadStatus = 0;
 }
@@ -130,8 +130,8 @@ void HAL_ADC_initializeGroup(HAL_ADC_SD24_B_Configuration *config) {
   }
 }
 
-HAL_ADC_message_code
-HAL_ADC_setClockDividers(HAL_ADC_SD24_B_Configuration *config) {
+HAL_ADC_message_code HAL_ADC_setClockDividers(
+    HAL_ADC_SD24_B_Configuration *config) {
   uint32_t modFreq;
   uint32_t tempDiv;
   HAL_ADC_message_code code = HAL_ADC_message_code_no_error;
@@ -145,60 +145,60 @@ HAL_ADC_setClockDividers(HAL_ADC_SD24_B_Configuration *config) {
 
   // Set ClockPreDivider and ClockDivider
   switch (tempDiv) {
-  case HAL_ADC_CLOCK_MULT_4:
-    config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_4;
-    config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_4;
-    break;
-  case HAL_ADC_CLOCK_MULT_8:
-    config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_8;
-    config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_8;
-    break;
-  case HAL_ADC_CLOCK_MULT_12:
-    config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_12;
-    config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_12;
-    break;
-  case HAL_ADC_CLOCK_MULT_16:
-    config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_16;
-    config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_16;
-    break;
-  case HAL_ADC_CLOCK_MULT_24:
-    config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_24;
-    config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_24;
-    break;
-  case HAL_ADC_CLOCK_MULT_32:
-    config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_32;
-    config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_32;
-    break;
-  case HAL_ADC_CLOCK_MULT_64:
-    config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_64;
-    config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_64;
-    break;
-  case HAL_ADC_CLOCK_MULT_96:
-    config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_96;
-    config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_96;
-    break;
-  case HAL_ADC_CLOCK_MULT_128:
-    config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_128;
-    config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_128;
-    break;
-  case HAL_ADC_CLOCK_MULT_192:
-    config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_192;
-    config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_192;
-    break;
-  case HAL_ADC_CLOCK_MULT_384:
-    config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_384;
-    config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_384;
-    break;
-  default:
-    code = HAL_ADC_message_code_invalid_clock_divider_error;
-    break;
+    case HAL_ADC_CLOCK_MULT_4:
+      config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_4;
+      config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_4;
+      break;
+    case HAL_ADC_CLOCK_MULT_8:
+      config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_8;
+      config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_8;
+      break;
+    case HAL_ADC_CLOCK_MULT_12:
+      config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_12;
+      config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_12;
+      break;
+    case HAL_ADC_CLOCK_MULT_16:
+      config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_16;
+      config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_16;
+      break;
+    case HAL_ADC_CLOCK_MULT_24:
+      config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_24;
+      config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_24;
+      break;
+    case HAL_ADC_CLOCK_MULT_32:
+      config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_32;
+      config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_32;
+      break;
+    case HAL_ADC_CLOCK_MULT_64:
+      config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_64;
+      config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_64;
+      break;
+    case HAL_ADC_CLOCK_MULT_96:
+      config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_96;
+      config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_96;
+      break;
+    case HAL_ADC_CLOCK_MULT_128:
+      config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_128;
+      config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_128;
+      break;
+    case HAL_ADC_CLOCK_MULT_192:
+      config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_192;
+      config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_192;
+      break;
+    case HAL_ADC_CLOCK_MULT_384:
+      config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_384;
+      config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_384;
+      break;
+    default:
+      code = HAL_ADC_message_code_invalid_clock_divider_error;
+      break;
   }
 
   return code;
 }
 
-HAL_ADC_message_code
-HAL_ADC_checkModFreq(HAL_ADC_SD24_B_Configuration *config) {
+HAL_ADC_message_code HAL_ADC_checkModFreq(
+    HAL_ADC_SD24_B_Configuration *config) {
   uint32_t modFreq;
   HAL_ADC_message_code code;
 
@@ -290,44 +290,44 @@ void __attribute__((interrupt(SD24_VECTOR))) SD24_ISR(void)
   int16_t tempV;
   int32_t tempI;
   switch (SD24BIV) {
-  case SD24BIV_SD24IFG0: // SD24MEM0 IFG
-    chReadStatus |= HAL_ADC_CH0_READ;
+    case SD24BIV_SD24IFG0:  // SD24MEM0 IFG
+      chReadStatus |= HAL_ADC_CH0_READ;
 
-    // Store Voltage Results
-    phAVSamples[phAWriteVIdx] =
-        SD24_B_getHighWordResults(SD24_BASE, SD24_B_CONVERTER_0);
+      // Store Voltage Results
+      phAVSamples[phAWriteVIdx] =
+          SD24_B_getHighWordResults(SD24_BASE, SD24_B_CONVERTER_0);
 
-    // Apply Voltage DC Filter
-    tempV =
-        EM_voltageDCFilter(&gEmSWResult.phaseBGResults[EM_PH_A_IDX].vDCEstimate,
-                           phAVSamples[phAWriteVIdx]);
-    phAVSamples[phAWriteVIdx] = tempV;
+      // Apply Voltage DC Filter
+      tempV = EM_voltageDCFilter(
+          &gEmSWResult.phaseBGResults[EM_PH_A_IDX].vDCEstimate,
+          phAVSamples[phAWriteVIdx]);
+      phAVSamples[phAWriteVIdx] = tempV;
 
-    // Increase Index and Mask
-    phAWriteVIdx = (phAWriteVIdx + 1) & (HAL_ADC_V_MASK);
-    break;
-  case SD24BIV_SD24IFG1: // SD24MEM1 IFG
-    break;
-  case SD24BIV_SD24IFG2: // SD24MEM2 IFG
-    chReadStatus |= HAL_ADC_CH2_READ;
+      // Increase Index and Mask
+      phAWriteVIdx = (phAWriteVIdx + 1) & (HAL_ADC_V_MASK);
+      break;
+    case SD24BIV_SD24IFG1:  // SD24MEM1 IFG
+      break;
+    case SD24BIV_SD24IFG2:  // SD24MEM2 IFG
+      chReadStatus |= HAL_ADC_CH2_READ;
 
-    // Store Current Results
-    phAISamples[phAWriteIIdx] =
-        SD24_B_getResults(SD24_BASE, SD24_B_CONVERTER_2);
-    tempI = phAISamples[phAWriteIIdx] >> 1;
-    phAISamples[phAWriteIIdx] = tempI;
+      // Store Current Results
+      phAISamples[phAWriteIIdx] =
+          SD24_B_getResults(SD24_BASE, SD24_B_CONVERTER_2);
+      tempI = phAISamples[phAWriteIIdx] >> 1;
+      phAISamples[phAWriteIIdx] = tempI;
 
-    // Apply Current DC Filter
-    tempI =
-        EM_currentDCFilter(gEmSWResult.phaseBGResults[EM_PH_A_IDX].iDCEstimate,
-                           phAISamples[phAWriteIIdx]);
-    phAISamples[phAWriteIIdx] = tempI;
+      // Apply Current DC Filter
+      tempI = EM_currentDCFilter(
+          gEmSWResult.phaseBGResults[EM_PH_A_IDX].iDCEstimate,
+          phAISamples[phAWriteIIdx]);
+      phAISamples[phAWriteIIdx] = tempI;
 
-    // Increase Index and Mask
-    phAWriteIIdx = (phAWriteIIdx + 1) & (HAL_ADC_I_MASK);
-    break;
-  default:
-    break;
+      // Increase Index and Mask
+      phAWriteIIdx = (phAWriteIIdx + 1) & (HAL_ADC_I_MASK);
+      break;
+    default:
+      break;
   }
 
   // Check if both channels were read for all phases

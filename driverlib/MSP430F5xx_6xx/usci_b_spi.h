@@ -197,9 +197,8 @@ extern bool USCI_B_SPI_initMaster(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void
-USCI_B_SPI_changeMasterClock(uint16_t baseAddress,
-                             USCI_B_SPI_changeMasterClockParam *param);
+extern void USCI_B_SPI_changeMasterClock(
+    uint16_t baseAddress, USCI_B_SPI_changeMasterClockParam *param);
 
 //*****************************************************************************
 //
@@ -458,4 +457,4 @@ extern uint8_t USCI_B_SPI_isBusy(uint16_t baseAddress);
 #endif
 
 #endif
-#endif // __MSP430WARE_USCI_B_SPI_H__
+#endif  // __MSP430WARE_USCI_B_SPI_H__

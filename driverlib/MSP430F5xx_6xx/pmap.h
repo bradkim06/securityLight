@@ -111,4 +111,4 @@ extern void PMAP_initPorts(uint16_t baseAddress, PMAP_initPortsParam *param);
 #endif
 
 #endif
-#endif // __MSP430WARE_PMAP_H__
+#endif  // __MSP430WARE_PMAP_H__

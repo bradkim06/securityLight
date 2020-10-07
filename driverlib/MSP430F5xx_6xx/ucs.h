@@ -745,4 +745,4 @@ extern uint16_t UCS_clearAllOscFlagsWithTimeout(uint16_t timeout);
 #endif
 
 #endif
-#endif // __MSP430WARE_UCS_H__
+#endif  // __MSP430WARE_UCS_H__

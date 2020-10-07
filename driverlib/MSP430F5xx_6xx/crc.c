@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_CRC__
-#include "crc.h"
-
 #include <assert.h>
+
+#include "crc.h"
 
 void CRC_setSeed(uint16_t baseAddress, uint16_t seed) {
   HWREG16(baseAddress + OFS_CRCINIRES) = seed;

@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_EUSCI_Bx__
-#include "eusci_b_i2c.h"
-
 #include <assert.h>
+
+#include "eusci_b_i2c.h"
 
 void EUSCI_B_I2C_initMaster(uint16_t baseAddress,
                             EUSCI_B_I2C_initMasterParam *param) {

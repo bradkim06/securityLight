@@ -204,4 +204,4 @@ extern void WDT_A_initIntervalTimer(uint16_t baseAddress, uint8_t clockSelect,
 #endif
 
 #endif
-#endif // __MSP430WARE_WDT_A_H__
+#endif  // __MSP430WARE_WDT_A_H__

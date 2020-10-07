@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_BATTERY_CHARGER__
-#include "battbak.h"
-
 #include <assert.h>
+
+#include "battbak.h"
 
 uint16_t BattBak_unlockBackupSubSystem(uint16_t baseAddress) {
   HWREG8(baseAddress + OFS_BAKCTL) &= ~(LOCKBAK);

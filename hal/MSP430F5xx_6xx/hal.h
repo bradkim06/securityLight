@@ -46,11 +46,11 @@
 #ifndef HAL_H_
 #define HAL_H_
 
-#include "EM_userConfig.h"
 #include <driverlib.h>
 #include <stdbool.h>
 #include <stdint.h>
 
+#include "EM_userConfig.h"
 #include "hal_adc.h"
 #include "hal_system.h"
 

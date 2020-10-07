@@ -450,9 +450,8 @@ extern Calendar RTC_C_getCalendarTime(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void
-RTC_C_configureCalendarAlarm(uint16_t baseAddress,
-                             RTC_C_configureCalendarAlarmParam *param);
+extern void RTC_C_configureCalendarAlarm(
+    uint16_t baseAddress, RTC_C_configureCalendarAlarmParam *param);
 
 //*****************************************************************************
 //
@@ -844,4 +843,4 @@ extern uint16_t RTC_C_convertBinaryToBCD(uint16_t baseAddress,
 #endif
 
 #endif
-#endif // __MSP430WARE_RTC_C_H__
+#endif  // __MSP430WARE_RTC_C_H__

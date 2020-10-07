@@ -460,4 +460,4 @@ extern void SysCtl_setJTAGOutgoingMessage32Bit(uint32_t outgoingMessage);
 #endif
 
 #endif
-#endif // __MSP430WARE_SYSCTL_H__
+#endif  // __MSP430WARE_SYSCTL_H__

@@ -768,9 +768,8 @@ extern uint32_t Timer_A_getInterruptStatus(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void
-Timer_A_enableCaptureCompareInterrupt(uint16_t baseAddress,
-                                      uint16_t captureCompareRegister);
+extern void Timer_A_enableCaptureCompareInterrupt(
+    uint16_t baseAddress, uint16_t captureCompareRegister);
 
 //*****************************************************************************
 //
@@ -792,9 +791,8 @@ Timer_A_enableCaptureCompareInterrupt(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void
-Timer_A_disableCaptureCompareInterrupt(uint16_t baseAddress,
-                                       uint16_t captureCompareRegister);
+extern void Timer_A_disableCaptureCompareInterrupt(
+    uint16_t baseAddress, uint16_t captureCompareRegister);
 
 //*****************************************************************************
 //
@@ -861,10 +859,9 @@ extern void Timer_A_clear(uint16_t baseAddress);
 //!         - \b Timer_A_CAPTURECOMPARE_INPUT_LOW
 //
 //*****************************************************************************
-extern uint8_t
-Timer_A_getSynchronizedCaptureCompareInput(uint16_t baseAddress,
-                                           uint16_t captureCompareRegister,
-                                           uint16_t synchronized);
+extern uint8_t Timer_A_getSynchronizedCaptureCompareInput(
+    uint16_t baseAddress, uint16_t captureCompareRegister,
+    uint16_t synchronized);
 
 //*****************************************************************************
 //
@@ -886,9 +883,8 @@ Timer_A_getSynchronizedCaptureCompareInput(uint16_t baseAddress,
 //!         - \b Timer_A_OUTPUTMODE_OUTBITVALUE_LOW
 //
 //*****************************************************************************
-extern uint8_t
-Timer_A_getOutputForOutputModeOutBitValue(uint16_t baseAddress,
-                                          uint16_t captureCompareRegister);
+extern uint8_t Timer_A_getOutputForOutputModeOutBitValue(
+    uint16_t baseAddress, uint16_t captureCompareRegister);
 
 //*****************************************************************************
 //
@@ -935,10 +931,9 @@ extern uint16_t Timer_A_getCaptureCompareCount(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void
-Timer_A_setOutputForOutputModeOutBitValue(uint16_t baseAddress,
-                                          uint16_t captureCompareRegister,
-                                          uint8_t outputModeOutBitValue);
+extern void Timer_A_setOutputForOutputModeOutBitValue(
+    uint16_t baseAddress, uint16_t captureCompareRegister,
+    uint8_t outputModeOutBitValue);
 
 //*****************************************************************************
 //
@@ -1066,9 +1061,8 @@ extern void Timer_A_clearTimerInterrupt(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void
-Timer_A_clearCaptureCompareInterrupt(uint16_t baseAddress,
-                                     uint16_t captureCompareRegister);
+extern void Timer_A_clearCaptureCompareInterrupt(
+    uint16_t baseAddress, uint16_t captureCompareRegister);
 
 //*****************************************************************************
 //
@@ -1096,4 +1090,4 @@ extern uint16_t Timer_A_getCounterValue(uint16_t baseAddress);
 #endif
 
 #endif
-#endif // __MSP430WARE_TIMER_A_H__
+#endif  // __MSP430WARE_TIMER_A_H__

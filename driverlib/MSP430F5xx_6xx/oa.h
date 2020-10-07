@@ -307,4 +307,4 @@ extern uint8_t OA_getAmplifierModeStatus(uint16_t baseAddress);
 #endif
 
 #endif
-#endif // __MSP430WARE_OA_H__
+#endif  // __MSP430WARE_OA_H__

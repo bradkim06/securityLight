@@ -45,10 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_TxD7__
-#include "timer_d.h"
-
 #include <assert.h>
 
+#include "timer_d.h"
 #include "tlv.h"
 void Timer_D_startCounter(uint16_t baseAddress, uint16_t timerMode) {
   HWREG16(baseAddress + OFS_TDxCTL0) |= timerMode;
@@ -206,10 +205,9 @@ void Timer_D_clearHighResInterrupt(uint16_t baseAddress, uint16_t mask) {
   HWREG16(baseAddress + OFS_TDxHINT) &= ~mask;
 }
 
-uint8_t
-Timer_D_getSynchronizedCaptureCompareInput(uint16_t baseAddress,
-                                           uint16_t captureCompareRegister,
-                                           uint16_t synchronized) {
+uint8_t Timer_D_getSynchronizedCaptureCompareInput(
+    uint16_t baseAddress, uint16_t captureCompareRegister,
+    uint16_t synchronized) {
   if (HWREG16(baseAddress + captureCompareRegister) & synchronized) {
     return (TIMER_D_CAPTURECOMPARE_INPUT_HIGH);
   } else {
@@ -217,9 +215,8 @@ Timer_D_getSynchronizedCaptureCompareInput(uint16_t baseAddress,
   }
 }
 
-uint8_t
-Timer_D_getOutputForOutputModeOutBitValue(uint16_t baseAddress,
-                                          uint16_t captureCompareRegister) {
+uint8_t Timer_D_getOutputForOutputModeOutBitValue(
+    uint16_t baseAddress, uint16_t captureCompareRegister) {
   if (HWREG16(baseAddress + captureCompareRegister) & OUT) {
     return (TIMER_D_OUTPUTMODE_OUTBITVALUE_HIGH);
   } else {
@@ -291,9 +288,8 @@ void Timer_D_clearCaptureCompareInterrupt(uint16_t baseAddress,
   HWREG16(baseAddress + captureCompareRegister) &= ~CCIFG;
 }
 
-uint8_t
-Timer_D_initHighResGeneratorInFreeRunningMode(uint16_t baseAddress,
-                                              uint8_t desiredHighResFrequency) {
+uint8_t Timer_D_initHighResGeneratorInFreeRunningMode(
+    uint16_t baseAddress, uint8_t desiredHighResFrequency) {
   struct s_TLV_Timer_D_Cal_Data *pTD0CAL;
   uint8_t TD0CAL_bytes;
 
@@ -310,21 +306,21 @@ Timer_D_initHighResGeneratorInFreeRunningMode(uint16_t baseAddress,
   HWREG16(baseAddress + OFS_TDxHCTL0) = 0x00;
 
   switch (desiredHighResFrequency) {
-  case TIMER_D_HIGHRES_64MHZ:
-    HWREG16(baseAddress + OFS_TDxHCTL1) = pTD0CAL->TDH0CTL1_64;
-    break;
+    case TIMER_D_HIGHRES_64MHZ:
+      HWREG16(baseAddress + OFS_TDxHCTL1) = pTD0CAL->TDH0CTL1_64;
+      break;
 
-  case TIMER_D_HIGHRES_128MHZ:
-    HWREG16(baseAddress + OFS_TDxHCTL1) = pTD0CAL->TDH0CTL1_128;
-    break;
+    case TIMER_D_HIGHRES_128MHZ:
+      HWREG16(baseAddress + OFS_TDxHCTL1) = pTD0CAL->TDH0CTL1_128;
+      break;
 
-  case TIMER_D_HIGHRES_200MHZ:
-    HWREG16(baseAddress + OFS_TDxHCTL1) = pTD0CAL->TDH0CTL1_200;
-    break;
+    case TIMER_D_HIGHRES_200MHZ:
+      HWREG16(baseAddress + OFS_TDxHCTL1) = pTD0CAL->TDH0CTL1_200;
+      break;
 
-  case TIMER_D_HIGHRES_256MHZ:
-    HWREG16(baseAddress + OFS_TDxHCTL1) = pTD0CAL->TDH0CTL1_256;
-    break;
+    case TIMER_D_HIGHRES_256MHZ:
+      HWREG16(baseAddress + OFS_TDxHCTL1) = pTD0CAL->TDH0CTL1_256;
+      break;
   }
 
   // Select Hi-res local clock

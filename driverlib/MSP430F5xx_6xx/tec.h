@@ -515,4 +515,4 @@ extern void TEC_clearExternalClearStatus(uint16_t baseAddress);
 #endif
 
 #endif
-#endif // __MSP430WARE_TEC_H__
+#endif  // __MSP430WARE_TEC_H__

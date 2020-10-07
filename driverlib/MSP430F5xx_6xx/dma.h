@@ -738,4 +738,4 @@ extern void DMA_disableNMIAbort(void);
 #endif
 
 #endif
-#endif // __MSP430WARE_DMA_H__
+#endif  // __MSP430WARE_DMA_H__

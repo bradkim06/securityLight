@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_SYS__
-#include "sysctl.h"
-
 #include <assert.h>
+
+#include "sysctl.h"
 
 void SysCtl_enableDedicatedJTAGPins(void) {
   HWREG8(SYS_BASE + OFS_SYSCTL_L) |= SYSJTAGPIN;

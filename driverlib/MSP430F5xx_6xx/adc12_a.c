@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_ADC12_PLUS__
-#include "adc12_a.h"
-
 #include <assert.h>
+
+#include "adc12_a.h"
 
 bool ADC12_A_init(uint16_t baseAddress, uint16_t sampleHoldSignalSourceSelect,
                   uint8_t clockSourceSelect, uint16_t clockSourceDivider) {
@@ -59,19 +59,19 @@ bool ADC12_A_init(uint16_t baseAddress, uint16_t sampleHoldSignalSourceSelect,
   // Turn OFF ADC12_A Module & Clear Interrupt Registers
   HWREG16(baseAddress + OFS_ADC12CTL0) &=
       ~(ADC12ON + ADC12OVIE + ADC12TOVIE + ADC12ENC + ADC12SC);
-  HWREG16(baseAddress + OFS_ADC12IE) &= 0x0000;  // Reset ALL interrupt enables
-  HWREG16(baseAddress + OFS_ADC12IFG) &= 0x0000; // Reset ALL interrupt flags
+  HWREG16(baseAddress + OFS_ADC12IE) &= 0x0000;   // Reset ALL interrupt enables
+  HWREG16(baseAddress + OFS_ADC12IFG) &= 0x0000;  // Reset ALL interrupt flags
 
   // Set ADC12_A Control 1
   HWREG16(baseAddress + OFS_ADC12CTL1) =
-      sampleHoldSignalSourceSelect        // Setup the Sample-and-Hold Source
-      + (clockSourceDivider & ADC12DIV_7) // Set Clock Divider
-      + clockSourceSelect;                // Setup Clock Source
+      sampleHoldSignalSourceSelect         // Setup the Sample-and-Hold Source
+      + (clockSourceDivider & ADC12DIV_7)  // Set Clock Divider
+      + clockSourceSelect;                 // Setup Clock Source
 
   // Set ADC12_A Control 2
   HWREG16(baseAddress + OFS_ADC12CTL2) =
-      (clockSourceDivider & ADC12PDIV) // Set Clock Pre-Divider
-      + ADC12RES_2;                    // Default resolution to 12-bits
+      (clockSourceDivider & ADC12PDIV)  // Set Clock Pre-Divider
+      + ADC12RES_2;                     // Default resolution to 12-bits
 
   return (retVal);
 }
@@ -118,10 +118,10 @@ void ADC12_A_configureMemory(uint16_t baseAddress,
 
     // Reset the memory buffer control and Set the input source
     HWREG8(baseAddress + memoryBufferControlOffset) =
-        param->inputSourceSelect                // Set Input Source
-        + param->positiveRefVoltageSourceSelect // Set Vref+
-        + param->negativeRefVoltageSourceSelect // Set Vref-
-        + param->endOfSequence;                 // Set End of Sequence
+        param->inputSourceSelect                 // Set Input Source
+        + param->positiveRefVoltageSourceSelect  // Set Vref+
+        + param->negativeRefVoltageSourceSelect  // Set Vref-
+        + param->endOfSequence;                  // Set End of Sequence
   }
 }
 

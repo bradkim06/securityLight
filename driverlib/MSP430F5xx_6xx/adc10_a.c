@@ -45,28 +45,28 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_ADC10_A__
-#include "adc10_a.h"
-
 #include <assert.h>
+
+#include "adc10_a.h"
 
 bool ADC10_A_init(uint16_t baseAddress, uint16_t sampleHoldSignalSourceSelect,
                   uint8_t clockSourceSelect, uint16_t clockSourceDivider) {
   bool retVal = STATUS_SUCCESS;
 
   // Turn OFF ADC10_A Module & Clear Interrupt Registers
-  HWREG16(baseAddress + OFS_ADC10IFG) &= 0x0000; // Reset ALL interrupt flags
+  HWREG16(baseAddress + OFS_ADC10IFG) &= 0x0000;  // Reset ALL interrupt flags
 
   // Set ADC10_A Control 1
   HWREG16(baseAddress + OFS_ADC10CTL1) =
-      sampleHoldSignalSourceSelect        // Setup the Sample-and-Hold Source
-      + (clockSourceDivider & ADC10DIV_7) // Set Clock Divider
-      + clockSourceSelect;                // Setup Clock Source
+      sampleHoldSignalSourceSelect         // Setup the Sample-and-Hold Source
+      + (clockSourceDivider & ADC10DIV_7)  // Set Clock Divider
+      + clockSourceSelect;                 // Setup Clock Source
 
   // Set ADC10_A Control 2
   HWREG16(baseAddress + OFS_ADC10CTL2) =
       (clockSourceDivider &
-       (ADC10PDIV_1 | ADC10PDIV_2)) // Set Clock Pre-Divider
-      + ADC10RES;                   // Default resolution to 10-bits
+       (ADC10PDIV_1 | ADC10PDIV_2))  // Set Clock Pre-Divider
+      + ADC10RES;                    // Default resolution to 10-bits
 
   return (retVal);
 }

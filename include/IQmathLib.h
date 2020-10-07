@@ -420,7 +420,7 @@ extern float _IQ1toF(_iq1 A);
 // Saturates an IQ number in a given range.
 //
 //*****************************************************************************
-#define _IQsat(A, Pos, Neg)                                                    \
+#define _IQsat(A, Pos, Neg) \
   (((A) > (Pos)) ? (Pos) : (((A) < (Neg)) ? (Neg) : (A)))
 
 //*****************************************************************************
@@ -3962,4 +3962,4 @@ extern int16_t _IQ1toa(char *string, const char *format, _iq1 input);
 }
 #endif
 
-#endif // __IQMATHLIB_H__
+#endif  // __IQMATHLIB_H__

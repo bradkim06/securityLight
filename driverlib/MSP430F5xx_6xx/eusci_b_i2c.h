@@ -994,4 +994,4 @@ extern uint32_t EUSCI_B_I2C_getTransmitBufferAddress(uint16_t baseAddress);
 #endif
 
 #endif
-#endif // __MSP430WARE_EUSCI_B_I2C_H__
+#endif  // __MSP430WARE_EUSCI_B_I2C_H__

@@ -1063,4 +1063,4 @@ extern uint16_t ADC12_A_isBusy(uint16_t baseAddress);
 #endif
 
 #endif
-#endif // __MSP430WARE_ADC12_A_H__
+#endif  // __MSP430WARE_ADC12_A_H__

@@ -605,9 +605,8 @@ extern uint16_t *EMSWLIB_EM_HAL_ADC_minFreqCount;
 //!
 //! \return EM_message_code
 //!
-extern EM_message_code
-EM_configureEnergyMeasurement(EM_SW_Lib_Config_Handle *config,
-                              EM_SW_Lib_Result_Handle *result);
+extern EM_message_code EM_configureEnergyMeasurement(
+    EM_SW_Lib_Config_Handle *config, EM_SW_Lib_Result_Handle *result);
 
 //! \brief The following API initializes the voltage / current DC filters to 0.
 //!
@@ -1198,6 +1197,6 @@ extern void EM_calcTotalApparentEnergy(uint8_t *phaseIdx, uint8_t length,
 
 #ifdef __cplusplus
 }
-#endif // extern "C"
+#endif  // extern "C"
 
-#endif // end of  _EMSWLIB_H_ definition
+#endif  // end of  _EMSWLIB_H_ definition

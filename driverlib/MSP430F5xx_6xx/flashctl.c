@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_FLASH__
-#include "flashctl.h"
-
 #include <assert.h>
+
+#include "flashctl.h"
 
 void FlashCtl_eraseSegment(uint8_t *flash_ptr) {
   // Clear Lock bit
@@ -245,8 +245,8 @@ uint8_t FlashCtl_getStatus(uint8_t mask) {
 void FlashCtl_lockInfoA(void) {
   // Disable global interrupts while doing RMW operation on LOCKA bit
   uint16_t gieStatus;
-  gieStatus = __get_SR_register() & GIE; // Store current SR register
-  __disable_interrupt();                 // Disable global interrupt
+  gieStatus = __get_SR_register() & GIE;  // Store current SR register
+  __disable_interrupt();                  // Disable global interrupt
 
   // Set the LOCKA bit in FCTL3.
   // Since LOCKA toggles when you write a 1 (and writing 0 has no effect),
@@ -262,8 +262,8 @@ void FlashCtl_lockInfoA(void) {
 void FlashCtl_unlockInfoA(void) {
   // Disable global interrupts while doing RMW operation on LOCKA bit
   uint16_t gieStatus;
-  gieStatus = __get_SR_register() & GIE; // Store current SR register
-  __disable_interrupt();                 // Disable global interrupt
+  gieStatus = __get_SR_register() & GIE;  // Store current SR register
+  __disable_interrupt();                  // Disable global interrupt
 
   // Clear the LOCKA bit in FCTL3.
   // Since LOCKA toggles when you write a 1 (and writing 0 has no effect),

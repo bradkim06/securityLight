@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_OA_0__
-#include "oa.h"
-
 #include <assert.h>
+
+#include "oa.h"
 
 void OA_openSwitch(uint16_t baseAddress, uint8_t positiveInputMask,
                    uint8_t negativeInputMask, uint8_t groundMask) {
@@ -67,17 +67,17 @@ uint8_t OA_getSwitchStatus(uint16_t baseAddress, uint8_t inputTerminal) {
   uint8_t returnValue = 0;
 
   switch (inputTerminal) {
-  case OA_POSITIVE_INPUT_TERMINAL_SWITCHES:
-    returnValue =
-        (HWREG16(baseAddress + OFS_OA0PSW) & (PSW3 | PSW2 | PSW1 | PSW0));
-    break;
-  case OA_NEGATIVE_INPUT_TERMINAL_SWITCHES:
-    returnValue = (HWREG16(baseAddress + OFS_OA0NSW) &
-                   (NSW4 | NSW3 | NSW2 | NSW1 | NSW0));
-    break;
-  case OA_GROUND_SWITCHES:
-    returnValue = (HWREG16(baseAddress + OFS_OA0GSW) & (GSW1 | GSW0));
-    break;
+    case OA_POSITIVE_INPUT_TERMINAL_SWITCHES:
+      returnValue =
+          (HWREG16(baseAddress + OFS_OA0PSW) & (PSW3 | PSW2 | PSW1 | PSW0));
+      break;
+    case OA_NEGATIVE_INPUT_TERMINAL_SWITCHES:
+      returnValue = (HWREG16(baseAddress + OFS_OA0NSW) &
+                     (NSW4 | NSW3 | NSW2 | NSW1 | NSW0));
+      break;
+    case OA_GROUND_SWITCHES:
+      returnValue = (HWREG16(baseAddress + OFS_OA0GSW) & (GSW1 | GSW0));
+      break;
   }
 
   return (returnValue);

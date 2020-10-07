@@ -300,4 +300,4 @@ extern void SFR_setResetNMIPinFunction(uint8_t resetPinFunction);
 #endif
 
 #endif
-#endif // __MSP430WARE_SFR_H__
+#endif  // __MSP430WARE_SFR_H__

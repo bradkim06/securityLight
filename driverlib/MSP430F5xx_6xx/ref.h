@@ -326,4 +326,4 @@ extern bool Ref_isRefGenActive(uint16_t baseAddress);
 #endif
 
 #endif
-#endif // __MSP430WARE_REF_H__
+#endif  // __MSP430WARE_REF_H__

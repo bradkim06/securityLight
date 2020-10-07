@@ -277,4 +277,4 @@ extern uint16_t BattBak_getBackupRAMData(uint16_t baseAddress,
 #endif
 
 #endif
-#endif // __MSP430WARE_BATTBAK_H__
+#endif  // __MSP430WARE_BATTBAK_H__

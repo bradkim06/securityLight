@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_RC__
-#include "ram.h"
-
 #include <assert.h>
+
+#include "ram.h"
 
 void RAM_setSectorOff(uint8_t sector) {
   // Write key to start write to RCCTL0 and sector

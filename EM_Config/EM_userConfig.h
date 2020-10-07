@@ -55,11 +55,12 @@
 //*****************************************************************************
 // includes
 //*****************************************************************************
+#include <stdbool.h>
+#include <stdint.h>
+
 #include "IQmathLib.h"
 #include "emSwLib.h"
 #include "hal_adc.h"
-#include <stdbool.h>
-#include <stdint.h>
 
 //*****************************************************************************
 //! \addtogroup emSwLib_userConfig
@@ -101,9 +102,9 @@ extern "C" {
 //******************************************************************************
 // DO NOT MODIFY THESE DEFINES
 //******************************************************************************
-#define EM_PHASE_CONSTANT                                                      \
+#define EM_PHASE_CONSTANT \
   (3600 * 1e9 * EM_SAMPLING_FREQ_HZ / EM_PHASE_IMP_PER_KWHR)
-#define EM_TOTAL_PHASE_CONSTANT                                                \
+#define EM_TOTAL_PHASE_CONSTANT \
   (3600 * 1e9 * EM_SAMPLING_FREQ_HZ / EM_TOTAL_PHASE_IMP_PER_KWHR)
 #define EM_MAX_FREQ_COUNT (EM_SAMPLING_FREQ_HZ * 256L / 40)
 #define EM_MIN_FREQ_COUNT (EM_SAMPLING_FREQ_HZ * 256L / 70)
@@ -140,7 +141,7 @@ extern void EM_foregroundProc(uint8_t *resultStatus);
 
 #ifdef __cplusplus
 }
-#endif // extern "C"
+#endif  // extern "C"
 //@}  // ingroup
 
-#endif // end of  _EMSWLIB_USERCONFIG_H_ definition
+#endif  // end of  _EMSWLIB_USERCONFIG_H_ definition

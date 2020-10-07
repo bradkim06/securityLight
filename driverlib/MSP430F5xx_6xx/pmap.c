@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_PORT_MAPPING__
-#include "pmap.h"
-
 #include <assert.h>
+
+#include "pmap.h"
 
 void PMAP_initPorts(uint16_t baseAddress, PMAP_initPortsParam *param) {
   // Store current interrupt state, then disable all interrupts

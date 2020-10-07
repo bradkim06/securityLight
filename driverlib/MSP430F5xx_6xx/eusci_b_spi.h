@@ -257,9 +257,8 @@ extern void EUSCI_B_SPI_initMaster(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void
-EUSCI_B_SPI_select4PinFunctionality(uint16_t baseAddress,
-                                    uint8_t select4PinFunctionality);
+extern void EUSCI_B_SPI_select4PinFunctionality(
+    uint16_t baseAddress, uint8_t select4PinFunctionality);
 
 //*****************************************************************************
 //
@@ -274,9 +273,8 @@ EUSCI_B_SPI_select4PinFunctionality(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void
-EUSCI_B_SPI_changeMasterClock(uint16_t baseAddress,
-                              EUSCI_B_SPI_changeMasterClockParam *param);
+extern void EUSCI_B_SPI_changeMasterClock(
+    uint16_t baseAddress, EUSCI_B_SPI_changeMasterClockParam *param);
 
 //*****************************************************************************
 //
@@ -520,4 +518,4 @@ extern uint16_t EUSCI_B_SPI_isBusy(uint16_t baseAddress);
 #endif
 
 #endif
-#endif // __MSP430WARE_EUSCI_B_SPI_H__
+#endif  // __MSP430WARE_EUSCI_B_SPI_H__

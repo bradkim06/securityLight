@@ -45,9 +45,10 @@
 #ifndef HAL_ADC_H_
 #define HAL_ADC_H_
 
-#include "sd24_b.h"
 #include <stdbool.h>
 #include <stdint.h>
+
+#include "sd24_b.h"
 
 //*****************************************************************************
 // defines

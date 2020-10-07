@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_RTC__
-#include "rtc_a.h"
-
 #include <assert.h>
+
+#include "rtc_a.h"
 
 void RTC_A_startClock(uint16_t baseAddress) {
   HWREG8(baseAddress + OFS_RTCCTL01_H) &= ~(RTCHOLD_H);
@@ -73,7 +73,7 @@ void RTC_A_initCounter(uint16_t baseAddress, uint16_t clockSelect,
   HWREG8(baseAddress + OFS_RTCCTL01_H) |= RTCHOLD_H;
   HWREG8(baseAddress + OFS_RTCCTL01_H) &= ~(RTCMODE_H);
 
-  HWREG16(baseAddress + OFS_RTCCTL01) &= 0xF0FF; //~(RTCSSEL_3 + RTCTEV_3);
+  HWREG16(baseAddress + OFS_RTCCTL01) &= 0xF0FF;  //~(RTCSSEL_3 + RTCTEV_3);
   HWREG16(baseAddress + OFS_RTCCTL01) |= clockSelect + counterSizeSelect;
 }
 
@@ -122,7 +122,7 @@ void RTC_A_configureCalendarAlarm(uint16_t baseAddress,
 }
 
 void RTC_A_setCalendarEvent(uint16_t baseAddress, uint16_t eventSelect) {
-  HWREG16(baseAddress + OFS_RTCCTL01) &= ~(RTCTEV_3); // Reset bits
+  HWREG16(baseAddress + OFS_RTCCTL01) &= ~(RTCTEV_3);  // Reset bits
   HWREG16(baseAddress + OFS_RTCCTL01) |= eventSelect;
 }
 

@@ -312,7 +312,7 @@ typedef struct SD24_B_initConverterAdvancedParam {
 #define SD24_B_CLOCKDIVIDER_29 (SD24DIV4 | SD24DIV3 | SD24DIV2)
 #define SD24_B_CLOCKDIVIDER_30 (SD24DIV4 | SD24DIV3 | SD24DIV2 | SD24DIV0)
 #define SD24_B_CLOCKDIVIDER_31 (SD24DIV4 | SD24DIV3 | SD24DIV2 | SD24DIV1)
-#define SD24_B_CLOCKDIVIDER_32                                                 \
+#define SD24_B_CLOCKDIVIDER_32 \
   (SD24DIV4 | SD24DIV3 | SD24DIV2 | SD24DIV1 | SD24DIV0)
 
 //*****************************************************************************
@@ -521,9 +521,8 @@ extern void SD24_B_initConverter(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void
-SD24_B_initConverterAdvanced(uint16_t baseAddress,
-                             SD24_B_initConverterAdvancedParam *param);
+extern void SD24_B_initConverterAdvanced(
+    uint16_t baseAddress, SD24_B_initConverterAdvancedParam *param);
 
 //*****************************************************************************
 //
@@ -990,4 +989,4 @@ extern uint16_t SD24_B_getInterruptStatus(uint16_t baseAddress,
 #endif
 
 #endif
-#endif // __MSP430WARE_SD24_B_H__
+#endif  // __MSP430WARE_SD24_B_H__

@@ -41,7 +41,6 @@
 #include <msp430.h>
 
 #include "msp430f5xx_6xxgeneric.h"
-
 #include "stdbool.h"
 #include "stdint.h"
 
@@ -69,4 +68,4 @@
 #define HWREG16(x) (*((volatile uint16_t *)((uint16_t)x)))
 #define HWREG8(x) (*((volatile uint8_t *)((uint16_t)x)))
 
-#endif // #ifndef __HW_MEMMAP__
+#endif  // #ifndef __HW_MEMMAP__

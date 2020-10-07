@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_EUSCI_Bx__
-#include "eusci_b_spi.h"
-
 #include <assert.h>
+
+#include "eusci_b_spi.h"
 
 void EUSCI_B_SPI_initMaster(uint16_t baseAddress,
                             EUSCI_B_SPI_initMasterParam *param) {

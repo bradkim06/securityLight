@@ -45,14 +45,14 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_SD24_B__
-#include "sd24_b.h"
-
 #include <assert.h>
+
+#include "sd24_b.h"
 
 void SD24_B_init(uint16_t baseAddress, SD24_B_initParam *param) {
   // Reset all interrupts and flags
-  HWREG16(baseAddress + OFS_SD24BIE) &= 0x0000;  // Reset ALL interrupt enables
-  HWREG16(baseAddress + OFS_SD24BIFG) &= 0x0000; // Reset ALL interrupt flags
+  HWREG16(baseAddress + OFS_SD24BIE) &= 0x0000;   // Reset ALL interrupt enables
+  HWREG16(baseAddress + OFS_SD24BIFG) &= 0x0000;  // Reset ALL interrupt flags
   HWREG16(baseAddress + OFS_SD24BTRGCTL) &= ~(SD24TRGIE | SD24TRGIFG);
 
   // Turn off all group conversions
@@ -123,35 +123,35 @@ void SD24_B_setConverterDataFormat(uint16_t baseAddress, uint8_t converter,
 
 void SD24_B_startGroupConversion(uint16_t baseAddress, uint8_t group) {
   switch (group) {
-  case SD24_B_GROUP0:
-    HWREG16(baseAddress + OFS_SD24BCTL1) |= SD24GRP0SC;
-    break;
-  case SD24_B_GROUP1:
-    HWREG16(baseAddress + OFS_SD24BCTL1) |= SD24GRP1SC;
-    break;
-  case SD24_B_GROUP2:
-    HWREG16(baseAddress + OFS_SD24BCTL1) |= SD24GRP2SC;
-    break;
-  case SD24_B_GROUP3:
-    HWREG16(baseAddress + OFS_SD24BCTL1) |= SD24GRP3SC;
-    break;
+    case SD24_B_GROUP0:
+      HWREG16(baseAddress + OFS_SD24BCTL1) |= SD24GRP0SC;
+      break;
+    case SD24_B_GROUP1:
+      HWREG16(baseAddress + OFS_SD24BCTL1) |= SD24GRP1SC;
+      break;
+    case SD24_B_GROUP2:
+      HWREG16(baseAddress + OFS_SD24BCTL1) |= SD24GRP2SC;
+      break;
+    case SD24_B_GROUP3:
+      HWREG16(baseAddress + OFS_SD24BCTL1) |= SD24GRP3SC;
+      break;
   }
 }
 
 void SD24_B_stopGroupConversion(uint16_t baseAddress, uint8_t group) {
   switch (group) {
-  case SD24_B_GROUP0:
-    HWREG16(baseAddress + OFS_SD24BCTL1) &= ~(SD24GRP0SC);
-    break;
-  case SD24_B_GROUP1:
-    HWREG16(baseAddress + OFS_SD24BCTL1) &= ~(SD24GRP1SC);
-    break;
-  case SD24_B_GROUP2:
-    HWREG16(baseAddress + OFS_SD24BCTL1) &= ~(SD24GRP2SC);
-    break;
-  case SD24_B_GROUP3:
-    HWREG16(baseAddress + OFS_SD24BCTL1) &= ~(SD24GRP3SC);
-    break;
+    case SD24_B_GROUP0:
+      HWREG16(baseAddress + OFS_SD24BCTL1) &= ~(SD24GRP0SC);
+      break;
+    case SD24_B_GROUP1:
+      HWREG16(baseAddress + OFS_SD24BCTL1) &= ~(SD24GRP1SC);
+      break;
+    case SD24_B_GROUP2:
+      HWREG16(baseAddress + OFS_SD24BCTL1) &= ~(SD24GRP2SC);
+      break;
+    case SD24_B_GROUP3:
+      HWREG16(baseAddress + OFS_SD24BCTL1) &= ~(SD24GRP3SC);
+      break;
   }
 }
 

@@ -45,13 +45,13 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_DAC12_2__
-#include "dac12_a.h"
-
 #include <assert.h>
 
+#include "dac12_a.h"
+
 bool DAC12_A_init(uint16_t baseAddress, DAC12_A_initParam *param) {
-  baseAddress += param->submoduleSelect; // Add 0x10 to base address IF
-                                         // DAC12_A_1 is selected.
+  baseAddress += param->submoduleSelect;  // Add 0x10 to base address IF
+                                          // DAC12_A_1 is selected.
   HWREG16(baseAddress + OFS_DAC12_0CTL1) &= ~(DAC12OG + DAC12DFJ);
 
   // Reset and Set DAC12_A Control 0 Bits
@@ -164,8 +164,8 @@ void DAC12_A_setResolution(uint16_t baseAddress, uint8_t submoduleSelect,
   uint16_t conversionsEnabledStatus =
       (HWREG16(baseAddress + OFS_DAC12_0CTL0) & (DAC12ENC));
 
-  baseAddress += submoduleSelect; // Add 0x10 to base address IF
-                                  // DAC12_A_1 is selected.
+  baseAddress += submoduleSelect;  // Add 0x10 to base address IF
+                                   // DAC12_A_1 is selected.
 
   if (DAC12_A_RESOLUTION_8BIT == resolutionSelect) {
     HWREG16(baseAddress + OFS_DAC12_0CTL0) |= DAC12RES;
@@ -183,8 +183,8 @@ void DAC12_A_setInputDataFormat(uint16_t baseAddress, uint8_t submoduleSelect,
   uint16_t conversionsEnabledStatus =
       (HWREG16(baseAddress + OFS_DAC12_0CTL0) & (DAC12ENC));
 
-  baseAddress += submoduleSelect; // Add 0x10 to base address IF
-                                  // DAC12_A_1 is selected.
+  baseAddress += submoduleSelect;  // Add 0x10 to base address IF
+                                   // DAC12_A_1 is selected.
 
   if (DAC12_A_JUSTIFICATION_LEFT == inputJustification) {
     HWREG16(baseAddress + OFS_DAC12_0CTL1) |= DAC12DFJ;

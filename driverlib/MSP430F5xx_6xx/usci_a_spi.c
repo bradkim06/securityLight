@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_USCI_Ax__
-#include "usci_a_spi.h"
-
 #include <assert.h>
+
+#include "usci_a_spi.h"
 
 bool USCI_A_SPI_initMaster(uint16_t baseAddress,
                            USCI_A_SPI_initMasterParam *param) {

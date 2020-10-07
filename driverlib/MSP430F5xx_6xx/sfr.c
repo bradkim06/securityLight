@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_SFR__
-#include "sfr.h"
-
 #include <assert.h>
+
+#include "sfr.h"
 
 void SFR_enableInterrupt(uint8_t interruptMask) {
   HWREG8(SFR_BASE + OFS_SFRIE1_L) |= interruptMask;

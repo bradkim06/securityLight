@@ -429,4 +429,4 @@ extern uint8_t TLV_getInterrupt(uint8_t tag);
 #endif
 
 #endif
-#endif // __MSP430WARE_TLV_H__
+#endif  // __MSP430WARE_TLV_H__

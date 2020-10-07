@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_PMM__
-#include "pmm.h"
-
 #include <assert.h>
+
+#include "pmm.h"
 
 void PMM_enableSvsL(void) {
   HWREG8(PMM_BASE + OFS_PMMCTL0_H) = 0xA5;

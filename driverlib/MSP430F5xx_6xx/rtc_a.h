@@ -417,9 +417,8 @@ extern Calendar RTC_A_getCalendarTime(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void
-RTC_A_configureCalendarAlarm(uint16_t baseAddress,
-                             RTC_A_configureCalendarAlarmParam *param);
+extern void RTC_A_configureCalendarAlarm(
+    uint16_t baseAddress, RTC_A_configureCalendarAlarmParam *param);
 
 //*****************************************************************************
 //
@@ -767,4 +766,4 @@ extern void RTC_A_clearInterrupt(uint16_t baseAddress,
 #endif
 
 #endif
-#endif // __MSP430WARE_RTC_A_H__
+#endif  // __MSP430WARE_RTC_A_H__

@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_REF__
-#include "ref.h"
-
 #include <assert.h>
+
+#include "ref.h"
 
 void Ref_setReferenceVoltage(uint16_t baseAddress,
                              uint8_t referenceVoltageSelect) {

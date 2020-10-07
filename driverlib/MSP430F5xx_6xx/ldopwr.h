@@ -455,4 +455,4 @@ extern uint8_t LDOPWR_getOverloadAutoOffStatus(uint16_t baseAddress);
 #endif
 
 #endif
-#endif // __MSP430WARE_LDOPWR_H__
+#endif  // __MSP430WARE_LDOPWR_H__

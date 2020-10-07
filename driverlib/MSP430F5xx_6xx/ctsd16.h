@@ -398,9 +398,8 @@ extern void CTSD16_initConverter(uint16_t baseAddress, uint8_t converter,
 //! \return None
 //
 //*****************************************************************************
-extern void
-CTSD16_initConverterAdvanced(uint16_t baseAddress,
-                             CTSD16_initConverterAdvancedParam *param);
+extern void CTSD16_initConverterAdvanced(
+    uint16_t baseAddress, CTSD16_initConverterAdvancedParam *param);
 
 //*****************************************************************************
 //
@@ -841,4 +840,4 @@ extern uint16_t CTSD16_getInterruptStatus(uint16_t baseAddress,
 #endif
 
 #endif
-#endif // __MSP430WARE_CTSD16_H__
+#endif  // __MSP430WARE_CTSD16_H__

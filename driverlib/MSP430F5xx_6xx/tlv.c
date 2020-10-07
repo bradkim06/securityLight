@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_TLV__
-#include "tlv.h"
-
 #include <assert.h>
+
+#include "tlv.h"
 
 void TLV_getInfo(uint8_t tag, uint8_t instance, uint8_t *length,
                  uint16_t **data_address) {
@@ -55,8 +55,8 @@ void TLV_getInfo(uint8_t tag, uint8_t instance, uint8_t *length,
   char *TLV_address = (char *)TLV_START;
 
   while ((TLV_address < (char *)TLV_END) &&
-         ((*TLV_address != tag) || instance) // check for tag and instance
-         && (*TLV_address != TLV_TAGEND))    // do range check first
+         ((*TLV_address != tag) || instance)  // check for tag and instance
+         && (*TLV_address != TLV_TAGEND))     // do range check first
   {
     if (*TLV_address == tag) {
       // repeat till requested instance is reached

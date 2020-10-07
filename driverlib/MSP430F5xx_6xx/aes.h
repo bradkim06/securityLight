@@ -408,4 +408,4 @@ extern uint8_t AES_decryptDataUsingEncryptionKey(uint16_t baseAddress,
 #endif
 
 #endif
-#endif // __MSP430WARE_AES_H__
+#endif  // __MSP430WARE_AES_H__

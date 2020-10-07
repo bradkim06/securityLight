@@ -254,7 +254,7 @@ extern const LCD_B_initParam LCD_B_INIT_PARAM;
 #define LCD_B_BLINK_FREQ_CLOCK_PRESCALAR_8162 (LCDBLKPRE2)
 #define LCD_B_BLINK_FREQ_CLOCK_PRESCALAR_16384         LCDBLKPRE2 | LCDBLKPRE0)
 #define LCD_B_BLINK_FREQ_CLOCK_PRESCALAR_32768 (LCDBLKPRE2 | LCDBLKPRE1)
-#define LCD_B_BLINK_FREQ_CLOCK_PRESCALAR_65536                                 \
+#define LCD_B_BLINK_FREQ_CLOCK_PRESCALAR_65536 \
   (LCDBLKPRE2 | LCDBLKPRE1 | LCDBLKPRE0)
 
 //*****************************************************************************
@@ -336,7 +336,7 @@ extern const LCD_B_initParam LCD_B_INIT_PARAM;
 #define LCD_B_CHARGEPUMP_VOLTAGE_3_26V_OR_2_72VREF (VLCD3 | VLCD2)
 #define LCD_B_CHARGEPUMP_VOLTAGE_3_32V_OR_2_77VREF (VLCD3 | VLCD2 | VLCD0)
 #define LCD_B_CHARGEPUMP_VOLTAGE_3_38V_OR_2_82VREF (VLCD3 | VLCD2 | VLCD1)
-#define LCD_B_CHARGEPUMP_VOLTAGE_3_44V_OR_2_87VREF                             \
+#define LCD_B_CHARGEPUMP_VOLTAGE_3_44V_OR_2_87VREF \
   (VLCD3 | VLCD2 | VLCD1 | VLCD0)
 
 //*****************************************************************************
@@ -1645,4 +1645,4 @@ extern void LCD_B_configureChargePump(uint16_t baseAddress,
 #endif
 
 #endif
-#endif // __MSP430WARE_LCD_B_H__
+#endif  // __MSP430WARE_LCD_B_H__

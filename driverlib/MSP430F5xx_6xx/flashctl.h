@@ -270,4 +270,4 @@ extern void FlashCtl_unlockInfoA(void);
 #endif
 
 #endif
-#endif // __MSP430WARE_FLASHCTL_H__
+#endif  // __MSP430WARE_FLASHCTL_H__

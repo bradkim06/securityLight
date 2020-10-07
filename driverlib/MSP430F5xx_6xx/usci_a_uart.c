@@ -45,9 +45,9 @@
 #include "inc/hw_memmap.h"
 
 #ifdef __MSP430_HAS_USCI_Ax__
-#include "usci_a_uart.h"
-
 #include <assert.h>
+
+#include "usci_a_uart.h"
 
 bool USCI_A_UART_init(uint16_t baseAddress, USCI_A_UART_initParam *param) {
   bool retVal = STATUS_SUCCESS;
@@ -69,20 +69,20 @@ bool USCI_A_UART_init(uint16_t baseAddress, USCI_A_UART_initParam *param) {
 
   // Parity
   switch (param->parity) {
-  case USCI_A_UART_NO_PARITY:
-    // No Parity
-    HWREG8(baseAddress + OFS_UCAxCTL0) &= ~UCPEN;
-    break;
-  case USCI_A_UART_ODD_PARITY:
-    // Odd Parity
-    HWREG8(baseAddress + OFS_UCAxCTL0) |= UCPEN;
-    HWREG8(baseAddress + OFS_UCAxCTL0) &= ~UCPAR;
-    break;
-  case USCI_A_UART_EVEN_PARITY:
-    // Even Parity
-    HWREG8(baseAddress + OFS_UCAxCTL0) |= UCPEN;
-    HWREG8(baseAddress + OFS_UCAxCTL0) |= UCPAR;
-    break;
+    case USCI_A_UART_NO_PARITY:
+      // No Parity
+      HWREG8(baseAddress + OFS_UCAxCTL0) &= ~UCPEN;
+      break;
+    case USCI_A_UART_ODD_PARITY:
+      // Odd Parity
+      HWREG8(baseAddress + OFS_UCAxCTL0) |= UCPEN;
+      HWREG8(baseAddress + OFS_UCAxCTL0) &= ~UCPAR;
+      break;
+    case USCI_A_UART_EVEN_PARITY:
+      // Even Parity
+      HWREG8(baseAddress + OFS_UCAxCTL0) |= UCPEN;
+      HWREG8(baseAddress + OFS_UCAxCTL0) |= UCPAR;
+      break;
   }
 
   // Modulation Control Registers
