@@ -49,8 +49,7 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 #include "inc/hw_memmap.h"
@@ -59,69 +58,68 @@ extern "C"
 //! \brief Used in the Comp_B_init() function as the param parameter.
 //
 //*****************************************************************************
-typedef struct Comp_B_initParam
-{
-    //! Selects the input to the positive terminal.
-    //! \n Valid values are:
-    //! - \b COMP_B_INPUT0 [Default]
-    //! - \b COMP_B_INPUT1
-    //! - \b COMP_B_INPUT2
-    //! - \b COMP_B_INPUT3
-    //! - \b COMP_B_INPUT4
-    //! - \b COMP_B_INPUT5
-    //! - \b COMP_B_INPUT6
-    //! - \b COMP_B_INPUT7
-    //! - \b COMP_B_INPUT8
-    //! - \b COMP_B_INPUT9
-    //! - \b COMP_B_INPUT10
-    //! - \b COMP_B_INPUT11
-    //! - \b COMP_B_INPUT12
-    //! - \b COMP_B_INPUT13
-    //! - \b COMP_B_INPUT14
-    //! - \b COMP_B_INPUT15
-    //! - \b COMP_B_VREF
-    uint8_t positiveTerminalInput;
-    //! Selects the input to the negative terminal.
-    //! \n Valid values are:
-    //! - \b COMP_B_INPUT0 [Default]
-    //! - \b COMP_B_INPUT1
-    //! - \b COMP_B_INPUT2
-    //! - \b COMP_B_INPUT3
-    //! - \b COMP_B_INPUT4
-    //! - \b COMP_B_INPUT5
-    //! - \b COMP_B_INPUT6
-    //! - \b COMP_B_INPUT7
-    //! - \b COMP_B_INPUT8
-    //! - \b COMP_B_INPUT9
-    //! - \b COMP_B_INPUT10
-    //! - \b COMP_B_INPUT11
-    //! - \b COMP_B_INPUT12
-    //! - \b COMP_B_INPUT13
-    //! - \b COMP_B_INPUT14
-    //! - \b COMP_B_INPUT15
-    //! - \b COMP_B_VREF
-    uint8_t negativeTerminalInput;
-    //! Selects the power mode at which the Comp_B module will operate at.
-    //! \n Valid values are:
-    //! - \b COMP_B_POWERMODE_HIGHSPEED [Default]
-    //! - \b COMP_B_POWERMODE_NORMALMODE
-    //! - \b COMP_B_POWERMODE_ULTRALOWPOWER
-    uint16_t powerModeSelect;
-    //! Controls the output filter delay state, which is either off or enabled
-    //! with a specified delay level. This parameter is device specific and
-    //! delay levels should be found in the device's datasheet.
-    //! \n Valid values are:
-    //! - \b COMP_B_FILTEROUTPUT_OFF [Default]
-    //! - \b COMP_B_FILTEROUTPUT_DLYLVL1
-    //! - \b COMP_B_FILTEROUTPUT_DLYLVL2
-    //! - \b COMP_B_FILTEROUTPUT_DLYLVL3
-    //! - \b COMP_B_FILTEROUTPUT_DLYLVL4
-    uint8_t outputFilterEnableAndDelayLevel;
-    //! Controls if the output will be inverted or not
-    //! \n Valid values are:
-    //! - \b COMP_B_NORMALOUTPUTPOLARITY [Default]
-    //! - \b COMP_B_INVERTEDOUTPUTPOLARITY
-    uint16_t invertedOutputPolarity;
+typedef struct Comp_B_initParam {
+  //! Selects the input to the positive terminal.
+  //! \n Valid values are:
+  //! - \b COMP_B_INPUT0 [Default]
+  //! - \b COMP_B_INPUT1
+  //! - \b COMP_B_INPUT2
+  //! - \b COMP_B_INPUT3
+  //! - \b COMP_B_INPUT4
+  //! - \b COMP_B_INPUT5
+  //! - \b COMP_B_INPUT6
+  //! - \b COMP_B_INPUT7
+  //! - \b COMP_B_INPUT8
+  //! - \b COMP_B_INPUT9
+  //! - \b COMP_B_INPUT10
+  //! - \b COMP_B_INPUT11
+  //! - \b COMP_B_INPUT12
+  //! - \b COMP_B_INPUT13
+  //! - \b COMP_B_INPUT14
+  //! - \b COMP_B_INPUT15
+  //! - \b COMP_B_VREF
+  uint8_t positiveTerminalInput;
+  //! Selects the input to the negative terminal.
+  //! \n Valid values are:
+  //! - \b COMP_B_INPUT0 [Default]
+  //! - \b COMP_B_INPUT1
+  //! - \b COMP_B_INPUT2
+  //! - \b COMP_B_INPUT3
+  //! - \b COMP_B_INPUT4
+  //! - \b COMP_B_INPUT5
+  //! - \b COMP_B_INPUT6
+  //! - \b COMP_B_INPUT7
+  //! - \b COMP_B_INPUT8
+  //! - \b COMP_B_INPUT9
+  //! - \b COMP_B_INPUT10
+  //! - \b COMP_B_INPUT11
+  //! - \b COMP_B_INPUT12
+  //! - \b COMP_B_INPUT13
+  //! - \b COMP_B_INPUT14
+  //! - \b COMP_B_INPUT15
+  //! - \b COMP_B_VREF
+  uint8_t negativeTerminalInput;
+  //! Selects the power mode at which the Comp_B module will operate at.
+  //! \n Valid values are:
+  //! - \b COMP_B_POWERMODE_HIGHSPEED [Default]
+  //! - \b COMP_B_POWERMODE_NORMALMODE
+  //! - \b COMP_B_POWERMODE_ULTRALOWPOWER
+  uint16_t powerModeSelect;
+  //! Controls the output filter delay state, which is either off or enabled
+  //! with a specified delay level. This parameter is device specific and
+  //! delay levels should be found in the device's datasheet.
+  //! \n Valid values are:
+  //! - \b COMP_B_FILTEROUTPUT_OFF [Default]
+  //! - \b COMP_B_FILTEROUTPUT_DLYLVL1
+  //! - \b COMP_B_FILTEROUTPUT_DLYLVL2
+  //! - \b COMP_B_FILTEROUTPUT_DLYLVL3
+  //! - \b COMP_B_FILTEROUTPUT_DLYLVL4
+  uint8_t outputFilterEnableAndDelayLevel;
+  //! Controls if the output will be inverted or not
+  //! \n Valid values are:
+  //! - \b COMP_B_NORMALOUTPUTPOLARITY [Default]
+  //! - \b COMP_B_INVERTEDOUTPUTPOLARITY
+  uint16_t invertedOutputPolarity;
 } Comp_B_initParam;
 
 //*****************************************************************************
@@ -130,28 +128,27 @@ typedef struct Comp_B_initParam
 //! parameter.
 //
 //*****************************************************************************
-typedef struct Comp_B_configureReferenceVoltageParam
-{
-    //! Decides the source and max amount of Voltage that can be used as a
-    //! reference.
-    //! \n Valid values are:
-    //! - \b COMP_B_VREFBASE_VCC
-    //! - \b COMP_B_VREFBASE1_5V
-    //! - \b COMP_B_VREFBASE2_0V
-    //! - \b COMP_B_VREFBASE2_5V
-    uint16_t supplyVoltageReferenceBase;
-    //! Is the numerator of the equation to generate the reference voltage for
-    //! the lower limit reference voltage.
-    uint16_t lowerLimitSupplyVoltageFractionOf32;
-    //! Is the numerator of the equation to generate the reference voltage for
-    //! the upper limit reference voltage.
-    uint16_t upperLimitSupplyVoltageFractionOf32;
-    //!  is the reference accuracy setting of the Comp_B. Clocked is for low
-    //! power/low accuracy.
-    //! \n Valid values are:
-    //! - \b COMP_B_ACCURACY_STATIC
-    //! - \b COMP_B_ACCURACY_CLOCKED
-    uint16_t referenceAccuracy;
+typedef struct Comp_B_configureReferenceVoltageParam {
+  //! Decides the source and max amount of Voltage that can be used as a
+  //! reference.
+  //! \n Valid values are:
+  //! - \b COMP_B_VREFBASE_VCC
+  //! - \b COMP_B_VREFBASE1_5V
+  //! - \b COMP_B_VREFBASE2_0V
+  //! - \b COMP_B_VREFBASE2_5V
+  uint16_t supplyVoltageReferenceBase;
+  //! Is the numerator of the equation to generate the reference voltage for
+  //! the lower limit reference voltage.
+  uint16_t lowerLimitSupplyVoltageFractionOf32;
+  //! Is the numerator of the equation to generate the reference voltage for
+  //! the upper limit reference voltage.
+  uint16_t upperLimitSupplyVoltageFractionOf32;
+  //!  is the reference accuracy setting of the Comp_B. Clocked is for low
+  //! power/low accuracy.
+  //! \n Valid values are:
+  //! - \b COMP_B_ACCURACY_STATIC
+  //! - \b COMP_B_ACCURACY_CLOCKED
+  uint16_t referenceAccuracy;
 } Comp_B_configureReferenceVoltageParam;
 
 //*****************************************************************************
@@ -161,9 +158,9 @@ typedef struct Comp_B_configureReferenceVoltageParam
 // Comp_B_init().
 //
 //*****************************************************************************
-#define COMP_B_POWERMODE_HIGHSPEED                                  (CBPWRMD_0)
-#define COMP_B_POWERMODE_NORMALMODE                                 (CBPWRMD_1)
-#define COMP_B_POWERMODE_ULTRALOWPOWER                              (CBPWRMD_2)
+#define COMP_B_POWERMODE_HIGHSPEED (CBPWRMD_0)
+#define COMP_B_POWERMODE_NORMALMODE (CBPWRMD_1)
+#define COMP_B_POWERMODE_ULTRALOWPOWER (CBPWRMD_2)
 
 //*****************************************************************************
 //
@@ -174,23 +171,23 @@ typedef struct Comp_B_configureReferenceVoltageParam
 // negativeTerminalInput parameter for functions: Comp_B_init().
 //
 //*****************************************************************************
-#define COMP_B_INPUT0                                               (CBIPSEL_0)
-#define COMP_B_INPUT1                                               (CBIPSEL_1)
-#define COMP_B_INPUT2                                               (CBIPSEL_2)
-#define COMP_B_INPUT3                                               (CBIPSEL_3)
-#define COMP_B_INPUT4                                               (CBIPSEL_4)
-#define COMP_B_INPUT5                                               (CBIPSEL_5)
-#define COMP_B_INPUT6                                               (CBIPSEL_6)
-#define COMP_B_INPUT7                                               (CBIPSEL_7)
-#define COMP_B_INPUT8                                               (CBIPSEL_8)
-#define COMP_B_INPUT9                                               (CBIPSEL_9)
-#define COMP_B_INPUT10                                             (CBIPSEL_10)
-#define COMP_B_INPUT11                                             (CBIPSEL_11)
-#define COMP_B_INPUT12                                             (CBIPSEL_12)
-#define COMP_B_INPUT13                                             (CBIPSEL_13)
-#define COMP_B_INPUT14                                             (CBIPSEL_14)
-#define COMP_B_INPUT15                                             (CBIPSEL_15)
-#define COMP_B_VREF                                                      (0x10)
+#define COMP_B_INPUT0 (CBIPSEL_0)
+#define COMP_B_INPUT1 (CBIPSEL_1)
+#define COMP_B_INPUT2 (CBIPSEL_2)
+#define COMP_B_INPUT3 (CBIPSEL_3)
+#define COMP_B_INPUT4 (CBIPSEL_4)
+#define COMP_B_INPUT5 (CBIPSEL_5)
+#define COMP_B_INPUT6 (CBIPSEL_6)
+#define COMP_B_INPUT7 (CBIPSEL_7)
+#define COMP_B_INPUT8 (CBIPSEL_8)
+#define COMP_B_INPUT9 (CBIPSEL_9)
+#define COMP_B_INPUT10 (CBIPSEL_10)
+#define COMP_B_INPUT11 (CBIPSEL_11)
+#define COMP_B_INPUT12 (CBIPSEL_12)
+#define COMP_B_INPUT13 (CBIPSEL_13)
+#define COMP_B_INPUT14 (CBIPSEL_14)
+#define COMP_B_INPUT15 (CBIPSEL_15)
+#define COMP_B_VREF (0x10)
 
 //*****************************************************************************
 //
@@ -199,11 +196,11 @@ typedef struct Comp_B_configureReferenceVoltageParam
 // param parameter for functions: Comp_B_init().
 //
 //*****************************************************************************
-#define COMP_B_FILTEROUTPUT_OFF                                            0x00
-#define COMP_B_FILTEROUTPUT_DLYLVL1                            (CBF + CBFDLY_0)
-#define COMP_B_FILTEROUTPUT_DLYLVL2                            (CBF + CBFDLY_1)
-#define COMP_B_FILTEROUTPUT_DLYLVL3                            (CBF + CBFDLY_2)
-#define COMP_B_FILTEROUTPUT_DLYLVL4                            (CBF + CBFDLY_3)
+#define COMP_B_FILTEROUTPUT_OFF 0x00
+#define COMP_B_FILTEROUTPUT_DLYLVL1 (CBF + CBFDLY_0)
+#define COMP_B_FILTEROUTPUT_DLYLVL2 (CBF + CBFDLY_1)
+#define COMP_B_FILTEROUTPUT_DLYLVL3 (CBF + CBFDLY_2)
+#define COMP_B_FILTEROUTPUT_DLYLVL4 (CBF + CBFDLY_3)
 
 //*****************************************************************************
 //
@@ -212,8 +209,8 @@ typedef struct Comp_B_configureReferenceVoltageParam
 // Comp_B_init().
 //
 //*****************************************************************************
-#define COMP_B_NORMALOUTPUTPOLARITY                               (!(CBOUTPOL))
-#define COMP_B_INVERTEDOUTPUTPOLARITY                                (CBOUTPOL)
+#define COMP_B_NORMALOUTPUTPOLARITY (!(CBOUTPOL))
+#define COMP_B_INVERTEDOUTPUTPOLARITY (CBOUTPOL)
 
 //*****************************************************************************
 //
@@ -221,8 +218,8 @@ typedef struct Comp_B_configureReferenceVoltageParam
 // functions: Comp_B_configureReferenceVoltage().
 //
 //*****************************************************************************
-#define COMP_B_ACCURACY_STATIC                                      (!CBREFACC)
-#define COMP_B_ACCURACY_CLOCKED                                      (CBREFACC)
+#define COMP_B_ACCURACY_STATIC (!CBREFACC)
+#define COMP_B_ACCURACY_CLOCKED (CBREFACC)
 
 //*****************************************************************************
 //
@@ -230,10 +227,10 @@ typedef struct Comp_B_configureReferenceVoltageParam
 // functions: Comp_B_configureReferenceVoltage().
 //
 //*****************************************************************************
-#define COMP_B_VREFBASE_VCC                                          (CBREFL_0)
-#define COMP_B_VREFBASE1_5V                                          (CBREFL_1)
-#define COMP_B_VREFBASE2_0V                                          (CBREFL_2)
-#define COMP_B_VREFBASE2_5V                                          (CBREFL_3)
+#define COMP_B_VREFBASE_VCC (CBREFL_0)
+#define COMP_B_VREFBASE1_5V (CBREFL_1)
+#define COMP_B_VREFBASE2_0V (CBREFL_2)
+#define COMP_B_VREFBASE2_5V (CBREFL_3)
 
 //*****************************************************************************
 //
@@ -241,8 +238,8 @@ typedef struct Comp_B_configureReferenceVoltageParam
 // for functions: Comp_B_enableInterrupt(), and Comp_B_disableInterrupt().
 //
 //*****************************************************************************
-#define COMP_B_OUTPUT_INT                                                  CBIE
-#define COMP_B_OUTPUTINVERTED_INT                                         CBIIE
+#define COMP_B_OUTPUT_INT CBIE
+#define COMP_B_OUTPUTINVERTED_INT CBIIE
 
 //*****************************************************************************
 //
@@ -252,8 +249,8 @@ typedef struct Comp_B_configureReferenceVoltageParam
 // Comp_B_getInterruptStatus() function.
 //
 //*****************************************************************************
-#define COMP_B_OUTPUT_FLAG                                                CBIFG
-#define COMP_B_OUTPUTINVERTED_FLAG                                       CBIIFG
+#define COMP_B_OUTPUT_FLAG CBIFG
+#define COMP_B_OUTPUTINVERTED_FLAG CBIIFG
 
 //*****************************************************************************
 //
@@ -261,8 +258,8 @@ typedef struct Comp_B_configureReferenceVoltageParam
 // for functions: Comp_B_setInterruptEdgeDirection().
 //
 //*****************************************************************************
-#define COMP_B_FALLINGEDGE                                           (!(CBIES))
-#define COMP_B_RISINGEDGE                                               (CBIES)
+#define COMP_B_FALLINGEDGE (!(CBIES))
+#define COMP_B_RISINGEDGE (CBIES)
 
 //*****************************************************************************
 //
@@ -270,8 +267,8 @@ typedef struct Comp_B_configureReferenceVoltageParam
 // can be returned by the Comp_B_outputValue() function.
 //
 //*****************************************************************************
-#define COMP_B_LOW                                                        (0x0)
-#define COMP_B_HIGH                                                     (CBOUT)
+#define COMP_B_LOW (0x0)
+#define COMP_B_HIGH (CBOUT)
 
 //*****************************************************************************
 //
@@ -296,8 +293,7 @@ typedef struct Comp_B_configureReferenceVoltageParam
 //! \return STATUS_SUCCESS or STATUS_FAILURE of the initialization process.
 //
 //*****************************************************************************
-extern bool Comp_B_init(uint16_t baseAddress,
-                        Comp_B_initParam *param);
+extern bool Comp_B_init(uint16_t baseAddress, Comp_B_initParam *param);
 
 //*****************************************************************************
 //
@@ -316,8 +312,9 @@ extern bool Comp_B_init(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Comp_B_configureReferenceVoltage(uint16_t baseAddress,
-                                             Comp_B_configureReferenceVoltageParam *param);
+extern void
+Comp_B_configureReferenceVoltage(uint16_t baseAddress,
+                                 Comp_B_configureReferenceVoltageParam *param);
 
 //*****************************************************************************
 //
@@ -545,8 +542,7 @@ extern void Comp_B_unshortInputs(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void Comp_B_disableInputBuffer(uint16_t baseAddress,
-                                      uint8_t inputPort);
+extern void Comp_B_disableInputBuffer(uint16_t baseAddress, uint8_t inputPort);
 
 //*****************************************************************************
 //
@@ -583,8 +579,7 @@ extern void Comp_B_disableInputBuffer(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Comp_B_enableInputBuffer(uint16_t baseAddress,
-                                     uint8_t inputPort);
+extern void Comp_B_enableInputBuffer(uint16_t baseAddress, uint8_t inputPort);
 
 //*****************************************************************************
 //

@@ -49,8 +49,7 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 //*****************************************************************************
@@ -74,8 +73,7 @@ extern "C"
 //! \return None
 //
 //*****************************************************************************
-extern void CRC_setSeed(uint16_t baseAddress,
-                        uint16_t seed);
+extern void CRC_setSeed(uint16_t baseAddress, uint16_t seed);
 
 //*****************************************************************************
 //
@@ -93,8 +91,7 @@ extern void CRC_setSeed(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void CRC_set16BitData(uint16_t baseAddress,
-                             uint16_t dataIn);
+extern void CRC_set16BitData(uint16_t baseAddress, uint16_t dataIn);
 
 //*****************************************************************************
 //
@@ -112,8 +109,7 @@ extern void CRC_set16BitData(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void CRC_set8BitData(uint16_t baseAddress,
-                            uint8_t dataIn);
+extern void CRC_set8BitData(uint16_t baseAddress, uint8_t dataIn);
 
 //*****************************************************************************
 //
@@ -132,8 +128,7 @@ extern void CRC_set8BitData(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void CRC_set16BitDataReversed(uint16_t baseAddress,
-                                     uint16_t dataIn);
+extern void CRC_set16BitDataReversed(uint16_t baseAddress, uint16_t dataIn);
 
 //*****************************************************************************
 //
@@ -152,8 +147,7 @@ extern void CRC_set16BitDataReversed(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void CRC_set8BitDataReversed(uint16_t baseAddress,
-                                    uint8_t dataIn);
+extern void CRC_set8BitDataReversed(uint16_t baseAddress, uint8_t dataIn);
 
 //*****************************************************************************
 //

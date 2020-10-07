@@ -8,12 +8,12 @@ static void initialize(void);
  * main.c
  */
 int main(void) {
-    // Stop WDT
-    WDTCTL = WDTPW + WDTHOLD;
+  // Stop WDT
+  WDTCTL = WDTPW + WDTHOLD;
 
-    initialize();
+  initialize();
 
-    return 0;
+  return 0;
 }
 
 //*****************************************************************************
@@ -23,4 +23,4 @@ int main(void) {
 //! \return none
 //
 // *****************************************************************************
-static void initialize(void) { hal_system_Init(); }
+static void initialize(void) { system_Init(); }

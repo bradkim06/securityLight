@@ -47,8 +47,8 @@
 #ifndef HAL_SYSTEM_H_
 #define HAL_SYSTEM_H_
 
-#include <stdint.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 /* Function prototypes */
 //*****************************************************************************
@@ -59,7 +59,6 @@
 //! \return none
 //
 // *****************************************************************************
-extern void hal_system_Init(void);
-
+extern void system_Init(void);
 
 #endif /* HAL_SYSTEM_H_ */

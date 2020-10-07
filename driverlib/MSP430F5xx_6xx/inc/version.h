@@ -30,13 +30,12 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * --/COPYRIGHT--*/
 #ifndef __DRIVERLIB_VERSION__
-        #define DRIVERLIB_VER_MAJOR 2
-        #define DRIVERLIB_VER_MINOR 91
-        #define DRIVERLIB_VER_PATCH 00
-        #define DRIVERLIB_VER_BUILD 05
+#define DRIVERLIB_VER_MAJOR 2
+#define DRIVERLIB_VER_MINOR 91
+#define DRIVERLIB_VER_PATCH 00
+#define DRIVERLIB_VER_BUILD 05
 #endif
 
-#define getVersion() ((uint32_t)DRIVERLIB_VER_MAJOR << 24 | \
-                      (uint32_t)DRIVERLIB_VER_MINOR << 16 | \
-                      (uint32_t)DRIVERLIB_VER_PATCH << 8 | \
-                      (uint32_t)DRIVERLIB_VER_BUILD)
+#define getVersion()                                                           \
+  ((uint32_t)DRIVERLIB_VER_MAJOR << 24 | (uint32_t)DRIVERLIB_VER_MINOR << 16 | \
+   (uint32_t)DRIVERLIB_VER_PATCH << 8 | (uint32_t)DRIVERLIB_VER_BUILD)

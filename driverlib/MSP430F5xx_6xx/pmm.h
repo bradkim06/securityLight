@@ -49,8 +49,7 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 //*****************************************************************************
@@ -59,10 +58,10 @@ extern "C"
 // functions: PMM_setVCoreUp(), PMM_setVCoreDown(), and PMM_setVCore().
 //
 //*****************************************************************************
-#define PMM_CORE_LEVEL_0                                             PMMCOREV_0
-#define PMM_CORE_LEVEL_1                                             PMMCOREV_1
-#define PMM_CORE_LEVEL_2                                             PMMCOREV_2
-#define PMM_CORE_LEVEL_3                                             PMMCOREV_3
+#define PMM_CORE_LEVEL_0 PMMCOREV_0
+#define PMM_CORE_LEVEL_1 PMMCOREV_1
+#define PMM_CORE_LEVEL_2 PMMCOREV_2
+#define PMM_CORE_LEVEL_3 PMMCOREV_3
 
 //*****************************************************************************
 //
@@ -71,18 +70,18 @@ extern "C"
 // PMM_getInterruptStatus() function.
 //
 //*****************************************************************************
-#define PMM_SVSMLDLYIFG                                             SVSMLDLYIFG
-#define PMM_SVMLIFG                                                     SVMLIFG
-#define PMM_SVMLVLRIFG                                               SVMLVLRIFG
-#define PMM_SVSMHDLYIFG                                             SVSMHDLYIFG
-#define PMM_SVMHIFG                                                     SVMHIFG
-#define PMM_SVMHVLRIFG                                               SVMHVLRIFG
-#define PMM_PMMBORIFG                                                 PMMBORIFG
-#define PMM_PMMRSTIFG                                                 PMMRSTIFG
-#define PMM_PMMPORIFG                                                 PMMPORIFG
-#define PMM_SVSHIFG                                                     SVSHIFG
-#define PMM_SVSLIFG                                                     SVSLIFG
-#define PMM_PMMLPM5IFG                                               PMMLPM5IFG
+#define PMM_SVSMLDLYIFG SVSMLDLYIFG
+#define PMM_SVMLIFG SVMLIFG
+#define PMM_SVMLVLRIFG SVMLVLRIFG
+#define PMM_SVSMHDLYIFG SVSMHDLYIFG
+#define PMM_SVMHIFG SVMHIFG
+#define PMM_SVMHVLRIFG SVMHVLRIFG
+#define PMM_PMMBORIFG PMMBORIFG
+#define PMM_PMMRSTIFG PMMRSTIFG
+#define PMM_PMMPORIFG PMMPORIFG
+#define PMM_SVSHIFG SVSHIFG
+#define PMM_SVSLIFG SVSLIFG
+#define PMM_PMMLPM5IFG PMMLPM5IFG
 
 //*****************************************************************************
 //

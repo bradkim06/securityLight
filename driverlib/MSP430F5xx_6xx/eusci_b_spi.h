@@ -49,8 +49,7 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 #include "inc/hw_memmap.h"
@@ -60,39 +59,38 @@ extern "C"
 //! parameter.
 //
 //*****************************************************************************
-typedef struct EUSCI_B_SPI_initMasterParam
-{
-    //! Selects Clock source. Refer to device specific datasheet for available
-    //! options.
-    //! \n Valid values are:
-    //! - \b EUSCI_B_SPI_CLOCKSOURCE_ACLK
-    //! - \b EUSCI_B_SPI_CLOCKSOURCE_SMCLK
-    uint8_t selectClockSource;
-    //! Is the frequency of the selected clock source
-    uint32_t clockSourceFrequency;
-    //! Is the desired clock rate for SPI communication
-    uint32_t desiredSpiClock;
-    //! Controls the direction of the receive and transmit shift register.
-    //! \n Valid values are:
-    //! - \b EUSCI_B_SPI_MSB_FIRST
-    //! - \b EUSCI_B_SPI_LSB_FIRST [Default]
-    uint16_t msbFirst;
-    //! Is clock phase select.
-    //! \n Valid values are:
-    //! - \b EUSCI_B_SPI_PHASE_DATA_CHANGED_ONFIRST_CAPTURED_ON_NEXT [Default]
-    //! - \b EUSCI_B_SPI_PHASE_DATA_CAPTURED_ONFIRST_CHANGED_ON_NEXT
-    uint16_t clockPhase;
-    //! Is clock polarity select
-    //! \n Valid values are:
-    //! - \b EUSCI_B_SPI_CLOCKPOLARITY_INACTIVITY_HIGH
-    //! - \b EUSCI_B_SPI_CLOCKPOLARITY_INACTIVITY_LOW [Default]
-    uint16_t clockPolarity;
-    //! Is SPI mode select
-    //! \n Valid values are:
-    //! - \b EUSCI_B_SPI_3PIN
-    //! - \b EUSCI_B_SPI_4PIN_UCxSTE_ACTIVE_HIGH
-    //! - \b EUSCI_B_SPI_4PIN_UCxSTE_ACTIVE_LOW
-    uint16_t spiMode;
+typedef struct EUSCI_B_SPI_initMasterParam {
+  //! Selects Clock source. Refer to device specific datasheet for available
+  //! options.
+  //! \n Valid values are:
+  //! - \b EUSCI_B_SPI_CLOCKSOURCE_ACLK
+  //! - \b EUSCI_B_SPI_CLOCKSOURCE_SMCLK
+  uint8_t selectClockSource;
+  //! Is the frequency of the selected clock source
+  uint32_t clockSourceFrequency;
+  //! Is the desired clock rate for SPI communication
+  uint32_t desiredSpiClock;
+  //! Controls the direction of the receive and transmit shift register.
+  //! \n Valid values are:
+  //! - \b EUSCI_B_SPI_MSB_FIRST
+  //! - \b EUSCI_B_SPI_LSB_FIRST [Default]
+  uint16_t msbFirst;
+  //! Is clock phase select.
+  //! \n Valid values are:
+  //! - \b EUSCI_B_SPI_PHASE_DATA_CHANGED_ONFIRST_CAPTURED_ON_NEXT [Default]
+  //! - \b EUSCI_B_SPI_PHASE_DATA_CAPTURED_ONFIRST_CHANGED_ON_NEXT
+  uint16_t clockPhase;
+  //! Is clock polarity select
+  //! \n Valid values are:
+  //! - \b EUSCI_B_SPI_CLOCKPOLARITY_INACTIVITY_HIGH
+  //! - \b EUSCI_B_SPI_CLOCKPOLARITY_INACTIVITY_LOW [Default]
+  uint16_t clockPolarity;
+  //! Is SPI mode select
+  //! \n Valid values are:
+  //! - \b EUSCI_B_SPI_3PIN
+  //! - \b EUSCI_B_SPI_4PIN_UCxSTE_ACTIVE_HIGH
+  //! - \b EUSCI_B_SPI_4PIN_UCxSTE_ACTIVE_LOW
+  uint16_t spiMode;
 } EUSCI_B_SPI_initMasterParam;
 
 //*****************************************************************************
@@ -100,29 +98,28 @@ typedef struct EUSCI_B_SPI_initMasterParam
 //! \brief Used in the EUSCI_B_SPI_initSlave() function as the param parameter.
 //
 //*****************************************************************************
-typedef struct EUSCI_B_SPI_initSlaveParam
-{
-    //! Controls the direction of the receive and transmit shift register.
-    //! \n Valid values are:
-    //! - \b EUSCI_B_SPI_MSB_FIRST
-    //! - \b EUSCI_B_SPI_LSB_FIRST [Default]
-    uint16_t msbFirst;
-    //! Is clock phase select.
-    //! \n Valid values are:
-    //! - \b EUSCI_B_SPI_PHASE_DATA_CHANGED_ONFIRST_CAPTURED_ON_NEXT [Default]
-    //! - \b EUSCI_B_SPI_PHASE_DATA_CAPTURED_ONFIRST_CHANGED_ON_NEXT
-    uint16_t clockPhase;
-    //! Is clock polarity select
-    //! \n Valid values are:
-    //! - \b EUSCI_B_SPI_CLOCKPOLARITY_INACTIVITY_HIGH
-    //! - \b EUSCI_B_SPI_CLOCKPOLARITY_INACTIVITY_LOW [Default]
-    uint16_t clockPolarity;
-    //! Is SPI mode select
-    //! \n Valid values are:
-    //! - \b EUSCI_B_SPI_3PIN
-    //! - \b EUSCI_B_SPI_4PIN_UCxSTE_ACTIVE_HIGH
-    //! - \b EUSCI_B_SPI_4PIN_UCxSTE_ACTIVE_LOW
-    uint16_t spiMode;
+typedef struct EUSCI_B_SPI_initSlaveParam {
+  //! Controls the direction of the receive and transmit shift register.
+  //! \n Valid values are:
+  //! - \b EUSCI_B_SPI_MSB_FIRST
+  //! - \b EUSCI_B_SPI_LSB_FIRST [Default]
+  uint16_t msbFirst;
+  //! Is clock phase select.
+  //! \n Valid values are:
+  //! - \b EUSCI_B_SPI_PHASE_DATA_CHANGED_ONFIRST_CAPTURED_ON_NEXT [Default]
+  //! - \b EUSCI_B_SPI_PHASE_DATA_CAPTURED_ONFIRST_CHANGED_ON_NEXT
+  uint16_t clockPhase;
+  //! Is clock polarity select
+  //! \n Valid values are:
+  //! - \b EUSCI_B_SPI_CLOCKPOLARITY_INACTIVITY_HIGH
+  //! - \b EUSCI_B_SPI_CLOCKPOLARITY_INACTIVITY_LOW [Default]
+  uint16_t clockPolarity;
+  //! Is SPI mode select
+  //! \n Valid values are:
+  //! - \b EUSCI_B_SPI_3PIN
+  //! - \b EUSCI_B_SPI_4PIN_UCxSTE_ACTIVE_HIGH
+  //! - \b EUSCI_B_SPI_4PIN_UCxSTE_ACTIVE_LOW
+  uint16_t spiMode;
 } EUSCI_B_SPI_initSlaveParam;
 
 //*****************************************************************************
@@ -131,12 +128,11 @@ typedef struct EUSCI_B_SPI_initSlaveParam
 //! parameter.
 //
 //*****************************************************************************
-typedef struct EUSCI_B_SPI_changeMasterClockParam
-{
-    //! Is the frequency of the selected clock source
-    uint32_t clockSourceFrequency;
-    //! Is the desired clock rate for SPI communication
-    uint32_t desiredSpiClock;
+typedef struct EUSCI_B_SPI_changeMasterClockParam {
+  //! Is the frequency of the selected clock source
+  uint32_t clockSourceFrequency;
+  //! Is the desired clock rate for SPI communication
+  uint32_t desiredSpiClock;
 } EUSCI_B_SPI_changeMasterClockParam;
 
 //*****************************************************************************
@@ -146,8 +142,8 @@ typedef struct EUSCI_B_SPI_changeMasterClockParam
 // functions: EUSCI_B_SPI_initMaster(), and EUSCI_B_SPI_initSlave().
 //
 //*****************************************************************************
-#define EUSCI_B_SPI_PHASE_DATA_CHANGED_ONFIRST_CAPTURED_ON_NEXT            0x00
-#define EUSCI_B_SPI_PHASE_DATA_CAPTURED_ONFIRST_CHANGED_ON_NEXT          UCCKPH
+#define EUSCI_B_SPI_PHASE_DATA_CHANGED_ONFIRST_CAPTURED_ON_NEXT 0x00
+#define EUSCI_B_SPI_PHASE_DATA_CAPTURED_ONFIRST_CHANGED_ON_NEXT UCCKPH
 
 //*****************************************************************************
 //
@@ -155,8 +151,8 @@ typedef struct EUSCI_B_SPI_changeMasterClockParam
 // functions: EUSCI_B_SPI_initMaster(), and EUSCI_B_SPI_initSlave().
 //
 //*****************************************************************************
-#define EUSCI_B_SPI_MSB_FIRST                                             UCMSB
-#define EUSCI_B_SPI_LSB_FIRST                                              0x00
+#define EUSCI_B_SPI_MSB_FIRST UCMSB
+#define EUSCI_B_SPI_LSB_FIRST 0x00
 
 //*****************************************************************************
 //
@@ -166,8 +162,8 @@ typedef struct EUSCI_B_SPI_changeMasterClockParam
 // EUSCI_B_SPI_changeClockPhasePolarity().
 //
 //*****************************************************************************
-#define EUSCI_B_SPI_CLOCKPOLARITY_INACTIVITY_HIGH                        UCCKPL
-#define EUSCI_B_SPI_CLOCKPOLARITY_INACTIVITY_LOW                           0x00
+#define EUSCI_B_SPI_CLOCKPOLARITY_INACTIVITY_HIGH UCCKPL
+#define EUSCI_B_SPI_CLOCKPOLARITY_INACTIVITY_LOW 0x00
 
 //*****************************************************************************
 //
@@ -175,8 +171,8 @@ typedef struct EUSCI_B_SPI_changeMasterClockParam
 // functions: EUSCI_B_SPI_initMaster().
 //
 //*****************************************************************************
-#define EUSCI_B_SPI_CLOCKSOURCE_ACLK                               UCSSEL__ACLK
-#define EUSCI_B_SPI_CLOCKSOURCE_SMCLK                             UCSSEL__SMCLK
+#define EUSCI_B_SPI_CLOCKSOURCE_ACLK UCSSEL__ACLK
+#define EUSCI_B_SPI_CLOCKSOURCE_SMCLK UCSSEL__SMCLK
 
 //*****************************************************************************
 //
@@ -184,9 +180,9 @@ typedef struct EUSCI_B_SPI_changeMasterClockParam
 // functions: EUSCI_B_SPI_initMaster(), and EUSCI_B_SPI_initSlave().
 //
 //*****************************************************************************
-#define EUSCI_B_SPI_3PIN                                               UCMODE_0
-#define EUSCI_B_SPI_4PIN_UCxSTE_ACTIVE_HIGH                            UCMODE_1
-#define EUSCI_B_SPI_4PIN_UCxSTE_ACTIVE_LOW                             UCMODE_2
+#define EUSCI_B_SPI_3PIN UCMODE_0
+#define EUSCI_B_SPI_4PIN_UCxSTE_ACTIVE_HIGH UCMODE_1
+#define EUSCI_B_SPI_4PIN_UCxSTE_ACTIVE_LOW UCMODE_2
 
 //*****************************************************************************
 //
@@ -194,8 +190,8 @@ typedef struct EUSCI_B_SPI_changeMasterClockParam
 // parameter for functions: EUSCI_B_SPI_select4PinFunctionality().
 //
 //*****************************************************************************
-#define EUSCI_B_SPI_PREVENT_CONFLICTS_WITH_OTHER_MASTERS                   0x00
-#define EUSCI_B_SPI_ENABLE_SIGNAL_FOR_4WIRE_SLAVE                        UCSTEM
+#define EUSCI_B_SPI_PREVENT_CONFLICTS_WITH_OTHER_MASTERS 0x00
+#define EUSCI_B_SPI_ENABLE_SIGNAL_FOR_4WIRE_SLAVE UCSTEM
 
 //*****************************************************************************
 //
@@ -205,8 +201,8 @@ typedef struct EUSCI_B_SPI_changeMasterClockParam
 // as returned by the EUSCI_B_SPI_getInterruptStatus() function.
 //
 //*****************************************************************************
-#define EUSCI_B_SPI_TRANSMIT_INTERRUPT                                   UCTXIE
-#define EUSCI_B_SPI_RECEIVE_INTERRUPT                                    UCRXIE
+#define EUSCI_B_SPI_TRANSMIT_INTERRUPT UCTXIE
+#define EUSCI_B_SPI_RECEIVE_INTERRUPT UCRXIE
 
 //*****************************************************************************
 //
@@ -214,8 +210,8 @@ typedef struct EUSCI_B_SPI_changeMasterClockParam
 // can be returned by the EUSCI_B_SPI_isBusy() function.
 //
 //*****************************************************************************
-#define EUSCI_B_SPI_BUSY                                                 UCBUSY
-#define EUSCI_B_SPI_NOT_BUSY                                               0x00
+#define EUSCI_B_SPI_BUSY UCBUSY
+#define EUSCI_B_SPI_NOT_BUSY 0x00
 
 //*****************************************************************************
 //
@@ -261,8 +257,9 @@ extern void EUSCI_B_SPI_initMaster(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_SPI_select4PinFunctionality(uint16_t baseAddress,
-                                                uint8_t select4PinFunctionality);
+extern void
+EUSCI_B_SPI_select4PinFunctionality(uint16_t baseAddress,
+                                    uint8_t select4PinFunctionality);
 
 //*****************************************************************************
 //
@@ -277,8 +274,9 @@ extern void EUSCI_B_SPI_select4PinFunctionality(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_SPI_changeMasterClock(uint16_t baseAddress,
-                                          EUSCI_B_SPI_changeMasterClockParam *param);
+extern void
+EUSCI_B_SPI_changeMasterClock(uint16_t baseAddress,
+                              EUSCI_B_SPI_changeMasterClockParam *param);
 
 //*****************************************************************************
 //
@@ -375,8 +373,7 @@ extern uint8_t EUSCI_B_SPI_receiveData(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_SPI_enableInterrupt(uint16_t baseAddress,
-                                        uint8_t mask);
+extern void EUSCI_B_SPI_enableInterrupt(uint16_t baseAddress, uint8_t mask);
 
 //*****************************************************************************
 //
@@ -397,8 +394,7 @@ extern void EUSCI_B_SPI_enableInterrupt(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_SPI_disableInterrupt(uint16_t baseAddress,
-                                         uint8_t mask);
+extern void EUSCI_B_SPI_disableInterrupt(uint16_t baseAddress, uint8_t mask);
 
 //*****************************************************************************
 //
@@ -437,8 +433,7 @@ extern uint8_t EUSCI_B_SPI_getInterruptStatus(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_B_SPI_clearInterrupt(uint16_t baseAddress,
-                                       uint8_t mask);
+extern void EUSCI_B_SPI_clearInterrupt(uint16_t baseAddress, uint8_t mask);
 
 //*****************************************************************************
 //

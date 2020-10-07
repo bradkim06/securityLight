@@ -49,8 +49,7 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 //*****************************************************************************
@@ -59,11 +58,11 @@ extern "C"
 // parameter for functions: OA_openSwitch(), and OA_closeSwitch().
 //
 //*****************************************************************************
-#define OA_POSITIVE_INPUT_TERMINAL_SWITCH0                                 PSW0
-#define OA_POSITIVE_INPUT_TERMINAL_SWITCH1                                 PSW1
-#define OA_POSITIVE_INPUT_TERMINAL_SWITCH2                                 PSW2
-#define OA_POSITIVE_INPUT_TERMINAL_SWITCH3                                 PSW3
-#define OA_POSITIVE_INPUT_TERMINAL_NONE                                    0x00
+#define OA_POSITIVE_INPUT_TERMINAL_SWITCH0 PSW0
+#define OA_POSITIVE_INPUT_TERMINAL_SWITCH1 PSW1
+#define OA_POSITIVE_INPUT_TERMINAL_SWITCH2 PSW2
+#define OA_POSITIVE_INPUT_TERMINAL_SWITCH3 PSW3
+#define OA_POSITIVE_INPUT_TERMINAL_NONE 0x00
 
 //*****************************************************************************
 //
@@ -71,12 +70,12 @@ extern "C"
 // parameter for functions: OA_openSwitch(), and OA_closeSwitch().
 //
 //*****************************************************************************
-#define OA_NEGATIVE_INPUT_TERMINAL_SWITCH0                                 NSW0
-#define OA_NEGATIVE_INPUT_TERMINAL_SWITCH1                                 NSW1
-#define OA_NEGATIVE_INPUT_TERMINAL_SWITCH2                                 NSW2
-#define OA_NEGATIVE_INPUT_TERMINAL_SWITCH3                                 NSW3
-#define OA_NEGATIVE_INPUT_TERMINAL_SWITCH4                                 NSW4
-#define OA_NEGATIVE_INPUT_TERMINAL_NONE                                    0x00
+#define OA_NEGATIVE_INPUT_TERMINAL_SWITCH0 NSW0
+#define OA_NEGATIVE_INPUT_TERMINAL_SWITCH1 NSW1
+#define OA_NEGATIVE_INPUT_TERMINAL_SWITCH2 NSW2
+#define OA_NEGATIVE_INPUT_TERMINAL_SWITCH3 NSW3
+#define OA_NEGATIVE_INPUT_TERMINAL_SWITCH4 NSW4
+#define OA_NEGATIVE_INPUT_TERMINAL_NONE 0x00
 
 //*****************************************************************************
 //
@@ -84,9 +83,9 @@ extern "C"
 // functions: OA_openSwitch(), and OA_closeSwitch().
 //
 //*****************************************************************************
-#define OA_GROUND_SWITCH0                                                  GSW0
-#define OA_GROUND_SWITCH1                                                  GSW1
-#define OA_GROUND_NONE                                                     0x00
+#define OA_GROUND_SWITCH0 GSW0
+#define OA_GROUND_SWITCH1 GSW1
+#define OA_GROUND_NONE 0x00
 
 //*****************************************************************************
 //
@@ -94,9 +93,9 @@ extern "C"
 // for functions: OA_getSwitchStatus().
 //
 //*****************************************************************************
-#define OA_POSITIVE_INPUT_TERMINAL_SWITCHES                                0x00
-#define OA_NEGATIVE_INPUT_TERMINAL_SWITCHES                                0x01
-#define OA_GROUND_SWITCHES                                                 0x02
+#define OA_POSITIVE_INPUT_TERMINAL_SWITCHES 0x00
+#define OA_NEGATIVE_INPUT_TERMINAL_SWITCHES 0x01
+#define OA_GROUND_SWITCHES 0x02
 
 //*****************************************************************************
 //
@@ -104,8 +103,8 @@ extern "C"
 // can be returned by the OA_getRailToRailInputReadyStatus() function.
 //
 //*****************************************************************************
-#define OA_INPUT_READY                                                 OARRIRDY
-#define OA_INPUT_NOT_READY                                                 0x00
+#define OA_INPUT_READY OARRIRDY
+#define OA_INPUT_NOT_READY 0x00
 
 //*****************************************************************************
 //
@@ -113,8 +112,8 @@ extern "C"
 // can be returned by the OA_getRailToRailInputStatus() function.
 //
 //*****************************************************************************
-#define OA_INPUT_ENABLED                                                  OARRI
-#define OA_INPUT_DISABLED                                                (0x00)
+#define OA_INPUT_ENABLED OARRI
+#define OA_INPUT_DISABLED (0x00)
 
 //*****************************************************************************
 //
@@ -122,8 +121,8 @@ extern "C"
 // can be returned by the OA_getAmplifierModeStatus() function.
 //
 //*****************************************************************************
-#define OA_AMPLIFIER_MODE_ENABLED                                           OAM
-#define OA_AMPLIFIER_MODE_DISABLED                                       (0x00)
+#define OA_AMPLIFIER_MODE_ENABLED OAM
+#define OA_AMPLIFIER_MODE_DISABLED (0x00)
 
 //*****************************************************************************
 //
@@ -161,10 +160,8 @@ extern "C"
 //! \return None
 //
 //*****************************************************************************
-extern void OA_openSwitch(uint16_t baseAddress,
-                          uint8_t positiveInputMask,
-                          uint8_t negativeInputMask,
-                          uint8_t groundMask);
+extern void OA_openSwitch(uint16_t baseAddress, uint8_t positiveInputMask,
+                          uint8_t negativeInputMask, uint8_t groundMask);
 
 //*****************************************************************************
 //
@@ -196,10 +193,8 @@ extern void OA_openSwitch(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void OA_closeSwitch(uint16_t baseAddress,
-                           uint8_t positiveInputMask,
-                           uint8_t negativeInputMask,
-                           uint8_t groundMask);
+extern void OA_closeSwitch(uint16_t baseAddress, uint8_t positiveInputMask,
+                           uint8_t negativeInputMask, uint8_t groundMask);
 
 //*****************************************************************************
 //
@@ -217,8 +212,7 @@ extern void OA_closeSwitch(uint16_t baseAddress,
 //!         inputTerminal
 //
 //*****************************************************************************
-extern uint8_t OA_getSwitchStatus(uint16_t baseAddress,
-                                  uint8_t inputTerminal);
+extern uint8_t OA_getSwitchStatus(uint16_t baseAddress, uint8_t inputTerminal);
 
 //*****************************************************************************
 //

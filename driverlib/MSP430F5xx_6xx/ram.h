@@ -49,8 +49,7 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 //*****************************************************************************
@@ -60,14 +59,14 @@ extern "C"
 // by the RAM_getSectorState() function.
 //
 //*****************************************************************************
-#define RAM_SECTOR0                                                    RCRS0OFF
-#define RAM_SECTOR1                                                    RCRS1OFF
-#define RAM_SECTOR2                                                    RCRS2OFF
-#define RAM_SECTOR3                                                    RCRS3OFF
-#define RAM_SECTOR4                                                    RCRS4OFF
-#define RAM_SECTOR5                                                    RCRS5OFF
-#define RAM_SECTOR6                                                    RCRS6OFF
-#define RAM_SECTOR7                                                    RCRS7OFF
+#define RAM_SECTOR0 RCRS0OFF
+#define RAM_SECTOR1 RCRS1OFF
+#define RAM_SECTOR2 RCRS2OFF
+#define RAM_SECTOR3 RCRS3OFF
+#define RAM_SECTOR4 RCRS4OFF
+#define RAM_SECTOR5 RCRS5OFF
+#define RAM_SECTOR6 RCRS6OFF
+#define RAM_SECTOR7 RCRS7OFF
 
 //*****************************************************************************
 //

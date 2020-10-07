@@ -49,8 +49,7 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 #include "inc/hw_memmap.h"
@@ -59,19 +58,18 @@ extern "C"
 //! \brief Used in the PMAP_initPorts() function as the param parameter.
 //
 //*****************************************************************************
-typedef struct PMAP_initPortsParam
-{
-    //! Is the pointer to init Data
-    const uint8_t* portMapping;
-    //! Is the pointer start of first PMAP to initialize
-    uint8_t* PxMAPy;
-    //! Is the number of Ports to initialize
-    uint8_t numberOfPorts;
-    //! Is used to enable/disable reconfiguration
-    //! \n Valid values are:
-    //! - \b PMAP_ENABLE_RECONFIGURATION
-    //! - \b PMAP_DISABLE_RECONFIGURATION [Default]
-    uint8_t portMapReconfigure;
+typedef struct PMAP_initPortsParam {
+  //! Is the pointer to init Data
+  const uint8_t *portMapping;
+  //! Is the pointer start of first PMAP to initialize
+  uint8_t *PxMAPy;
+  //! Is the number of Ports to initialize
+  uint8_t numberOfPorts;
+  //! Is used to enable/disable reconfiguration
+  //! \n Valid values are:
+  //! - \b PMAP_ENABLE_RECONFIGURATION
+  //! - \b PMAP_DISABLE_RECONFIGURATION [Default]
+  uint8_t portMapReconfigure;
 } PMAP_initPortsParam;
 
 //*****************************************************************************
@@ -80,8 +78,8 @@ typedef struct PMAP_initPortsParam
 // functions: PMAP_initPorts().
 //
 //*****************************************************************************
-#define PMAP_ENABLE_RECONFIGURATION                                   PMAPRECFG
-#define PMAP_DISABLE_RECONFIGURATION                                       0x00
+#define PMAP_ENABLE_RECONFIGURATION PMAPRECFG
+#define PMAP_DISABLE_RECONFIGURATION 0x00
 
 //*****************************************************************************
 //
@@ -101,8 +99,7 @@ typedef struct PMAP_initPortsParam
 //! \return None
 //
 //*****************************************************************************
-extern void PMAP_initPorts(uint16_t baseAddress,
-                           PMAP_initPortsParam *param);
+extern void PMAP_initPorts(uint16_t baseAddress, PMAP_initPortsParam *param);
 
 //*****************************************************************************
 //

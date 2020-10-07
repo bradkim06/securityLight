@@ -49,8 +49,7 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 //*****************************************************************************
@@ -59,8 +58,8 @@ extern "C"
 // can be returned by the BattBak_unlockBackupSubSystem() function.
 //
 //*****************************************************************************
-#define BATTBAK_UNLOCKFAILURE                                         (LOCKBAK)
-#define BATTBAK_UNLOCKSUCCESS                                             (0x0)
+#define BATTBAK_UNLOCKFAILURE (LOCKBAK)
+#define BATTBAK_UNLOCKSUCCESS (0x0)
 
 //*****************************************************************************
 //
@@ -68,8 +67,8 @@ extern "C"
 // parameter for functions: BattBak_initAndEnableCharger().
 //
 //*****************************************************************************
-#define BATTBAK_CHARGERENDVOLTAGE_VCC                                 (BAKCHV0)
-#define BATTBAK_CHARGERENDVOLTAGE2_7V                                 (BAKCHV1)
+#define BATTBAK_CHARGERENDVOLTAGE_VCC (BAKCHV0)
+#define BATTBAK_CHARGERENDVOLTAGE2_7V (BAKCHV1)
 
 //*****************************************************************************
 //
@@ -77,9 +76,9 @@ extern "C"
 // for functions: BattBak_initAndEnableCharger().
 //
 //*****************************************************************************
-#define BATTBAK_CHARGECURRENT_5KOHM                                   (BAKCHC0)
-#define BATTBAK_CHARGECURRENT_10KOHM                                  (BAKCHC1)
-#define BATTBAK_CHARGECURRENT_20KOHM                        (BAKCHC0 + BAKCHC1)
+#define BATTBAK_CHARGECURRENT_5KOHM (BAKCHC0)
+#define BATTBAK_CHARGECURRENT_10KOHM (BAKCHC1)
+#define BATTBAK_CHARGECURRENT_20KOHM (BAKCHC0 + BAKCHC1)
 
 //*****************************************************************************
 //
@@ -87,10 +86,10 @@ extern "C"
 // for functions: BattBak_setBackupRAMData(), and BattBak_getBackupRAMData().
 //
 //*****************************************************************************
-#define BATTBAK_RAMSELECT_0                                            (0x0000)
-#define BATTBAK_RAMSELECT_1                                            (0x0002)
-#define BATTBAK_RAMSELECT_2                                            (0x0004)
-#define BATTBAK_RAMSELECT_3                                            (0x0006)
+#define BATTBAK_RAMSELECT_0 (0x0000)
+#define BATTBAK_RAMSELECT_1 (0x0002)
+#define BATTBAK_RAMSELECT_2 (0x0004)
+#define BATTBAK_RAMSELECT_3 (0x0006)
 
 //*****************************************************************************
 //
@@ -245,8 +244,7 @@ extern void BattBak_disableCharger(uint16_t baseAddress);
 //
 //*****************************************************************************
 extern void BattBak_setBackupRAMData(uint16_t baseAddress,
-                                     uint8_t backupRAMSelect,
-                                     uint16_t data);
+                                     uint8_t backupRAMSelect, uint16_t data);
 
 //*****************************************************************************
 //

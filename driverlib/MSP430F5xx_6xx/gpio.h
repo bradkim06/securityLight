@@ -49,8 +49,7 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 //*****************************************************************************
@@ -67,24 +66,24 @@ extern "C"
 // GPIO_clearInterrupt().
 //
 //*****************************************************************************
-#define GPIO_PORT_P1                                                          1
-#define GPIO_PORT_P2                                                          2
-#define GPIO_PORT_P3                                                          3
-#define GPIO_PORT_P4                                                          4
-#define GPIO_PORT_P5                                                          5
-#define GPIO_PORT_P6                                                          6
-#define GPIO_PORT_P7                                                          7
-#define GPIO_PORT_P8                                                          8
-#define GPIO_PORT_P9                                                          9
-#define GPIO_PORT_P10                                                        10
-#define GPIO_PORT_P11                                                        11
-#define GPIO_PORT_PA                                                          1
-#define GPIO_PORT_PB                                                          3
-#define GPIO_PORT_PC                                                          5
-#define GPIO_PORT_PD                                                          7
-#define GPIO_PORT_PE                                                          9
-#define GPIO_PORT_PF                                                         11
-#define GPIO_PORT_PJ                                                         13
+#define GPIO_PORT_P1 1
+#define GPIO_PORT_P2 2
+#define GPIO_PORT_P3 3
+#define GPIO_PORT_P4 4
+#define GPIO_PORT_P5 5
+#define GPIO_PORT_P6 6
+#define GPIO_PORT_P7 7
+#define GPIO_PORT_P8 8
+#define GPIO_PORT_P9 9
+#define GPIO_PORT_P10 10
+#define GPIO_PORT_P11 11
+#define GPIO_PORT_PA 1
+#define GPIO_PORT_PB 3
+#define GPIO_PORT_PC 5
+#define GPIO_PORT_PD 7
+#define GPIO_PORT_PE 9
+#define GPIO_PORT_PF 11
+#define GPIO_PORT_PJ 13
 
 //*****************************************************************************
 //
@@ -101,24 +100,24 @@ extern "C"
 // function.
 //
 //*****************************************************************************
-#define GPIO_PIN0                                                      (0x0001)
-#define GPIO_PIN1                                                      (0x0002)
-#define GPIO_PIN2                                                      (0x0004)
-#define GPIO_PIN3                                                      (0x0008)
-#define GPIO_PIN4                                                      (0x0010)
-#define GPIO_PIN5                                                      (0x0020)
-#define GPIO_PIN6                                                      (0x0040)
-#define GPIO_PIN7                                                      (0x0080)
-#define GPIO_PIN8                                                      (0x0100)
-#define GPIO_PIN9                                                      (0x0200)
-#define GPIO_PIN10                                                     (0x0400)
-#define GPIO_PIN11                                                     (0x0800)
-#define GPIO_PIN12                                                     (0x1000)
-#define GPIO_PIN13                                                     (0x2000)
-#define GPIO_PIN14                                                     (0x4000)
-#define GPIO_PIN15                                                     (0x8000)
-#define GPIO_PIN_ALL8                                                    (0xFF)
-#define GPIO_PIN_ALL16                                                 (0xFFFF)
+#define GPIO_PIN0 (0x0001)
+#define GPIO_PIN1 (0x0002)
+#define GPIO_PIN2 (0x0004)
+#define GPIO_PIN3 (0x0008)
+#define GPIO_PIN4 (0x0010)
+#define GPIO_PIN5 (0x0020)
+#define GPIO_PIN6 (0x0040)
+#define GPIO_PIN7 (0x0080)
+#define GPIO_PIN8 (0x0100)
+#define GPIO_PIN9 (0x0200)
+#define GPIO_PIN10 (0x0400)
+#define GPIO_PIN11 (0x0800)
+#define GPIO_PIN12 (0x1000)
+#define GPIO_PIN13 (0x2000)
+#define GPIO_PIN14 (0x4000)
+#define GPIO_PIN15 (0x8000)
+#define GPIO_PIN_ALL8 (0xFF)
+#define GPIO_PIN_ALL16 (0xFFFF)
 
 //*****************************************************************************
 //
@@ -126,8 +125,8 @@ extern "C"
 // functions: GPIO_selectInterruptEdge().
 //
 //*****************************************************************************
-#define GPIO_HIGH_TO_LOW_TRANSITION                                      (0x01)
-#define GPIO_LOW_TO_HIGH_TRANSITION                                      (0x00)
+#define GPIO_HIGH_TO_LOW_TRANSITION (0x01)
+#define GPIO_LOW_TO_HIGH_TRANSITION (0x00)
 
 //*****************************************************************************
 //
@@ -135,8 +134,8 @@ extern "C"
 // can be returned by the GPIO_getInputPinValue() function.
 //
 //*****************************************************************************
-#define GPIO_INPUT_PIN_HIGH                                              (0x01)
-#define GPIO_INPUT_PIN_LOW                                               (0x00)
+#define GPIO_INPUT_PIN_HIGH (0x01)
+#define GPIO_INPUT_PIN_LOW (0x00)
 
 //*****************************************************************************
 //
@@ -144,8 +143,8 @@ extern "C"
 // for functions: GPIO_setDriveStrength().
 //
 //*****************************************************************************
-#define GPIO_REDUCED_OUTPUT_DRIVE_STRENGTH                                 0x00
-#define GPIO_FULL_OUTPUT_DRIVE_STRENGTH                                    0x01
+#define GPIO_REDUCED_OUTPUT_DRIVE_STRENGTH 0x00
+#define GPIO_FULL_OUTPUT_DRIVE_STRENGTH 0x01
 
 //*****************************************************************************
 //
@@ -205,8 +204,7 @@ extern "C"
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_setAsOutputPin(uint8_t selectedPort,
-                                uint16_t selectedPins);
+extern void GPIO_setAsOutputPin(uint8_t selectedPort, uint16_t selectedPins);
 
 //*****************************************************************************
 //
@@ -261,8 +259,7 @@ extern void GPIO_setAsOutputPin(uint8_t selectedPort,
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_setAsInputPin(uint8_t selectedPort,
-                               uint16_t selectedPins);
+extern void GPIO_setAsInputPin(uint8_t selectedPort, uint16_t selectedPins);
 
 //*****************************************************************************
 //
@@ -489,8 +486,7 @@ extern void GPIO_setOutputHighOnPin(uint8_t selectedPort,
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_setOutputLowOnPin(uint8_t selectedPort,
-                                   uint16_t selectedPins);
+extern void GPIO_setOutputLowOnPin(uint8_t selectedPort, uint16_t selectedPins);
 
 //*****************************************************************************
 //
@@ -544,8 +540,7 @@ extern void GPIO_setOutputLowOnPin(uint8_t selectedPort,
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_toggleOutputOnPin(uint8_t selectedPort,
-                                   uint16_t selectedPins);
+extern void GPIO_toggleOutputOnPin(uint8_t selectedPort, uint16_t selectedPins);
 
 //*****************************************************************************
 //
@@ -770,8 +765,7 @@ extern uint8_t GPIO_getInputPinValue(uint8_t selectedPort,
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_enableInterrupt(uint8_t selectedPort,
-                                 uint16_t selectedPins);
+extern void GPIO_enableInterrupt(uint8_t selectedPort, uint16_t selectedPins);
 
 //*****************************************************************************
 //
@@ -826,8 +820,7 @@ extern void GPIO_enableInterrupt(uint8_t selectedPort,
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_disableInterrupt(uint8_t selectedPort,
-                                  uint16_t selectedPins);
+extern void GPIO_disableInterrupt(uint8_t selectedPort, uint16_t selectedPins);
 
 //*****************************************************************************
 //
@@ -956,8 +949,7 @@ extern uint16_t GPIO_getInterruptStatus(uint8_t selectedPort,
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_clearInterrupt(uint8_t selectedPort,
-                                uint16_t selectedPins);
+extern void GPIO_clearInterrupt(uint8_t selectedPort, uint16_t selectedPins);
 
 //*****************************************************************************
 //
@@ -1020,8 +1012,7 @@ extern void GPIO_clearInterrupt(uint8_t selectedPort,
 //
 //*****************************************************************************
 extern void GPIO_selectInterruptEdge(uint8_t selectedPort,
-                                     uint16_t selectedPins,
-                                     uint8_t edgeSelect);
+                                     uint16_t selectedPins, uint8_t edgeSelect);
 
 //*****************************************************************************
 //
@@ -1081,8 +1072,7 @@ extern void GPIO_selectInterruptEdge(uint8_t selectedPort,
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_setDriveStrength(uint8_t selectedPort,
-                                  uint16_t selectedPins,
+extern void GPIO_setDriveStrength(uint8_t selectedPort, uint16_t selectedPins,
                                   uint8_t driveStrength);
 
 //*****************************************************************************

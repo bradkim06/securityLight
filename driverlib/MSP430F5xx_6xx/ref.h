@@ -49,8 +49,7 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 //*****************************************************************************
@@ -59,9 +58,9 @@ extern "C"
 // parameter for functions: Ref_setReferenceVoltage().
 //
 //*****************************************************************************
-#define REF_VREF1_5V                                                (REFVSEL_0)
-#define REF_VREF2_0V                                                (REFVSEL_1)
-#define REF_VREF2_5V                                                (REFVSEL_2)
+#define REF_VREF1_5V (REFVSEL_0)
+#define REF_VREF2_0V (REFVSEL_1)
+#define REF_VREF2_5V (REFVSEL_2)
 
 //*****************************************************************************
 //
@@ -70,8 +69,8 @@ extern "C"
 // Ref_isRefGenActive() function.
 //
 //*****************************************************************************
-#define REF_ACTIVE                                                         true
-#define REF_INACTIVE                                                      false
+#define REF_ACTIVE true
+#define REF_INACTIVE false
 
 //*****************************************************************************
 //
@@ -79,8 +78,8 @@ extern "C"
 // can be returned by the Ref_getBandgapMode() function.
 //
 //*****************************************************************************
-#define REF_STATICMODE                                                     0x00
-#define REF_SAMPLEMODE                                                   BGMODE
+#define REF_STATICMODE 0x00
+#define REF_SAMPLEMODE BGMODE
 
 //*****************************************************************************
 //
@@ -88,8 +87,8 @@ extern "C"
 // can be returned by the Ref_isRefGenBusy() function.
 //
 //*****************************************************************************
-#define REF_NOTBUSY                                                        0x00
-#define REF_BUSY                                                     REFGENBUSY
+#define REF_NOTBUSY 0x00
+#define REF_BUSY REFGENBUSY
 
 //*****************************************************************************
 //

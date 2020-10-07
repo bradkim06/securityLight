@@ -49,8 +49,7 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 //*****************************************************************************
@@ -59,10 +58,10 @@ extern "C"
 // functions: WDT_A_initWatchdogTimer(), and WDT_A_initIntervalTimer().
 //
 //*****************************************************************************
-#define WDT_A_CLOCKSOURCE_SMCLK                                     (WDTSSEL_0)
-#define WDT_A_CLOCKSOURCE_ACLK                                      (WDTSSEL_1)
-#define WDT_A_CLOCKSOURCE_VLOCLK                                    (WDTSSEL_2)
-#define WDT_A_CLOCKSOURCE_XCLK                                      (WDTSSEL_3)
+#define WDT_A_CLOCKSOURCE_SMCLK (WDTSSEL_0)
+#define WDT_A_CLOCKSOURCE_ACLK (WDTSSEL_1)
+#define WDT_A_CLOCKSOURCE_VLOCLK (WDTSSEL_2)
+#define WDT_A_CLOCKSOURCE_XCLK (WDTSSEL_3)
 
 //*****************************************************************************
 //
@@ -70,14 +69,14 @@ extern "C"
 // for functions: WDT_A_initWatchdogTimer(), and WDT_A_initIntervalTimer().
 //
 //*****************************************************************************
-#define WDT_A_CLOCKDIVIDER_2G                                         (WDTIS_0)
-#define WDT_A_CLOCKDIVIDER_128M                                       (WDTIS_1)
-#define WDT_A_CLOCKDIVIDER_8192K                                      (WDTIS_2)
-#define WDT_A_CLOCKDIVIDER_512K                                       (WDTIS_3)
-#define WDT_A_CLOCKDIVIDER_32K                                        (WDTIS_4)
-#define WDT_A_CLOCKDIVIDER_8192                                       (WDTIS_5)
-#define WDT_A_CLOCKDIVIDER_512                                        (WDTIS_6)
-#define WDT_A_CLOCKDIVIDER_64                                         (WDTIS_7)
+#define WDT_A_CLOCKDIVIDER_2G (WDTIS_0)
+#define WDT_A_CLOCKDIVIDER_128M (WDTIS_1)
+#define WDT_A_CLOCKDIVIDER_8192K (WDTIS_2)
+#define WDT_A_CLOCKDIVIDER_512K (WDTIS_3)
+#define WDT_A_CLOCKDIVIDER_32K (WDTIS_4)
+#define WDT_A_CLOCKDIVIDER_8192 (WDTIS_5)
+#define WDT_A_CLOCKDIVIDER_512 (WDTIS_6)
+#define WDT_A_CLOCKDIVIDER_64 (WDTIS_7)
 
 //*****************************************************************************
 //
@@ -158,8 +157,7 @@ extern void WDT_A_resetTimer(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void WDT_A_initWatchdogTimer(uint16_t baseAddress,
-                                    uint8_t clockSelect,
+extern void WDT_A_initWatchdogTimer(uint16_t baseAddress, uint8_t clockSelect,
                                     uint8_t clockDivider);
 
 //*****************************************************************************
@@ -193,8 +191,7 @@ extern void WDT_A_initWatchdogTimer(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void WDT_A_initIntervalTimer(uint16_t baseAddress,
-                                    uint8_t clockSelect,
+extern void WDT_A_initIntervalTimer(uint16_t baseAddress, uint8_t clockSelect,
                                     uint8_t clockDivider);
 
 //*****************************************************************************

@@ -49,8 +49,7 @@
 //
 //*****************************************************************************
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 //*****************************************************************************
@@ -59,8 +58,8 @@ extern "C"
 // parameter for functions: SysCtl_setRAMAssignedToBSL().
 //
 //*****************************************************************************
-#define SYSCTL_BSLRAMASSIGN_NORAM                                  (!(SYSBSLR))
-#define SYSCTL_BSLRAMASSIGN_LOWEST16BYTES                             (SYSBSLR)
+#define SYSCTL_BSLRAMASSIGN_NORAM (!(SYSBSLR))
+#define SYSCTL_BSLRAMASSIGN_LOWEST16BYTES (SYSBSLR)
 
 //*****************************************************************************
 //
@@ -68,10 +67,10 @@ extern "C"
 // for functions: SysCtl_setBSLSize().
 //
 //*****************************************************************************
-#define SYSCTL_BSLSIZE_SEG3                      (~(SYSBSLSIZE0 + SYSBSLSIZE1))
-#define SYSCTL_BSLSIZE_SEGS23                                     (SYSBSLSIZE0)
-#define SYSCTL_BSLSIZE_SEGS123                                    (SYSBSLSIZE1)
-#define SYSCTL_BSLSIZE_SEGS1234                     (SYSBSLSIZE0 + SYSBSLSIZE1)
+#define SYSCTL_BSLSIZE_SEG3 (~(SYSBSLSIZE0 + SYSBSLSIZE1))
+#define SYSCTL_BSLSIZE_SEGS23 (SYSBSLSIZE0)
+#define SYSCTL_BSLSIZE_SEGS123 (SYSBSLSIZE1)
+#define SYSCTL_BSLSIZE_SEGS1234 (SYSBSLSIZE0 + SYSBSLSIZE1)
 
 //*****************************************************************************
 //
@@ -79,8 +78,8 @@ extern "C"
 // parameter for functions: SysCtl_initJTAGMailbox().
 //
 //*****************************************************************************
-#define SYSCTL_JTAGMBSIZE_16BIT                                    (!(JMBMODE))
-#define SYSCTL_JTAGMBSIZE_32BIT                                       (JMBMODE)
+#define SYSCTL_JTAGMBSIZE_16BIT (!(JMBMODE))
+#define SYSCTL_JTAGMBSIZE_32BIT (JMBMODE)
 
 //*****************************************************************************
 //
@@ -88,10 +87,10 @@ extern "C"
 // parameter for functions: SysCtl_initJTAGMailbox().
 //
 //*****************************************************************************
-#define SYSCTL_JTAGINBOX0AUTO_JTAGINBOX1AUTO       (!(JMBCLR0OFF + JMBCLR1OFF))
-#define SYSCTL_JTAGINBOX0AUTO_JTAGINBOX1SW                         (JMBCLR1OFF)
-#define SYSCTL_JTAGINBOX0SW_JTAGINBOX1AUTO                         (JMBCLR0OFF)
-#define SYSCTL_JTAGINBOX0SW_JTAGINBOX1SW              (JMBCLR0OFF + JMBCLR1OFF)
+#define SYSCTL_JTAGINBOX0AUTO_JTAGINBOX1AUTO (!(JMBCLR0OFF + JMBCLR1OFF))
+#define SYSCTL_JTAGINBOX0AUTO_JTAGINBOX1SW (JMBCLR1OFF)
+#define SYSCTL_JTAGINBOX0SW_JTAGINBOX1AUTO (JMBCLR0OFF)
+#define SYSCTL_JTAGINBOX0SW_JTAGINBOX1SW (JMBCLR0OFF + JMBCLR1OFF)
 
 //*****************************************************************************
 //
@@ -100,10 +99,10 @@ extern "C"
 // SysCtl_clearJTAGMailboxFlagStatus().
 //
 //*****************************************************************************
-#define SYSCTL_JTAGOUTBOX_FLAG0                                     (JMBOUT0FG)
-#define SYSCTL_JTAGOUTBOX_FLAG1                                     (JMBOUT1FG)
-#define SYSCTL_JTAGINBOX_FLAG0                                       (JMBIN0FG)
-#define SYSCTL_JTAGINBOX_FLAG1                                       (JMBIN1FG)
+#define SYSCTL_JTAGOUTBOX_FLAG0 (JMBOUT0FG)
+#define SYSCTL_JTAGOUTBOX_FLAG1 (JMBOUT1FG)
+#define SYSCTL_JTAGINBOX_FLAG0 (JMBIN0FG)
+#define SYSCTL_JTAGINBOX_FLAG1 (JMBIN1FG)
 
 //*****************************************************************************
 //
@@ -111,8 +110,8 @@ extern "C"
 // functions: SysCtl_getJTAGInboxMessage16Bit().
 //
 //*****************************************************************************
-#define SYSCTL_JTAGINBOX_0                                                (0x0)
-#define SYSCTL_JTAGINBOX_1                                                (0x2)
+#define SYSCTL_JTAGINBOX_0 (0x0)
+#define SYSCTL_JTAGINBOX_1 (0x2)
 
 //*****************************************************************************
 //
@@ -120,8 +119,8 @@ extern "C"
 // for functions: SysCtl_setJTAGOutgoingMessage16Bit().
 //
 //*****************************************************************************
-#define SYSCTL_JTAGOUTBOX_0                                               (0x0)
-#define SYSCTL_JTAGOUTBOX_1                                               (0x2)
+#define SYSCTL_JTAGOUTBOX_0 (0x0)
+#define SYSCTL_JTAGOUTBOX_1 (0x2)
 
 //*****************************************************************************
 //
@@ -129,8 +128,8 @@ extern "C"
 // can be returned by the SysCtl_getBSLEntryIndication() function.
 //
 //*****************************************************************************
-#define SYSCTL_BSLENTRY_INDICATED                                         (0x1)
-#define SYSCTL_BSLENTRY_NOTINDICATED                                      (0x0)
+#define SYSCTL_BSLENTRY_INDICATED (0x1)
+#define SYSCTL_BSLENTRY_NOTINDICATED (0x0)
 
 //*****************************************************************************
 //
