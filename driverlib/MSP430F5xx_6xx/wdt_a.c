@@ -73,14 +73,16 @@ void WDT_A_resetTimer(uint16_t baseAddress) {
   HWREG16(baseAddress + OFS_WDTCTL) = WDTPW + newWDTStatus;
 }
 
-void WDT_A_initWatchdogTimer(uint16_t baseAddress, uint8_t clockSelect,
-                             uint8_t clockDivider) {
+void WDT_A_initWatchdogTimer(uint16_t baseAddress,
+                             uint8_t  clockSelect,
+                             uint8_t  clockDivider) {
   HWREG16(baseAddress + OFS_WDTCTL) =
       WDTPW + WDTCNTCL + WDTHOLD + clockSelect + clockDivider;
 }
 
-void WDT_A_initIntervalTimer(uint16_t baseAddress, uint8_t clockSelect,
-                             uint8_t clockDivider) {
+void WDT_A_initIntervalTimer(uint16_t baseAddress,
+                             uint8_t  clockSelect,
+                             uint8_t  clockDivider) {
   HWREG16(baseAddress + OFS_WDTCTL) =
       WDTPW + WDTCNTCL + WDTHOLD + WDTTMSEL + clockSelect + clockDivider;
 }

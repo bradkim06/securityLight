@@ -63,13 +63,15 @@ void RTC_B_setCalibrationFrequency(uint16_t baseAddress,
   HWREG16(baseAddress + OFS_RTCCTL23) |= frequencySelect;
 }
 
-void RTC_B_setCalibrationData(uint16_t baseAddress, uint8_t offsetDirection,
-                              uint8_t offsetValue) {
+void RTC_B_setCalibrationData(uint16_t baseAddress,
+                              uint8_t  offsetDirection,
+                              uint8_t  offsetValue) {
   HWREG8(baseAddress + OFS_RTCCTL23_L) = offsetValue + offsetDirection;
 }
 
-void RTC_B_initCalendar(uint16_t baseAddress, Calendar *CalendarTime,
-                        uint16_t formatSelect) {
+void RTC_B_initCalendar(uint16_t  baseAddress,
+                        Calendar* CalendarTime,
+                        uint16_t  formatSelect) {
   HWREG8(baseAddress + OFS_RTCCTL01_H) |= RTCHOLD_H;
 
   HWREG16(baseAddress + OFS_RTCCTL01) &= ~(RTCBCD);
@@ -81,7 +83,7 @@ void RTC_B_initCalendar(uint16_t baseAddress, Calendar *CalendarTime,
   HWREG8(baseAddress + OFS_RTCTIM1_H) = CalendarTime->DayOfWeek;
   HWREG8(baseAddress + OFS_RTCDATE_L) = CalendarTime->DayOfMonth;
   HWREG8(baseAddress + OFS_RTCDATE_H) = CalendarTime->Month;
-  HWREG16(baseAddress + OFS_RTCYEAR) = CalendarTime->Year;
+  HWREG16(baseAddress + OFS_RTCYEAR)  = CalendarTime->Year;
 }
 
 Calendar RTC_B_getCalendarTime(uint16_t baseAddress) {
@@ -91,23 +93,23 @@ Calendar RTC_B_getCalendarTime(uint16_t baseAddress) {
     ;
   }
 
-  tempCal.Seconds = HWREG8(baseAddress + OFS_RTCTIM0_L);
-  tempCal.Minutes = HWREG8(baseAddress + OFS_RTCTIM0_H);
-  tempCal.Hours = HWREG8(baseAddress + OFS_RTCTIM1_L);
-  tempCal.DayOfWeek = HWREG8(baseAddress + OFS_RTCTIM1_H);
+  tempCal.Seconds    = HWREG8(baseAddress + OFS_RTCTIM0_L);
+  tempCal.Minutes    = HWREG8(baseAddress + OFS_RTCTIM0_H);
+  tempCal.Hours      = HWREG8(baseAddress + OFS_RTCTIM1_L);
+  tempCal.DayOfWeek  = HWREG8(baseAddress + OFS_RTCTIM1_H);
   tempCal.DayOfMonth = HWREG8(baseAddress + OFS_RTCDATE_L);
-  tempCal.Month = HWREG8(baseAddress + OFS_RTCDATE_H);
-  tempCal.Year = HWREG16(baseAddress + OFS_RTCYEAR);
+  tempCal.Month      = HWREG8(baseAddress + OFS_RTCDATE_H);
+  tempCal.Year       = HWREG16(baseAddress + OFS_RTCYEAR);
 
   return (tempCal);
 }
 
 void RTC_B_configureCalendarAlarm(uint16_t baseAddress,
-                                  RTC_B_configureCalendarAlarmParam *param) {
+                                  RTC_B_configureCalendarAlarmParam* param) {
   // Each of these is XORed with 0x80 to turn on if an integer is passed,
   // or turn OFF if RTC_B_ALARM_OFF (0x80) is passed.
-  HWREG8(baseAddress + OFS_RTCAMINHR_L) = (param->minutesAlarm ^ 0x80);
-  HWREG8(baseAddress + OFS_RTCAMINHR_H) = (param->hoursAlarm ^ 0x80);
+  HWREG8(baseAddress + OFS_RTCAMINHR_L)  = (param->minutesAlarm ^ 0x80);
+  HWREG8(baseAddress + OFS_RTCAMINHR_H)  = (param->hoursAlarm ^ 0x80);
   HWREG8(baseAddress + OFS_RTCADOWDAY_L) = (param->dayOfWeekAlarm ^ 0x80);
   HWREG8(baseAddress + OFS_RTCADOWDAY_H) = (param->dayOfMonthAlarm ^ 0x80);
 }
@@ -117,8 +119,9 @@ void RTC_B_setCalendarEvent(uint16_t baseAddress, uint16_t eventSelect) {
   HWREG16(baseAddress + OFS_RTCCTL01) |= eventSelect;
 }
 
-void RTC_B_definePrescaleEvent(uint16_t baseAddress, uint8_t prescaleSelect,
-                               uint8_t prescaleEventDivider) {
+void RTC_B_definePrescaleEvent(uint16_t baseAddress,
+                               uint8_t  prescaleSelect,
+                               uint8_t  prescaleEventDivider) {
   HWREG8(baseAddress + OFS_RTCPS0CTL_L + prescaleSelect) &= ~(RT0IP_7);
   HWREG8(baseAddress + OFS_RTCPS0CTL_L + prescaleSelect) |=
       prescaleEventDivider;
@@ -134,8 +137,9 @@ uint8_t RTC_B_getPrescaleValue(uint16_t baseAddress, uint8_t prescaleSelect) {
   }
 }
 
-void RTC_B_setPrescaleValue(uint16_t baseAddress, uint8_t prescaleSelect,
-                            uint8_t prescaleCounterValue) {
+void RTC_B_setPrescaleValue(uint16_t baseAddress,
+                            uint8_t  prescaleSelect,
+                            uint8_t  prescaleCounterValue) {
   if (RTC_B_PRESCALE_0 == prescaleSelect) {
     HWREG8(baseAddress + OFS_RTCPS_L) = prescaleCounterValue;
   } else if (RTC_B_PRESCALE_1 == prescaleSelect) {
@@ -174,7 +178,7 @@ void RTC_B_disableInterrupt(uint16_t baseAddress, uint8_t interruptMask) {
 }
 
 uint8_t RTC_B_getInterruptStatus(uint16_t baseAddress,
-                                 uint8_t interruptFlagMask) {
+                                 uint8_t  interruptFlagMask) {
   uint8_t tempInterruptFlagMask = 0x0000;
 
   tempInterruptFlagMask |= (HWREG8(baseAddress + OFS_RTCCTL01_L) &

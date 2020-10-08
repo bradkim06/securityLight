@@ -49,7 +49,7 @@
 
 #include "pmap.h"
 
-void PMAP_initPorts(uint16_t baseAddress, PMAP_initPortsParam *param) {
+void PMAP_initPorts(uint16_t baseAddress, PMAP_initPortsParam* param) {
   // Store current interrupt state, then disable all interrupts
   uint16_t globalInterruptState = __get_SR_register() & GIE;
   __disable_interrupt();

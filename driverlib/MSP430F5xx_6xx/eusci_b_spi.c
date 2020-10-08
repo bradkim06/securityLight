@@ -49,8 +49,8 @@
 
 #include "eusci_b_spi.h"
 
-void EUSCI_B_SPI_initMaster(uint16_t baseAddress,
-                            EUSCI_B_SPI_initMasterParam *param) {
+void EUSCI_B_SPI_initMaster(uint16_t                     baseAddress,
+                            EUSCI_B_SPI_initMasterParam* param) {
   // Disable the USCI Module
   HWREG16(baseAddress + OFS_UCBxCTLW0) |= UCSWRST;
 
@@ -80,13 +80,13 @@ void EUSCI_B_SPI_initMaster(uint16_t baseAddress,
 }
 
 void EUSCI_B_SPI_select4PinFunctionality(uint16_t baseAddress,
-                                         uint8_t select4PinFunctionality) {
+                                         uint8_t  select4PinFunctionality) {
   HWREG16(baseAddress + OFS_UCBxCTLW0) &= ~UCSTEM;
   HWREG16(baseAddress + OFS_UCBxCTLW0) |= select4PinFunctionality;
 }
 
 void EUSCI_B_SPI_changeMasterClock(uint16_t baseAddress,
-                                   EUSCI_B_SPI_changeMasterClockParam *param) {
+                                   EUSCI_B_SPI_changeMasterClockParam* param) {
   // Disable the USCI Module
   HWREG16(baseAddress + OFS_UCBxCTLW0) |= UCSWRST;
 
@@ -97,8 +97,8 @@ void EUSCI_B_SPI_changeMasterClock(uint16_t baseAddress,
   HWREG16(baseAddress + OFS_UCBxCTLW0) &= ~(UCSWRST);
 }
 
-void EUSCI_B_SPI_initSlave(uint16_t baseAddress,
-                           EUSCI_B_SPI_initSlaveParam *param) {
+void EUSCI_B_SPI_initSlave(uint16_t                    baseAddress,
+                           EUSCI_B_SPI_initSlaveParam* param) {
   // Disable USCI Module
   HWREG16(baseAddress + OFS_UCBxCTLW0) |= UCSWRST;
 

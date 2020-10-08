@@ -544,14 +544,14 @@ typedef struct Timer_D_outputPWMParam {
 // Timer_D_combineTDCCRToOutputPWM().
 //
 //*****************************************************************************
-#define TIMER_D_CLOCKSOURCE_DIVIDER_1 0x00
-#define TIMER_D_CLOCKSOURCE_DIVIDER_2 0x08
-#define TIMER_D_CLOCKSOURCE_DIVIDER_3 0x02
-#define TIMER_D_CLOCKSOURCE_DIVIDER_4 0x10
-#define TIMER_D_CLOCKSOURCE_DIVIDER_5 0x04
-#define TIMER_D_CLOCKSOURCE_DIVIDER_6 0x05
-#define TIMER_D_CLOCKSOURCE_DIVIDER_7 0x06
-#define TIMER_D_CLOCKSOURCE_DIVIDER_8 0x18
+#define TIMER_D_CLOCKSOURCE_DIVIDER_1  0x00
+#define TIMER_D_CLOCKSOURCE_DIVIDER_2  0x08
+#define TIMER_D_CLOCKSOURCE_DIVIDER_3  0x02
+#define TIMER_D_CLOCKSOURCE_DIVIDER_4  0x10
+#define TIMER_D_CLOCKSOURCE_DIVIDER_5  0x04
+#define TIMER_D_CLOCKSOURCE_DIVIDER_6  0x05
+#define TIMER_D_CLOCKSOURCE_DIVIDER_7  0x06
+#define TIMER_D_CLOCKSOURCE_DIVIDER_8  0x18
 #define TIMER_D_CLOCKSOURCE_DIVIDER_10 0x0C
 #define TIMER_D_CLOCKSOURCE_DIVIDER_12 0x0D
 #define TIMER_D_CLOCKSOURCE_DIVIDER_14 0x0E
@@ -571,10 +571,10 @@ typedef struct Timer_D_outputPWMParam {
 // functions: Timer_D_startCounter().
 //
 //*****************************************************************************
-#define TIMER_D_STOP_MODE MC_0
-#define TIMER_D_UP_MODE MC_1
+#define TIMER_D_STOP_MODE       MC_0
+#define TIMER_D_UP_MODE         MC_1
 #define TIMER_D_CONTINUOUS_MODE MC_2
-#define TIMER_D_UPDOWN_MODE MC_3
+#define TIMER_D_UPDOWN_MODE     MC_3
 
 //*****************************************************************************
 //
@@ -583,7 +583,7 @@ typedef struct Timer_D_outputPWMParam {
 // Timer_D_initUpDownMode().
 //
 //*****************************************************************************
-#define TIMER_D_DO_CLEAR TDCLR
+#define TIMER_D_DO_CLEAR   TDCLR
 #define TIMER_D_SKIP_CLEAR 0x00
 
 //*****************************************************************************
@@ -595,9 +595,9 @@ typedef struct Timer_D_outputPWMParam {
 // Timer_D_combineTDCCRToOutputPWM().
 //
 //*****************************************************************************
-#define TIMER_D_CLOCKSOURCE_EXTERNAL_TDCLK TDSSEL__TACLK
-#define TIMER_D_CLOCKSOURCE_ACLK TDSSEL__ACLK
-#define TIMER_D_CLOCKSOURCE_SMCLK TDSSEL__SMCLK
+#define TIMER_D_CLOCKSOURCE_EXTERNAL_TDCLK          TDSSEL__TACLK
+#define TIMER_D_CLOCKSOURCE_ACLK                    TDSSEL__ACLK
+#define TIMER_D_CLOCKSOURCE_SMCLK                   TDSSEL__SMCLK
 #define TIMER_D_CLOCKSOURCE_INVERTED_EXTERNAL_TDCLK TDSSEL__INCLK
 
 //*****************************************************************************
@@ -609,9 +609,9 @@ typedef struct Timer_D_outputPWMParam {
 // Timer_D_combineTDCCRToOutputPWM().
 //
 //*****************************************************************************
-#define TIMER_D_CLOCKINGMODE_EXTERNAL_CLOCK TDCLKM_0
+#define TIMER_D_CLOCKINGMODE_EXTERNAL_CLOCK    TDCLKM_0
 #define TIMER_D_CLOCKINGMODE_HIRES_LOCAL_CLOCK TDCLKM_1
-#define TIMER_D_CLOCKINGMODE_AUXILIARY_CLK TDCLKM_2
+#define TIMER_D_CLOCKINGMODE_AUXILIARY_CLK     TDCLKM_2
 
 //*****************************************************************************
 //
@@ -620,7 +620,7 @@ typedef struct Timer_D_outputPWMParam {
 // Timer_D_initUpDownMode().
 //
 //*****************************************************************************
-#define TIMER_D_TDIE_INTERRUPT_ENABLE TDIE
+#define TIMER_D_TDIE_INTERRUPT_ENABLE  TDIE
 #define TIMER_D_TDIE_INTERRUPT_DISABLE 0x00
 
 //*****************************************************************************
@@ -629,7 +629,7 @@ typedef struct Timer_D_outputPWMParam {
 // functions: Timer_D_initCaptureMode().
 //
 //*****************************************************************************
-#define TIMER_D_CAPTURE_INTERRUPT_ENABLE TDIE
+#define TIMER_D_CAPTURE_INTERRUPT_ENABLE  TDIE
 #define TIMER_D_CAPTURE_INTERRUPT_DISABLE 0x00
 
 //*****************************************************************************
@@ -638,7 +638,7 @@ typedef struct Timer_D_outputPWMParam {
 // functions: Timer_D_initUpMode(), and Timer_D_initUpDownMode().
 //
 //*****************************************************************************
-#define TIMER_D_CCIE_CCR0_INTERRUPT_ENABLE CCIE
+#define TIMER_D_CCIE_CCR0_INTERRUPT_ENABLE  CCIE
 #define TIMER_D_CCIE_CCR0_INTERRUPT_DISABLE 0x00
 
 //*****************************************************************************
@@ -648,7 +648,7 @@ typedef struct Timer_D_outputPWMParam {
 //
 //*****************************************************************************
 #define TIMER_D_SINGLE_CAPTURE_MODE 0x00
-#define TIMER_D_DUAL_CAPTURE_MODE 0x01
+#define TIMER_D_DUAL_CAPTURE_MODE   0x01
 
 //*****************************************************************************
 //
@@ -658,8 +658,8 @@ typedef struct Timer_D_outputPWMParam {
 //*****************************************************************************
 #define TIMER_D_CAPTURE_INPUTSELECT_CCIxA CCIS_0
 #define TIMER_D_CAPTURE_INPUTSELECT_CCIxB CCIS_1
-#define TIMER_D_CAPTURE_INPUTSELECT_GND CCIS_2
-#define TIMER_D_CAPTURE_INPUTSELECT_Vcc CCIS_3
+#define TIMER_D_CAPTURE_INPUTSELECT_GND   CCIS_2
+#define TIMER_D_CAPTURE_INPUTSELECT_Vcc   CCIS_3
 
 //*****************************************************************************
 //
@@ -669,14 +669,14 @@ typedef struct Timer_D_outputPWMParam {
 // Timer_D_outputPWM(), and Timer_D_combineTDCCRToOutputPWM().
 //
 //*****************************************************************************
-#define TIMER_D_OUTPUTMODE_OUTBITVALUE OUTMOD_0
-#define TIMER_D_OUTPUTMODE_SET OUTMOD_1
+#define TIMER_D_OUTPUTMODE_OUTBITVALUE  OUTMOD_0
+#define TIMER_D_OUTPUTMODE_SET          OUTMOD_1
 #define TIMER_D_OUTPUTMODE_TOGGLE_RESET OUTMOD_2
-#define TIMER_D_OUTPUTMODE_SET_RESET OUTMOD_3
-#define TIMER_D_OUTPUTMODE_TOGGLE OUTMOD_4
-#define TIMER_D_OUTPUTMODE_RESET OUTMOD_5
-#define TIMER_D_OUTPUTMODE_TOGGLE_SET OUTMOD_6
-#define TIMER_D_OUTPUTMODE_RESET_SET OUTMOD_7
+#define TIMER_D_OUTPUTMODE_SET_RESET    OUTMOD_3
+#define TIMER_D_OUTPUTMODE_TOGGLE       OUTMOD_4
+#define TIMER_D_OUTPUTMODE_RESET        OUTMOD_5
+#define TIMER_D_OUTPUTMODE_TOGGLE_SET   OUTMOD_6
+#define TIMER_D_OUTPUTMODE_RESET_SET    OUTMOD_7
 
 //*****************************************************************************
 //
@@ -711,9 +711,9 @@ typedef struct Timer_D_outputPWMParam {
 // functions: Timer_D_initCaptureMode().
 //
 //*****************************************************************************
-#define TIMER_D_CAPTUREMODE_NO_CAPTURE CM_0
-#define TIMER_D_CAPTUREMODE_RISING_EDGE CM_1
-#define TIMER_D_CAPTUREMODE_FALLING_EDGE CM_2
+#define TIMER_D_CAPTUREMODE_NO_CAPTURE              CM_0
+#define TIMER_D_CAPTUREMODE_RISING_EDGE             CM_1
+#define TIMER_D_CAPTUREMODE_FALLING_EDGE            CM_2
 #define TIMER_D_CAPTUREMODE_RISING_AND_FALLING_EDGE CM_3
 
 //*****************************************************************************
@@ -723,7 +723,7 @@ typedef struct Timer_D_outputPWMParam {
 //
 //*****************************************************************************
 #define TIMER_D_CAPTURE_ASYNCHRONOUS 0x00
-#define TIMER_D_CAPTURE_SYNCHRONOUS SCS
+#define TIMER_D_CAPTURE_SYNCHRONOUS  SCS
 
 //*****************************************************************************
 //
@@ -731,7 +731,7 @@ typedef struct Timer_D_outputPWMParam {
 // functions: Timer_D_initCompareMode().
 //
 //*****************************************************************************
-#define TIMER_D_CAPTURECOMPARE_INTERRUPT_ENABLE CCIE
+#define TIMER_D_CAPTURECOMPARE_INTERRUPT_ENABLE  CCIE
 #define TIMER_D_CAPTURECOMPARE_INTERRUPT_DISABLE 0x00
 
 //*****************************************************************************
@@ -744,9 +744,9 @@ typedef struct Timer_D_outputPWMParam {
 //
 //*****************************************************************************
 #define TIMER_D_HIGH_RES_FREQUENCY_UNLOCK TDHUNLKIE
-#define TIMER_D_HIGH_RES_FREQUENCY_LOCK TDHLKIE
-#define TIMER_D_HIGH_RES_FAIL_HIGH TDHFHIE
-#define TIMER_D_HIGH_RES_FAIL_LOW TDHFLIE
+#define TIMER_D_HIGH_RES_FREQUENCY_LOCK   TDHLKIE
+#define TIMER_D_HIGH_RES_FAIL_HIGH        TDHFHIE
+#define TIMER_D_HIGH_RES_FAIL_LOW         TDHFLIE
 
 //*****************************************************************************
 //
@@ -755,7 +755,7 @@ typedef struct Timer_D_outputPWMParam {
 // the Timer_D_getCaptureCompareInterruptStatus() function.
 //
 //*****************************************************************************
-#define TIMER_D_CAPTURE_OVERFLOW COV
+#define TIMER_D_CAPTURE_OVERFLOW              COV
 #define TIMER_D_CAPTURECOMPARE_INTERRUPT_FLAG CCIFG
 
 //*****************************************************************************
@@ -765,7 +765,7 @@ typedef struct Timer_D_outputPWMParam {
 //
 //*****************************************************************************
 #define TIMER_D_READ_SYNCHRONIZED_CAPTURECOMPAREINPUT SCCI
-#define TIMER_D_READ_CAPTURE_COMPARE_INPUT CCI
+#define TIMER_D_READ_CAPTURE_COMPARE_INPUT            CCI
 
 //*****************************************************************************
 //
@@ -775,7 +775,7 @@ typedef struct Timer_D_outputPWMParam {
 //
 //*****************************************************************************
 #define TIMER_D_OUTPUTMODE_OUTBITVALUE_HIGH OUT
-#define TIMER_D_OUTPUTMODE_OUTBITVALUE_LOW 0x00
+#define TIMER_D_OUTPUTMODE_OUTBITVALUE_LOW  0x00
 
 //*****************************************************************************
 //
@@ -783,7 +783,7 @@ typedef struct Timer_D_outputPWMParam {
 // parameter for functions: Timer_D_initHighResGeneratorInFreeRunningMode().
 //
 //*****************************************************************************
-#define TIMER_D_HIGHRES_64MHZ 0x00
+#define TIMER_D_HIGHRES_64MHZ  0x00
 #define TIMER_D_HIGHRES_128MHZ 0x01
 #define TIMER_D_HIGHRES_200MHZ 0x02
 #define TIMER_D_HIGHRES_256MHZ 0x03
@@ -805,7 +805,7 @@ typedef struct Timer_D_outputPWMParam {
 // functions: Timer_D_initHighResGeneratorInRegulatedMode().
 //
 //*****************************************************************************
-#define TIMER_D_HIGHRES_CLK_MULTIPLY_FACTOR_8x TDHM_0
+#define TIMER_D_HIGHRES_CLK_MULTIPLY_FACTOR_8x  TDHM_0
 #define TIMER_D_HIGHRES_CLK_MULTIPLY_FACTOR_16x TDHM_1
 
 //*****************************************************************************
@@ -824,10 +824,10 @@ typedef struct Timer_D_outputPWMParam {
 // functions: Timer_D_selectLatchingGroup().
 //
 //*****************************************************************************
-#define TIMER_D_GROUP_NONE TDCLGRP_0
+#define TIMER_D_GROUP_NONE           TDCLGRP_0
 #define TIMER_D_GROUP_CL12_CL23_CL56 TDCLGRP_1
-#define TIMER_D_GROUP_CL123_CL456 TDCLGRP_2
-#define TIMER_D_GROUP_ALL TDCLGRP_3
+#define TIMER_D_GROUP_CL123_CL456    TDCLGRP_2
+#define TIMER_D_GROUP_ALL            TDCLGRP_3
 
 //*****************************************************************************
 //
@@ -838,7 +838,7 @@ typedef struct Timer_D_outputPWMParam {
 #define TIMER_D_COUNTER_16BIT CNTL_0
 #define TIMER_D_COUNTER_12BIT CNTL_1
 #define TIMER_D_COUNTER_10BIT CNTL_2
-#define TIMER_D_COUNTER_8BIT CNTL_3
+#define TIMER_D_COUNTER_8BIT  CNTL_3
 
 //*****************************************************************************
 //
@@ -846,9 +846,9 @@ typedef struct Timer_D_outputPWMParam {
 // parameter for functions: Timer_D_initCompareLatchLoadEvent().
 //
 //*****************************************************************************
-#define TIMER_D_LATCH_ON_WRITE_TO_TDxCCRn_COMPARE_REGISTER CLLD_0
-#define TIMER_D_LATCH_WHEN_COUNTER_COUNTS_TO_0_IN_UP_OR_CONT_MODE CLLD_1
-#define TIMER_D_LATCH_WHEN_COUNTER_COUNTS_TO_0_IN_UPDOWN_MODE CLLD_2
+#define TIMER_D_LATCH_ON_WRITE_TO_TDxCCRn_COMPARE_REGISTER               CLLD_0
+#define TIMER_D_LATCH_WHEN_COUNTER_COUNTS_TO_0_IN_UP_OR_CONT_MODE        CLLD_1
+#define TIMER_D_LATCH_WHEN_COUNTER_COUNTS_TO_0_IN_UPDOWN_MODE            CLLD_2
 #define TIMER_D_LATCH_WHEN_COUNTER_COUNTS_TO_CURRENT_COMPARE_LATCH_VALUE CLLD_3
 
 //*****************************************************************************
@@ -878,7 +878,7 @@ typedef struct Timer_D_outputPWMParam {
 //
 //*****************************************************************************
 #define TIMER_D_CAPTURECOMPARE_INPUT_HIGH 0x01
-#define TIMER_D_CAPTURECOMPARE_INPUT_LOW 0x00
+#define TIMER_D_CAPTURECOMPARE_INPUT_LOW  0x00
 
 //*****************************************************************************
 //
@@ -887,7 +887,7 @@ typedef struct Timer_D_outputPWMParam {
 //
 //*****************************************************************************
 #define TIMER_D_INTERRUPT_NOT_PENDING 0x00
-#define TIMER_D_INTERRUPT_PENDING 0x01
+#define TIMER_D_INTERRUPT_PENDING     0x01
 
 //*****************************************************************************
 //
@@ -942,7 +942,7 @@ extern void Timer_D_startCounter(uint16_t baseAddress, uint16_t timerMode);
 //
 //*****************************************************************************
 extern void Timer_D_initContinuousMode(uint16_t baseAddress,
-                                       Timer_D_initContinuousModeParam *param);
+                                       Timer_D_initContinuousModeParam* param);
 
 //*****************************************************************************
 //
@@ -960,8 +960,8 @@ extern void Timer_D_initContinuousMode(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_D_initUpMode(uint16_t baseAddress,
-                               Timer_D_initUpModeParam *param);
+extern void Timer_D_initUpMode(uint16_t                 baseAddress,
+                               Timer_D_initUpModeParam* param);
 
 //*****************************************************************************
 //
@@ -979,8 +979,8 @@ extern void Timer_D_initUpMode(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_D_initUpDownMode(uint16_t baseAddress,
-                                   Timer_D_initUpDownModeParam *param);
+extern void Timer_D_initUpDownMode(uint16_t                     baseAddress,
+                                   Timer_D_initUpDownModeParam* param);
 
 //*****************************************************************************
 //
@@ -994,8 +994,8 @@ extern void Timer_D_initUpDownMode(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_D_initCaptureMode(uint16_t baseAddress,
-                                    Timer_D_initCaptureModeParam *param);
+extern void Timer_D_initCaptureMode(uint16_t                      baseAddress,
+                                    Timer_D_initCaptureModeParam* param);
 
 //*****************************************************************************
 //
@@ -1009,8 +1009,8 @@ extern void Timer_D_initCaptureMode(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_D_initCompareMode(uint16_t baseAddress,
-                                    Timer_D_initCompareModeParam *param);
+extern void Timer_D_initCompareMode(uint16_t                      baseAddress,
+                                    Timer_D_initCompareModeParam* param);
 
 //*****************************************************************************
 //
@@ -1112,7 +1112,8 @@ extern uint32_t Timer_D_getTimerInterruptStatus(uint16_t baseAddress);
 //
 //*****************************************************************************
 extern void Timer_D_enableCaptureCompareInterrupt(
-    uint16_t baseAddress, uint16_t captureCompareRegister);
+    uint16_t baseAddress,
+    uint16_t captureCompareRegister);
 
 //*****************************************************************************
 //
@@ -1135,7 +1136,8 @@ extern void Timer_D_enableCaptureCompareInterrupt(
 //
 //*****************************************************************************
 extern void Timer_D_disableCaptureCompareInterrupt(
-    uint16_t baseAddress, uint16_t captureCompareRegister);
+    uint16_t baseAddress,
+    uint16_t captureCompareRegister);
 
 //*****************************************************************************
 //
@@ -1163,7 +1165,9 @@ extern void Timer_D_disableCaptureCompareInterrupt(
 //
 //*****************************************************************************
 extern uint32_t Timer_D_getCaptureCompareInterruptStatus(
-    uint16_t baseAddress, uint16_t captureCompareRegister, uint16_t mask);
+    uint16_t baseAddress,
+    uint16_t captureCompareRegister,
+    uint16_t mask);
 
 //*****************************************************************************
 //
@@ -1247,7 +1251,8 @@ extern void Timer_D_clearHighResInterrupt(uint16_t baseAddress, uint16_t mask);
 //
 //*****************************************************************************
 extern uint8_t Timer_D_getSynchronizedCaptureCompareInput(
-    uint16_t baseAddress, uint16_t captureCompareRegister,
+    uint16_t baseAddress,
+    uint16_t captureCompareRegister,
     uint16_t synchronized);
 
 //*****************************************************************************
@@ -1271,7 +1276,8 @@ extern uint8_t Timer_D_getSynchronizedCaptureCompareInput(
 //
 //*****************************************************************************
 extern uint8_t Timer_D_getOutputForOutputModeOutBitValue(
-    uint16_t baseAddress, uint16_t captureCompareRegister);
+    uint16_t baseAddress,
+    uint16_t captureCompareRegister);
 
 //*****************************************************************************
 //
@@ -1313,7 +1319,8 @@ extern uint16_t Timer_D_getCaptureCompareCount(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern uint16_t Timer_D_getCaptureCompareLatchCount(
-    uint16_t baseAddress, uint16_t captureCompareRegister);
+    uint16_t baseAddress,
+    uint16_t captureCompareRegister);
 
 //*****************************************************************************
 //
@@ -1337,7 +1344,8 @@ extern uint16_t Timer_D_getCaptureCompareLatchCount(
 //
 //*****************************************************************************
 extern uint8_t Timer_D_getCaptureCompareInputSignal(
-    uint16_t baseAddress, uint16_t captureCompareRegister);
+    uint16_t baseAddress,
+    uint16_t captureCompareRegister);
 
 //*****************************************************************************
 //
@@ -1364,8 +1372,9 @@ extern uint8_t Timer_D_getCaptureCompareInputSignal(
 //
 //*****************************************************************************
 extern void Timer_D_setOutputForOutputModeOutBitValue(
-    uint16_t baseAddress, uint16_t captureCompareRegister,
-    uint8_t outputModeOutBitValue);
+    uint16_t baseAddress,
+    uint16_t captureCompareRegister,
+    uint8_t  outputModeOutBitValue);
 
 //*****************************************************************************
 //
@@ -1381,8 +1390,8 @@ extern void Timer_D_setOutputForOutputModeOutBitValue(
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_D_outputPWM(uint16_t baseAddress,
-                              Timer_D_outputPWMParam *param);
+extern void Timer_D_outputPWM(uint16_t                baseAddress,
+                              Timer_D_outputPWMParam* param);
 
 //*****************************************************************************
 //
@@ -1457,7 +1466,8 @@ extern void Timer_D_clearTimerInterrupt(uint16_t baseAddress);
 //
 //*****************************************************************************
 extern void Timer_D_clearCaptureCompareInterrupt(
-    uint16_t baseAddress, uint16_t captureCompareRegister);
+    uint16_t baseAddress,
+    uint16_t captureCompareRegister);
 
 //*****************************************************************************
 //
@@ -1479,7 +1489,8 @@ extern void Timer_D_clearCaptureCompareInterrupt(
 //
 //*****************************************************************************
 extern uint8_t Timer_D_initHighResGeneratorInFreeRunningMode(
-    uint16_t baseAddress, uint8_t desiredHighResFrequency);
+    uint16_t baseAddress,
+    uint8_t  desiredHighResFrequency);
 
 //*****************************************************************************
 //
@@ -1496,8 +1507,8 @@ extern uint8_t Timer_D_initHighResGeneratorInFreeRunningMode(
 //
 //*****************************************************************************
 extern void Timer_D_initHighResGeneratorInRegulatedMode(
-    uint16_t baseAddress,
-    Timer_D_initHighResGeneratorInRegulatedModeParam *param);
+    uint16_t                                          baseAddress,
+    Timer_D_initHighResGeneratorInRegulatedModeParam* param);
 
 //*****************************************************************************
 //
@@ -1514,7 +1525,8 @@ extern void Timer_D_initHighResGeneratorInRegulatedMode(
 //
 //*****************************************************************************
 extern void Timer_D_combineTDCCRToOutputPWM(
-    uint16_t baseAddress, Timer_D_combineTDCCRToOutputPWMParam *param);
+    uint16_t                              baseAddress,
+    Timer_D_combineTDCCRToOutputPWMParam* param);
 
 //*****************************************************************************
 //
@@ -1687,7 +1699,8 @@ extern void Timer_D_enableHighResGeneratorForceON(uint16_t baseAddress);
 //
 //*****************************************************************************
 extern void Timer_D_selectHighResCoarseClockRange(
-    uint16_t baseAddress, uint16_t highResCoarseClockRange);
+    uint16_t baseAddress,
+    uint16_t highResCoarseClockRange);
 
 //*****************************************************************************
 //

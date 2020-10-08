@@ -119,13 +119,13 @@ uint16_t SysCtl_getJTAGInboxMessage16Bit(uint8_t inboxSelect) {
 }
 
 uint32_t SysCtl_getJTAGInboxMessage32Bit(void) {
-  uint32_t JTAGInboxMessageLow = HWREG16(SYS_BASE + OFS_SYSJMBI0);
+  uint32_t JTAGInboxMessageLow  = HWREG16(SYS_BASE + OFS_SYSJMBI0);
   uint32_t JTAGInboxMessageHigh = HWREG16(SYS_BASE + OFS_SYSJMBI1);
 
   return ((JTAGInboxMessageHigh << 16) + JTAGInboxMessageLow);
 }
 
-void SysCtl_setJTAGOutgoingMessage16Bit(uint8_t outboxSelect,
+void SysCtl_setJTAGOutgoingMessage16Bit(uint8_t  outboxSelect,
                                         uint16_t outgoingMessage) {
   HWREG16(SYS_BASE + OFS_SYSJMBO0 + outboxSelect) = outgoingMessage;
 }

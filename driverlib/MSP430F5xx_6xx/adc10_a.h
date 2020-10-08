@@ -59,9 +59,9 @@ extern "C" {
 //
 //*****************************************************************************
 #define ADC10_A_CLOCKSOURCE_ADC10OSC (ADC10SSEL_0)
-#define ADC10_A_CLOCKSOURCE_ACLK (ADC10SSEL_1)
-#define ADC10_A_CLOCKSOURCE_MCLK (ADC10SSEL_2)
-#define ADC10_A_CLOCKSOURCE_SMCLK (ADC10SSEL_3)
+#define ADC10_A_CLOCKSOURCE_ACLK     (ADC10SSEL_1)
+#define ADC10_A_CLOCKSOURCE_MCLK     (ADC10SSEL_2)
+#define ADC10_A_CLOCKSOURCE_SMCLK    (ADC10SSEL_3)
 
 //*****************************************************************************
 //
@@ -69,21 +69,21 @@ extern "C" {
 // parameter for functions: ADC10_A_init().
 //
 //*****************************************************************************
-#define ADC10_A_CLOCKDIVIDER_1 (ADC10DIV_0 + ADC10PDIV_0)
-#define ADC10_A_CLOCKDIVIDER_2 (ADC10DIV_1 + ADC10PDIV_0)
-#define ADC10_A_CLOCKDIVIDER_3 (ADC10DIV_2 + ADC10PDIV_0)
-#define ADC10_A_CLOCKDIVIDER_4 (ADC10DIV_3 + ADC10PDIV_0)
-#define ADC10_A_CLOCKDIVIDER_5 (ADC10DIV_4 + ADC10PDIV_0)
-#define ADC10_A_CLOCKDIVIDER_6 (ADC10DIV_5 + ADC10PDIV_0)
-#define ADC10_A_CLOCKDIVIDER_7 (ADC10DIV_6 + ADC10PDIV_0)
-#define ADC10_A_CLOCKDIVIDER_8 (ADC10DIV_7 + ADC10PDIV_0)
-#define ADC10_A_CLOCKDIVIDER_12 (ADC10DIV_2 + ADC10PDIV_1)
-#define ADC10_A_CLOCKDIVIDER_16 (ADC10DIV_3 + ADC10PDIV_1)
-#define ADC10_A_CLOCKDIVIDER_20 (ADC10DIV_4 + ADC10PDIV_1)
-#define ADC10_A_CLOCKDIVIDER_24 (ADC10DIV_5 + ADC10PDIV_1)
-#define ADC10_A_CLOCKDIVIDER_28 (ADC10DIV_6 + ADC10PDIV_1)
-#define ADC10_A_CLOCKDIVIDER_32 (ADC10DIV_7 + ADC10PDIV_1)
-#define ADC10_A_CLOCKDIVIDER_64 (ADC10DIV_0 + ADC10PDIV_2)
+#define ADC10_A_CLOCKDIVIDER_1   (ADC10DIV_0 + ADC10PDIV_0)
+#define ADC10_A_CLOCKDIVIDER_2   (ADC10DIV_1 + ADC10PDIV_0)
+#define ADC10_A_CLOCKDIVIDER_3   (ADC10DIV_2 + ADC10PDIV_0)
+#define ADC10_A_CLOCKDIVIDER_4   (ADC10DIV_3 + ADC10PDIV_0)
+#define ADC10_A_CLOCKDIVIDER_5   (ADC10DIV_4 + ADC10PDIV_0)
+#define ADC10_A_CLOCKDIVIDER_6   (ADC10DIV_5 + ADC10PDIV_0)
+#define ADC10_A_CLOCKDIVIDER_7   (ADC10DIV_6 + ADC10PDIV_0)
+#define ADC10_A_CLOCKDIVIDER_8   (ADC10DIV_7 + ADC10PDIV_0)
+#define ADC10_A_CLOCKDIVIDER_12  (ADC10DIV_2 + ADC10PDIV_1)
+#define ADC10_A_CLOCKDIVIDER_16  (ADC10DIV_3 + ADC10PDIV_1)
+#define ADC10_A_CLOCKDIVIDER_20  (ADC10DIV_4 + ADC10PDIV_1)
+#define ADC10_A_CLOCKDIVIDER_24  (ADC10DIV_5 + ADC10PDIV_1)
+#define ADC10_A_CLOCKDIVIDER_28  (ADC10DIV_6 + ADC10PDIV_1)
+#define ADC10_A_CLOCKDIVIDER_32  (ADC10DIV_7 + ADC10PDIV_1)
+#define ADC10_A_CLOCKDIVIDER_64  (ADC10DIV_0 + ADC10PDIV_2)
 #define ADC10_A_CLOCKDIVIDER_128 (ADC10DIV_1 + ADC10PDIV_2)
 #define ADC10_A_CLOCKDIVIDER_192 (ADC10DIV_2 + ADC10PDIV_2)
 #define ADC10_A_CLOCKDIVIDER_256 (ADC10DIV_3 + ADC10PDIV_2)
@@ -99,9 +99,9 @@ extern "C" {
 //
 //*****************************************************************************
 #define ADC10_A_SAMPLEHOLDSOURCE_SC (ADC10SHS_0)
-#define ADC10_A_SAMPLEHOLDSOURCE_1 (ADC10SHS_1)
-#define ADC10_A_SAMPLEHOLDSOURCE_2 (ADC10SHS_2)
-#define ADC10_A_SAMPLEHOLDSOURCE_3 (ADC10SHS_3)
+#define ADC10_A_SAMPLEHOLDSOURCE_1  (ADC10SHS_1)
+#define ADC10_A_SAMPLEHOLDSOURCE_2  (ADC10SHS_2)
+#define ADC10_A_SAMPLEHOLDSOURCE_3  (ADC10SHS_3)
 
 //*****************************************************************************
 //
@@ -110,7 +110,7 @@ extern "C" {
 //
 //*****************************************************************************
 #define ADC10_A_MULTIPLESAMPLESDISABLE (!(ADC10MSC))
-#define ADC10_A_MULTIPLESAMPLESENABLE (ADC10MSC)
+#define ADC10_A_MULTIPLESAMPLESENABLE  (ADC10MSC)
 
 //*****************************************************************************
 //
@@ -118,18 +118,18 @@ extern "C" {
 // parameter for functions: ADC10_A_setupSamplingTimer().
 //
 //*****************************************************************************
-#define ADC10_A_CYCLEHOLD_4_CYCLES (ADC10SHT_0)
-#define ADC10_A_CYCLEHOLD_8_CYCLES (ADC10SHT_1)
-#define ADC10_A_CYCLEHOLD_16_CYCLES (ADC10SHT_2)
-#define ADC10_A_CYCLEHOLD_32_CYCLES (ADC10SHT_3)
-#define ADC10_A_CYCLEHOLD_64_CYCLES (ADC10SHT_4)
-#define ADC10_A_CYCLEHOLD_96_CYCLES (ADC10SHT_5)
-#define ADC10_A_CYCLEHOLD_128_CYCLES (ADC10SHT_6)
-#define ADC10_A_CYCLEHOLD_192_CYCLES (ADC10SHT_7)
-#define ADC10_A_CYCLEHOLD_256_CYCLES (ADC10SHT_8)
-#define ADC10_A_CYCLEHOLD_384_CYCLES (ADC10SHT_9)
-#define ADC10_A_CYCLEHOLD_512_CYCLES (ADC10SHT_10)
-#define ADC10_A_CYCLEHOLD_768_CYCLES (ADC10SHT_11)
+#define ADC10_A_CYCLEHOLD_4_CYCLES    (ADC10SHT_0)
+#define ADC10_A_CYCLEHOLD_8_CYCLES    (ADC10SHT_1)
+#define ADC10_A_CYCLEHOLD_16_CYCLES   (ADC10SHT_2)
+#define ADC10_A_CYCLEHOLD_32_CYCLES   (ADC10SHT_3)
+#define ADC10_A_CYCLEHOLD_64_CYCLES   (ADC10SHT_4)
+#define ADC10_A_CYCLEHOLD_96_CYCLES   (ADC10SHT_5)
+#define ADC10_A_CYCLEHOLD_128_CYCLES  (ADC10SHT_6)
+#define ADC10_A_CYCLEHOLD_192_CYCLES  (ADC10SHT_7)
+#define ADC10_A_CYCLEHOLD_256_CYCLES  (ADC10SHT_8)
+#define ADC10_A_CYCLEHOLD_384_CYCLES  (ADC10SHT_9)
+#define ADC10_A_CYCLEHOLD_512_CYCLES  (ADC10SHT_10)
+#define ADC10_A_CYCLEHOLD_768_CYCLES  (ADC10SHT_11)
 #define ADC10_A_CYCLEHOLD_1024_CYCLES (ADC10SHT_12)
 
 //*****************************************************************************
@@ -140,8 +140,8 @@ extern "C" {
 //
 //*****************************************************************************
 #define ADC10_A_VREFPOS_AVCC (!(ADC10SREF0 + ADC10SREF1))
-#define ADC10_A_VREFPOS_EXT (ADC10SREF1)
-#define ADC10_A_VREFPOS_INT (ADC10SREF0)
+#define ADC10_A_VREFPOS_EXT  (ADC10SREF1)
+#define ADC10_A_VREFPOS_INT  (ADC10SREF0)
 
 //*****************************************************************************
 //
@@ -149,22 +149,22 @@ extern "C" {
 // parameter for functions: ADC10_A_configureMemory().
 //
 //*****************************************************************************
-#define ADC10_A_INPUT_A0 (ADC10INCH_0)
-#define ADC10_A_INPUT_A1 (ADC10INCH_1)
-#define ADC10_A_INPUT_A2 (ADC10INCH_2)
-#define ADC10_A_INPUT_A3 (ADC10INCH_3)
-#define ADC10_A_INPUT_A4 (ADC10INCH_4)
-#define ADC10_A_INPUT_A5 (ADC10INCH_5)
-#define ADC10_A_INPUT_A6 (ADC10INCH_6)
-#define ADC10_A_INPUT_A7 (ADC10INCH_7)
-#define ADC10_A_INPUT_A8 (ADC10INCH_8)
-#define ADC10_A_INPUT_A9 (ADC10INCH_9)
-#define ADC10_A_INPUT_TEMPSENSOR (ADC10INCH_10)
+#define ADC10_A_INPUT_A0             (ADC10INCH_0)
+#define ADC10_A_INPUT_A1             (ADC10INCH_1)
+#define ADC10_A_INPUT_A2             (ADC10INCH_2)
+#define ADC10_A_INPUT_A3             (ADC10INCH_3)
+#define ADC10_A_INPUT_A4             (ADC10INCH_4)
+#define ADC10_A_INPUT_A5             (ADC10INCH_5)
+#define ADC10_A_INPUT_A6             (ADC10INCH_6)
+#define ADC10_A_INPUT_A7             (ADC10INCH_7)
+#define ADC10_A_INPUT_A8             (ADC10INCH_8)
+#define ADC10_A_INPUT_A9             (ADC10INCH_9)
+#define ADC10_A_INPUT_TEMPSENSOR     (ADC10INCH_10)
 #define ADC10_A_INPUT_BATTERYMONITOR (ADC10INCH_11)
-#define ADC10_A_INPUT_A12 (ADC10INCH_12)
-#define ADC10_A_INPUT_A13 (ADC10INCH_13)
-#define ADC10_A_INPUT_A14 (ADC10INCH_14)
-#define ADC10_A_INPUT_A15 (ADC10INCH_15)
+#define ADC10_A_INPUT_A12            (ADC10INCH_12)
+#define ADC10_A_INPUT_A13            (ADC10INCH_13)
+#define ADC10_A_INPUT_A14            (ADC10INCH_14)
+#define ADC10_A_INPUT_A15            (ADC10INCH_15)
 
 //*****************************************************************************
 //
@@ -174,7 +174,7 @@ extern "C" {
 //
 //*****************************************************************************
 #define ADC10_A_VREFNEG_AVSS (!(ADC10SREF2))
-#define ADC10_A_VREFNEG_EXT (ADC10SREF2)
+#define ADC10_A_VREFNEG_EXT  (ADC10SREF2)
 
 //*****************************************************************************
 //
@@ -182,12 +182,12 @@ extern "C" {
 // for functions: ADC10_A_enableInterrupt(), and ADC10_A_disableInterrupt().
 //
 //*****************************************************************************
-#define ADC10_A_TIMEOVERFLOW_INT (ADC10TOVIE)
-#define ADC10_A_OVERFLOW_INT (ADC10OVIE)
+#define ADC10_A_TIMEOVERFLOW_INT   (ADC10TOVIE)
+#define ADC10_A_OVERFLOW_INT       (ADC10OVIE)
 #define ADC10_A_ABOVETHRESHOLD_INT (ADC10HIIE)
 #define ADC10_A_BELOWTHRESHOLD_INT (ADC10LOIE)
-#define ADC10_A_INSIDEWINDOW_INT (ADC10INIE)
-#define ADC10_A_COMPLETED_INT (ADC10IE0)
+#define ADC10_A_INSIDEWINDOW_INT   (ADC10INIE)
+#define ADC10_A_COMPLETED_INT      (ADC10IE0)
 
 //*****************************************************************************
 //
@@ -196,12 +196,12 @@ extern "C" {
 // ADC10_A_getInterruptStatus().
 //
 //*****************************************************************************
-#define ADC10_A_TIMEOVERFLOW_INTFLAG (ADC10TOVIFG)
-#define ADC10_A_OVERFLOW_INTFLAG (ADC10OVIFG)
+#define ADC10_A_TIMEOVERFLOW_INTFLAG   (ADC10TOVIFG)
+#define ADC10_A_OVERFLOW_INTFLAG       (ADC10OVIFG)
 #define ADC10_A_ABOVETHRESHOLD_INTFLAG (ADC10HIIFG)
 #define ADC10_A_BELOWTHRESHOLD_INTFLAG (ADC10LOIFG)
-#define ADC10_A_INSIDEWINDOW_INTFLAG (ADC10INIFG)
-#define ADC10_A_COMPLETED_INTFLAG (ADC10IFG0)
+#define ADC10_A_INSIDEWINDOW_INTFLAG   (ADC10INIFG)
+#define ADC10_A_COMPLETED_INTFLAG      (ADC10IFG0)
 
 //*****************************************************************************
 //
@@ -210,8 +210,8 @@ extern "C" {
 // ADC10_A_startConversion().
 //
 //*****************************************************************************
-#define ADC10_A_SINGLECHANNEL (ADC10CONSEQ_0)
-#define ADC10_A_SEQOFCHANNELS (ADC10CONSEQ_1)
+#define ADC10_A_SINGLECHANNEL          (ADC10CONSEQ_0)
+#define ADC10_A_SEQOFCHANNELS          (ADC10CONSEQ_1)
 #define ADC10_A_REPEATED_SINGLECHANNEL (ADC10CONSEQ_2)
 #define ADC10_A_REPEATED_SEQOFCHANNELS (ADC10CONSEQ_3)
 
@@ -222,7 +222,7 @@ extern "C" {
 //
 //*****************************************************************************
 #define ADC10_A_COMPLETECONVERSION false
-#define ADC10_A_PREEMPTCONVERSION true
+#define ADC10_A_PREEMPTCONVERSION  true
 
 //*****************************************************************************
 //
@@ -230,7 +230,7 @@ extern "C" {
 // parameter for functions: ADC10_A_setResolution().
 //
 //*****************************************************************************
-#define ADC10_A_RESOLUTION_8BIT (!(ADC10RES))
+#define ADC10_A_RESOLUTION_8BIT  (!(ADC10RES))
 #define ADC10_A_RESOLUTION_10BIT (ADC10RES)
 
 //*****************************************************************************
@@ -240,7 +240,7 @@ extern "C" {
 //
 //*****************************************************************************
 #define ADC10_A_NONINVERTEDSIGNAL (!(ADC10ISSH))
-#define ADC10_A_INVERTEDSIGNAL (ADC10ISSH)
+#define ADC10_A_INVERTEDSIGNAL    (ADC10ISSH)
 
 //*****************************************************************************
 //
@@ -248,7 +248,7 @@ extern "C" {
 // for functions: ADC10_A_setDataReadBackFormat().
 //
 //*****************************************************************************
-#define ADC10_A_UNSIGNED_BINARY (!(ADC10DF))
+#define ADC10_A_UNSIGNED_BINARY     (!(ADC10DF))
 #define ADC10_A_SIGNED_2SCOMPLEMENT (ADC10DF)
 
 //*****************************************************************************
@@ -258,7 +258,7 @@ extern "C" {
 //
 //*****************************************************************************
 #define ADC10_A_MAXSAMPLINGRATE_200KSPS (!(ADC10SR))
-#define ADC10_A_MAXSAMPLINGRATE_50KSPS (ADC10SR)
+#define ADC10_A_MAXSAMPLINGRATE_50KSPS  (ADC10SR)
 
 //*****************************************************************************
 //
@@ -266,7 +266,7 @@ extern "C" {
 // can be returned by the ADC10_A_isBusy() function.
 //
 //*****************************************************************************
-#define ADC10_A_BUSY ADC10BUSY
+#define ADC10_A_BUSY    ADC10BUSY
 #define ADC10_A_NOTBUSY 0x00
 
 //*****************************************************************************
@@ -344,7 +344,7 @@ extern "C" {
 //*****************************************************************************
 extern bool ADC10_A_init(uint16_t baseAddress,
                          uint16_t sampleHoldSignalSourceSelect,
-                         uint8_t clockSourceSelect,
+                         uint8_t  clockSourceSelect,
                          uint16_t clockSourceDivider);
 
 //*****************************************************************************
@@ -493,9 +493,9 @@ extern void ADC10_A_disableSamplingTimer(uint16_t baseAddress);
 //
 //*****************************************************************************
 extern void ADC10_A_configureMemory(uint16_t baseAddress,
-                                    uint8_t inputSourceSelect,
-                                    uint8_t positiveRefVoltageSourceSelect,
-                                    uint8_t negativeRefVoltageSourceSelect);
+                                    uint8_t  inputSourceSelect,
+                                    uint8_t  positiveRefVoltageSourceSelect,
+                                    uint8_t  negativeRefVoltageSourceSelect);
 
 //*****************************************************************************
 //
@@ -528,7 +528,7 @@ extern void ADC10_A_configureMemory(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void ADC10_A_enableInterrupt(uint16_t baseAddress,
-                                    uint8_t interruptMask);
+                                    uint8_t  interruptMask);
 
 //*****************************************************************************
 //
@@ -561,7 +561,7 @@ extern void ADC10_A_enableInterrupt(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void ADC10_A_disableInterrupt(uint16_t baseAddress,
-                                     uint8_t interruptMask);
+                                     uint8_t  interruptMask);
 
 //*****************************************************************************
 //
@@ -596,7 +596,7 @@ extern void ADC10_A_disableInterrupt(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void ADC10_A_clearInterrupt(uint16_t baseAddress,
-                                   uint8_t interruptFlagMask);
+                                   uint8_t  interruptFlagMask);
 
 //*****************************************************************************
 //
@@ -627,7 +627,7 @@ extern void ADC10_A_clearInterrupt(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern uint16_t ADC10_A_getInterruptStatus(uint16_t baseAddress,
-                                           uint8_t interruptFlagMask);
+                                           uint8_t  interruptFlagMask);
 
 //*****************************************************************************
 //
@@ -674,7 +674,7 @@ extern uint16_t ADC10_A_getInterruptStatus(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void ADC10_A_startConversion(uint16_t baseAddress,
-                                    uint8_t conversionSequenceModeSelect);
+                                    uint8_t  conversionSequenceModeSelect);
 
 //*****************************************************************************
 //
@@ -745,7 +745,7 @@ extern int16_t ADC10_A_getResults(uint16_t baseAddress);
 //
 //*****************************************************************************
 extern void ADC10_A_setResolution(uint16_t baseAddress,
-                                  uint8_t resolutionSelect);
+                                  uint8_t  resolutionSelect);
 
 //*****************************************************************************
 //
@@ -864,7 +864,8 @@ extern void ADC10_A_setReferenceBufferSamplingRate(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void ADC10_A_setWindowComp(uint16_t baseAddress, uint16_t highThreshold,
+extern void ADC10_A_setWindowComp(uint16_t baseAddress,
+                                  uint16_t highThreshold,
                                   uint16_t lowThreshold);
 
 //*****************************************************************************

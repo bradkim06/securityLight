@@ -49,8 +49,10 @@
 
 #include "tec.h"
 
-void TEC_initExternalClearInput(uint16_t baseAddress, uint8_t signalType,
-                                uint8_t signalHold, uint8_t polarityBit) {
+void TEC_initExternalClearInput(uint16_t baseAddress,
+                                uint8_t  signalType,
+                                uint8_t  signalHold,
+                                uint8_t  polarityBit) {
   HWREG8(baseAddress + OFS_TEC0XCTL2_L) &=
       ~(TEC_EXTERNAL_CLEAR_SIGNALTYPE_LEVEL_SENSITIVE +
         TEC_EXTERNAL_CLEAR_SIGNAL_HELD +
@@ -60,8 +62,8 @@ void TEC_initExternalClearInput(uint16_t baseAddress, uint8_t signalType,
       (signalType + signalHold + polarityBit);
 }
 
-void TEC_initExternalFaultInput(uint16_t baseAddress,
-                                TEC_initExternalFaultInputParam *param) {
+void TEC_initExternalFaultInput(uint16_t                         baseAddress,
+                                TEC_initExternalFaultInputParam* param) {
   HWREG8(baseAddress + OFS_TEC0XCTL2_L) &=
       ~((TEC_EXTERNAL_FAULT_SIGNALTYPE_LEVEL_SENSITIVE
          << param->selectedExternalFault) +
@@ -76,12 +78,12 @@ void TEC_initExternalFaultInput(uint16_t baseAddress,
 }
 
 void TEC_enableExternalFaultInput(uint16_t baseAddress,
-                                  uint8_t channelEventBlock) {
+                                  uint8_t  channelEventBlock) {
   HWREG8(baseAddress + OFS_TEC0XCTL0_H) |= (1 << channelEventBlock);
 }
 
 void TEC_disableExternalFaultInput(uint16_t baseAddress,
-                                   uint8_t channelEventBlock) {
+                                   uint8_t  channelEventBlock) {
   HWREG8(baseAddress + OFS_TEC0XCTL0_H) &= ~(1 << channelEventBlock);
 }
 

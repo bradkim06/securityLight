@@ -22,7 +22,6 @@ SET(App ${SRC})
 ADD_EXECUTABLE(App ${SRC})
 include_directories(
     ${CCS_BASE_ROOT}/msp430/include
-    ${CCS_BASE_ROOT}/msp430/include
     ${PROJECT_ROOT}
     ${PROJECT_ROOT}/App/comm
     ${PROJECT_ROOT}/include

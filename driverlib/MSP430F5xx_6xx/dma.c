@@ -49,7 +49,7 @@
 
 #include "dma.h"
 
-void DMA_init(DMA_initParam *param) {
+void DMA_init(DMA_initParam* param) {
   uint8_t triggerOffset = (param->channelSelect >> 4);
 
   // Reset and Set DMA Control 0 Register
@@ -85,7 +85,8 @@ uint16_t DMA_getTransferSize(uint8_t channelSelect) {
   return (HWREG16(DMA_BASE + channelSelect + OFS_DMA0SZ));
 }
 
-void DMA_setSrcAddress(uint8_t channelSelect, uint32_t srcAddress,
+void DMA_setSrcAddress(uint8_t  channelSelect,
+                       uint32_t srcAddress,
                        uint16_t directionSelect) {
   // Set the Source Address
   __data16_write_addr((unsigned short)(DMA_BASE + channelSelect + OFS_DMA0SA),
@@ -96,7 +97,8 @@ void DMA_setSrcAddress(uint8_t channelSelect, uint32_t srcAddress,
   HWREG16(DMA_BASE + channelSelect + OFS_DMA0CTL) |= directionSelect;
 }
 
-void DMA_setDstAddress(uint8_t channelSelect, uint32_t dstAddress,
+void DMA_setDstAddress(uint8_t  channelSelect,
+                       uint32_t dstAddress,
                        uint16_t directionSelect) {
   // Set the Destination Address
   __data16_write_addr((unsigned short)(DMA_BASE + channelSelect + OFS_DMA0DA),
@@ -159,9 +161,13 @@ void DMA_disableRoundRobinPriority(void) {
   HWREG16(DMA_BASE + OFS_DMACTL4) &= ~(ROUNDROBIN);
 }
 
-void DMA_enableNMIAbort(void) { HWREG16(DMA_BASE + OFS_DMACTL4) |= ENNMI; }
+void DMA_enableNMIAbort(void) {
+  HWREG16(DMA_BASE + OFS_DMACTL4) |= ENNMI;
+}
 
-void DMA_disableNMIAbort(void) { HWREG16(DMA_BASE + OFS_DMACTL4) &= ~(ENNMI); }
+void DMA_disableNMIAbort(void) {
+  HWREG16(DMA_BASE + OFS_DMACTL4) &= ~(ENNMI);
+}
 
 #endif
 //*****************************************************************************

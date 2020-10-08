@@ -130,9 +130,9 @@ typedef struct ADC12_A_configureMemoryParam {
 //
 //*****************************************************************************
 #define ADC12_A_CLOCKSOURCE_ADC12OSC (ADC12SSEL_0)
-#define ADC12_A_CLOCKSOURCE_ACLK (ADC12SSEL_1)
-#define ADC12_A_CLOCKSOURCE_MCLK (ADC12SSEL_2)
-#define ADC12_A_CLOCKSOURCE_SMCLK (ADC12SSEL_3)
+#define ADC12_A_CLOCKSOURCE_ACLK     (ADC12SSEL_1)
+#define ADC12_A_CLOCKSOURCE_MCLK     (ADC12SSEL_2)
+#define ADC12_A_CLOCKSOURCE_SMCLK    (ADC12SSEL_3)
 
 //*****************************************************************************
 //
@@ -140,14 +140,14 @@ typedef struct ADC12_A_configureMemoryParam {
 // parameter for functions: ADC12_A_init().
 //
 //*****************************************************************************
-#define ADC12_A_CLOCKDIVIDER_1 (ADC12DIV_0)
-#define ADC12_A_CLOCKDIVIDER_2 (ADC12DIV_1)
-#define ADC12_A_CLOCKDIVIDER_3 (ADC12DIV_2)
-#define ADC12_A_CLOCKDIVIDER_4 (ADC12DIV_3)
-#define ADC12_A_CLOCKDIVIDER_5 (ADC12DIV_4)
-#define ADC12_A_CLOCKDIVIDER_6 (ADC12DIV_5)
-#define ADC12_A_CLOCKDIVIDER_7 (ADC12DIV_6)
-#define ADC12_A_CLOCKDIVIDER_8 (ADC12DIV_7)
+#define ADC12_A_CLOCKDIVIDER_1  (ADC12DIV_0)
+#define ADC12_A_CLOCKDIVIDER_2  (ADC12DIV_1)
+#define ADC12_A_CLOCKDIVIDER_3  (ADC12DIV_2)
+#define ADC12_A_CLOCKDIVIDER_4  (ADC12DIV_3)
+#define ADC12_A_CLOCKDIVIDER_5  (ADC12DIV_4)
+#define ADC12_A_CLOCKDIVIDER_6  (ADC12DIV_5)
+#define ADC12_A_CLOCKDIVIDER_7  (ADC12DIV_6)
+#define ADC12_A_CLOCKDIVIDER_8  (ADC12DIV_7)
 #define ADC12_A_CLOCKDIVIDER_12 (ADC12DIV_2 + ADC12PDIV)
 #define ADC12_A_CLOCKDIVIDER_16 (ADC12DIV_3 + ADC12PDIV)
 #define ADC12_A_CLOCKDIVIDER_20 (ADC12DIV_4 + ADC12PDIV)
@@ -162,9 +162,9 @@ typedef struct ADC12_A_configureMemoryParam {
 //
 //*****************************************************************************
 #define ADC12_A_SAMPLEHOLDSOURCE_SC (ADC12SHS_0)
-#define ADC12_A_SAMPLEHOLDSOURCE_1 (ADC12SHS_1)
-#define ADC12_A_SAMPLEHOLDSOURCE_2 (ADC12SHS_2)
-#define ADC12_A_SAMPLEHOLDSOURCE_3 (ADC12SHS_3)
+#define ADC12_A_SAMPLEHOLDSOURCE_1  (ADC12SHS_1)
+#define ADC12_A_SAMPLEHOLDSOURCE_2  (ADC12SHS_2)
+#define ADC12_A_SAMPLEHOLDSOURCE_3  (ADC12SHS_3)
 
 //*****************************************************************************
 //
@@ -174,18 +174,18 @@ typedef struct ADC12_A_configureMemoryParam {
 // ADC12_A_setupSamplingTimer().
 //
 //*****************************************************************************
-#define ADC12_A_CYCLEHOLD_4_CYCLES (ADC12SHT0_0)
-#define ADC12_A_CYCLEHOLD_8_CYCLES (ADC12SHT0_1)
-#define ADC12_A_CYCLEHOLD_16_CYCLES (ADC12SHT0_2)
-#define ADC12_A_CYCLEHOLD_32_CYCLES (ADC12SHT0_3)
-#define ADC12_A_CYCLEHOLD_64_CYCLES (ADC12SHT0_4)
-#define ADC12_A_CYCLEHOLD_96_CYCLES (ADC12SHT0_5)
-#define ADC12_A_CYCLEHOLD_128_CYCLES (ADC12SHT0_6)
-#define ADC12_A_CYCLEHOLD_192_CYCLES (ADC12SHT0_7)
-#define ADC12_A_CYCLEHOLD_256_CYCLES (ADC12SHT0_8)
-#define ADC12_A_CYCLEHOLD_384_CYCLES (ADC12SHT0_9)
-#define ADC12_A_CYCLEHOLD_512_CYCLES (ADC12SHT0_10)
-#define ADC12_A_CYCLEHOLD_768_CYCLES (ADC12SHT0_11)
+#define ADC12_A_CYCLEHOLD_4_CYCLES    (ADC12SHT0_0)
+#define ADC12_A_CYCLEHOLD_8_CYCLES    (ADC12SHT0_1)
+#define ADC12_A_CYCLEHOLD_16_CYCLES   (ADC12SHT0_2)
+#define ADC12_A_CYCLEHOLD_32_CYCLES   (ADC12SHT0_3)
+#define ADC12_A_CYCLEHOLD_64_CYCLES   (ADC12SHT0_4)
+#define ADC12_A_CYCLEHOLD_96_CYCLES   (ADC12SHT0_5)
+#define ADC12_A_CYCLEHOLD_128_CYCLES  (ADC12SHT0_6)
+#define ADC12_A_CYCLEHOLD_192_CYCLES  (ADC12SHT0_7)
+#define ADC12_A_CYCLEHOLD_256_CYCLES  (ADC12SHT0_8)
+#define ADC12_A_CYCLEHOLD_384_CYCLES  (ADC12SHT0_9)
+#define ADC12_A_CYCLEHOLD_512_CYCLES  (ADC12SHT0_10)
+#define ADC12_A_CYCLEHOLD_768_CYCLES  (ADC12SHT0_11)
 #define ADC12_A_CYCLEHOLD_1024_CYCLES (ADC12SHT0_12)
 
 //*****************************************************************************
@@ -195,7 +195,7 @@ typedef struct ADC12_A_configureMemoryParam {
 //
 //*****************************************************************************
 #define ADC12_A_MULTIPLESAMPLESDISABLE (!(ADC12MSC))
-#define ADC12_A_MULTIPLESAMPLESENABLE (ADC12MSC)
+#define ADC12_A_MULTIPLESAMPLESENABLE  (ADC12MSC)
 
 //*****************************************************************************
 //
@@ -204,8 +204,8 @@ typedef struct ADC12_A_configureMemoryParam {
 //
 //*****************************************************************************
 #define ADC12_A_VREFPOS_AVCC (!(ADC12SREF0 + ADC12SREF1))
-#define ADC12_A_VREFPOS_EXT (ADC12SREF1)
-#define ADC12_A_VREFPOS_INT (ADC12SREF0)
+#define ADC12_A_VREFPOS_EXT  (ADC12SREF1)
+#define ADC12_A_VREFPOS_INT  (ADC12SREF0)
 
 //*****************************************************************************
 //
@@ -214,7 +214,7 @@ typedef struct ADC12_A_configureMemoryParam {
 //
 //*****************************************************************************
 #define ADC12_A_VREFNEG_AVSS (!(ADC12SREF2))
-#define ADC12_A_VREFNEG_EXT (ADC12SREF2)
+#define ADC12_A_VREFNEG_EXT  (ADC12SREF2)
 
 //*****************************************************************************
 //
@@ -223,7 +223,7 @@ typedef struct ADC12_A_configureMemoryParam {
 //
 //*****************************************************************************
 #define ADC12_A_NOTENDOFSEQUENCE (!(ADC12EOS))
-#define ADC12_A_ENDOFSEQUENCE (ADC12EOS)
+#define ADC12_A_ENDOFSEQUENCE    (ADC12EOS)
 
 //*****************************************************************************
 //
@@ -231,22 +231,22 @@ typedef struct ADC12_A_configureMemoryParam {
 // functions: ADC12_A_configureMemory().
 //
 //*****************************************************************************
-#define ADC12_A_INPUT_A0 (ADC12INCH_0)
-#define ADC12_A_INPUT_A1 (ADC12INCH_1)
-#define ADC12_A_INPUT_A2 (ADC12INCH_2)
-#define ADC12_A_INPUT_A3 (ADC12INCH_3)
-#define ADC12_A_INPUT_A4 (ADC12INCH_4)
-#define ADC12_A_INPUT_A5 (ADC12INCH_5)
-#define ADC12_A_INPUT_A6 (ADC12INCH_6)
-#define ADC12_A_INPUT_A7 (ADC12INCH_7)
-#define ADC12_A_INPUT_A8 (ADC12INCH_8)
-#define ADC12_A_INPUT_A9 (ADC12INCH_9)
-#define ADC12_A_INPUT_TEMPSENSOR (ADC12INCH_10)
+#define ADC12_A_INPUT_A0             (ADC12INCH_0)
+#define ADC12_A_INPUT_A1             (ADC12INCH_1)
+#define ADC12_A_INPUT_A2             (ADC12INCH_2)
+#define ADC12_A_INPUT_A3             (ADC12INCH_3)
+#define ADC12_A_INPUT_A4             (ADC12INCH_4)
+#define ADC12_A_INPUT_A5             (ADC12INCH_5)
+#define ADC12_A_INPUT_A6             (ADC12INCH_6)
+#define ADC12_A_INPUT_A7             (ADC12INCH_7)
+#define ADC12_A_INPUT_A8             (ADC12INCH_8)
+#define ADC12_A_INPUT_A9             (ADC12INCH_9)
+#define ADC12_A_INPUT_TEMPSENSOR     (ADC12INCH_10)
 #define ADC12_A_INPUT_BATTERYMONITOR (ADC12INCH_11)
-#define ADC12_A_INPUT_A12 (ADC12INCH_12)
-#define ADC12_A_INPUT_A13 (ADC12INCH_13)
-#define ADC12_A_INPUT_A14 (ADC12INCH_14)
-#define ADC12_A_INPUT_A15 (ADC12INCH_15)
+#define ADC12_A_INPUT_A12            (ADC12INCH_12)
+#define ADC12_A_INPUT_A13            (ADC12INCH_13)
+#define ADC12_A_INPUT_A14            (ADC12INCH_14)
+#define ADC12_A_INPUT_A15            (ADC12INCH_15)
 
 //*****************************************************************************
 //
@@ -257,16 +257,16 @@ typedef struct ADC12_A_configureMemoryParam {
 // parameter for functions: ADC12_A_configureMemory().
 //
 //*****************************************************************************
-#define ADC12_A_MEMORY_0 (0x0)
-#define ADC12_A_MEMORY_1 (0x1)
-#define ADC12_A_MEMORY_2 (0x2)
-#define ADC12_A_MEMORY_3 (0x3)
-#define ADC12_A_MEMORY_4 (0x4)
-#define ADC12_A_MEMORY_5 (0x5)
-#define ADC12_A_MEMORY_6 (0x6)
-#define ADC12_A_MEMORY_7 (0x7)
-#define ADC12_A_MEMORY_8 (0x8)
-#define ADC12_A_MEMORY_9 (0x9)
+#define ADC12_A_MEMORY_0  (0x0)
+#define ADC12_A_MEMORY_1  (0x1)
+#define ADC12_A_MEMORY_2  (0x2)
+#define ADC12_A_MEMORY_3  (0x3)
+#define ADC12_A_MEMORY_4  (0x4)
+#define ADC12_A_MEMORY_5  (0x5)
+#define ADC12_A_MEMORY_6  (0x6)
+#define ADC12_A_MEMORY_7  (0x7)
+#define ADC12_A_MEMORY_8  (0x8)
+#define ADC12_A_MEMORY_9  (0x9)
 #define ADC12_A_MEMORY_10 (0xA)
 #define ADC12_A_MEMORY_11 (0xB)
 #define ADC12_A_MEMORY_12 (0xC)
@@ -281,16 +281,16 @@ typedef struct ADC12_A_configureMemoryParam {
 // ADC12_A_getInterruptStatus().
 //
 //*****************************************************************************
-#define ADC12_A_IFG0 (ADC12IFG0)
-#define ADC12_A_IFG1 (ADC12IFG1)
-#define ADC12_A_IFG2 (ADC12IFG2)
-#define ADC12_A_IFG3 (ADC12IFG3)
-#define ADC12_A_IFG4 (ADC12IFG4)
-#define ADC12_A_IFG5 (ADC12IFG5)
-#define ADC12_A_IFG6 (ADC12IFG6)
-#define ADC12_A_IFG7 (ADC12IFG7)
-#define ADC12_A_IFG8 (ADC12IFG8)
-#define ADC12_A_IFG9 (ADC12IFG9)
+#define ADC12_A_IFG0  (ADC12IFG0)
+#define ADC12_A_IFG1  (ADC12IFG1)
+#define ADC12_A_IFG2  (ADC12IFG2)
+#define ADC12_A_IFG3  (ADC12IFG3)
+#define ADC12_A_IFG4  (ADC12IFG4)
+#define ADC12_A_IFG5  (ADC12IFG5)
+#define ADC12_A_IFG6  (ADC12IFG6)
+#define ADC12_A_IFG7  (ADC12IFG7)
+#define ADC12_A_IFG8  (ADC12IFG8)
+#define ADC12_A_IFG9  (ADC12IFG9)
 #define ADC12_A_IFG10 (ADC12IFG10)
 #define ADC12_A_IFG11 (ADC12IFG11)
 #define ADC12_A_IFG12 (ADC12IFG12)
@@ -305,8 +305,8 @@ typedef struct ADC12_A_configureMemoryParam {
 // ADC12_A_startConversion().
 //
 //*****************************************************************************
-#define ADC12_A_SINGLECHANNEL (ADC12CONSEQ_0)
-#define ADC12_A_SEQOFCHANNELS (ADC12CONSEQ_1)
+#define ADC12_A_SINGLECHANNEL          (ADC12CONSEQ_0)
+#define ADC12_A_SEQOFCHANNELS          (ADC12CONSEQ_1)
 #define ADC12_A_REPEATED_SINGLECHANNEL (ADC12CONSEQ_2)
 #define ADC12_A_REPEATED_SEQOFCHANNELS (ADC12CONSEQ_3)
 
@@ -317,7 +317,7 @@ typedef struct ADC12_A_configureMemoryParam {
 //
 //*****************************************************************************
 #define ADC12_A_COMPLETECONVERSION false
-#define ADC12_A_PREEMPTCONVERSION true
+#define ADC12_A_PREEMPTCONVERSION  true
 
 //*****************************************************************************
 //
@@ -325,7 +325,7 @@ typedef struct ADC12_A_configureMemoryParam {
 // parameter for functions: ADC12_A_setResolution().
 //
 //*****************************************************************************
-#define ADC12_A_RESOLUTION_8BIT (ADC12RES_0)
+#define ADC12_A_RESOLUTION_8BIT  (ADC12RES_0)
 #define ADC12_A_RESOLUTION_10BIT (ADC12RES_1)
 #define ADC12_A_RESOLUTION_12BIT (ADC12RES_2)
 
@@ -336,7 +336,7 @@ typedef struct ADC12_A_configureMemoryParam {
 //
 //*****************************************************************************
 #define ADC12_A_NONINVERTEDSIGNAL (!(ADC12ISSH))
-#define ADC12_A_INVERTEDSIGNAL (ADC12ISSH)
+#define ADC12_A_INVERTEDSIGNAL    (ADC12ISSH)
 
 //*****************************************************************************
 //
@@ -344,7 +344,7 @@ typedef struct ADC12_A_configureMemoryParam {
 // for functions: ADC12_A_setDataReadBackFormat().
 //
 //*****************************************************************************
-#define ADC12_A_UNSIGNED_BINARY (!(ADC12DF))
+#define ADC12_A_UNSIGNED_BINARY     (!(ADC12DF))
 #define ADC12_A_SIGNED_2SCOMPLEMENT (ADC12DF)
 
 //*****************************************************************************
@@ -354,7 +354,7 @@ typedef struct ADC12_A_configureMemoryParam {
 //
 //*****************************************************************************
 #define ADC12_A_MAXSAMPLINGRATE_200KSPS (!(ADC12SR))
-#define ADC12_A_MAXSAMPLINGRATE_50KSPS (ADC12SR)
+#define ADC12_A_MAXSAMPLINGRATE_50KSPS  (ADC12SR)
 
 //*****************************************************************************
 //
@@ -363,7 +363,7 @@ typedef struct ADC12_A_configureMemoryParam {
 //
 //*****************************************************************************
 #define ADC12_A_NOTBUSY 0x00
-#define ADC12_A_BUSY ADC12BUSY
+#define ADC12_A_BUSY    ADC12BUSY
 
 //*****************************************************************************
 //
@@ -371,23 +371,23 @@ typedef struct ADC12_A_configureMemoryParam {
 // for functions: ADC12_A_enableInterrupt(), and ADC12_A_disableInterrupt().
 //
 //*****************************************************************************
-#define ADC12_A_IE0 (ADC12IE0)
-#define ADC12_A_IE1 (ADC12IE1)
-#define ADC12_A_IE2 (ADC12IE2)
-#define ADC12_A_IE3 (ADC12IE3)
-#define ADC12_A_IE4 (ADC12IE4)
-#define ADC12_A_IE5 (ADC12IE5)
-#define ADC12_A_IE6 (ADC12IE6)
-#define ADC12_A_IE7 (ADC12IE7)
-#define ADC12_A_IE8 (ADC12IE8)
-#define ADC12_A_IE9 (ADC12IE9)
-#define ADC12_A_IE10 (ADC12IE10)
-#define ADC12_A_IE11 (ADC12IE11)
-#define ADC12_A_IE12 (ADC12IE12)
-#define ADC12_A_IE13 (ADC12IE13)
-#define ADC12_A_IE14 (ADC12IE14)
-#define ADC12_A_IE15 (ADC12IE15)
-#define ADC12_A_OVERFLOW_IE ((uint32_t)ADC12OVIE << 16)
+#define ADC12_A_IE0                         (ADC12IE0)
+#define ADC12_A_IE1                         (ADC12IE1)
+#define ADC12_A_IE2                         (ADC12IE2)
+#define ADC12_A_IE3                         (ADC12IE3)
+#define ADC12_A_IE4                         (ADC12IE4)
+#define ADC12_A_IE5                         (ADC12IE5)
+#define ADC12_A_IE6                         (ADC12IE6)
+#define ADC12_A_IE7                         (ADC12IE7)
+#define ADC12_A_IE8                         (ADC12IE8)
+#define ADC12_A_IE9                         (ADC12IE9)
+#define ADC12_A_IE10                        (ADC12IE10)
+#define ADC12_A_IE11                        (ADC12IE11)
+#define ADC12_A_IE12                        (ADC12IE12)
+#define ADC12_A_IE13                        (ADC12IE13)
+#define ADC12_A_IE14                        (ADC12IE14)
+#define ADC12_A_IE15                        (ADC12IE15)
+#define ADC12_A_OVERFLOW_IE                 ((uint32_t)ADC12OVIE << 16)
 #define ADC12_A_CONVERSION_TIME_OVERFLOW_IE ((uint32_t)ADC12TOVIE << 16)
 
 //*****************************************************************************
@@ -458,7 +458,7 @@ typedef struct ADC12_A_configureMemoryParam {
 //*****************************************************************************
 extern bool ADC12_A_init(uint16_t baseAddress,
                          uint16_t sampleHoldSignalSourceSelect,
-                         uint8_t clockSourceSelect,
+                         uint8_t  clockSourceSelect,
                          uint16_t clockSourceDivider);
 
 //*****************************************************************************
@@ -593,8 +593,8 @@ extern void ADC12_A_disableSamplingTimer(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void ADC12_A_configureMemory(uint16_t baseAddress,
-                                    ADC12_A_configureMemoryParam *param);
+extern void ADC12_A_configureMemory(uint16_t                      baseAddress,
+                                    ADC12_A_configureMemoryParam* param);
 
 //*****************************************************************************
 //
@@ -809,7 +809,7 @@ extern uint8_t ADC12_A_getInterruptStatus(uint16_t baseAddress,
 //*****************************************************************************
 extern void ADC12_A_startConversion(uint16_t baseAddress,
                                     uint16_t startingMemoryBufferIndex,
-                                    uint8_t conversionSequenceModeSelect);
+                                    uint8_t  conversionSequenceModeSelect);
 
 //*****************************************************************************
 //
@@ -878,7 +878,7 @@ extern void ADC12_A_disableConversions(uint16_t baseAddress, bool preempt);
 //
 //*****************************************************************************
 extern uint16_t ADC12_A_getResults(uint16_t baseAddress,
-                                   uint8_t memoryBufferIndex);
+                                   uint8_t  memoryBufferIndex);
 
 //*****************************************************************************
 //
@@ -899,7 +899,7 @@ extern uint16_t ADC12_A_getResults(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void ADC12_A_setResolution(uint16_t baseAddress,
-                                  uint8_t resolutionSelect);
+                                  uint8_t  resolutionSelect);
 
 //*****************************************************************************
 //
@@ -950,7 +950,7 @@ extern void ADC12_A_setSampleHoldSignalInversion(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void ADC12_A_setDataReadBackFormat(uint16_t baseAddress,
-                                          uint8_t readBackFormat);
+                                          uint8_t  readBackFormat);
 
 //*****************************************************************************
 //
@@ -1000,7 +1000,7 @@ extern void ADC12_A_disableReferenceBurst(uint16_t baseAddress);
 //
 //*****************************************************************************
 extern void ADC12_A_setReferenceBufferSamplingRate(uint16_t baseAddress,
-                                                   uint8_t samplingRateSelect);
+                                                   uint8_t  samplingRateSelect);
 
 //*****************************************************************************
 //
@@ -1034,7 +1034,7 @@ extern void ADC12_A_setReferenceBufferSamplingRate(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern uint32_t ADC12_A_getMemoryAddressForDMA(uint16_t baseAddress,
-                                               uint8_t memoryIndex);
+                                               uint8_t  memoryIndex);
 
 //*****************************************************************************
 //

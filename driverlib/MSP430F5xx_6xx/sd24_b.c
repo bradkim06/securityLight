@@ -49,7 +49,7 @@
 
 #include "sd24_b.h"
 
-void SD24_B_init(uint16_t baseAddress, SD24_B_initParam *param) {
+void SD24_B_init(uint16_t baseAddress, SD24_B_initParam* param) {
   // Reset all interrupts and flags
   HWREG16(baseAddress + OFS_SD24BIE) &= 0x0000;   // Reset ALL interrupt enables
   HWREG16(baseAddress + OFS_SD24BIFG) &= 0x0000;  // Reset ALL interrupt flags
@@ -70,8 +70,8 @@ void SD24_B_init(uint16_t baseAddress, SD24_B_initParam *param) {
   return;
 }
 
-void SD24_B_initConverter(uint16_t baseAddress,
-                          SD24_B_initConverterParam *param) {
+void SD24_B_initConverter(uint16_t                   baseAddress,
+                          SD24_B_initConverterParam* param) {
   uint16_t address = baseAddress + (OFS_SD24BCCTL0 + (param->converter * 0x08));
 
   // Clearing previous settings for configuration
@@ -82,7 +82,7 @@ void SD24_B_initConverter(uint16_t baseAddress,
 }
 
 void SD24_B_initConverterAdvanced(uint16_t baseAddress,
-                                  SD24_B_initConverterAdvancedParam *param) {
+                                  SD24_B_initConverterAdvancedParam* param) {
   // Getting correct SD24BCCTLx register
   uint16_t address = baseAddress + (OFS_SD24BCCTL0 + (param->converter * 0x08));
 
@@ -112,8 +112,9 @@ void SD24_B_initConverterAdvanced(uint16_t baseAddress,
   HWREG16(address) |= param->oversampleRatio;
 }
 
-void SD24_B_setConverterDataFormat(uint16_t baseAddress, uint8_t converter,
-                                   uint8_t dataFormat) {
+void SD24_B_setConverterDataFormat(uint16_t baseAddress,
+                                   uint8_t  converter,
+                                   uint8_t  dataFormat) {
   uint16_t address = baseAddress + (OFS_SD24BCCTL0_L + (converter * 0x08));
   // Clearing previous settings for configuration
   HWREG8(address) &= ~(SD24DF0 | SD24DF1);
@@ -183,8 +184,9 @@ void SD24_B_configureDMATrigger(uint16_t baseAddress, uint16_t interruptFlag) {
   HWREG16(baseAddress + OFS_SD24BCTL1) |= interruptFlag;
 }
 
-void SD24_B_setInterruptDelay(uint16_t baseAddress, uint8_t converter,
-                              uint8_t sampleDelay) {
+void SD24_B_setInterruptDelay(uint16_t baseAddress,
+                              uint8_t  converter,
+                              uint8_t  sampleDelay) {
   uint16_t address = baseAddress + (OFS_SD24BINCTL0 + (converter * 0x08));
 
   // Clear previous settings
@@ -193,7 +195,8 @@ void SD24_B_setInterruptDelay(uint16_t baseAddress, uint8_t converter,
   HWREG16(address) |= sampleDelay;
 }
 
-void SD24_B_setConversionDelay(uint16_t baseAddress, uint8_t converter,
+void SD24_B_setConversionDelay(uint16_t baseAddress,
+                               uint8_t  converter,
                                uint16_t cycleDelay) {
   uint16_t address = baseAddress + (OFS_SD24BPRE0 + (converter * 0x08));
 
@@ -203,7 +206,8 @@ void SD24_B_setConversionDelay(uint16_t baseAddress, uint8_t converter,
   HWREG16(address) |= cycleDelay;
 }
 
-void SD24_B_setOversampling(uint16_t baseAddress, uint8_t converter,
+void SD24_B_setOversampling(uint16_t baseAddress,
+                            uint8_t  converter,
                             uint16_t oversampleRatio) {
   uint16_t address = baseAddress + (OFS_SD24BOSR0 + (converter * 0x08));
 
@@ -246,23 +250,27 @@ uint16_t SD24_B_getHighWordResults(uint16_t baseAddress, uint8_t converter) {
   return (result);
 }
 
-void SD24_B_enableInterrupt(uint16_t baseAddress, uint8_t converter,
+void SD24_B_enableInterrupt(uint16_t baseAddress,
+                            uint8_t  converter,
                             uint16_t mask) {
   // Enable Interrupt
   HWREG16(baseAddress + OFS_SD24BIE) |= (mask << converter);
 }
 
-void SD24_B_disableInterrupt(uint16_t baseAddress, uint8_t converter,
+void SD24_B_disableInterrupt(uint16_t baseAddress,
+                             uint8_t  converter,
                              uint16_t mask) {
   HWREG16(baseAddress + OFS_SD24BIE) &= ~(mask << converter);
 }
 
-void SD24_B_clearInterrupt(uint16_t baseAddress, uint8_t converter,
+void SD24_B_clearInterrupt(uint16_t baseAddress,
+                           uint8_t  converter,
                            uint16_t mask) {
   HWREG16(baseAddress + OFS_SD24BIFG) &= ~(mask << converter);
 }
 
-uint16_t SD24_B_getInterruptStatus(uint16_t baseAddress, uint8_t converter,
+uint16_t SD24_B_getInterruptStatus(uint16_t baseAddress,
+                                   uint8_t  converter,
                                    uint16_t mask) {
   return (HWREG16(baseAddress + OFS_SD24BIFG) & (mask << converter));
 }

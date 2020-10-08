@@ -50,7 +50,7 @@
 #include "ref.h"
 
 void Ref_setReferenceVoltage(uint16_t baseAddress,
-                             uint8_t referenceVoltageSelect) {
+                             uint8_t  referenceVoltageSelect) {
   HWREG8(baseAddress + OFS_REFCTL0_L) &= ~(REFVSEL_3);
   HWREG8(baseAddress + OFS_REFCTL0_L) |= referenceVoltageSelect;
 }

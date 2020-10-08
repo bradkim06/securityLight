@@ -60,9 +60,9 @@ extern "C" {
 //*****************************************************************************
 typedef struct PMAP_initPortsParam {
   //! Is the pointer to init Data
-  const uint8_t *portMapping;
+  const uint8_t* portMapping;
   //! Is the pointer start of first PMAP to initialize
-  uint8_t *PxMAPy;
+  uint8_t* PxMAPy;
   //! Is the number of Ports to initialize
   uint8_t numberOfPorts;
   //! Is used to enable/disable reconfiguration
@@ -78,7 +78,7 @@ typedef struct PMAP_initPortsParam {
 // functions: PMAP_initPorts().
 //
 //*****************************************************************************
-#define PMAP_ENABLE_RECONFIGURATION PMAPRECFG
+#define PMAP_ENABLE_RECONFIGURATION  PMAPRECFG
 #define PMAP_DISABLE_RECONFIGURATION 0x00
 
 //*****************************************************************************
@@ -99,7 +99,7 @@ typedef struct PMAP_initPortsParam {
 //! \return None
 //
 //*****************************************************************************
-extern void PMAP_initPorts(uint16_t baseAddress, PMAP_initPortsParam *param);
+extern void PMAP_initPorts(uint16_t baseAddress, PMAP_initPortsParam* param);
 
 //*****************************************************************************
 //

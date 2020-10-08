@@ -49,15 +49,19 @@
 
 #include "oa.h"
 
-void OA_openSwitch(uint16_t baseAddress, uint8_t positiveInputMask,
-                   uint8_t negativeInputMask, uint8_t groundMask) {
+void OA_openSwitch(uint16_t baseAddress,
+                   uint8_t  positiveInputMask,
+                   uint8_t  negativeInputMask,
+                   uint8_t  groundMask) {
   HWREG16(baseAddress + OFS_OA0PSW) &= ~positiveInputMask;
   HWREG16(baseAddress + OFS_OA0NSW) &= ~negativeInputMask;
   HWREG16(baseAddress + OFS_OA0GSW) &= ~groundMask;
 }
 
-void OA_closeSwitch(uint16_t baseAddress, uint8_t positiveInputMask,
-                    uint8_t negativeInputMask, uint8_t groundMask) {
+void OA_closeSwitch(uint16_t baseAddress,
+                    uint8_t  positiveInputMask,
+                    uint8_t  negativeInputMask,
+                    uint8_t  groundMask) {
   HWREG16(baseAddress + OFS_OA0PSW) |= positiveInputMask;
   HWREG16(baseAddress + OFS_OA0NSW) |= negativeInputMask;
   HWREG16(baseAddress + OFS_OA0GSW) |= groundMask;

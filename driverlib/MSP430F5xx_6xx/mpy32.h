@@ -60,7 +60,7 @@ extern "C" {
 // parameter for functions: MPY32_setWriteDelay().
 //
 //*****************************************************************************
-#define MPY32_WRITEDELAY_OFF (!(MPYDLY32 + MPYDLYWRTEN))
+#define MPY32_WRITEDELAY_OFF   (!(MPYDLY32 + MPYDLYWRTEN))
 #define MPY32_WRITEDELAY_32BIT (MPYDLYWRTEN)
 #define MPY32_WRITEDELAY_64BIT (MPYDLY32 + MPYDLYWRTEN)
 
@@ -72,10 +72,10 @@ extern "C" {
 // MPY32_setOperandOne32Bit().
 //
 //*****************************************************************************
-#define MPY32_MULTIPLY_UNSIGNED (0x00)
-#define MPY32_MULTIPLY_SIGNED (0x02)
+#define MPY32_MULTIPLY_UNSIGNED           (0x00)
+#define MPY32_MULTIPLY_SIGNED             (0x02)
 #define MPY32_MULTIPLYACCUMULATE_UNSIGNED (0x04)
-#define MPY32_MULTIPLYACCUMULATE_SIGNED (0x06)
+#define MPY32_MULTIPLYACCUMULATE_SIGNED   (0x06)
 
 //*****************************************************************************
 //
@@ -84,7 +84,7 @@ extern "C" {
 //
 //*****************************************************************************
 #define MPY32_SATURATION_MODE_DISABLED 0x00
-#define MPY32_SATURATION_MODE_ENABLED MPYSAT
+#define MPY32_SATURATION_MODE_ENABLED  MPYSAT
 
 //*****************************************************************************
 //
@@ -93,7 +93,7 @@ extern "C" {
 //
 //*****************************************************************************
 #define MPY32_FRACTIONAL_MODE_DISABLED 0x00
-#define MPY32_FRACTIONAL_MODE_ENABLED MPYFRAC
+#define MPY32_FRACTIONAL_MODE_ENABLED  MPYFRAC
 
 //*****************************************************************************
 //
@@ -257,7 +257,7 @@ extern void MPY32_setOperandOne8Bit(uint8_t multiplicationType,
 //! \return None
 //
 //*****************************************************************************
-extern void MPY32_setOperandOne16Bit(uint8_t multiplicationType,
+extern void MPY32_setOperandOne16Bit(uint8_t  multiplicationType,
                                      uint16_t operand);
 
 //*****************************************************************************
@@ -280,7 +280,7 @@ extern void MPY32_setOperandOne16Bit(uint8_t multiplicationType,
 //! \return None
 //
 //*****************************************************************************
-extern void MPY32_setOperandOne24Bit(uint8_t multiplicationType,
+extern void MPY32_setOperandOne24Bit(uint8_t  multiplicationType,
                                      uint32_t operand);
 
 //*****************************************************************************
@@ -303,7 +303,7 @@ extern void MPY32_setOperandOne24Bit(uint8_t multiplicationType,
 //! \return None
 //
 //*****************************************************************************
-extern void MPY32_setOperandOne32Bit(uint8_t multiplicationType,
+extern void MPY32_setOperandOne32Bit(uint8_t  multiplicationType,
                                      uint32_t operand);
 
 //*****************************************************************************

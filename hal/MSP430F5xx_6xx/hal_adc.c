@@ -56,7 +56,7 @@ int16_t phAVSamples[HAL_ADC_V_ARRAY_LENGTH];
 int32_t phAISamples[HAL_ADC_I_ARRAY_LENGTH];
 
 // Phase A Sample Alignment variables
-volatile int8_t phASA;
+volatile int8_t  phASA;
 volatile uint8_t phAVIdx;
 volatile uint8_t phAIIdx;
 volatile uint8_t phAProc;
@@ -76,7 +76,7 @@ uint16_t HAL_ADC_getPreload(int16_t phaseCorrection, uint16_t osr) {
   return (phaseCorrection & osr);
 }
 
-void HAL_ADC_initPreload(HAL_ADC_SD24_B_Configuration *config) {
+void HAL_ADC_initPreload(HAL_ADC_SD24_B_Configuration* config) {
   config->adcChannelPtr[0].preload = (config->overSampleRatio + 1) >> 1;
   config->adcChannelPtr[1].preload =
       HAL_ADC_getPreload(gEmSWConfig.meterConfig->phaseConfigPtr[EM_PH_A_IDX]
@@ -84,7 +84,7 @@ void HAL_ADC_initPreload(HAL_ADC_SD24_B_Configuration *config) {
                          config->overSampleRatio);
 }
 
-void HAL_ADC_initWholeSampleAlignment(HAL_ADC_SD24_B_Configuration *config) {
+void HAL_ADC_initWholeSampleAlignment(HAL_ADC_SD24_B_Configuration* config) {
   phASA = HAL_ADC_getWholeSample(
       gEmSWConfig.meterConfig->phaseConfigPtr[EM_PH_A_IDX]
           .phaseCalibPtr->phaseCorrection);
@@ -93,10 +93,10 @@ void HAL_ADC_initWholeSampleAlignment(HAL_ADC_SD24_B_Configuration *config) {
 void HAL_ADC_clearVariables(uint8_t phase) {
   switch (phase) {
     case EM_PH_A_IDX:
-      phASA = 0;
-      phAVIdx = 0;
-      phAIIdx = 0;
-      phAProc = 0;
+      phASA        = 0;
+      phAVIdx      = 0;
+      phAIIdx      = 0;
+      phAProc      = 0;
       phAWriteVIdx = 0;
       phAWriteIIdx = 0;
       break;
@@ -104,7 +104,7 @@ void HAL_ADC_clearVariables(uint8_t phase) {
   chReadStatus = 0;
 }
 
-void HAL_ADC_initializeGroup(HAL_ADC_SD24_B_Configuration *config) {
+void HAL_ADC_initializeGroup(HAL_ADC_SD24_B_Configuration* config) {
   uint8_t i, converter;
 
   for (i = 0; i < config->adcChannelLength; i++) {
@@ -115,13 +115,13 @@ void HAL_ADC_initializeGroup(HAL_ADC_SD24_B_Configuration *config) {
 
     SD24_B_setConversionDelay(SD24_BASE, converter,
                               config->adcChannelPtr[i].preload);
-    param.gain = config->adcChannelPtr[i].gain;
-    param.converter = converter;
-    param.alignment = config->adcChannelPtr[i].alignment;
-    param.startSelect = SD24_B_CONVERSION_SELECT_GROUP0;
-    param.conversionMode = SD24_B_CONTINUOUS_MODE;
-    param.dataFormat = SD24_B_DATA_FORMAT_2COMPLEMENT;
-    param.sampleDelay = SD24_B_FOURTH_SAMPLE_INTERRUPT;
+    param.gain            = config->adcChannelPtr[i].gain;
+    param.converter       = converter;
+    param.alignment       = config->adcChannelPtr[i].alignment;
+    param.startSelect     = SD24_B_CONVERSION_SELECT_GROUP0;
+    param.conversionMode  = SD24_B_CONTINUOUS_MODE;
+    param.dataFormat      = SD24_B_DATA_FORMAT_2COMPLEMENT;
+    param.sampleDelay     = SD24_B_FOURTH_SAMPLE_INTERRUPT;
     param.oversampleRatio = config->overSampleRatio;
 
     SD24_B_initConverterAdvanced(SD24_BASE, &param);
@@ -131,9 +131,9 @@ void HAL_ADC_initializeGroup(HAL_ADC_SD24_B_Configuration *config) {
 }
 
 HAL_ADC_message_code HAL_ADC_setClockDividers(
-    HAL_ADC_SD24_B_Configuration *config) {
-  uint32_t modFreq;
-  uint32_t tempDiv;
+    HAL_ADC_SD24_B_Configuration* config) {
+  uint32_t             modFreq;
+  uint32_t             tempDiv;
   HAL_ADC_message_code code = HAL_ADC_message_code_no_error;
 
   // Calculate the modulation frequency
@@ -147,59 +147,57 @@ HAL_ADC_message_code HAL_ADC_setClockDividers(
   switch (tempDiv) {
     case HAL_ADC_CLOCK_MULT_4:
       config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_4;
-      config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_4;
+      config->sd24Param->clockDivider    = HAL_ADC_SD24DIV_MULT_4;
       break;
     case HAL_ADC_CLOCK_MULT_8:
       config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_8;
-      config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_8;
+      config->sd24Param->clockDivider    = HAL_ADC_SD24DIV_MULT_8;
       break;
     case HAL_ADC_CLOCK_MULT_12:
       config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_12;
-      config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_12;
+      config->sd24Param->clockDivider    = HAL_ADC_SD24DIV_MULT_12;
       break;
     case HAL_ADC_CLOCK_MULT_16:
       config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_16;
-      config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_16;
+      config->sd24Param->clockDivider    = HAL_ADC_SD24DIV_MULT_16;
       break;
     case HAL_ADC_CLOCK_MULT_24:
       config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_24;
-      config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_24;
+      config->sd24Param->clockDivider    = HAL_ADC_SD24DIV_MULT_24;
       break;
     case HAL_ADC_CLOCK_MULT_32:
       config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_32;
-      config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_32;
+      config->sd24Param->clockDivider    = HAL_ADC_SD24DIV_MULT_32;
       break;
     case HAL_ADC_CLOCK_MULT_64:
       config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_64;
-      config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_64;
+      config->sd24Param->clockDivider    = HAL_ADC_SD24DIV_MULT_64;
       break;
     case HAL_ADC_CLOCK_MULT_96:
       config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_96;
-      config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_96;
+      config->sd24Param->clockDivider    = HAL_ADC_SD24DIV_MULT_96;
       break;
     case HAL_ADC_CLOCK_MULT_128:
       config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_128;
-      config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_128;
+      config->sd24Param->clockDivider    = HAL_ADC_SD24DIV_MULT_128;
       break;
     case HAL_ADC_CLOCK_MULT_192:
       config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_192;
-      config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_192;
+      config->sd24Param->clockDivider    = HAL_ADC_SD24DIV_MULT_192;
       break;
     case HAL_ADC_CLOCK_MULT_384:
       config->sd24Param->clockPreDivider = HAL_ADC_SD24PDIV_MULT_384;
-      config->sd24Param->clockDivider = HAL_ADC_SD24DIV_MULT_384;
+      config->sd24Param->clockDivider    = HAL_ADC_SD24DIV_MULT_384;
       break;
-    default:
-      code = HAL_ADC_message_code_invalid_clock_divider_error;
-      break;
+    default: code = HAL_ADC_message_code_invalid_clock_divider_error; break;
   }
 
   return code;
 }
 
 HAL_ADC_message_code HAL_ADC_checkModFreq(
-    HAL_ADC_SD24_B_Configuration *config) {
-  uint32_t modFreq;
+    HAL_ADC_SD24_B_Configuration* config) {
+  uint32_t             modFreq;
   HAL_ADC_message_code code;
 
   modFreq =
@@ -214,27 +212,23 @@ HAL_ADC_message_code HAL_ADC_checkModFreq(
   return code;
 }
 
-HAL_ADC_message_code HAL_ADC_init(HAL_ADC_SD24_B_Configuration *config) {
+HAL_ADC_message_code HAL_ADC_init(HAL_ADC_SD24_B_Configuration* config) {
   HAL_ADC_message_code code;
 
   // Initialize global variables
   phaseDataReady = HAL_ADC_PHASE_NO_DATA_READY;
-  chReadStatus = 0;
+  chReadStatus   = 0;
   HAL_ADC_clearVariables(EM_PH_A_IDX);
   HAL_ADC_initPreload(config);
   HAL_ADC_initWholeSampleAlignment(config);
 
   // Verify the modulation frequency is less than 2MHz
   code = HAL_ADC_checkModFreq(config);
-  if (code != HAL_ADC_message_code_no_error) {
-    return code;
-  }
+  if (code != HAL_ADC_message_code_no_error) { return code; }
 
   // Set the clock dividers for the desired OSR and Fsamp
   code = HAL_ADC_setClockDividers(config);
-  if (code != HAL_ADC_message_code_no_error) {
-    return code;
-  }
+  if (code != HAL_ADC_message_code_no_error) { return code; }
 
   // Initialize SD24
   SD24_B_init(SD24_BASE, config->sd24Param);
@@ -245,17 +239,17 @@ HAL_ADC_message_code HAL_ADC_init(HAL_ADC_SD24_B_Configuration *config) {
   return code;
 }
 
-void HAL_ADC_startConversion(HAL_ADC_SD24_B_Configuration *config) {
+void HAL_ADC_startConversion(HAL_ADC_SD24_B_Configuration* config) {
   // Start conversion
   SD24_B_startGroupConversion(SD24_BASE, SD24_B_GROUP0);
 }
 
-void HAL_ADC_stopConversion(HAL_ADC_SD24_B_Configuration *config) {
+void HAL_ADC_stopConversion(HAL_ADC_SD24_B_Configuration* config) {
   // Stops the conversion for the enabled SD24 channels
   SD24_B_stopGroupConversion(SD24_BASE, SD24_B_GROUP0);
 }
 
-void HAL_ADC_enableInterrupts(HAL_ADC_SD24_B_Configuration *config) {
+void HAL_ADC_enableInterrupts(HAL_ADC_SD24_B_Configuration* config) {
   uint8_t i, converter;
 
   // Enable all interrupts
@@ -267,7 +261,7 @@ void HAL_ADC_enableInterrupts(HAL_ADC_SD24_B_Configuration *config) {
   }
 }
 
-void HAL_ADC_disableInterrupts(HAL_ADC_SD24_B_Configuration *config) {
+void HAL_ADC_disableInterrupts(HAL_ADC_SD24_B_Configuration* config) {
   uint8_t i, converter;
 
   // Disable all interrupts
@@ -314,7 +308,7 @@ void __attribute__((interrupt(SD24_VECTOR))) SD24_ISR(void)
       // Store Current Results
       phAISamples[phAWriteIIdx] =
           SD24_B_getResults(SD24_BASE, SD24_B_CONVERTER_2);
-      tempI = phAISamples[phAWriteIIdx] >> 1;
+      tempI                     = phAISamples[phAWriteIIdx] >> 1;
       phAISamples[phAWriteIIdx] = tempI;
 
       // Apply Current DC Filter
@@ -326,8 +320,7 @@ void __attribute__((interrupt(SD24_VECTOR))) SD24_ISR(void)
       // Increase Index and Mask
       phAWriteIIdx = (phAWriteIIdx + 1) & (HAL_ADC_I_MASK);
       break;
-    default:
-      break;
+    default: break;
   }
 
   // Check if both channels were read for all phases
@@ -367,21 +360,21 @@ void __attribute__((interrupt(SD24_VECTOR))) SD24_ISR(void)
       if (gEmSWResult.phaseMetrologyPing[EM_PH_A_IDX]->cycleCount ==
           gEmSWConfig.algorithmConfig->mainNomFreq) {
         phaseDataReady |= HAL_ADC_PHASE_A_DATA_READY;
-        EM_perDataChunk(&gEmSWConfig, (EM_SW_Lib_Result_Handle *)&gEmSWResult,
+        EM_perDataChunk(&gEmSWConfig, (EM_SW_Lib_Result_Handle*)&gEmSWResult,
                         EM_PH_A_IDX);
       } else if (gEmSWResult.phaseMetrologyPing[EM_PH_A_IDX]->sampleCount >
                  (2 * EM_SAMPLING_FREQ_HZ)) {
         phaseDataReady |= HAL_ADC_PHASE_A_DATA_READY;
-        EM_perDataChunk(&gEmSWConfig, (EM_SW_Lib_Result_Handle *)&gEmSWResult,
+        EM_perDataChunk(&gEmSWConfig, (EM_SW_Lib_Result_Handle*)&gEmSWResult,
                         EM_PH_A_IDX);
       }
     } else if (phASA > 0) {
       // Voltage leading Current
-      phASA = phASA - 1;
+      phASA   = phASA - 1;
       phAIIdx = phAIIdx + 1;
     } else {
       // Voltage lagging Current
-      phASA = phASA + 1;
+      phASA   = phASA + 1;
       phAVIdx = phAVIdx + 1;
     }
   }

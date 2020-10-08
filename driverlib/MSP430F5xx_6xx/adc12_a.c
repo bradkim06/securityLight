@@ -49,8 +49,10 @@
 
 #include "adc12_a.h"
 
-bool ADC12_A_init(uint16_t baseAddress, uint16_t sampleHoldSignalSourceSelect,
-                  uint8_t clockSourceSelect, uint16_t clockSourceDivider) {
+bool ADC12_A_init(uint16_t baseAddress,
+                  uint16_t sampleHoldSignalSourceSelect,
+                  uint8_t  clockSourceSelect,
+                  uint16_t clockSourceDivider) {
   // Make sure the ENC bit is cleared before initializing the ADC12_A
   HWREG8(baseAddress + OFS_ADC12CTL0_L) &= ~ADC12ENC;
 
@@ -106,8 +108,8 @@ void ADC12_A_disableSamplingTimer(uint16_t baseAddress) {
   HWREG16(baseAddress + OFS_ADC12CTL1) &= ~(ADC12SHP);
 }
 
-void ADC12_A_configureMemory(uint16_t baseAddress,
-                             ADC12_A_configureMemoryParam *param) {
+void ADC12_A_configureMemory(uint16_t                      baseAddress,
+                             ADC12_A_configureMemoryParam* param) {
   // Make sure the ENC bit is cleared before configuring a Memory Buffer Control
   assert(!(HWREG16(baseAddress + OFS_ADC12CTL0) & ADC12ENC));
 
@@ -163,7 +165,7 @@ uint8_t ADC12_A_getInterruptStatus(uint16_t baseAddress,
 
 void ADC12_A_startConversion(uint16_t baseAddress,
                              uint16_t startingMemoryBufferIndex,
-                             uint8_t conversionSequenceModeSelect) {
+                             uint8_t  conversionSequenceModeSelect) {
   // Reset the ENC bit to set the starting memory address and conversion mode
   // sequence
   HWREG8(baseAddress + OFS_ADC12CTL0_L) &= ~(ADC12ENC);
@@ -207,7 +209,7 @@ void ADC12_A_setSampleHoldSignalInversion(uint16_t baseAddress,
 }
 
 void ADC12_A_setDataReadBackFormat(uint16_t baseAddress,
-                                   uint8_t readBackFormat) {
+                                   uint8_t  readBackFormat) {
   HWREG8(baseAddress + OFS_ADC12CTL2_L) &= ~(ADC12DF);
   HWREG8(baseAddress + OFS_ADC12CTL2_L) |= readBackFormat;
 }
@@ -221,13 +223,13 @@ void ADC12_A_disableReferenceBurst(uint16_t baseAddress) {
 }
 
 void ADC12_A_setReferenceBufferSamplingRate(uint16_t baseAddress,
-                                            uint8_t samplingRateSelect) {
+                                            uint8_t  samplingRateSelect) {
   HWREG8(baseAddress + OFS_ADC12CTL2_L) &= ~(ADC12SR);
   HWREG8(baseAddress + OFS_ADC12CTL2_L) |= samplingRateSelect;
 }
 
 uint32_t ADC12_A_getMemoryAddressForDMA(uint16_t baseAddress,
-                                        uint8_t memoryIndex) {
+                                        uint8_t  memoryIndex) {
   return (baseAddress + (0x20 + (memoryIndex * 2)));
 }
 

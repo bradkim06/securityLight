@@ -49,8 +49,10 @@
 
 #include "adc10_a.h"
 
-bool ADC10_A_init(uint16_t baseAddress, uint16_t sampleHoldSignalSourceSelect,
-                  uint8_t clockSourceSelect, uint16_t clockSourceDivider) {
+bool ADC10_A_init(uint16_t baseAddress,
+                  uint16_t sampleHoldSignalSourceSelect,
+                  uint8_t  clockSourceSelect,
+                  uint16_t clockSourceDivider) {
   bool retVal = STATUS_SUCCESS;
 
   // Turn OFF ADC10_A Module & Clear Interrupt Registers
@@ -96,9 +98,10 @@ void ADC10_A_disableSamplingTimer(uint16_t baseAddress) {
   HWREG16(baseAddress + OFS_ADC10CTL1) &= ~(ADC10SHP);
 }
 
-void ADC10_A_configureMemory(uint16_t baseAddress, uint8_t inputSourceSelect,
-                             uint8_t positiveRefVoltageSourceSelect,
-                             uint8_t negativeRefVoltageSourceSelect) {
+void ADC10_A_configureMemory(uint16_t baseAddress,
+                             uint8_t  inputSourceSelect,
+                             uint8_t  positiveRefVoltageSourceSelect,
+                             uint8_t  negativeRefVoltageSourceSelect) {
   // Make sure the ENC bit is cleared before configuring a Memory Buffer Control
   assert(!(HWREG16(baseAddress + OFS_ADC10CTL0) & ADC10ENC));
 
@@ -127,12 +130,12 @@ void ADC10_A_clearInterrupt(uint16_t baseAddress, uint8_t interruptFlagMask) {
 }
 
 uint16_t ADC10_A_getInterruptStatus(uint16_t baseAddress,
-                                    uint8_t interruptFlagMask) {
+                                    uint8_t  interruptFlagMask) {
   return (HWREG16(baseAddress + OFS_ADC10IFG) & interruptFlagMask);
 }
 
 void ADC10_A_startConversion(uint16_t baseAddress,
-                             uint8_t conversionSequenceModeSelect) {
+                             uint8_t  conversionSequenceModeSelect) {
   // Reset the ENC bit to set the conversion mode sequence
   HWREG16(baseAddress + OFS_ADC10CTL0) &= ~(ADC10ENC);
 
@@ -190,7 +193,8 @@ void ADC10_A_setReferenceBufferSamplingRate(uint16_t baseAddress,
   HWREG16(baseAddress + OFS_ADC10CTL2) |= samplingRateSelect;
 }
 
-void ADC10_A_setWindowComp(uint16_t baseAddress, uint16_t highThreshold,
+void ADC10_A_setWindowComp(uint16_t baseAddress,
+                           uint16_t highThreshold,
                            uint16_t lowThreshold) {
   HWREG16(baseAddress + OFS_ADC10HI) = highThreshold;
   HWREG16(baseAddress + OFS_ADC10LO) = lowThreshold;

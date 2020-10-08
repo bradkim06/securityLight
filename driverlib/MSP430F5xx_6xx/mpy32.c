@@ -89,7 +89,7 @@ void MPY32_setOperandOne16Bit(uint8_t multiplicationType, uint16_t operand) {
 void MPY32_setOperandOne24Bit(uint8_t multiplicationType, uint32_t operand) {
   multiplicationType <<= 1;
   HWREG16(MPY32_BASE + OFS_MPY32L + multiplicationType) = operand;
-  HWREG8(MPY32_BASE + OFS_MPY32H + multiplicationType) = (operand >> 16);
+  HWREG8(MPY32_BASE + OFS_MPY32H + multiplicationType)  = (operand >> 16);
 }
 
 void MPY32_setOperandOne32Bit(uint8_t multiplicationType, uint32_t operand) {
@@ -108,7 +108,7 @@ void MPY32_setOperandTwo16Bit(uint16_t operand) {
 
 void MPY32_setOperandTwo24Bit(uint32_t operand) {
   HWREG16(MPY32_BASE + OFS_OP2L) = operand;
-  HWREG8(MPY32_BASE + OFS_OP2H) = (operand >> 16);
+  HWREG8(MPY32_BASE + OFS_OP2H)  = (operand >> 16);
 }
 
 void MPY32_setOperandTwo32Bit(uint32_t operand) {

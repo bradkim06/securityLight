@@ -158,8 +158,8 @@ typedef struct Comp_B_configureReferenceVoltageParam {
 // Comp_B_init().
 //
 //*****************************************************************************
-#define COMP_B_POWERMODE_HIGHSPEED (CBPWRMD_0)
-#define COMP_B_POWERMODE_NORMALMODE (CBPWRMD_1)
+#define COMP_B_POWERMODE_HIGHSPEED     (CBPWRMD_0)
+#define COMP_B_POWERMODE_NORMALMODE    (CBPWRMD_1)
 #define COMP_B_POWERMODE_ULTRALOWPOWER (CBPWRMD_2)
 
 //*****************************************************************************
@@ -171,23 +171,23 @@ typedef struct Comp_B_configureReferenceVoltageParam {
 // negativeTerminalInput parameter for functions: Comp_B_init().
 //
 //*****************************************************************************
-#define COMP_B_INPUT0 (CBIPSEL_0)
-#define COMP_B_INPUT1 (CBIPSEL_1)
-#define COMP_B_INPUT2 (CBIPSEL_2)
-#define COMP_B_INPUT3 (CBIPSEL_3)
-#define COMP_B_INPUT4 (CBIPSEL_4)
-#define COMP_B_INPUT5 (CBIPSEL_5)
-#define COMP_B_INPUT6 (CBIPSEL_6)
-#define COMP_B_INPUT7 (CBIPSEL_7)
-#define COMP_B_INPUT8 (CBIPSEL_8)
-#define COMP_B_INPUT9 (CBIPSEL_9)
+#define COMP_B_INPUT0  (CBIPSEL_0)
+#define COMP_B_INPUT1  (CBIPSEL_1)
+#define COMP_B_INPUT2  (CBIPSEL_2)
+#define COMP_B_INPUT3  (CBIPSEL_3)
+#define COMP_B_INPUT4  (CBIPSEL_4)
+#define COMP_B_INPUT5  (CBIPSEL_5)
+#define COMP_B_INPUT6  (CBIPSEL_6)
+#define COMP_B_INPUT7  (CBIPSEL_7)
+#define COMP_B_INPUT8  (CBIPSEL_8)
+#define COMP_B_INPUT9  (CBIPSEL_9)
 #define COMP_B_INPUT10 (CBIPSEL_10)
 #define COMP_B_INPUT11 (CBIPSEL_11)
 #define COMP_B_INPUT12 (CBIPSEL_12)
 #define COMP_B_INPUT13 (CBIPSEL_13)
 #define COMP_B_INPUT14 (CBIPSEL_14)
 #define COMP_B_INPUT15 (CBIPSEL_15)
-#define COMP_B_VREF (0x10)
+#define COMP_B_VREF    (0x10)
 
 //*****************************************************************************
 //
@@ -196,7 +196,7 @@ typedef struct Comp_B_configureReferenceVoltageParam {
 // param parameter for functions: Comp_B_init().
 //
 //*****************************************************************************
-#define COMP_B_FILTEROUTPUT_OFF 0x00
+#define COMP_B_FILTEROUTPUT_OFF     0x00
 #define COMP_B_FILTEROUTPUT_DLYLVL1 (CBF + CBFDLY_0)
 #define COMP_B_FILTEROUTPUT_DLYLVL2 (CBF + CBFDLY_1)
 #define COMP_B_FILTEROUTPUT_DLYLVL3 (CBF + CBFDLY_2)
@@ -209,7 +209,7 @@ typedef struct Comp_B_configureReferenceVoltageParam {
 // Comp_B_init().
 //
 //*****************************************************************************
-#define COMP_B_NORMALOUTPUTPOLARITY (!(CBOUTPOL))
+#define COMP_B_NORMALOUTPUTPOLARITY   (!(CBOUTPOL))
 #define COMP_B_INVERTEDOUTPUTPOLARITY (CBOUTPOL)
 
 //*****************************************************************************
@@ -218,7 +218,7 @@ typedef struct Comp_B_configureReferenceVoltageParam {
 // functions: Comp_B_configureReferenceVoltage().
 //
 //*****************************************************************************
-#define COMP_B_ACCURACY_STATIC (!CBREFACC)
+#define COMP_B_ACCURACY_STATIC  (!CBREFACC)
 #define COMP_B_ACCURACY_CLOCKED (CBREFACC)
 
 //*****************************************************************************
@@ -238,7 +238,7 @@ typedef struct Comp_B_configureReferenceVoltageParam {
 // for functions: Comp_B_enableInterrupt(), and Comp_B_disableInterrupt().
 //
 //*****************************************************************************
-#define COMP_B_OUTPUT_INT CBIE
+#define COMP_B_OUTPUT_INT         CBIE
 #define COMP_B_OUTPUTINVERTED_INT CBIIE
 
 //*****************************************************************************
@@ -249,7 +249,7 @@ typedef struct Comp_B_configureReferenceVoltageParam {
 // Comp_B_getInterruptStatus() function.
 //
 //*****************************************************************************
-#define COMP_B_OUTPUT_FLAG CBIFG
+#define COMP_B_OUTPUT_FLAG         CBIFG
 #define COMP_B_OUTPUTINVERTED_FLAG CBIIFG
 
 //*****************************************************************************
@@ -259,7 +259,7 @@ typedef struct Comp_B_configureReferenceVoltageParam {
 //
 //*****************************************************************************
 #define COMP_B_FALLINGEDGE (!(CBIES))
-#define COMP_B_RISINGEDGE (CBIES)
+#define COMP_B_RISINGEDGE  (CBIES)
 
 //*****************************************************************************
 //
@@ -267,7 +267,7 @@ typedef struct Comp_B_configureReferenceVoltageParam {
 // can be returned by the Comp_B_outputValue() function.
 //
 //*****************************************************************************
-#define COMP_B_LOW (0x0)
+#define COMP_B_LOW  (0x0)
 #define COMP_B_HIGH (CBOUT)
 
 //*****************************************************************************
@@ -293,7 +293,7 @@ typedef struct Comp_B_configureReferenceVoltageParam {
 //! \return STATUS_SUCCESS or STATUS_FAILURE of the initialization process.
 //
 //*****************************************************************************
-extern bool Comp_B_init(uint16_t baseAddress, Comp_B_initParam *param);
+extern bool Comp_B_init(uint16_t baseAddress, Comp_B_initParam* param);
 
 //*****************************************************************************
 //
@@ -313,7 +313,8 @@ extern bool Comp_B_init(uint16_t baseAddress, Comp_B_initParam *param);
 //
 //*****************************************************************************
 extern void Comp_B_configureReferenceVoltage(
-    uint16_t baseAddress, Comp_B_configureReferenceVoltageParam *param);
+    uint16_t                               baseAddress,
+    Comp_B_configureReferenceVoltageParam* param);
 
 //*****************************************************************************
 //

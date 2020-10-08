@@ -58,27 +58,19 @@ const LCD_B_initParam LCD_B_INIT_PARAM = {
     LCD_B_CLOCKSOURCE_ACLK, LCD_B_CLOCKDIVIDER_1, LCD_B_CLOCKPRESCALAR_1,
     LCD_B_STATIC, LCD_B_SEGMENTS_DISABLED};
 
-static void setLCDFunction(uint16_t baseAddress, uint8_t index,
+static void setLCDFunction(uint16_t baseAddress,
+                           uint8_t  index,
                            uint16_t value) {
   switch (index) {
-    case 0:
-      HWREG16(baseAddress + OFS_LCDBPCTL0) |= value;
-      break;
-    case 1:
-      HWREG16(baseAddress + OFS_LCDBPCTL1) |= value;
-      break;
-    case 2:
-      HWREG16(baseAddress + OFS_LCDBPCTL2) |= value;
-      break;
-    case 3:
-      HWREG16(baseAddress + OFS_LCDBPCTL3) |= value;
-      break;
-    default:
-      break;
+    case 0: HWREG16(baseAddress + OFS_LCDBPCTL0) |= value; break;
+    case 1: HWREG16(baseAddress + OFS_LCDBPCTL1) |= value; break;
+    case 2: HWREG16(baseAddress + OFS_LCDBPCTL2) |= value; break;
+    case 3: HWREG16(baseAddress + OFS_LCDBPCTL3) |= value; break;
+    default: break;
   }
 }
 
-void LCD_B_init(uint16_t baseAddress, LCD_B_initParam *initParams) {
+void LCD_B_init(uint16_t baseAddress, LCD_B_initParam* initParams) {
   HWREG16(baseAddress + OFS_LCDBCTL0) &= ~LCDON;
   HWREG16(baseAddress + OFS_LCDBCTL0) &=
       ~(LCDMX0 | LCDMX1 | LCDSSEL | LCDSON | LCDDIV_31);
@@ -127,8 +119,10 @@ void LCD_B_selectDisplayMemory(uint16_t baseAddress, uint16_t displayMemory) {
   HWREG16(baseAddress + OFS_LCDBMEMCTL) |= displayMemory;
 }
 
-void LCD_B_setBlinkingControl(uint16_t baseAddress, uint8_t clockDivider,
-                              uint8_t clockPrescalar, uint8_t mode) {
+void LCD_B_setBlinkingControl(uint16_t baseAddress,
+                              uint8_t  clockDivider,
+                              uint8_t  clockPrescalar,
+                              uint8_t  mode) {
   HWREG16(baseAddress + OFS_LCDBBLKCTL) &=
       ~(LCDBLKDIV0 | LCDBLKDIV1 | LCDBLKDIV2 | LCDBLKPRE0 | LCDBLKPRE1 |
         LCDBLKPRE2 | LCDBLKMOD0 | LCDBLKMOD1);
@@ -160,8 +154,10 @@ void LCD_B_selectChargePumpReference(uint16_t baseAddress, uint16_t reference) {
   HWREG16(baseAddress + OFS_LCDBVCTL) |= reference;
 }
 
-void LCD_B_setVLCDSource(uint16_t baseAddress, uint16_t vlcdSource,
-                         uint16_t v2v3v4Source, uint16_t v5Source) {
+void LCD_B_setVLCDSource(uint16_t baseAddress,
+                         uint16_t vlcdSource,
+                         uint16_t v2v3v4Source,
+                         uint16_t v5Source) {
   HWREG16(baseAddress + OFS_LCDBCTL0) &= ~LCDON;
   HWREG16(baseAddress + OFS_LCDBVCTL) &= ~VLCDEXT;
   HWREG16(baseAddress + OFS_LCDBVCTL) &= ~LCDREXT;
@@ -183,7 +179,7 @@ void LCD_B_setVLCDVoltage(uint16_t baseAddress, uint16_t voltage) {
 void LCD_B_setPinAsLCDFunction(uint16_t baseAddress, uint8_t pin) {
   HWREG16(baseAddress + OFS_LCDBCTL0) &= ~LCDON;
 
-  uint8_t idx = pin >> 4;
+  uint8_t  idx = pin >> 4;
   uint16_t val = 1 << (pin & 0xF);
 
   setLCDFunction(baseAddress, idx, val);
@@ -192,35 +188,27 @@ void LCD_B_setPinAsLCDFunction(uint16_t baseAddress, uint8_t pin) {
 void LCD_B_setPinAsPortFunction(uint16_t baseAddress, uint8_t pin) {
   HWREG16(baseAddress + OFS_LCDBCTL0) &= ~LCDON;
 
-  uint8_t idx = pin >> 4;
+  uint8_t  idx = pin >> 4;
   uint16_t val = 1 << (pin & 0xF);
 
   switch (idx) {
-    case 0:
-      HWREG16(baseAddress + OFS_LCDBPCTL0) &= ~val;
-      break;
-    case 1:
-      HWREG16(baseAddress + OFS_LCDBPCTL1) &= ~val;
-      break;
-    case 2:
-      HWREG16(baseAddress + OFS_LCDBPCTL2) &= ~val;
-      break;
-    case 3:
-      HWREG16(baseAddress + OFS_LCDBPCTL3) &= ~val;
-      break;
-    default:
-      break;
+    case 0: HWREG16(baseAddress + OFS_LCDBPCTL0) &= ~val; break;
+    case 1: HWREG16(baseAddress + OFS_LCDBPCTL1) &= ~val; break;
+    case 2: HWREG16(baseAddress + OFS_LCDBPCTL2) &= ~val; break;
+    case 3: HWREG16(baseAddress + OFS_LCDBPCTL3) &= ~val; break;
+    default: break;
   }
 }
 
-void LCD_B_setPinAsLCDFunctionEx(uint16_t baseAddress, uint8_t startPin,
-                                 uint8_t endPin) {
-  uint8_t startIdx = startPin >> 4;
-  uint8_t endIdx = endPin >> 4;
-  uint8_t startPos = startPin & 0xF;
-  uint8_t endPos = endPin & 0xF;
-  uint16_t val = 0;
-  uint8_t i = 0;
+void LCD_B_setPinAsLCDFunctionEx(uint16_t baseAddress,
+                                 uint8_t  startPin,
+                                 uint8_t  endPin) {
+  uint8_t  startIdx = startPin >> 4;
+  uint8_t  endIdx   = endPin >> 4;
+  uint8_t  startPos = startPin & 0xF;
+  uint8_t  endPos   = endPin & 0xF;
+  uint16_t val      = 0;
+  uint8_t  i        = 0;
 
   HWREG16(baseAddress + OFS_LCDBCTL0) &= ~LCDON;
 
@@ -257,23 +245,27 @@ void LCD_B_clearMemory(uint16_t baseAddress, uint8_t memory, uint8_t mask) {
   HWREG8(baseAddress + OFS_LCDM1 + memory) &= ~mask;
 }
 
-void LCD_B_setBlinkingMemory(uint16_t baseAddress, uint8_t memory,
-                             uint8_t mask) {
+void LCD_B_setBlinkingMemory(uint16_t baseAddress,
+                             uint8_t  memory,
+                             uint8_t  mask) {
   HWREG8(baseAddress + OFS_LCDBM1 + memory) = mask;
 }
 
-void LCD_B_updateBlinkingMemory(uint16_t baseAddress, uint8_t memory,
-                                uint8_t mask) {
+void LCD_B_updateBlinkingMemory(uint16_t baseAddress,
+                                uint8_t  memory,
+                                uint8_t  mask) {
   HWREG8(baseAddress + OFS_LCDBM1 + memory) |= mask;
 }
 
-void LCD_B_toggleBlinkingMemory(uint16_t baseAddress, uint8_t memory,
-                                uint8_t mask) {
+void LCD_B_toggleBlinkingMemory(uint16_t baseAddress,
+                                uint8_t  memory,
+                                uint8_t  mask) {
   HWREG8(baseAddress + OFS_LCDBM1 + memory) ^= mask;
 }
 
-void LCD_B_clearBlinkingMemory(uint16_t baseAddress, uint8_t memory,
-                               uint8_t mask) {
+void LCD_B_clearBlinkingMemory(uint16_t baseAddress,
+                               uint8_t  memory,
+                               uint8_t  mask) {
   HWREG8(baseAddress + OFS_LCDBM1 + memory) &= ~mask;
 }
 

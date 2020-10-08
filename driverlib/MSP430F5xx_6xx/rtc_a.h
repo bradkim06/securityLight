@@ -107,10 +107,10 @@ typedef struct Calendar {
 // for functions: RTC_A_setCalibrationFrequency().
 //
 //*****************************************************************************
-#define RTC_A_CALIBRATIONFREQ_OFF (RTCCALF_0)
+#define RTC_A_CALIBRATIONFREQ_OFF   (RTCCALF_0)
 #define RTC_A_CALIBRATIONFREQ_512HZ (RTCCALF_1)
 #define RTC_A_CALIBRATIONFREQ_256HZ (RTCCALF_2)
-#define RTC_A_CALIBRATIONFREQ_1HZ (RTCCALF_3)
+#define RTC_A_CALIBRATIONFREQ_1HZ   (RTCCALF_3)
 
 //*****************************************************************************
 //
@@ -119,7 +119,7 @@ typedef struct Calendar {
 //
 //*****************************************************************************
 #define RTC_A_CALIBRATION_DOWN2PPM (!(RTCCALS))
-#define RTC_A_CALIBRATION_UP4PPM (RTCCALS)
+#define RTC_A_CALIBRATION_UP4PPM   (RTCCALS)
 
 //*****************************************************************************
 //
@@ -128,7 +128,7 @@ typedef struct Calendar {
 //
 //*****************************************************************************
 #define RTC_A_FORMAT_BINARY (!(RTCBCD))
-#define RTC_A_FORMAT_BCD (RTCBCD)
+#define RTC_A_FORMAT_BCD    (RTCBCD)
 
 //*****************************************************************************
 //
@@ -146,9 +146,9 @@ typedef struct Calendar {
 //
 //*****************************************************************************
 #define RTC_A_CALENDAREVENT_MINUTECHANGE (RTCTEV_0)
-#define RTC_A_CALENDAREVENT_HOURCHANGE (RTCTEV_1)
-#define RTC_A_CALENDAREVENT_NOON (RTCTEV_2)
-#define RTC_A_CALENDAREVENT_MIDNIGHT (RTCTEV_3)
+#define RTC_A_CALENDAREVENT_HOURCHANGE   (RTCTEV_1)
+#define RTC_A_CALENDAREVENT_NOON         (RTCTEV_2)
+#define RTC_A_CALENDAREVENT_MIDNIGHT     (RTCTEV_3)
 
 //*****************************************************************************
 //
@@ -167,7 +167,7 @@ typedef struct Calendar {
 // functions: RTC_A_initCounter().
 //
 //*****************************************************************************
-#define RTC_A_CLOCKSELECT_ACLK (RTCSSEL_0)
+#define RTC_A_CLOCKSELECT_ACLK  (RTCSSEL_0)
 #define RTC_A_CLOCKSELECT_SMCLK (RTCSSEL_1)
 #define RTC_A_CLOCKSELECT_RT1PS (RTCSSEL_2)
 
@@ -177,7 +177,7 @@ typedef struct Calendar {
 // parameter for functions: RTC_A_initCounterPrescale().
 //
 //*****************************************************************************
-#define RTC_A_PSCLOCKSELECT_ACLK (RT1SSEL_0)
+#define RTC_A_PSCLOCKSELECT_ACLK  (RT1SSEL_0)
 #define RTC_A_PSCLOCKSELECT_SMCLK (RT1SSEL_1)
 #define RTC_A_PSCLOCKSELECT_RT0PS (RT1SSEL_2)
 
@@ -187,7 +187,7 @@ typedef struct Calendar {
 // parameter for functions: RTC_A_initCounter().
 //
 //*****************************************************************************
-#define RTC_A_COUNTERSIZE_8BIT (RTCTEV_0)
+#define RTC_A_COUNTERSIZE_8BIT  (RTCTEV_0)
 #define RTC_A_COUNTERSIZE_16BIT (RTCTEV_1)
 #define RTC_A_COUNTERSIZE_24BIT (RTCTEV_2)
 #define RTC_A_COUNTERSIZE_32BIT (RTCTEV_3)
@@ -198,12 +198,12 @@ typedef struct Calendar {
 // for functions: RTC_A_initCounterPrescale().
 //
 //*****************************************************************************
-#define RTC_A_PSDIVIDER_2 (RT0PSDIV_0)
-#define RTC_A_PSDIVIDER_4 (RT0PSDIV_1)
-#define RTC_A_PSDIVIDER_8 (RT0PSDIV_2)
-#define RTC_A_PSDIVIDER_16 (RT0PSDIV_3)
-#define RTC_A_PSDIVIDER_32 (RT0PSDIV_4)
-#define RTC_A_PSDIVIDER_64 (RT0PSDIV_5)
+#define RTC_A_PSDIVIDER_2   (RT0PSDIV_0)
+#define RTC_A_PSDIVIDER_4   (RT0PSDIV_1)
+#define RTC_A_PSDIVIDER_8   (RT0PSDIV_2)
+#define RTC_A_PSDIVIDER_16  (RT0PSDIV_3)
+#define RTC_A_PSDIVIDER_32  (RT0PSDIV_4)
+#define RTC_A_PSDIVIDER_64  (RT0PSDIV_5)
 #define RTC_A_PSDIVIDER_128 (RT0PSDIV_6)
 #define RTC_A_PSDIVIDER_256 (RT0PSDIV_7)
 
@@ -213,12 +213,12 @@ typedef struct Calendar {
 // parameter for functions: RTC_A_definePrescaleEvent().
 //
 //*****************************************************************************
-#define RTC_A_PSEVENTDIVIDER_2 (RT0IP_0)
-#define RTC_A_PSEVENTDIVIDER_4 (RT0IP_1)
-#define RTC_A_PSEVENTDIVIDER_8 (RT0IP_2)
-#define RTC_A_PSEVENTDIVIDER_16 (RT0IP_3)
-#define RTC_A_PSEVENTDIVIDER_32 (RT0IP_4)
-#define RTC_A_PSEVENTDIVIDER_64 (RT0IP_5)
+#define RTC_A_PSEVENTDIVIDER_2   (RT0IP_0)
+#define RTC_A_PSEVENTDIVIDER_4   (RT0IP_1)
+#define RTC_A_PSEVENTDIVIDER_8   (RT0IP_2)
+#define RTC_A_PSEVENTDIVIDER_16  (RT0IP_3)
+#define RTC_A_PSEVENTDIVIDER_32  (RT0IP_4)
+#define RTC_A_PSEVENTDIVIDER_64  (RT0IP_5)
 #define RTC_A_PSEVENTDIVIDER_128 (RT0IP_6)
 #define RTC_A_PSEVENTDIVIDER_256 (RT0IP_7)
 
@@ -231,11 +231,11 @@ typedef struct Calendar {
 // function.
 //
 //*****************************************************************************
-#define RTC_A_TIME_EVENT_INTERRUPT RTCTEVIE
-#define RTC_A_CLOCK_ALARM_INTERRUPT RTCAIE
+#define RTC_A_TIME_EVENT_INTERRUPT       RTCTEVIE
+#define RTC_A_CLOCK_ALARM_INTERRUPT      RTCAIE
 #define RTC_A_CLOCK_READ_READY_INTERRUPT RTCRDYIE
-#define RTC_A_PRESCALE_TIMER0_INTERRUPT 0x02
-#define RTC_A_PRESCALE_TIMER1_INTERRUPT 0x01
+#define RTC_A_PRESCALE_TIMER0_INTERRUPT  0x02
+#define RTC_A_PRESCALE_TIMER1_INTERRUPT  0x01
 
 //*****************************************************************************
 //
@@ -322,8 +322,8 @@ extern void RTC_A_setCalibrationFrequency(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void RTC_A_setCalibrationData(uint16_t baseAddress,
-                                     uint8_t offsetDirection,
-                                     uint8_t offsetValue);
+                                     uint8_t  offsetDirection,
+                                     uint8_t  offsetValue);
 
 //*****************************************************************************
 //
@@ -351,7 +351,8 @@ extern void RTC_A_setCalibrationData(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_A_initCounter(uint16_t baseAddress, uint16_t clockSelect,
+extern void RTC_A_initCounter(uint16_t baseAddress,
+                              uint16_t clockSelect,
                               uint16_t counterSizeSelect);
 
 //*****************************************************************************
@@ -381,8 +382,9 @@ extern void RTC_A_initCounter(uint16_t baseAddress, uint16_t clockSelect,
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_A_initCalendar(uint16_t baseAddress, Calendar *CalendarTime,
-                               uint16_t formatSelect);
+extern void RTC_A_initCalendar(uint16_t  baseAddress,
+                               Calendar* CalendarTime,
+                               uint16_t  formatSelect);
 
 //*****************************************************************************
 //
@@ -418,7 +420,8 @@ extern Calendar RTC_A_getCalendarTime(uint16_t baseAddress);
 //
 //*****************************************************************************
 extern void RTC_A_configureCalendarAlarm(
-    uint16_t baseAddress, RTC_A_configureCalendarAlarmParam *param);
+    uint16_t                           baseAddress,
+    RTC_A_configureCalendarAlarmParam* param);
 
 //*****************************************************************************
 //
@@ -510,7 +513,7 @@ extern void RTC_A_setCounterValue(uint16_t baseAddress, uint32_t counterValue);
 //
 //*****************************************************************************
 extern void RTC_A_initCounterPrescale(uint16_t baseAddress,
-                                      uint8_t prescaleSelect,
+                                      uint8_t  prescaleSelect,
                                       uint16_t prescaleClockSelect,
                                       uint16_t prescaleDivider);
 
@@ -534,7 +537,7 @@ extern void RTC_A_initCounterPrescale(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void RTC_A_holdCounterPrescale(uint16_t baseAddress,
-                                      uint8_t prescaleSelect);
+                                      uint8_t  prescaleSelect);
 
 //*****************************************************************************
 //
@@ -553,7 +556,7 @@ extern void RTC_A_holdCounterPrescale(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void RTC_A_startCounterPrescale(uint16_t baseAddress,
-                                       uint8_t prescaleSelect);
+                                       uint8_t  prescaleSelect);
 
 //*****************************************************************************
 //
@@ -585,8 +588,8 @@ extern void RTC_A_startCounterPrescale(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void RTC_A_definePrescaleEvent(uint16_t baseAddress,
-                                      uint8_t prescaleSelect,
-                                      uint8_t prescaleEventDivider);
+                                      uint8_t  prescaleSelect,
+                                      uint8_t  prescaleEventDivider);
 
 //*****************************************************************************
 //
@@ -606,7 +609,7 @@ extern void RTC_A_definePrescaleEvent(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern uint8_t RTC_A_getPrescaleValue(uint16_t baseAddress,
-                                      uint8_t prescaleSelect);
+                                      uint8_t  prescaleSelect);
 
 //*****************************************************************************
 //
@@ -627,8 +630,9 @@ extern uint8_t RTC_A_getPrescaleValue(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_A_setPrescaleValue(uint16_t baseAddress, uint8_t prescaleSelect,
-                                   uint8_t prescaleCounterValue);
+extern void RTC_A_setPrescaleValue(uint16_t baseAddress,
+                                   uint8_t  prescaleSelect,
+                                   uint8_t  prescaleCounterValue);
 
 //*****************************************************************************
 //
@@ -725,7 +729,7 @@ extern void RTC_A_disableInterrupt(uint16_t baseAddress, uint8_t interruptMask);
 //
 //*****************************************************************************
 extern uint8_t RTC_A_getInterruptStatus(uint16_t baseAddress,
-                                        uint8_t interruptFlagMask);
+                                        uint8_t  interruptFlagMask);
 
 //*****************************************************************************
 //
@@ -754,7 +758,7 @@ extern uint8_t RTC_A_getInterruptStatus(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void RTC_A_clearInterrupt(uint16_t baseAddress,
-                                 uint8_t interruptFlagMask);
+                                 uint8_t  interruptFlagMask);
 
 //*****************************************************************************
 //

@@ -49,8 +49,8 @@
 
 #include "aes.h"
 
-uint8_t AES_setCipherKey(uint16_t baseAddress, const uint8_t *CipherKey) {
-  uint8_t i = 0;
+uint8_t AES_setCipherKey(uint16_t baseAddress, const uint8_t* CipherKey) {
+  uint8_t  i            = 0;
   uint16_t tempVariable = 0;
 
   // Wait until AES accelerator is busy
@@ -72,10 +72,11 @@ uint8_t AES_setCipherKey(uint16_t baseAddress, const uint8_t *CipherKey) {
   return (STATUS_SUCCESS);
 }
 
-uint8_t AES_encryptData(uint16_t baseAddress, const uint8_t *Data,
-                        uint8_t *encryptedData) {
-  uint8_t i;
-  uint16_t tempData = 0;
+uint8_t AES_encryptData(uint16_t       baseAddress,
+                        const uint8_t* Data,
+                        uint8_t*       encryptedData) {
+  uint8_t  i;
+  uint16_t tempData     = 0;
   uint16_t tempVariable = 0;
 
   // Set module to encrypt mode
@@ -99,18 +100,19 @@ uint8_t AES_encryptData(uint16_t baseAddress, const uint8_t *Data,
 
   // Write encrypted data back to variable
   for (i = 0; i < 16; i = i + 2) {
-    tempData = HWREG16(baseAddress + OFS_AESADOUT);
-    *(encryptedData + i) = (uint8_t)tempData;
+    tempData                 = HWREG16(baseAddress + OFS_AESADOUT);
+    *(encryptedData + i)     = (uint8_t)tempData;
     *(encryptedData + i + 1) = (uint8_t)(tempData >> 8);
   }
 
   return (STATUS_SUCCESS);
 }
 
-uint8_t AES_decryptData(uint16_t baseAddress, const uint8_t *Data,
-                        uint8_t *decryptedData) {
-  uint8_t i;
-  uint16_t tempData = 0;
+uint8_t AES_decryptData(uint16_t       baseAddress,
+                        const uint8_t* Data,
+                        uint8_t*       decryptedData) {
+  uint8_t  i;
+  uint16_t tempData     = 0;
   uint16_t tempVariable = 0;
 
   // Set module to decrypt mode
@@ -118,8 +120,8 @@ uint8_t AES_decryptData(uint16_t baseAddress, const uint8_t *Data,
 
   // Write data to decrypt to module
   for (i = 0; i < 16; i = i + 2) {
-    tempVariable = (uint16_t)(Data[i + 1] << 8);
-    tempVariable = tempVariable | ((uint16_t)(Data[i]));
+    tempVariable                       = (uint16_t)(Data[i + 1] << 8);
+    tempVariable                       = tempVariable | ((uint16_t)(Data[i]));
     HWREG16(baseAddress + OFS_AESADIN) = tempVariable;
   }
 
@@ -134,16 +136,16 @@ uint8_t AES_decryptData(uint16_t baseAddress, const uint8_t *Data,
 
   // Write encrypted data back to variable
   for (i = 0; i < 16; i = i + 2) {
-    tempData = HWREG16(baseAddress + OFS_AESADOUT);
-    *(decryptedData + i) = (uint8_t)tempData;
+    tempData                 = HWREG16(baseAddress + OFS_AESADOUT);
+    *(decryptedData + i)     = (uint8_t)tempData;
     *(decryptedData + i + 1) = (uint8_t)(tempData >> 8);
   }
 
   return (STATUS_SUCCESS);
 }
 
-uint8_t AES_setDecipherKey(uint16_t baseAddress, const uint8_t *CipherKey) {
-  uint8_t i;
+uint8_t AES_setDecipherKey(uint16_t baseAddress, const uint8_t* CipherKey) {
+  uint8_t  i;
   uint16_t tempVariable = 0;
 
   // Set module to decrypt mode
@@ -185,9 +187,10 @@ void AES_reset(uint16_t baseAddress) {
   HWREG8(baseAddress + OFS_AESACTL0) |= AESSWRST;
 }
 
-uint8_t AES_startEncryptData(uint16_t baseAddress, const uint8_t *Data,
-                             uint8_t *encryptedData) {
-  uint8_t i;
+uint8_t AES_startEncryptData(uint16_t       baseAddress,
+                             const uint8_t* Data,
+                             uint8_t*       encryptedData) {
+  uint8_t  i;
   uint16_t tempVariable = 0;
 
   // Set module to encrypt mode
@@ -207,8 +210,8 @@ uint8_t AES_startEncryptData(uint16_t baseAddress, const uint8_t *Data,
   return (STATUS_SUCCESS);
 }
 
-uint8_t AES_startDecryptData(uint16_t baseAddress, const uint8_t *Data) {
-  uint8_t i;
+uint8_t AES_startDecryptData(uint16_t baseAddress, const uint8_t* Data) {
+  uint8_t  i;
   uint16_t tempVariable = 0;
 
   // Set module to decrypt mode
@@ -216,8 +219,8 @@ uint8_t AES_startDecryptData(uint16_t baseAddress, const uint8_t *Data) {
 
   // Write data to decrypt to module
   for (i = 0; i < 16; i = i + 2) {
-    tempVariable = (uint16_t)(Data[i + 1] << 8);
-    tempVariable = tempVariable | ((uint16_t)(Data[i]));
+    tempVariable                       = (uint16_t)(Data[i + 1] << 8);
+    tempVariable                       = tempVariable | ((uint16_t)(Data[i]));
     HWREG16(baseAddress + OFS_AESADIN) = tempVariable;
   }
 
@@ -228,9 +231,9 @@ uint8_t AES_startDecryptData(uint16_t baseAddress, const uint8_t *Data) {
   return (STATUS_SUCCESS);
 }
 
-uint8_t AES_startSetDecipherKey(uint16_t baseAddress,
-                                const uint8_t *CipherKey) {
-  uint8_t i;
+uint8_t AES_startSetDecipherKey(uint16_t       baseAddress,
+                                const uint8_t* CipherKey) {
+  uint8_t  i;
   uint16_t tempVariable = 0;
 
   HWREG16(baseAddress + OFS_AESACTL0) &= ~(AESOP0);
@@ -246,8 +249,8 @@ uint8_t AES_startSetDecipherKey(uint16_t baseAddress,
   return (STATUS_SUCCESS);
 }
 
-uint8_t AES_getDataOut(uint16_t baseAddress, uint8_t *OutputData) {
-  uint8_t i;
+uint8_t AES_getDataOut(uint16_t baseAddress, uint8_t* OutputData) {
+  uint8_t  i;
   uint16_t tempData = 0;
 
   // If module is busy, exit and return failure
@@ -257,8 +260,8 @@ uint8_t AES_getDataOut(uint16_t baseAddress, uint8_t *OutputData) {
 
   // Write encrypted data back to variable
   for (i = 0; i < 16; i = i + 2) {
-    tempData = HWREG16(baseAddress + OFS_AESADOUT);
-    *(OutputData + i) = (uint8_t)tempData;
+    tempData              = HWREG16(baseAddress + OFS_AESADOUT);
+    *(OutputData + i)     = (uint8_t)tempData;
     *(OutputData + i + 1) = (uint8_t)(tempData >> 8);
   }
 
@@ -277,9 +280,9 @@ uint32_t AES_getErrorFlagStatus(uint16_t baseAddress) {
   return (HWREG8(baseAddress + OFS_AESACTL0) & AESERRFG);
 }
 
-uint8_t AES_startDecryptDataUsingEncryptionKey(uint16_t baseAddress,
-                                               const uint8_t *Data) {
-  uint8_t i;
+uint8_t AES_startDecryptDataUsingEncryptionKey(uint16_t       baseAddress,
+                                               const uint8_t* Data) {
+  uint8_t  i;
   uint16_t tempVariable = 0;
 
   // Set module to decrypt mode
@@ -288,8 +291,8 @@ uint8_t AES_startDecryptDataUsingEncryptionKey(uint16_t baseAddress,
 
   // Write data to decrypt to module
   for (i = 0; i < 16; i = i + 2) {
-    tempVariable = (uint16_t)(Data[i + 1] << 8);
-    tempVariable = tempVariable | ((uint16_t)(Data[i]));
+    tempVariable                       = (uint16_t)(Data[i + 1] << 8);
+    tempVariable                       = tempVariable | ((uint16_t)(Data[i]));
     HWREG16(baseAddress + OFS_AESADIN) = tempVariable;
   }
 
@@ -300,11 +303,11 @@ uint8_t AES_startDecryptDataUsingEncryptionKey(uint16_t baseAddress,
   return (STATUS_SUCCESS);
 }
 
-uint8_t AES_decryptDataUsingEncryptionKey(uint16_t baseAddress,
-                                          const uint8_t *Data,
-                                          uint8_t *decryptedData) {
-  uint8_t i;
-  uint16_t tempData = 0;
+uint8_t AES_decryptDataUsingEncryptionKey(uint16_t       baseAddress,
+                                          const uint8_t* Data,
+                                          uint8_t*       decryptedData) {
+  uint8_t  i;
+  uint16_t tempData     = 0;
   uint16_t tempVariable = 0;
 
   // Set module to decrypt mode
@@ -313,8 +316,8 @@ uint8_t AES_decryptDataUsingEncryptionKey(uint16_t baseAddress,
 
   // Write data to decrypt to module
   for (i = 0; i < 16; i = i + 2) {
-    tempVariable = (uint16_t)(Data[i + 1] << 8);
-    tempVariable = tempVariable | ((uint16_t)(Data[i]));
+    tempVariable                       = (uint16_t)(Data[i + 1] << 8);
+    tempVariable                       = tempVariable | ((uint16_t)(Data[i]));
     HWREG16(baseAddress + OFS_AESADIN) = tempVariable;
   }
 
@@ -329,8 +332,8 @@ uint8_t AES_decryptDataUsingEncryptionKey(uint16_t baseAddress,
 
   // Write encrypted data back to variable
   for (i = 0; i < 16; i = i + 2) {
-    tempData = HWREG16(baseAddress + OFS_AESADOUT);
-    *(decryptedData + i) = (uint8_t)tempData;
+    tempData                 = HWREG16(baseAddress + OFS_AESADOUT);
+    *(decryptedData + i)     = (uint8_t)tempData;
     *(decryptedData + i + 1) = (uint8_t)(tempData >> 8);
   }
 

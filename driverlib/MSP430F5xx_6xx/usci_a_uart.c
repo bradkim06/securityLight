@@ -49,7 +49,7 @@
 
 #include "usci_a_uart.h"
 
-bool USCI_A_UART_init(uint16_t baseAddress, USCI_A_UART_initParam *param) {
+bool USCI_A_UART_init(uint16_t baseAddress, USCI_A_UART_initParam* param) {
   bool retVal = STATUS_SUCCESS;
 
   // Disable the USCI Module
@@ -185,7 +185,7 @@ void USCI_A_UART_resetDormant(uint16_t baseAddress) {
 }
 
 void USCI_A_UART_transmitAddress(uint16_t baseAddress,
-                                 uint8_t transmitAddress) {
+                                 uint8_t  transmitAddress) {
   // Set UCTXADDR bit
   HWREG8(baseAddress + OFS_UCAxCTL1) |= UCTXADDR;
 

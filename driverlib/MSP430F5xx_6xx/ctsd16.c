@@ -49,8 +49,9 @@
 
 #include "ctsd16.h"
 
-void CTSD16_init(uint16_t baseAddress, uint16_t chargePumpBurstRequest,
-                 uint8_t referenceSelect) {
+void CTSD16_init(uint16_t baseAddress,
+                 uint16_t chargePumpBurstRequest,
+                 uint8_t  referenceSelect) {
   // Reset all interrupts and flags
   HWREG16(baseAddress + OFS_CTSD16IE) &= 0x0000;  // Reset ALL interrupt enables
   HWREG16(baseAddress + OFS_CTSD16IFG) &= 0x0000;  // Reset ALL interrupt flags
@@ -65,8 +66,10 @@ void CTSD16_init(uint16_t baseAddress, uint16_t chargePumpBurstRequest,
   return;
 }
 
-void CTSD16_initConverter(uint16_t baseAddress, uint8_t converter,
-                          uint16_t conversionMode, uint8_t inputChannel) {
+void CTSD16_initConverter(uint16_t baseAddress,
+                          uint8_t  converter,
+                          uint16_t conversionMode,
+                          uint8_t  inputChannel) {
   uint16_t address;
   address = baseAddress + (OFS_CTSD16CCTL0 + (converter * 0x06));
 
@@ -84,7 +87,7 @@ void CTSD16_initConverter(uint16_t baseAddress, uint8_t converter,
 }
 
 void CTSD16_initConverterAdvanced(uint16_t baseAddress,
-                                  CTSD16_initConverterAdvancedParam *param) {
+                                  CTSD16_initConverterAdvancedParam* param) {
   uint16_t address;
 
   // Getting correct CTSD16CCTLx register
@@ -126,8 +129,9 @@ void CTSD16_stopConverterConversion(uint16_t baseAddress, uint8_t converter) {
   HWREG16(address) &= ~(CTSD16SC);
 }
 
-void CTSD16_setConverterDataFormat(uint16_t baseAddress, uint8_t converter,
-                                   uint8_t dataFormat) {
+void CTSD16_setConverterDataFormat(uint16_t baseAddress,
+                                   uint8_t  converter,
+                                   uint8_t  dataFormat) {
   uint16_t address;
 
   address = baseAddress + (OFS_CTSD16CCTL0 + (converter * 0x06));
@@ -138,8 +142,9 @@ void CTSD16_setConverterDataFormat(uint16_t baseAddress, uint8_t converter,
   HWREG8(address) |= dataFormat;
 }
 
-void CTSD16_setInputChannel(uint16_t baseAddress, uint8_t converter,
-                            uint8_t inputChannel) {
+void CTSD16_setInputChannel(uint16_t baseAddress,
+                            uint8_t  converter,
+                            uint8_t  inputChannel) {
   uint16_t address;
 
   address = baseAddress + (OFS_CTSD16INCTL0 + (converter * 0x06));
@@ -151,7 +156,8 @@ void CTSD16_setInputChannel(uint16_t baseAddress, uint8_t converter,
   HWREG16(address) |= inputChannel;
 }
 
-void CTSD16_setRailToRailInput(uint16_t baseAddress, uint8_t converter,
+void CTSD16_setRailToRailInput(uint16_t baseAddress,
+                               uint8_t  converter,
                                uint16_t railToRailInput) {
   uint16_t address;
 
@@ -163,7 +169,8 @@ void CTSD16_setRailToRailInput(uint16_t baseAddress, uint8_t converter,
   HWREG16(address) |= railToRailInput;
 }
 
-void CTSD16_setInterruptDelay(uint16_t baseAddress, uint8_t converter,
+void CTSD16_setInterruptDelay(uint16_t baseAddress,
+                              uint8_t  converter,
                               uint16_t interruptDelay) {
   uint16_t address;
 
@@ -175,7 +182,8 @@ void CTSD16_setInterruptDelay(uint16_t baseAddress, uint8_t converter,
   HWREG16(address) |= interruptDelay;
 }
 
-void CTSD16_setOversampling(uint16_t baseAddress, uint8_t converter,
+void CTSD16_setOversampling(uint16_t baseAddress,
+                            uint8_t  converter,
                             uint16_t oversampleRatio) {
   uint16_t address;
 
@@ -244,24 +252,28 @@ uint16_t CTSD16_isRailToRailInputReady(uint16_t baseAddress) {
   return (HWREG16(baseAddress + OFS_CTSD16CTL) & CTSD16RRIRDY);
 }
 
-void CTSD16_enableInterrupt(uint16_t baseAddress, uint8_t converter,
+void CTSD16_enableInterrupt(uint16_t baseAddress,
+                            uint8_t  converter,
                             uint16_t mask) {
   // Enable Interrupt
   HWREG16(baseAddress + OFS_CTSD16IE) |= (mask << converter);
 }
 
-void CTSD16_disableInterrupt(uint16_t baseAddress, uint8_t converter,
+void CTSD16_disableInterrupt(uint16_t baseAddress,
+                             uint8_t  converter,
                              uint16_t mask) {
   // Enable Interrupt
   HWREG16(baseAddress + OFS_CTSD16IE) &= ~(mask << converter);
 }
 
-void CTSD16_clearInterrupt(uint16_t baseAddress, uint8_t converter,
+void CTSD16_clearInterrupt(uint16_t baseAddress,
+                           uint8_t  converter,
                            uint16_t mask) {
   HWREG16(baseAddress + OFS_CTSD16IFG) &= ~(mask << converter);
 }
 
-uint16_t CTSD16_getInterruptStatus(uint16_t baseAddress, uint8_t converter,
+uint16_t CTSD16_getInterruptStatus(uint16_t baseAddress,
+                                   uint8_t  converter,
                                    uint16_t mask) {
   return (HWREG16(baseAddress + OFS_CTSD16IFG) & (mask << converter));
 }

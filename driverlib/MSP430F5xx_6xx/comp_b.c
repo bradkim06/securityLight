@@ -49,7 +49,7 @@
 
 #include "comp_b.h"
 
-bool Comp_B_init(uint16_t baseAddress, Comp_B_initParam *param) {
+bool Comp_B_init(uint16_t baseAddress, Comp_B_initParam* param) {
   bool retVal = STATUS_SUCCESS;
 
   // Reset COMPB Control 1 & Interrupt Registers for initialization (OFS_CBCTL3
@@ -100,7 +100,8 @@ bool Comp_B_init(uint16_t baseAddress, Comp_B_initParam *param) {
 }
 
 void Comp_B_configureReferenceVoltage(
-    uint16_t baseAddress, Comp_B_configureReferenceVoltageParam *param) {
+    uint16_t                               baseAddress,
+    Comp_B_configureReferenceVoltageParam* param) {
   HWREG16(baseAddress + OFS_CBCTL1) &= ~(CBMRVS);  // Set to VREF0
 
   // Reset COMPB Control 2 Bits (Except for CBRSEL which is set in Comp_Init() )

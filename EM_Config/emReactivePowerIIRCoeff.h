@@ -50,10 +50,10 @@
 #define _EMREACTIVEPOWERIIRCOEFF_H_
 // IIR G Constant Table
 // Samp. Freq=4096Hz, Min Freq=58Hz, Max Freq=62Hz, Resolution=0.04Hz
-#define IIR_COEFF_MIN_FREQ 5800
-#define IIR_COEFF_MAX_FREQ 6200
+#define IIR_COEFF_MIN_FREQ  5800
+#define IIR_COEFF_MAX_FREQ  6200
 #define IIR_COEFF_TABLE_LEN 101
-#define IIR_COEFF_SHIFT 2
+#define IIR_COEFF_SHIFT     2
 
 const _iq30 G_CONSTANT[IIR_COEFF_TABLE_LEN] = {
     0xC5747F1E, /* Freq 58.00 */

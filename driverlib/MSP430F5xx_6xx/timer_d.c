@@ -53,8 +53,8 @@ void Timer_D_startCounter(uint16_t baseAddress, uint16_t timerMode) {
   HWREG16(baseAddress + OFS_TDxCTL0) |= timerMode;
 }
 
-void Timer_D_initContinuousMode(uint16_t baseAddress,
-                                Timer_D_initContinuousModeParam *param) {
+void Timer_D_initContinuousMode(uint16_t                         baseAddress,
+                                Timer_D_initContinuousModeParam* param) {
   HWREG16(baseAddress + OFS_TDxCTL0) &=
       ~(TIMER_D_CLOCKSOURCE_INVERTED_EXTERNAL_TDCLK + TIMER_D_UPDOWN_MODE +
         TIMER_D_DO_CLEAR + TIMER_D_TDIE_INTERRUPT_ENABLE + ID__8);
@@ -69,7 +69,7 @@ void Timer_D_initContinuousMode(uint16_t baseAddress,
        ((param->clockSourceDivider >> 3) << 6));
 }
 
-void Timer_D_initUpMode(uint16_t baseAddress, Timer_D_initUpModeParam *param) {
+void Timer_D_initUpMode(uint16_t baseAddress, Timer_D_initUpModeParam* param) {
   HWREG16(baseAddress + OFS_TDxCTL0) &=
       ~(TIMER_D_CLOCKSOURCE_INVERTED_EXTERNAL_TDCLK + TIMER_D_UPDOWN_MODE +
         TIMER_D_DO_CLEAR + TIMER_D_TDIE_INTERRUPT_ENABLE + ID__8);
@@ -94,8 +94,8 @@ void Timer_D_initUpMode(uint16_t baseAddress, Timer_D_initUpModeParam *param) {
   HWREG16(baseAddress + OFS_TDxCCR0) = param->timerPeriod;
 }
 
-void Timer_D_initUpDownMode(uint16_t baseAddress,
-                            Timer_D_initUpDownModeParam *param) {
+void Timer_D_initUpDownMode(uint16_t                     baseAddress,
+                            Timer_D_initUpDownModeParam* param) {
   HWREG16(baseAddress + OFS_TDxCTL0) &=
       ~(TIMER_D_CLOCKSOURCE_INVERTED_EXTERNAL_TDCLK + TIMER_D_UPDOWN_MODE +
         TIMER_D_DO_CLEAR + TIMER_D_TDIE_INTERRUPT_ENABLE + ID__8);
@@ -120,8 +120,8 @@ void Timer_D_initUpDownMode(uint16_t baseAddress,
   HWREG16(baseAddress + OFS_TDxCCR0) = param->timerPeriod;
 }
 
-void Timer_D_initCaptureMode(uint16_t baseAddress,
-                             Timer_D_initCaptureModeParam *param) {
+void Timer_D_initCaptureMode(uint16_t                      baseAddress,
+                             Timer_D_initCaptureModeParam* param) {
   HWREG16(baseAddress + param->captureRegister) |= CAP;
 
   HWREG8(baseAddress + OFS_TDxCTL2) |=
@@ -139,8 +139,8 @@ void Timer_D_initCaptureMode(uint16_t baseAddress,
        param->captureOutputMode);
 }
 
-void Timer_D_initCompareMode(uint16_t baseAddress,
-                             Timer_D_initCompareModeParam *param) {
+void Timer_D_initCompareMode(uint16_t                      baseAddress,
+                             Timer_D_initCompareModeParam* param) {
   HWREG16(baseAddress + param->compareRegister) &= ~CAP;
 
   HWREG16(baseAddress + param->compareRegister) &=
@@ -186,7 +186,9 @@ void Timer_D_disableCaptureCompareInterrupt(uint16_t baseAddress,
 }
 
 uint32_t Timer_D_getCaptureCompareInterruptStatus(
-    uint16_t baseAddress, uint16_t captureCompareRegister, uint16_t mask) {
+    uint16_t baseAddress,
+    uint16_t captureCompareRegister,
+    uint16_t mask) {
   return (HWREG16(baseAddress + captureCompareRegister) & mask);
 }
 
@@ -206,7 +208,8 @@ void Timer_D_clearHighResInterrupt(uint16_t baseAddress, uint16_t mask) {
 }
 
 uint8_t Timer_D_getSynchronizedCaptureCompareInput(
-    uint16_t baseAddress, uint16_t captureCompareRegister,
+    uint16_t baseAddress,
+    uint16_t captureCompareRegister,
     uint16_t synchronized) {
   if (HWREG16(baseAddress + captureCompareRegister) & synchronized) {
     return (TIMER_D_CAPTURECOMPARE_INPUT_HIGH);
@@ -216,7 +219,8 @@ uint8_t Timer_D_getSynchronizedCaptureCompareInput(
 }
 
 uint8_t Timer_D_getOutputForOutputModeOutBitValue(
-    uint16_t baseAddress, uint16_t captureCompareRegister) {
+    uint16_t baseAddress,
+    uint16_t captureCompareRegister) {
   if (HWREG16(baseAddress + captureCompareRegister) & OUT) {
     return (TIMER_D_OUTPUTMODE_OUTBITVALUE_HIGH);
   } else {
@@ -241,12 +245,12 @@ uint8_t Timer_D_getCaptureCompareInputSignal(uint16_t baseAddress,
 
 void Timer_D_setOutputForOutputModeOutBitValue(uint16_t baseAddress,
                                                uint16_t captureCompareRegister,
-                                               uint8_t outputModeOutBitValue) {
+                                               uint8_t  outputModeOutBitValue) {
   HWREG16(baseAddress + captureCompareRegister) &= ~OUT;
   HWREG16(baseAddress + captureCompareRegister) |= outputModeOutBitValue;
 }
 
-void Timer_D_outputPWM(uint16_t baseAddress, Timer_D_outputPWMParam *param) {
+void Timer_D_outputPWM(uint16_t baseAddress, Timer_D_outputPWMParam* param) {
   HWREG16(baseAddress + OFS_TDxCTL1) &= ~(TDCLKM0 + TDCLKM1 + TDIDEX_7);
 
   HWREG16(baseAddress + OFS_TDxCTL0) &=
@@ -274,7 +278,8 @@ void Timer_D_stop(uint16_t baseAddress) {
   HWREG16(baseAddress + OFS_TDxCTL0) &= ~MC_3;
 }
 
-void Timer_D_setCompareValue(uint16_t baseAddress, uint16_t compareRegister,
+void Timer_D_setCompareValue(uint16_t baseAddress,
+                             uint16_t compareRegister,
                              uint16_t compareValue) {
   HWREG16(baseAddress + compareRegister + 0x02) = compareValue;
 }
@@ -289,12 +294,13 @@ void Timer_D_clearCaptureCompareInterrupt(uint16_t baseAddress,
 }
 
 uint8_t Timer_D_initHighResGeneratorInFreeRunningMode(
-    uint16_t baseAddress, uint8_t desiredHighResFrequency) {
-  struct s_TLV_Timer_D_Cal_Data *pTD0CAL;
-  uint8_t TD0CAL_bytes;
+    uint16_t baseAddress,
+    uint8_t  desiredHighResFrequency) {
+  struct s_TLV_Timer_D_Cal_Data* pTD0CAL;
+  uint8_t                        TD0CAL_bytes;
 
   // Read the TimerD TLV Data
-  TLV_getInfo(TLV_TAG_TIMER_D_CAL, 0, &TD0CAL_bytes, (uint16_t **)&pTD0CAL);
+  TLV_getInfo(TLV_TAG_TIMER_D_CAL, 0, &TD0CAL_bytes, (uint16_t**)&pTD0CAL);
 
   if (0x00 == TD0CAL_bytes) {
     // No TimerD free running cal data found
@@ -302,7 +308,7 @@ uint8_t Timer_D_initHighResGeneratorInFreeRunningMode(
   }
 
   HWREG16(baseAddress + OFS_TDxHCTL1) = TDHCLKTRIM6;
-  HWREG16(baseAddress + OFS_TDxCTL1) = 0x00;
+  HWREG16(baseAddress + OFS_TDxCTL1)  = 0x00;
   HWREG16(baseAddress + OFS_TDxHCTL0) = 0x00;
 
   switch (desiredHighResFrequency) {
@@ -337,8 +343,8 @@ uint8_t Timer_D_initHighResGeneratorInFreeRunningMode(
 }
 
 void Timer_D_initHighResGeneratorInRegulatedMode(
-    uint16_t baseAddress,
-    Timer_D_initHighResGeneratorInRegulatedModeParam *param) {
+    uint16_t                                          baseAddress,
+    Timer_D_initHighResGeneratorInRegulatedModeParam* param) {
   HWREG16(baseAddress + OFS_TDxCTL0) &= ~(TDSSEL_3 + TDHD_3 + TDCLR + ID__8);
   HWREG16(baseAddress + OFS_TDxCTL1) &= ~(TDCLKM0 + TDCLKM1 + TDIDEX_7);
 
@@ -357,7 +363,8 @@ void Timer_D_initHighResGeneratorInRegulatedMode(
 }
 
 void Timer_D_combineTDCCRToOutputPWM(
-    uint16_t baseAddress, Timer_D_combineTDCCRToOutputPWMParam *param) {
+    uint16_t                              baseAddress,
+    Timer_D_combineTDCCRToOutputPWMParam* param) {
   HWREG16(baseAddress + OFS_TDxCCTL2) &= ~OUTMOD_7;
   HWREG16(baseAddress + OFS_TDxCCTL2) |= param->compareOutputMode;
 
@@ -456,7 +463,8 @@ uint16_t Timer_D_getCounterValue(uint16_t baseAddress) {
   return (voteTwo);
 }
 
-void Timer_D_setOutputMode(uint16_t baseAddress, uint16_t compareRegister,
+void Timer_D_setOutputMode(uint16_t baseAddress,
+                           uint16_t compareRegister,
                            uint16_t compareOutputMode) {
   uint16_t temp = HWREG16(baseAddress + compareRegister);
   HWREG16(baseAddress + compareRegister) =

@@ -396,14 +396,14 @@ typedef struct Timer_A_initCompareModeParam {
 // Timer_A_initUpDownMode(), and Timer_A_outputPWM().
 //
 //*****************************************************************************
-#define TIMER_A_CLOCKSOURCE_DIVIDER_1 0x00
-#define TIMER_A_CLOCKSOURCE_DIVIDER_2 0x08
-#define TIMER_A_CLOCKSOURCE_DIVIDER_3 0x02
-#define TIMER_A_CLOCKSOURCE_DIVIDER_4 0x10
-#define TIMER_A_CLOCKSOURCE_DIVIDER_5 0x04
-#define TIMER_A_CLOCKSOURCE_DIVIDER_6 0x05
-#define TIMER_A_CLOCKSOURCE_DIVIDER_7 0x06
-#define TIMER_A_CLOCKSOURCE_DIVIDER_8 0x18
+#define TIMER_A_CLOCKSOURCE_DIVIDER_1  0x00
+#define TIMER_A_CLOCKSOURCE_DIVIDER_2  0x08
+#define TIMER_A_CLOCKSOURCE_DIVIDER_3  0x02
+#define TIMER_A_CLOCKSOURCE_DIVIDER_4  0x10
+#define TIMER_A_CLOCKSOURCE_DIVIDER_5  0x04
+#define TIMER_A_CLOCKSOURCE_DIVIDER_6  0x05
+#define TIMER_A_CLOCKSOURCE_DIVIDER_7  0x06
+#define TIMER_A_CLOCKSOURCE_DIVIDER_8  0x18
 #define TIMER_A_CLOCKSOURCE_DIVIDER_10 0x0C
 #define TIMER_A_CLOCKSOURCE_DIVIDER_12 0x0D
 #define TIMER_A_CLOCKSOURCE_DIVIDER_14 0x0E
@@ -423,10 +423,10 @@ typedef struct Timer_A_initCompareModeParam {
 // functions: Timer_A_startCounter().
 //
 //*****************************************************************************
-#define TIMER_A_STOP_MODE MC_0
-#define TIMER_A_UP_MODE MC_1
+#define TIMER_A_STOP_MODE       MC_0
+#define TIMER_A_UP_MODE         MC_1
 #define TIMER_A_CONTINUOUS_MODE MC_2
-#define TIMER_A_UPDOWN_MODE MC_3
+#define TIMER_A_UPDOWN_MODE     MC_3
 
 //*****************************************************************************
 //
@@ -435,7 +435,7 @@ typedef struct Timer_A_initCompareModeParam {
 // Timer_A_initUpDownMode().
 //
 //*****************************************************************************
-#define TIMER_A_DO_CLEAR TACLR
+#define TIMER_A_DO_CLEAR   TACLR
 #define TIMER_A_SKIP_CLEAR 0x00
 
 //*****************************************************************************
@@ -445,9 +445,9 @@ typedef struct Timer_A_initCompareModeParam {
 // Timer_A_initUpDownMode(), and Timer_A_outputPWM().
 //
 //*****************************************************************************
-#define TIMER_A_CLOCKSOURCE_EXTERNAL_TXCLK TASSEL__TACLK
-#define TIMER_A_CLOCKSOURCE_ACLK TASSEL__ACLK
-#define TIMER_A_CLOCKSOURCE_SMCLK TASSEL__SMCLK
+#define TIMER_A_CLOCKSOURCE_EXTERNAL_TXCLK          TASSEL__TACLK
+#define TIMER_A_CLOCKSOURCE_ACLK                    TASSEL__ACLK
+#define TIMER_A_CLOCKSOURCE_SMCLK                   TASSEL__SMCLK
 #define TIMER_A_CLOCKSOURCE_INVERTED_EXTERNAL_TXCLK TASSEL__INCLK
 
 //*****************************************************************************
@@ -457,7 +457,7 @@ typedef struct Timer_A_initCompareModeParam {
 // Timer_A_initUpDownMode().
 //
 //*****************************************************************************
-#define TIMER_A_TAIE_INTERRUPT_ENABLE TAIE
+#define TIMER_A_TAIE_INTERRUPT_ENABLE  TAIE
 #define TIMER_A_TAIE_INTERRUPT_DISABLE 0x00
 
 //*****************************************************************************
@@ -466,7 +466,7 @@ typedef struct Timer_A_initCompareModeParam {
 // functions: Timer_A_initUpMode(), and Timer_A_initUpDownMode().
 //
 //*****************************************************************************
-#define TIMER_A_CCIE_CCR0_INTERRUPT_ENABLE CCIE
+#define TIMER_A_CCIE_CCR0_INTERRUPT_ENABLE  CCIE
 #define TIMER_A_CCIE_CCR0_INTERRUPT_DISABLE 0x00
 
 //*****************************************************************************
@@ -476,7 +476,7 @@ typedef struct Timer_A_initCompareModeParam {
 //
 //*****************************************************************************
 #define TIMER_A_CAPTURECOMPARE_INTERRUPT_DISABLE 0x00
-#define TIMER_A_CAPTURECOMPARE_INTERRUPT_ENABLE CCIE
+#define TIMER_A_CAPTURECOMPARE_INTERRUPT_ENABLE  CCIE
 
 //*****************************************************************************
 //
@@ -486,8 +486,8 @@ typedef struct Timer_A_initCompareModeParam {
 //*****************************************************************************
 #define TIMER_A_CAPTURE_INPUTSELECT_CCIxA CCIS_0
 #define TIMER_A_CAPTURE_INPUTSELECT_CCIxB CCIS_1
-#define TIMER_A_CAPTURE_INPUTSELECT_GND CCIS_2
-#define TIMER_A_CAPTURE_INPUTSELECT_Vcc CCIS_3
+#define TIMER_A_CAPTURE_INPUTSELECT_GND   CCIS_2
+#define TIMER_A_CAPTURE_INPUTSELECT_Vcc   CCIS_3
 
 //*****************************************************************************
 //
@@ -497,14 +497,14 @@ typedef struct Timer_A_initCompareModeParam {
 // Timer_A_outputPWM().
 //
 //*****************************************************************************
-#define TIMER_A_OUTPUTMODE_OUTBITVALUE OUTMOD_0
-#define TIMER_A_OUTPUTMODE_SET OUTMOD_1
+#define TIMER_A_OUTPUTMODE_OUTBITVALUE  OUTMOD_0
+#define TIMER_A_OUTPUTMODE_SET          OUTMOD_1
 #define TIMER_A_OUTPUTMODE_TOGGLE_RESET OUTMOD_2
-#define TIMER_A_OUTPUTMODE_SET_RESET OUTMOD_3
-#define TIMER_A_OUTPUTMODE_TOGGLE OUTMOD_4
-#define TIMER_A_OUTPUTMODE_RESET OUTMOD_5
-#define TIMER_A_OUTPUTMODE_TOGGLE_SET OUTMOD_6
-#define TIMER_A_OUTPUTMODE_RESET_SET OUTMOD_7
+#define TIMER_A_OUTPUTMODE_SET_RESET    OUTMOD_3
+#define TIMER_A_OUTPUTMODE_TOGGLE       OUTMOD_4
+#define TIMER_A_OUTPUTMODE_RESET        OUTMOD_5
+#define TIMER_A_OUTPUTMODE_TOGGLE_SET   OUTMOD_6
+#define TIMER_A_OUTPUTMODE_RESET_SET    OUTMOD_7
 
 //*****************************************************************************
 //
@@ -537,9 +537,9 @@ typedef struct Timer_A_initCompareModeParam {
 // functions: Timer_A_initCaptureMode().
 //
 //*****************************************************************************
-#define TIMER_A_CAPTUREMODE_NO_CAPTURE CM_0
-#define TIMER_A_CAPTUREMODE_RISING_EDGE CM_1
-#define TIMER_A_CAPTUREMODE_FALLING_EDGE CM_2
+#define TIMER_A_CAPTUREMODE_NO_CAPTURE              CM_0
+#define TIMER_A_CAPTUREMODE_RISING_EDGE             CM_1
+#define TIMER_A_CAPTUREMODE_FALLING_EDGE            CM_2
 #define TIMER_A_CAPTUREMODE_RISING_AND_FALLING_EDGE CM_3
 
 //*****************************************************************************
@@ -549,7 +549,7 @@ typedef struct Timer_A_initCompareModeParam {
 //
 //*****************************************************************************
 #define TIMER_A_CAPTURE_ASYNCHRONOUS 0x00
-#define TIMER_A_CAPTURE_SYNCHRONOUS SCS
+#define TIMER_A_CAPTURE_SYNCHRONOUS  SCS
 
 //*****************************************************************************
 //
@@ -558,7 +558,7 @@ typedef struct Timer_A_initCompareModeParam {
 // the Timer_A_getCaptureCompareInterruptStatus() function.
 //
 //*****************************************************************************
-#define TIMER_A_CAPTURE_OVERFLOW COV
+#define TIMER_A_CAPTURE_OVERFLOW              COV
 #define TIMER_A_CAPTURECOMPARE_INTERRUPT_FLAG CCIFG
 
 //*****************************************************************************
@@ -568,7 +568,7 @@ typedef struct Timer_A_initCompareModeParam {
 //
 //*****************************************************************************
 #define TIMER_A_READ_SYNCHRONIZED_CAPTURECOMPAREINPUT SCCI
-#define TIMER_A_READ_CAPTURE_COMPARE_INPUT CCI
+#define TIMER_A_READ_CAPTURE_COMPARE_INPUT            CCI
 
 //*****************************************************************************
 //
@@ -578,7 +578,7 @@ typedef struct Timer_A_initCompareModeParam {
 //
 //*****************************************************************************
 #define TIMER_A_CAPTURECOMPARE_INPUT_HIGH 0x01
-#define TIMER_A_CAPTURECOMPARE_INPUT_LOW 0x00
+#define TIMER_A_CAPTURECOMPARE_INPUT_LOW  0x00
 
 //*****************************************************************************
 //
@@ -588,7 +588,7 @@ typedef struct Timer_A_initCompareModeParam {
 //
 //*****************************************************************************
 #define TIMER_A_OUTPUTMODE_OUTBITVALUE_HIGH OUT
-#define TIMER_A_OUTPUTMODE_OUTBITVALUE_LOW 0x00
+#define TIMER_A_OUTPUTMODE_OUTBITVALUE_LOW  0x00
 
 //*****************************************************************************
 //
@@ -597,7 +597,7 @@ typedef struct Timer_A_initCompareModeParam {
 //
 //*****************************************************************************
 #define TIMER_A_INTERRUPT_NOT_PENDING 0x00
-#define TIMER_A_INTERRUPT_PENDING 0x01
+#define TIMER_A_INTERRUPT_PENDING     0x01
 
 //*****************************************************************************
 //
@@ -640,7 +640,7 @@ extern void Timer_A_startCounter(uint16_t baseAddress, uint16_t timerMode);
 //
 //*****************************************************************************
 extern void Timer_A_initContinuousMode(uint16_t baseAddress,
-                                       Timer_A_initContinuousModeParam *param);
+                                       Timer_A_initContinuousModeParam* param);
 
 //*****************************************************************************
 //
@@ -655,8 +655,8 @@ extern void Timer_A_initContinuousMode(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_A_initUpMode(uint16_t baseAddress,
-                               Timer_A_initUpModeParam *param);
+extern void Timer_A_initUpMode(uint16_t                 baseAddress,
+                               Timer_A_initUpModeParam* param);
 
 //*****************************************************************************
 //
@@ -671,8 +671,8 @@ extern void Timer_A_initUpMode(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_A_initUpDownMode(uint16_t baseAddress,
-                                   Timer_A_initUpDownModeParam *param);
+extern void Timer_A_initUpDownMode(uint16_t                     baseAddress,
+                                   Timer_A_initUpDownModeParam* param);
 
 //*****************************************************************************
 //
@@ -686,8 +686,8 @@ extern void Timer_A_initUpDownMode(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_A_initCaptureMode(uint16_t baseAddress,
-                                    Timer_A_initCaptureModeParam *param);
+extern void Timer_A_initCaptureMode(uint16_t                      baseAddress,
+                                    Timer_A_initCaptureModeParam* param);
 
 //*****************************************************************************
 //
@@ -701,8 +701,8 @@ extern void Timer_A_initCaptureMode(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_A_initCompareMode(uint16_t baseAddress,
-                                    Timer_A_initCompareModeParam *param);
+extern void Timer_A_initCompareMode(uint16_t                      baseAddress,
+                                    Timer_A_initCompareModeParam* param);
 
 //*****************************************************************************
 //
@@ -769,7 +769,8 @@ extern uint32_t Timer_A_getInterruptStatus(uint16_t baseAddress);
 //
 //*****************************************************************************
 extern void Timer_A_enableCaptureCompareInterrupt(
-    uint16_t baseAddress, uint16_t captureCompareRegister);
+    uint16_t baseAddress,
+    uint16_t captureCompareRegister);
 
 //*****************************************************************************
 //
@@ -792,7 +793,8 @@ extern void Timer_A_enableCaptureCompareInterrupt(
 //
 //*****************************************************************************
 extern void Timer_A_disableCaptureCompareInterrupt(
-    uint16_t baseAddress, uint16_t captureCompareRegister);
+    uint16_t baseAddress,
+    uint16_t captureCompareRegister);
 
 //*****************************************************************************
 //
@@ -820,7 +822,9 @@ extern void Timer_A_disableCaptureCompareInterrupt(
 //
 //*****************************************************************************
 extern uint32_t Timer_A_getCaptureCompareInterruptStatus(
-    uint16_t baseAddress, uint16_t captureCompareRegister, uint16_t mask);
+    uint16_t baseAddress,
+    uint16_t captureCompareRegister,
+    uint16_t mask);
 
 //*****************************************************************************
 //
@@ -860,7 +864,8 @@ extern void Timer_A_clear(uint16_t baseAddress);
 //
 //*****************************************************************************
 extern uint8_t Timer_A_getSynchronizedCaptureCompareInput(
-    uint16_t baseAddress, uint16_t captureCompareRegister,
+    uint16_t baseAddress,
+    uint16_t captureCompareRegister,
     uint16_t synchronized);
 
 //*****************************************************************************
@@ -884,7 +889,8 @@ extern uint8_t Timer_A_getSynchronizedCaptureCompareInput(
 //
 //*****************************************************************************
 extern uint8_t Timer_A_getOutputForOutputModeOutBitValue(
-    uint16_t baseAddress, uint16_t captureCompareRegister);
+    uint16_t baseAddress,
+    uint16_t captureCompareRegister);
 
 //*****************************************************************************
 //
@@ -932,8 +938,9 @@ extern uint16_t Timer_A_getCaptureCompareCount(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void Timer_A_setOutputForOutputModeOutBitValue(
-    uint16_t baseAddress, uint16_t captureCompareRegister,
-    uint8_t outputModeOutBitValue);
+    uint16_t baseAddress,
+    uint16_t captureCompareRegister,
+    uint8_t  outputModeOutBitValue);
 
 //*****************************************************************************
 //
@@ -948,8 +955,8 @@ extern void Timer_A_setOutputForOutputModeOutBitValue(
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_A_outputPWM(uint16_t baseAddress,
-                              Timer_A_outputPWMParam *param);
+extern void Timer_A_outputPWM(uint16_t                baseAddress,
+                              Timer_A_outputPWMParam* param);
 
 //*****************************************************************************
 //
@@ -1062,7 +1069,8 @@ extern void Timer_A_clearTimerInterrupt(uint16_t baseAddress);
 //
 //*****************************************************************************
 extern void Timer_A_clearCaptureCompareInterrupt(
-    uint16_t baseAddress, uint16_t captureCompareRegister);
+    uint16_t baseAddress,
+    uint16_t captureCompareRegister);
 
 //*****************************************************************************
 //

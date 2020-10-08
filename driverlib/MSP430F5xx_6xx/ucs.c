@@ -104,9 +104,9 @@ static uint32_t privateUCSSourceClockFromDCO(uint16_t FLLRefCLKSource) {
   uint16_t N_value;
   uint16_t n_value = 1;
   uint32_t Fref_value;
-  uint8_t i;
+  uint8_t  i;
 
-  N_value = (HWREG16(UCS_BASE + OFS_UCSCTL2)) & 0x03FF;
+  N_value              = (HWREG16(UCS_BASE + OFS_UCSCTL2)) & 0x03FF;
   uint16_t tempDivider = HWREG8(UCS_BASE + OFS_UCSCTL3) & FLLREFDIV_7;
 
   if (tempDivider < 4) {
@@ -144,9 +144,7 @@ static uint32_t privateUCSSourceClockFromDCO(uint16_t FLLRefCLKSource) {
       }
 
       break;
-    case SELREF__REFOCLK:
-      Fref_value = UCS_REFOCLK_FREQUENCY;
-      break;
+    case SELREF__REFOCLK: Fref_value = UCS_REFOCLK_FREQUENCY; break;
     case SELREF__XT2CLK:
       Fref_value = privateXT2ClockFrequency;
 
@@ -162,8 +160,7 @@ static uint32_t privateUCSSourceClockFromDCO(uint16_t FLLRefCLKSource) {
       }
 
       break;
-    default:
-      assert(0);
+    default: assert(0);
   }
 
   uint32_t CLKFrequency = Fref_value * (N_value + 1) / n_value;
@@ -184,8 +181,8 @@ static uint32_t privateUCSSourceClockFromDCO(uint16_t FLLRefCLKSource) {
 static uint32_t privateUCSComputeCLKFrequency(uint16_t CLKSource,
                                               uint16_t CLKSourceDivider) {
   uint32_t CLKFrequency;
-  uint8_t CLKSourceFrequencyDivider = 1;
-  uint8_t i = 0;
+  uint8_t  CLKSourceFrequencyDivider = 1;
+  uint8_t  i                         = 0;
 
   for (i = 0; i < CLKSourceDivider; i++) {
     CLKSourceFrequencyDivider *= 2;
@@ -253,7 +250,8 @@ void UCS_setExternalClockSource(uint32_t XT1CLK_frequency,
   privateXT2ClockFrequency = XT2CLK_frequency;
 }
 
-void UCS_initClockSignal(uint8_t selectedClockSignal, uint16_t clockSource,
+void UCS_initClockSignal(uint8_t  selectedClockSignal,
+                         uint16_t clockSource,
                          uint16_t clockSourceDivider) {
   assert((UCS_XT1CLK_SELECT == clockSource) ||
          (UCS_VLOCLK_SELECT == clockSource) ||
@@ -276,7 +274,7 @@ void UCS_initClockSignal(uint8_t selectedClockSignal, uint16_t clockSource,
       clockSource = clockSource << 8;
       HWREG16(UCS_BASE + OFS_UCSCTL4) |= (clockSource);
 
-      clockSourceDivider = clockSourceDivider << 8;
+      clockSourceDivider              = clockSourceDivider << 8;
       HWREG16(UCS_BASE + OFS_UCSCTL5) = temp & ~(DIVA_7) | clockSourceDivider;
       break;
     case UCS_SMCLK:
@@ -284,7 +282,7 @@ void UCS_initClockSignal(uint8_t selectedClockSignal, uint16_t clockSource,
       clockSource = clockSource << 4;
       HWREG16(UCS_BASE + OFS_UCSCTL4) |= (clockSource);
 
-      clockSourceDivider = clockSourceDivider << 4;
+      clockSourceDivider              = clockSourceDivider << 4;
       HWREG16(UCS_BASE + OFS_UCSCTL5) = temp & ~(DIVS_7) | clockSourceDivider;
       break;
     case UCS_MCLK:
@@ -414,7 +412,8 @@ void UCS_bypassXT1(uint8_t highOrLowFrequency) {
   }
 }
 
-bool UCS_turnOnLFXT1WithTimeout(uint16_t xt1drive, uint8_t xcap,
+bool UCS_turnOnLFXT1WithTimeout(uint16_t xt1drive,
+                                uint8_t  xcap,
                                 uint16_t timeout) {
   assert((xcap == UCS_XCAP_0) || (xcap == UCS_XCAP_1) || (xcap == UCS_XCAP_2) ||
          (xcap == UCS_XCAP_3));
@@ -787,9 +786,13 @@ void UCS_clearFaultFlag(uint8_t mask) {
   HWREG8(UCS_BASE + OFS_UCSCTL7) &= ~mask;
 }
 
-void UCS_turnOffSMCLK(void) { HWREG16(UCS_BASE + OFS_UCSCTL6) |= SMCLKOFF; }
+void UCS_turnOffSMCLK(void) {
+  HWREG16(UCS_BASE + OFS_UCSCTL6) |= SMCLKOFF;
+}
 
-void UCS_turnOnSMCLK(void) { HWREG16(UCS_BASE + OFS_UCSCTL6) &= ~SMCLKOFF; }
+void UCS_turnOnSMCLK(void) {
+  HWREG16(UCS_BASE + OFS_UCSCTL6) &= ~SMCLKOFF;
+}
 
 uint32_t UCS_getACLK(void) {
   // Find ACLK source
@@ -798,7 +801,7 @@ uint32_t UCS_getACLK(void) {
   ACLKSource = ACLKSource >> 8;
 
   uint16_t ACLKSourceDivider = HWREG16(UCS_BASE + OFS_UCSCTL5) & DIVA_7;
-  ACLKSourceDivider = ACLKSourceDivider >> 8;
+  ACLKSourceDivider          = ACLKSourceDivider >> 8;
 
   return (privateUCSComputeCLKFrequency(ACLKSource, ACLKSourceDivider));
 }
@@ -809,7 +812,7 @@ uint32_t UCS_getSMCLK(void) {
   SMCLKSource = SMCLKSource >> 4;
 
   uint16_t SMCLKSourceDivider = HWREG16(UCS_BASE + OFS_UCSCTL5) & DIVS_7;
-  SMCLKSourceDivider = SMCLKSourceDivider >> 4;
+  SMCLKSourceDivider          = SMCLKSourceDivider >> 4;
 
   return (privateUCSComputeCLKFrequency(SMCLKSource, SMCLKSourceDivider));
 }

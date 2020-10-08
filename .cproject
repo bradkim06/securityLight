@@ -44,14 +44,14 @@
 								<option id="com.ti.ccstudio.buildDefinitions.MSP430_18.12.compilerID.OPT_LEVEL.1259863583" name="Optimization level (--opt_level, -O)" superClass="com.ti.ccstudio.buildDefinitions.MSP430_18.12.compilerID.OPT_LEVEL" value="com.ti.ccstudio.buildDefinitions.MSP430_18.12.compilerID.OPT_LEVEL.4" valueType="enumerated"/>
 								<option id="com.ti.ccstudio.buildDefinitions.MSP430_18.12.compilerID.OPT_FOR_SPEED.1565563813" name="Speed vs. size trade-offs (--opt_for_speed, -mf)" superClass="com.ti.ccstudio.buildDefinitions.MSP430_18.12.compilerID.OPT_FOR_SPEED" value="com.ti.ccstudio.buildDefinitions.MSP430_18.12.compilerID.OPT_FOR_SPEED.5" valueType="enumerated"/>
 								<option id="com.ti.ccstudio.buildDefinitions.MSP430_18.12.compilerID.INCLUDE_PATH.830146123" name="Add dir to #include search path (--include_path, -I)" superClass="com.ti.ccstudio.buildDefinitions.MSP430_18.12.compilerID.INCLUDE_PATH" valueType="includePath">
+									<listOptionValue builtIn="false" value="${PROJECT_ROOT}/driverlib/MSP430F5xx_6xx/inc"/>
+									<listOptionValue builtIn="false" value="${PROJECT_ROOT}/App/comm"/>
 									<listOptionValue builtIn="false" value="${CCS_BASE_ROOT}/msp430/include"/>
 									<listOptionValue builtIn="false" value="${PROJECT_ROOT}"/>
-									<listOptionValue builtIn="false" value="${PROJECT_ROOT}/driverlib"/>
 									<listOptionValue builtIn="false" value="${PROJECT_ROOT}/include"/>
 									<listOptionValue builtIn="false" value="${PROJECT_ROOT}/driverlib/MSP430F5xx_6xx"/>
 									<listOptionValue builtIn="false" value="${PROJECT_ROOT}/emSWLib"/>
 									<listOptionValue builtIn="false" value="${PROJECT_ROOT}/EM_Config"/>
-									<listOptionValue builtIn="false" value="${PROJECT_ROOT}/hal"/>
 									<listOptionValue builtIn="false" value="${PROJECT_ROOT}/hal/MSP430F5xx_6xx"/>
 									<listOptionValue builtIn="false" value="C:/ti/msp/EnergyMeasurementDesignCenter_1.40.00.03/EnergyMeasurementDesignCenter/example_projects/EnergyMeasurementDesignCenterWorkspace/EVM430-F6736_CT_1V_1C_60Hz/src/lib/EM/include"/>
 									<listOptionValue builtIn="false" value="C:/ti/msp/EnergyMeasurementDesignCenter_1.40.00.03/EnergyMeasurementDesignCenter/example_projects/EnergyMeasurementDesignCenterWorkspace/EVM430-F6736_CT_1V_1C_60Hz/src/lib/mathlib/include"/>

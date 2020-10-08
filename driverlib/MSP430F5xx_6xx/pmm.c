@@ -171,7 +171,7 @@ void PMM_disableSvmHInterrupt(void) {
 
 void PMM_clearPMMIFGS(void) {
   HWREG8(PMM_BASE + OFS_PMMCTL0_H) = 0xA5;
-  HWREG16(PMM_BASE + OFS_PMMIFG) = 0;
+  HWREG16(PMM_BASE + OFS_PMMIFG)   = 0;
   HWREG8(PMM_BASE + OFS_PMMCTL0_H) = 0x00;
 }
 
@@ -455,7 +455,7 @@ uint16_t PMM_setVCoreDown(uint8_t level) {
 
 bool PMM_setVCore(uint8_t level) {
   uint8_t actlevel;
-  bool status = STATUS_SUCCESS;
+  bool    status = STATUS_SUCCESS;
 
   // Set Mask for Max. level
   level &= PMMCOREV_3;

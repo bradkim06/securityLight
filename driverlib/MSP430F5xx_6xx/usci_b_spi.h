@@ -127,7 +127,7 @@ typedef struct USCI_B_SPI_changeMasterClockParam {
 //
 //*****************************************************************************
 #define USCI_B_SPI_CLOCKPOLARITY_INACTIVITY_HIGH UCCKPL
-#define USCI_B_SPI_CLOCKPOLARITY_INACTIVITY_LOW 0x00
+#define USCI_B_SPI_CLOCKPOLARITY_INACTIVITY_LOW  0x00
 
 //*****************************************************************************
 //
@@ -135,7 +135,7 @@ typedef struct USCI_B_SPI_changeMasterClockParam {
 // functions: USCI_B_SPI_initMaster().
 //
 //*****************************************************************************
-#define USCI_B_SPI_CLOCKSOURCE_ACLK UCSSEL__ACLK
+#define USCI_B_SPI_CLOCKSOURCE_ACLK  UCSSEL__ACLK
 #define USCI_B_SPI_CLOCKSOURCE_SMCLK UCSSEL__SMCLK
 
 //*****************************************************************************
@@ -147,7 +147,7 @@ typedef struct USCI_B_SPI_changeMasterClockParam {
 //
 //*****************************************************************************
 #define USCI_B_SPI_TRANSMIT_INTERRUPT UCTXIE
-#define USCI_B_SPI_RECEIVE_INTERRUPT UCRXIE
+#define USCI_B_SPI_RECEIVE_INTERRUPT  UCRXIE
 
 //*****************************************************************************
 //
@@ -155,7 +155,7 @@ typedef struct USCI_B_SPI_changeMasterClockParam {
 // can be returned by the USCI_B_SPI_isBusy() function.
 //
 //*****************************************************************************
-#define USCI_B_SPI_BUSY UCBUSY
+#define USCI_B_SPI_BUSY     UCBUSY
 #define USCI_B_SPI_NOT_BUSY 0x00
 
 //*****************************************************************************
@@ -181,8 +181,8 @@ typedef struct USCI_B_SPI_changeMasterClockParam {
 //! \return STATUS_SUCCESS
 //
 //*****************************************************************************
-extern bool USCI_B_SPI_initMaster(uint16_t baseAddress,
-                                  USCI_B_SPI_initMasterParam *param);
+extern bool USCI_B_SPI_initMaster(uint16_t                    baseAddress,
+                                  USCI_B_SPI_initMasterParam* param);
 
 //*****************************************************************************
 //
@@ -198,7 +198,8 @@ extern bool USCI_B_SPI_initMaster(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void USCI_B_SPI_changeMasterClock(
-    uint16_t baseAddress, USCI_B_SPI_changeMasterClockParam *param);
+    uint16_t                           baseAddress,
+    USCI_B_SPI_changeMasterClockParam* param);
 
 //*****************************************************************************
 //
@@ -231,8 +232,10 @@ extern void USCI_B_SPI_changeMasterClock(
 //! \return STATUS_SUCCESS
 //
 //*****************************************************************************
-extern bool USCI_B_SPI_initSlave(uint16_t baseAddress, uint8_t msbFirst,
-                                 uint8_t clockPhase, uint8_t clockPolarity);
+extern bool USCI_B_SPI_initSlave(uint16_t baseAddress,
+                                 uint8_t  msbFirst,
+                                 uint8_t  clockPhase,
+                                 uint8_t  clockPolarity);
 
 //*****************************************************************************
 //
@@ -256,8 +259,8 @@ extern bool USCI_B_SPI_initSlave(uint16_t baseAddress, uint8_t msbFirst,
 //
 //*****************************************************************************
 extern void USCI_B_SPI_changeClockPhasePolarity(uint16_t baseAddress,
-                                                uint8_t clockPhase,
-                                                uint8_t clockPolarity);
+                                                uint8_t  clockPhase,
+                                                uint8_t  clockPolarity);
 
 //*****************************************************************************
 //
@@ -351,7 +354,7 @@ extern void USCI_B_SPI_disableInterrupt(uint16_t baseAddress, uint8_t mask);
 //
 //*****************************************************************************
 extern uint8_t USCI_B_SPI_getInterruptStatus(uint16_t baseAddress,
-                                             uint8_t mask);
+                                             uint8_t  mask);
 
 //*****************************************************************************
 //

@@ -149,16 +149,16 @@ typedef struct DMA_initParam {
 // DMA_init().
 //
 //*****************************************************************************
-#define DMA_TRIGGERSOURCE_0 (0x00)
-#define DMA_TRIGGERSOURCE_1 (0x01)
-#define DMA_TRIGGERSOURCE_2 (0x02)
-#define DMA_TRIGGERSOURCE_3 (0x03)
-#define DMA_TRIGGERSOURCE_4 (0x04)
-#define DMA_TRIGGERSOURCE_5 (0x05)
-#define DMA_TRIGGERSOURCE_6 (0x06)
-#define DMA_TRIGGERSOURCE_7 (0x07)
-#define DMA_TRIGGERSOURCE_8 (0x08)
-#define DMA_TRIGGERSOURCE_9 (0x09)
+#define DMA_TRIGGERSOURCE_0  (0x00)
+#define DMA_TRIGGERSOURCE_1  (0x01)
+#define DMA_TRIGGERSOURCE_2  (0x02)
+#define DMA_TRIGGERSOURCE_3  (0x03)
+#define DMA_TRIGGERSOURCE_4  (0x04)
+#define DMA_TRIGGERSOURCE_5  (0x05)
+#define DMA_TRIGGERSOURCE_6  (0x06)
+#define DMA_TRIGGERSOURCE_7  (0x07)
+#define DMA_TRIGGERSOURCE_8  (0x08)
+#define DMA_TRIGGERSOURCE_9  (0x09)
 #define DMA_TRIGGERSOURCE_10 (0x0A)
 #define DMA_TRIGGERSOURCE_11 (0x0B)
 #define DMA_TRIGGERSOURCE_12 (0x0C)
@@ -189,11 +189,11 @@ typedef struct DMA_initParam {
 // DMA_init().
 //
 //*****************************************************************************
-#define DMA_TRANSFER_SINGLE (DMADT_0)
-#define DMA_TRANSFER_BLOCK (DMADT_1)
-#define DMA_TRANSFER_BURSTBLOCK (DMADT_2)
-#define DMA_TRANSFER_REPEATED_SINGLE (DMADT_4)
-#define DMA_TRANSFER_REPEATED_BLOCK (DMADT_5)
+#define DMA_TRANSFER_SINGLE              (DMADT_0)
+#define DMA_TRANSFER_BLOCK               (DMADT_1)
+#define DMA_TRANSFER_BURSTBLOCK          (DMADT_2)
+#define DMA_TRANSFER_REPEATED_SINGLE     (DMADT_4)
+#define DMA_TRANSFER_REPEATED_BLOCK      (DMADT_5)
 #define DMA_TRANSFER_REPEATED_BURSTBLOCK (DMADT_6)
 
 //*****************************************************************************
@@ -224,7 +224,7 @@ typedef struct DMA_initParam {
 //
 //*****************************************************************************
 #define DMA_TRIGGER_RISINGEDGE (!(DMALEVEL))
-#define DMA_TRIGGER_HIGH (DMALEVEL)
+#define DMA_TRIGGER_HIGH       (DMALEVEL)
 
 //*****************************************************************************
 //
@@ -255,7 +255,7 @@ typedef struct DMA_initParam {
 //
 //*****************************************************************************
 #define DMA_INT_INACTIVE (0x0)
-#define DMA_INT_ACTIVE (DMAIFG)
+#define DMA_INT_ACTIVE   (DMAIFG)
 
 //*****************************************************************************
 //
@@ -264,7 +264,7 @@ typedef struct DMA_initParam {
 //
 //*****************************************************************************
 #define DMA_NOTABORTED (0x0)
-#define DMA_ABORTED (DMAABORT)
+#define DMA_ABORTED    (DMAABORT)
 
 //*****************************************************************************
 //
@@ -290,7 +290,7 @@ typedef struct DMA_initParam {
 //! \return STATUS_SUCCESS or STATUS_FAILURE of the initialization process.
 //
 //*****************************************************************************
-extern void DMA_init(DMA_initParam *param);
+extern void DMA_init(DMA_initParam* param);
 
 //*****************************************************************************
 //
@@ -379,7 +379,8 @@ extern uint16_t DMA_getTransferSize(uint8_t channelSelect);
 //! \return None
 //
 //*****************************************************************************
-extern void DMA_setSrcAddress(uint8_t channelSelect, uint32_t srcAddress,
+extern void DMA_setSrcAddress(uint8_t  channelSelect,
+                              uint32_t srcAddress,
                               uint16_t directionSelect);
 
 //*****************************************************************************
@@ -415,7 +416,8 @@ extern void DMA_setSrcAddress(uint8_t channelSelect, uint32_t srcAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void DMA_setDstAddress(uint8_t channelSelect, uint32_t dstAddress,
+extern void DMA_setDstAddress(uint8_t  channelSelect,
+                              uint32_t dstAddress,
                               uint16_t directionSelect);
 
 //*****************************************************************************

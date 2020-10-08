@@ -129,7 +129,7 @@ extern const LCD_B_initParam LCD_B_INIT_PARAM;
 // functions: LCD_B_init().
 //
 //*****************************************************************************
-#define LCD_B_CLOCKSOURCE_ACLK (0x0)
+#define LCD_B_CLOCKSOURCE_ACLK   (0x0)
 #define LCD_B_CLOCKSOURCE_VLOCLK (LCDSSEL)
 
 //*****************************************************************************
@@ -138,15 +138,15 @@ extern const LCD_B_initParam LCD_B_INIT_PARAM;
 // functions: LCD_B_init().
 //
 //*****************************************************************************
-#define LCD_B_CLOCKDIVIDER_1 (LCDDIV_0)
-#define LCD_B_CLOCKDIVIDER_2 (LCDDIV_1)
-#define LCD_B_CLOCKDIVIDER_3 (LCDDIV_2)
-#define LCD_B_CLOCKDIVIDER_4 (LCDDIV_3)
-#define LCD_B_CLOCKDIVIDER_5 (LCDDIV_4)
-#define LCD_B_CLOCKDIVIDER_6 (LCDDIV_5)
-#define LCD_B_CLOCKDIVIDER_7 (LCDDIV_6)
-#define LCD_B_CLOCKDIVIDER_8 (LCDDIV_7)
-#define LCD_B_CLOCKDIVIDER_9 (LCDDIV_8)
+#define LCD_B_CLOCKDIVIDER_1  (LCDDIV_0)
+#define LCD_B_CLOCKDIVIDER_2  (LCDDIV_1)
+#define LCD_B_CLOCKDIVIDER_3  (LCDDIV_2)
+#define LCD_B_CLOCKDIVIDER_4  (LCDDIV_3)
+#define LCD_B_CLOCKDIVIDER_5  (LCDDIV_4)
+#define LCD_B_CLOCKDIVIDER_6  (LCDDIV_5)
+#define LCD_B_CLOCKDIVIDER_7  (LCDDIV_6)
+#define LCD_B_CLOCKDIVIDER_8  (LCDDIV_7)
+#define LCD_B_CLOCKDIVIDER_9  (LCDDIV_8)
 #define LCD_B_CLOCKDIVIDER_10 (LCDDIV_9)
 #define LCD_B_CLOCKDIVIDER_11 (LCDDIV_10)
 #define LCD_B_CLOCKDIVIDER_12 (LCDDIV_11)
@@ -177,10 +177,10 @@ extern const LCD_B_initParam LCD_B_INIT_PARAM;
 // functions: LCD_B_init().
 //
 //*****************************************************************************
-#define LCD_B_CLOCKPRESCALAR_1 (LCDPRE_0)
-#define LCD_B_CLOCKPRESCALAR_2 (LCDPRE_1)
-#define LCD_B_CLOCKPRESCALAR_4 (LCDPRE_2)
-#define LCD_B_CLOCKPRESCALAR_8 (LCDPRE_3)
+#define LCD_B_CLOCKPRESCALAR_1  (LCDPRE_0)
+#define LCD_B_CLOCKPRESCALAR_2  (LCDPRE_1)
+#define LCD_B_CLOCKPRESCALAR_4  (LCDPRE_2)
+#define LCD_B_CLOCKPRESCALAR_8  (LCDPRE_3)
 #define LCD_B_CLOCKPRESCALAR_16 (LCDPRE_4)
 #define LCD_B_CLOCKPRESCALAR_32 (LCDPRE_5)
 
@@ -191,9 +191,9 @@ extern const LCD_B_initParam LCD_B_INIT_PARAM;
 //
 //*****************************************************************************
 #define LCD_B_STATIC (0x0)
-#define LCD_B_2_MUX (LCDMX0)
-#define LCD_B_3_MUX (LCDMX1)
-#define LCD_B_4_MUX (LCDMX1 | LCDMX0)
+#define LCD_B_2_MUX  (LCDMX0)
+#define LCD_B_3_MUX  (LCDMX1)
+#define LCD_B_4_MUX  (LCDMX1 | LCDMX0)
 
 //*****************************************************************************
 //
@@ -202,7 +202,7 @@ extern const LCD_B_initParam LCD_B_INIT_PARAM;
 //
 //*****************************************************************************
 #define LCD_B_SEGMENTS_DISABLED (0x0)
-#define LCD_B_SEGMENTS_ENABLED (LCDSON)
+#define LCD_B_SEGMENTS_ENABLED  (LCDSON)
 
 //*****************************************************************************
 //
@@ -213,9 +213,9 @@ extern const LCD_B_initParam LCD_B_INIT_PARAM;
 //
 //*****************************************************************************
 #define LCD_B_NO_CAPACITANCE_CONNECTED_INTERRUPT (LCDNOCAPIE)
-#define LCD_B_BLINKING_SEGMENTS_ON_INTERRUPT (LCDBLKONIE)
-#define LCD_B_BLINKING_SEGMENTS_OFF_INTERRUPT (LCDBLKOFFIE)
-#define LCD_B_FRAME_INTERRUPT (LCDFRMIE)
+#define LCD_B_BLINKING_SEGMENTS_ON_INTERRUPT     (LCDBLKONIE)
+#define LCD_B_BLINKING_SEGMENTS_OFF_INTERRUPT    (LCDBLKOFFIE)
+#define LCD_B_FRAME_INTERRUPT                    (LCDFRMIE)
 
 //*****************************************************************************
 //
@@ -223,7 +223,7 @@ extern const LCD_B_initParam LCD_B_INIT_PARAM;
 // for functions: LCD_B_selectDisplayMemory().
 //
 //*****************************************************************************
-#define LCD_B_DISPLAYSOURCE_MEMORY (0x0)
+#define LCD_B_DISPLAYSOURCE_MEMORY         (0x0)
 #define LCD_B_DISPLAYSOURCE_BLINKINGMEMORY (LCDDISP)
 
 //*****************************************************************************
@@ -247,7 +247,7 @@ extern const LCD_B_initParam LCD_B_INIT_PARAM;
 // for functions: LCD_B_setBlinkingControl().
 //
 //*****************************************************************************
-#define LCD_B_BLINK_FREQ_CLOCK_PRESCALAR_512 (0x0)
+#define LCD_B_BLINK_FREQ_CLOCK_PRESCALAR_512  (0x0)
 #define LCD_B_BLINK_FREQ_CLOCK_PRESCALAR_1024 (LCDBLKPRE0)
 #define LCD_B_BLINK_FREQ_CLOCK_PRESCALAR_2048 (LCDBLKPRE1)
 #define LCD_B_BLINK_FREQ_CLOCK_PRESCALAR_4096 (LCDBLKPRE1 | LCDBLKPRE0)
@@ -263,9 +263,9 @@ extern const LCD_B_initParam LCD_B_INIT_PARAM;
 // for functions: LCD_B_setBlinkingControl().
 //
 //*****************************************************************************
-#define LCD_B_BLINK_MODE_DISABLED (LCDBLKMOD_0)
-#define LCD_B_BLINK_MODE_INDIVIDUAL_SEGMENTS (LCDBLKMOD_1)
-#define LCD_B_BLINK_MODE_ALL_SEGMENTS (LCDBLKMOD_2)
+#define LCD_B_BLINK_MODE_DISABLED                           (LCDBLKMOD_0)
+#define LCD_B_BLINK_MODE_INDIVIDUAL_SEGMENTS                (LCDBLKMOD_1)
+#define LCD_B_BLINK_MODE_ALL_SEGMENTS                       (LCDBLKMOD_2)
 #define LCD_B_BLINK_MODE_SWITCHING_BETWEEN_DISPLAY_CONTENTS (LCDBLKMOD_3)
 
 //*****************************************************************************
@@ -283,8 +283,8 @@ extern const LCD_B_initParam LCD_B_INIT_PARAM;
 // functions: LCD_B_selectChargePumpReference().
 //
 //*****************************************************************************
-#define LCD_B_INTERNAL_REFERENCE_VOLTAGE (VLCDREF_0)
-#define LCD_B_EXTERNAL_REFERENCE_VOLTAGE (VLCDREF_1)
+#define LCD_B_INTERNAL_REFERENCE_VOLTAGE                          (VLCDREF_0)
+#define LCD_B_EXTERNAL_REFERENCE_VOLTAGE                          (VLCDREF_1)
 #define LCD_B_INTERNAL_REFERENCE_VOLTAGE_SWITCHED_TO_EXTERNAL_PIN (VLCDREF_2)
 
 //*****************************************************************************
@@ -294,7 +294,7 @@ extern const LCD_B_initParam LCD_B_INIT_PARAM;
 //
 //*****************************************************************************
 #define LCD_B_VLCD_GENERATED_INTERNALLY (0x0)
-#define LCD_B_VLCD_SOURCED_EXTERNALLY (VLCDEXT)
+#define LCD_B_VLCD_SOURCED_EXTERNALLY   (VLCDEXT)
 
 //*****************************************************************************
 //
@@ -303,8 +303,8 @@ extern const LCD_B_initParam LCD_B_INIT_PARAM;
 //
 //*****************************************************************************
 #define LCD_B_V2V3V4_GENERATED_INTERNALLY_NOT_SWITCHED_TO_PINS (0x0)
-#define LCD_B_V2V3V4_GENERATED_INTERNALLY_SWITCHED_TO_PINS (LCDREXT)
-#define LCD_B_V2V3V4_SOURCED_EXTERNALLY (LCDEXTBIAS)
+#define LCD_B_V2V3V4_GENERATED_INTERNALLY_SWITCHED_TO_PINS     (LCDREXT)
+#define LCD_B_V2V3V4_SOURCED_EXTERNALLY                        (LCDEXTBIAS)
 
 //*****************************************************************************
 //
@@ -312,7 +312,7 @@ extern const LCD_B_initParam LCD_B_INIT_PARAM;
 // functions: LCD_B_setVLCDSource().
 //
 //*****************************************************************************
-#define LCD_B_V5_VSS (0x0)
+#define LCD_B_V5_VSS              (0x0)
 #define LCD_B_V5_SOURCED_FROM_R03 (R03EXT)
 
 //*****************************************************************************
@@ -321,7 +321,7 @@ extern const LCD_B_initParam LCD_B_INIT_PARAM;
 // functions: LCD_B_setVLCDVoltage().
 //
 //*****************************************************************************
-#define LCD_B_CHARGEPUMP_DISABLED (0x0)
+#define LCD_B_CHARGEPUMP_DISABLED                  (0x0)
 #define LCD_B_CHARGEPUMP_VOLTAGE_2_60V_OR_2_17VREF (VLCD0)
 #define LCD_B_CHARGEPUMP_VOLTAGE_2_66V_OR_2_22VREF (VLCD1)
 #define LCD_B_CHARGEPUMP_VOLTAGE_2_72V_OR_2_27VREF (VLCD1 | VLCD0)
@@ -347,16 +347,16 @@ extern const LCD_B_initParam LCD_B_INIT_PARAM;
 // LCD_B_setPinAsLCDFunction(), and LCD_B_setPinAsPortFunction().
 //
 //*****************************************************************************
-#define LCD_B_SEGMENT_LINE_0 (0)
-#define LCD_B_SEGMENT_LINE_1 (1)
-#define LCD_B_SEGMENT_LINE_2 (2)
-#define LCD_B_SEGMENT_LINE_3 (3)
-#define LCD_B_SEGMENT_LINE_4 (4)
-#define LCD_B_SEGMENT_LINE_5 (5)
-#define LCD_B_SEGMENT_LINE_6 (6)
-#define LCD_B_SEGMENT_LINE_7 (7)
-#define LCD_B_SEGMENT_LINE_8 (8)
-#define LCD_B_SEGMENT_LINE_9 (9)
+#define LCD_B_SEGMENT_LINE_0  (0)
+#define LCD_B_SEGMENT_LINE_1  (1)
+#define LCD_B_SEGMENT_LINE_2  (2)
+#define LCD_B_SEGMENT_LINE_3  (3)
+#define LCD_B_SEGMENT_LINE_4  (4)
+#define LCD_B_SEGMENT_LINE_5  (5)
+#define LCD_B_SEGMENT_LINE_6  (6)
+#define LCD_B_SEGMENT_LINE_7  (7)
+#define LCD_B_SEGMENT_LINE_8  (8)
+#define LCD_B_SEGMENT_LINE_9  (9)
 #define LCD_B_SEGMENT_LINE_10 (10)
 #define LCD_B_SEGMENT_LINE_11 (11)
 #define LCD_B_SEGMENT_LINE_12 (12)
@@ -421,16 +421,16 @@ extern const LCD_B_initParam LCD_B_INIT_PARAM;
 // LCD_B_clearBlinkingMemory().
 //
 //*****************************************************************************
-#define LCD_B_MEMORY_BLINKINGMEMORY_0 (0)
-#define LCD_B_MEMORY_BLINKINGMEMORY_1 (1)
-#define LCD_B_MEMORY_BLINKINGMEMORY_2 (2)
-#define LCD_B_MEMORY_BLINKINGMEMORY_3 (3)
-#define LCD_B_MEMORY_BLINKINGMEMORY_4 (4)
-#define LCD_B_MEMORY_BLINKINGMEMORY_5 (5)
-#define LCD_B_MEMORY_BLINKINGMEMORY_6 (6)
-#define LCD_B_MEMORY_BLINKINGMEMORY_7 (7)
-#define LCD_B_MEMORY_BLINKINGMEMORY_8 (8)
-#define LCD_B_MEMORY_BLINKINGMEMORY_9 (9)
+#define LCD_B_MEMORY_BLINKINGMEMORY_0  (0)
+#define LCD_B_MEMORY_BLINKINGMEMORY_1  (1)
+#define LCD_B_MEMORY_BLINKINGMEMORY_2  (2)
+#define LCD_B_MEMORY_BLINKINGMEMORY_3  (3)
+#define LCD_B_MEMORY_BLINKINGMEMORY_4  (4)
+#define LCD_B_MEMORY_BLINKINGMEMORY_5  (5)
+#define LCD_B_MEMORY_BLINKINGMEMORY_6  (6)
+#define LCD_B_MEMORY_BLINKINGMEMORY_7  (7)
+#define LCD_B_MEMORY_BLINKINGMEMORY_8  (8)
+#define LCD_B_MEMORY_BLINKINGMEMORY_9  (9)
 #define LCD_B_MEMORY_BLINKINGMEMORY_10 (10)
 #define LCD_B_MEMORY_BLINKINGMEMORY_11 (11)
 #define LCD_B_MEMORY_BLINKINGMEMORY_12 (12)
@@ -469,7 +469,7 @@ extern const LCD_B_initParam LCD_B_INIT_PARAM;
 //
 //*****************************************************************************
 #define LCD_B_CHARGEPUMP_NOTAUTO_DISABLED_DURING_ADC_CONVERSION (0x0)
-#define LCD_B_CHARGEPUMP_AUTO_DISABLED_DURING_ADC_CONVERSION (LCDCPDIS2)
+#define LCD_B_CHARGEPUMP_AUTO_DISABLED_DURING_ADC_CONVERSION    (LCDCPDIS2)
 
 //*****************************************************************************
 //
@@ -493,7 +493,7 @@ extern const LCD_B_initParam LCD_B_INIT_PARAM;
 //! \return None
 //
 //*****************************************************************************
-extern void LCD_B_init(uint16_t baseAddress, LCD_B_initParam *initParams);
+extern void LCD_B_init(uint16_t baseAddress, LCD_B_initParam* initParams);
 
 //*****************************************************************************
 //
@@ -682,8 +682,10 @@ extern void LCD_B_selectDisplayMemory(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void LCD_B_setBlinkingControl(uint16_t baseAddress, uint8_t clockDivider,
-                                     uint8_t clockPrescalar, uint8_t mode);
+extern void LCD_B_setBlinkingControl(uint16_t baseAddress,
+                                     uint8_t  clockDivider,
+                                     uint8_t  clockPrescalar,
+                                     uint8_t  mode);
 
 //*****************************************************************************
 //
@@ -789,8 +791,10 @@ extern void LCD_B_selectChargePumpReference(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void LCD_B_setVLCDSource(uint16_t baseAddress, uint16_t vlcdSource,
-                                uint16_t v2v3v4Source, uint16_t v5Source);
+extern void LCD_B_setVLCDSource(uint16_t baseAddress,
+                                uint16_t vlcdSource,
+                                uint16_t v2v3v4Source,
+                                uint16_t v5Source);
 
 //*****************************************************************************
 //
@@ -1133,8 +1137,9 @@ extern void LCD_B_setPinAsPortFunction(uint16_t baseAddress, uint8_t pin);
 //! \return None
 //
 //*****************************************************************************
-extern void LCD_B_setPinAsLCDFunctionEx(uint16_t baseAddress, uint8_t startPin,
-                                        uint8_t endPin);
+extern void LCD_B_setPinAsLCDFunctionEx(uint16_t baseAddress,
+                                        uint8_t  startPin,
+                                        uint8_t  endPin);
 
 //*****************************************************************************
 //
@@ -1251,8 +1256,9 @@ extern void LCD_B_setMemory(uint16_t baseAddress, uint8_t memory, uint8_t mask);
 //! \return None
 //
 //*****************************************************************************
-extern void LCD_B_updateMemory(uint16_t baseAddress, uint8_t memory,
-                               uint8_t mask);
+extern void LCD_B_updateMemory(uint16_t baseAddress,
+                               uint8_t  memory,
+                               uint8_t  mask);
 
 //*****************************************************************************
 //
@@ -1311,8 +1317,9 @@ extern void LCD_B_updateMemory(uint16_t baseAddress, uint8_t memory,
 //! \return None
 //
 //*****************************************************************************
-extern void LCD_B_toggleMemory(uint16_t baseAddress, uint8_t memory,
-                               uint8_t mask);
+extern void LCD_B_toggleMemory(uint16_t baseAddress,
+                               uint8_t  memory,
+                               uint8_t  mask);
 
 //*****************************************************************************
 //
@@ -1371,8 +1378,9 @@ extern void LCD_B_toggleMemory(uint16_t baseAddress, uint8_t memory,
 //! \return None
 //
 //*****************************************************************************
-extern void LCD_B_clearMemory(uint16_t baseAddress, uint8_t memory,
-                              uint8_t mask);
+extern void LCD_B_clearMemory(uint16_t baseAddress,
+                              uint8_t  memory,
+                              uint8_t  mask);
 
 //*****************************************************************************
 //
@@ -1430,8 +1438,9 @@ extern void LCD_B_clearMemory(uint16_t baseAddress, uint8_t memory,
 //! \return None
 //
 //*****************************************************************************
-extern void LCD_B_setBlinkingMemory(uint16_t baseAddress, uint8_t memory,
-                                    uint8_t mask);
+extern void LCD_B_setBlinkingMemory(uint16_t baseAddress,
+                                    uint8_t  memory,
+                                    uint8_t  mask);
 
 //*****************************************************************************
 //
@@ -1490,8 +1499,9 @@ extern void LCD_B_setBlinkingMemory(uint16_t baseAddress, uint8_t memory,
 //! \return None
 //
 //*****************************************************************************
-extern void LCD_B_updateBlinkingMemory(uint16_t baseAddress, uint8_t memory,
-                                       uint8_t mask);
+extern void LCD_B_updateBlinkingMemory(uint16_t baseAddress,
+                                       uint8_t  memory,
+                                       uint8_t  mask);
 
 //*****************************************************************************
 //
@@ -1550,8 +1560,9 @@ extern void LCD_B_updateBlinkingMemory(uint16_t baseAddress, uint8_t memory,
 //! \return None
 //
 //*****************************************************************************
-extern void LCD_B_toggleBlinkingMemory(uint16_t baseAddress, uint8_t memory,
-                                       uint8_t mask);
+extern void LCD_B_toggleBlinkingMemory(uint16_t baseAddress,
+                                       uint8_t  memory,
+                                       uint8_t  mask);
 
 //*****************************************************************************
 //
@@ -1610,8 +1621,9 @@ extern void LCD_B_toggleBlinkingMemory(uint16_t baseAddress, uint8_t memory,
 //! \return None
 //
 //*****************************************************************************
-extern void LCD_B_clearBlinkingMemory(uint16_t baseAddress, uint8_t memory,
-                                      uint8_t mask);
+extern void LCD_B_clearBlinkingMemory(uint16_t baseAddress,
+                                      uint8_t  memory,
+                                      uint8_t  mask);
 
 //*****************************************************************************
 //

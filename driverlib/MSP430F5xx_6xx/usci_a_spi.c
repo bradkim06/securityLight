@@ -49,8 +49,8 @@
 
 #include "usci_a_spi.h"
 
-bool USCI_A_SPI_initMaster(uint16_t baseAddress,
-                           USCI_A_SPI_initMasterParam *param) {
+bool USCI_A_SPI_initMaster(uint16_t                    baseAddress,
+                           USCI_A_SPI_initMasterParam* param) {
   // Disable the USCI Module
   HWREG8(baseAddress + OFS_UCAxCTL1) |= UCSWRST;
 
@@ -84,7 +84,7 @@ bool USCI_A_SPI_initMaster(uint16_t baseAddress,
 }
 
 void USCI_A_SPI_changeMasterClock(uint16_t baseAddress,
-                                  USCI_A_SPI_changeMasterClockParam *param) {
+                                  USCI_A_SPI_changeMasterClockParam* param) {
   // Disable the USCI Module
   HWREG8(baseAddress + OFS_UCAxCTL1) |= UCSWRST;
 
@@ -95,8 +95,10 @@ void USCI_A_SPI_changeMasterClock(uint16_t baseAddress,
   HWREG8(baseAddress + OFS_UCAxCTL1) &= ~(UCSWRST);
 }
 
-bool USCI_A_SPI_initSlave(uint16_t baseAddress, uint8_t msbFirst,
-                          uint8_t clockPhase, uint8_t clockPolarity) {
+bool USCI_A_SPI_initSlave(uint16_t baseAddress,
+                          uint8_t  msbFirst,
+                          uint8_t  clockPhase,
+                          uint8_t  clockPolarity) {
   // Disable USCI Module
   HWREG8(baseAddress + OFS_UCAxCTL1) |= UCSWRST;
 
@@ -112,8 +114,8 @@ bool USCI_A_SPI_initSlave(uint16_t baseAddress, uint8_t msbFirst,
 }
 
 void USCI_A_SPI_changeClockPhasePolarity(uint16_t baseAddress,
-                                         uint8_t clockPhase,
-                                         uint8_t clockPolarity) {
+                                         uint8_t  clockPhase,
+                                         uint8_t  clockPolarity) {
   // Disable the USCI Module
   HWREG8(baseAddress + OFS_UCAxCTL1) |= UCSWRST;
 

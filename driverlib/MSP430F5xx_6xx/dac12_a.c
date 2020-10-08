@@ -49,7 +49,7 @@
 
 #include "dac12_a.h"
 
-bool DAC12_A_init(uint16_t baseAddress, DAC12_A_initParam *param) {
+bool DAC12_A_init(uint16_t baseAddress, DAC12_A_initParam* param) {
   baseAddress += param->submoduleSelect;  // Add 0x10 to base address IF
                                           // DAC12_A_1 is selected.
   HWREG16(baseAddress + OFS_DAC12_0CTL1) &= ~(DAC12OG + DAC12DFJ);
@@ -70,8 +70,9 @@ bool DAC12_A_init(uint16_t baseAddress, DAC12_A_initParam *param) {
   return (STATUS_SUCCESS);
 }
 
-void DAC12_A_setAmplifierSetting(uint16_t baseAddress, uint8_t submoduleSelect,
-                                 uint8_t amplifierSetting) {
+void DAC12_A_setAmplifierSetting(uint16_t baseAddress,
+                                 uint8_t  submoduleSelect,
+                                 uint8_t  amplifierSetting) {
   // Reset amplifier setting to set it
   HWREG16(baseAddress + submoduleSelect + OFS_DAC12_0CTL0) &= ~(DAC12AMP_7);
   HWREG16(baseAddress + submoduleSelect + OFS_DAC12_0CTL0) |= amplifierSetting;
@@ -99,7 +100,7 @@ void DAC12_A_disableInterrupt(uint16_t baseAddress, uint8_t submoduleSelect) {
 }
 
 uint16_t DAC12_A_getInterruptStatus(uint16_t baseAddress,
-                                    uint8_t submoduleSelect) {
+                                    uint8_t  submoduleSelect) {
   return (HWREG16(baseAddress + submoduleSelect + OFS_DAC12_0CTL0) & DAC12IFG);
 }
 
@@ -126,12 +127,13 @@ void DAC12_A_calibrateOutput(uint16_t baseAddress, uint8_t submoduleSelect) {
 }
 
 uint16_t DAC12_A_getCalibrationData(uint16_t baseAddress,
-                                    uint8_t submoduleSelect) {
+                                    uint8_t  submoduleSelect) {
   return (
       (uint16_t)(HWREG16(baseAddress + submoduleSelect + OFS_DAC12_0CALDAT)));
 }
 
-void DAC12_A_setCalibrationOffset(uint16_t baseAddress, uint8_t submoduleSelect,
+void DAC12_A_setCalibrationOffset(uint16_t baseAddress,
+                                  uint8_t  submoduleSelect,
                                   uint16_t calibrationOffsetValue) {
   // Unlock Calibration
   HWREG16(baseAddress + submoduleSelect + OFS_DAC12_0CALCTL) = DAC12PW;
@@ -149,7 +151,8 @@ void DAC12_A_enableConversions(uint16_t baseAddress, uint8_t submoduleSelect) {
   HWREG16(baseAddress + submoduleSelect + OFS_DAC12_0CTL0) |= DAC12ENC;
 }
 
-void DAC12_A_setData(uint16_t baseAddress, uint8_t submoduleSelect,
+void DAC12_A_setData(uint16_t baseAddress,
+                     uint8_t  submoduleSelect,
                      uint16_t data) {
   HWREG16(baseAddress + submoduleSelect + OFS_DAC12_0DAT) = data;
 }
@@ -158,7 +161,8 @@ void DAC12_A_disableConversions(uint16_t baseAddress, uint8_t submoduleSelect) {
   HWREG16(baseAddress + submoduleSelect + OFS_DAC12_0CTL0) &= ~(DAC12ENC);
 }
 
-void DAC12_A_setResolution(uint16_t baseAddress, uint8_t submoduleSelect,
+void DAC12_A_setResolution(uint16_t baseAddress,
+                           uint8_t  submoduleSelect,
                            uint16_t resolutionSelect) {
   // Store the ENC bit status
   uint16_t conversionsEnabledStatus =
@@ -177,8 +181,10 @@ void DAC12_A_setResolution(uint16_t baseAddress, uint8_t submoduleSelect,
   HWREG16(baseAddress + OFS_DAC12_0CTL0) |= conversionsEnabledStatus;
 }
 
-void DAC12_A_setInputDataFormat(uint16_t baseAddress, uint8_t submoduleSelect,
-                                uint8_t inputJustification, uint8_t inputSign) {
+void DAC12_A_setInputDataFormat(uint16_t baseAddress,
+                                uint8_t  submoduleSelect,
+                                uint8_t  inputJustification,
+                                uint8_t  inputSign) {
   // Store the ENC bit status
   uint16_t conversionsEnabledStatus =
       (HWREG16(baseAddress + OFS_DAC12_0CTL0) & (DAC12ENC));
@@ -203,7 +209,7 @@ void DAC12_A_setInputDataFormat(uint16_t baseAddress, uint8_t submoduleSelect,
 }
 
 uint32_t DAC12_A_getDataBufferMemoryAddressForDMA(uint16_t baseAddress,
-                                                  uint8_t submoduleSelect) {
+                                                  uint8_t  submoduleSelect) {
   return (baseAddress + submoduleSelect + OFS_DAC12_0DAT);
 }
 

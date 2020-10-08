@@ -49,7 +49,7 @@
 
 #include "flashctl.h"
 
-void FlashCtl_eraseSegment(uint8_t *flash_ptr) {
+void FlashCtl_eraseSegment(uint8_t* flash_ptr) {
   // Clear Lock bit
   HWREG16(FLASH_BASE + OFS_FCTL3) = FWKEY;
 
@@ -71,7 +71,7 @@ void FlashCtl_eraseSegment(uint8_t *flash_ptr) {
   HWREG16(FLASH_BASE + OFS_FCTL3) = FWKEY + LOCK;
 }
 
-void FlashCtl_eraseBank(uint8_t *flash_ptr) {
+void FlashCtl_eraseBank(uint8_t* flash_ptr) {
   // Clear Lock bit
   HWREG16(FLASH_BASE + OFS_FCTL3) = FWKEY;
 
@@ -97,7 +97,7 @@ void FlashCtl_eraseBank(uint8_t *flash_ptr) {
   HWREG16(FLASH_BASE + OFS_FCTL3) = FWKEY + LOCK;
 }
 
-void FlashCtl_performMassErase(uint8_t *flash_ptr) {
+void FlashCtl_performMassErase(uint8_t* flash_ptr) {
   // Clear Lock bit
   HWREG16(FLASH_BASE + OFS_FCTL3) = FWKEY;
 
@@ -123,19 +123,17 @@ void FlashCtl_performMassErase(uint8_t *flash_ptr) {
   HWREG16(FLASH_BASE + OFS_FCTL3) = FWKEY + LOCK;
 }
 
-bool FlashCtl_performEraseCheck(uint8_t *flash_ptr, uint16_t numberOfBytes) {
+bool FlashCtl_performEraseCheck(uint8_t* flash_ptr, uint16_t numberOfBytes) {
   uint16_t i;
 
   for (i = 0; i < numberOfBytes; i++) {
     // was erasing successfull?
-    if ((*(flash_ptr + i)) != 0xFF) {
-      return (STATUS_FAIL);
-    }
+    if ((*(flash_ptr + i)) != 0xFF) { return (STATUS_FAIL); }
   }
   return (STATUS_SUCCESS);
 }
 
-void FlashCtl_write8(uint8_t *data_ptr, uint8_t *flash_ptr, uint16_t count) {
+void FlashCtl_write8(uint8_t* data_ptr, uint8_t* flash_ptr, uint16_t count) {
   // Clear Lock bit
   HWREG16(FLASH_BASE + OFS_FCTL3) = FWKEY;
 
@@ -160,7 +158,7 @@ void FlashCtl_write8(uint8_t *data_ptr, uint8_t *flash_ptr, uint16_t count) {
   HWREG16(FLASH_BASE + OFS_FCTL3) = FWKEY + LOCK;
 }
 
-void FlashCtl_write16(uint16_t *data_ptr, uint16_t *flash_ptr, uint16_t count) {
+void FlashCtl_write16(uint16_t* data_ptr, uint16_t* flash_ptr, uint16_t count) {
   // Clear Lock bit
   HWREG16(FLASH_BASE + OFS_FCTL3) = FWKEY;
 
@@ -185,7 +183,7 @@ void FlashCtl_write16(uint16_t *data_ptr, uint16_t *flash_ptr, uint16_t count) {
   HWREG16(FLASH_BASE + OFS_FCTL3) = FWKEY + LOCK;
 }
 
-void FlashCtl_write32(uint32_t *data_ptr, uint32_t *flash_ptr, uint16_t count) {
+void FlashCtl_write32(uint32_t* data_ptr, uint32_t* flash_ptr, uint16_t count) {
   // Clear Lock bit
   HWREG16(FLASH_BASE + OFS_FCTL3) = FWKEY;
 
@@ -211,8 +209,9 @@ void FlashCtl_write32(uint32_t *data_ptr, uint32_t *flash_ptr, uint16_t count) {
   HWREG16(FLASH_BASE + OFS_FCTL3) = FWKEY + LOCK;
 }
 
-void FlashCtl_fillMemory32(uint32_t value, uint32_t *flash_ptr,
-                           uint16_t count) {
+void FlashCtl_fillMemory32(uint32_t  value,
+                           uint32_t* flash_ptr,
+                           uint16_t  count) {
   // Clear Lock bit
   HWREG16(FLASH_BASE + OFS_FCTL3) = FWKEY;
 

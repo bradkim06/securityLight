@@ -49,8 +49,8 @@
 
 #include "eusci_b_i2c.h"
 
-void EUSCI_B_I2C_initMaster(uint16_t baseAddress,
-                            EUSCI_B_I2C_initMasterParam *param) {
+void EUSCI_B_I2C_initMaster(uint16_t                     baseAddress,
+                            EUSCI_B_I2C_initMasterParam* param) {
   uint16_t preScalarValue;
 
   // Disable the USCI module and clears the other bits of control register
@@ -83,8 +83,8 @@ void EUSCI_B_I2C_initMaster(uint16_t baseAddress,
   HWREG16(baseAddress + OFS_UCBxBRW) = preScalarValue;
 }
 
-void EUSCI_B_I2C_initSlave(uint16_t baseAddress,
-                           EUSCI_B_I2C_initSlaveParam *param) {
+void EUSCI_B_I2C_initSlave(uint16_t                    baseAddress,
+                           EUSCI_B_I2C_initSlaveParam* param) {
   // Disable the USCI module
   HWREG16(baseAddress + OFS_UCBxCTLW0) |= UCSWRST;
 
@@ -217,7 +217,7 @@ uint8_t EUSCI_B_I2C_masterReceiveSingleByte(uint16_t baseAddress) {
 }
 
 bool EUSCI_B_I2C_masterSendSingleByteWithTimeout(uint16_t baseAddress,
-                                                 uint8_t txData,
+                                                 uint8_t  txData,
                                                  uint32_t timeout) {
   // Creating variable for second timeout scenario
   uint32_t timeout2 = timeout;
@@ -237,9 +237,7 @@ bool EUSCI_B_I2C_masterSendSingleByteWithTimeout(uint16_t baseAddress,
   }
 
   // Check if transfer timed out
-  if (timeout == 0) {
-    return (STATUS_FAIL);
-  }
+  if (timeout == 0) { return (STATUS_FAIL); }
 
   // Send single byte data.
   HWREG16(baseAddress + OFS_UCBxTXBUF) = txData;
@@ -250,9 +248,7 @@ bool EUSCI_B_I2C_masterSendSingleByteWithTimeout(uint16_t baseAddress,
   }
 
   // Check if transfer timed out
-  if (timeout2 == 0) {
-    return (STATUS_FAIL);
-  }
+  if (timeout2 == 0) { return (STATUS_FAIL); }
 
   // Send stop condition.
   HWREG16(baseAddress + OFS_UCBxCTLW0) |= UCTXSTP;
@@ -267,7 +263,7 @@ bool EUSCI_B_I2C_masterSendSingleByteWithTimeout(uint16_t baseAddress,
 }
 
 void EUSCI_B_I2C_masterSendMultiByteStart(uint16_t baseAddress,
-                                          uint8_t txData) {
+                                          uint8_t  txData) {
   // Store current transmit interrupt enable
   uint16_t txieStatus = HWREG16(baseAddress + OFS_UCBxIE) & UCTXIE;
 
@@ -290,7 +286,7 @@ void EUSCI_B_I2C_masterSendMultiByteStart(uint16_t baseAddress,
 }
 
 bool EUSCI_B_I2C_masterSendMultiByteStartWithTimeout(uint16_t baseAddress,
-                                                     uint8_t txData,
+                                                     uint8_t  txData,
                                                      uint32_t timeout) {
   // Store current transmit interrupt enable
   uint16_t txieStatus = HWREG16(baseAddress + OFS_UCBxIE) & UCTXIE;
@@ -307,9 +303,7 @@ bool EUSCI_B_I2C_masterSendMultiByteStartWithTimeout(uint16_t baseAddress,
   }
 
   // Check if transfer timed out
-  if (timeout == 0) {
-    return (STATUS_FAIL);
-  }
+  if (timeout == 0) { return (STATUS_FAIL); }
 
   // Send single byte data.
   HWREG16(baseAddress + OFS_UCBxTXBUF) = txData;
@@ -334,7 +328,7 @@ void EUSCI_B_I2C_masterSendMultiByteNext(uint16_t baseAddress, uint8_t txData) {
 }
 
 bool EUSCI_B_I2C_masterSendMultiByteNextWithTimeout(uint16_t baseAddress,
-                                                    uint8_t txData,
+                                                    uint8_t  txData,
                                                     uint32_t timeout) {
   // If interrupts are not used, poll for flags
   if (!(HWREG16(baseAddress + OFS_UCBxIE) & UCTXIE)) {
@@ -344,9 +338,7 @@ bool EUSCI_B_I2C_masterSendMultiByteNextWithTimeout(uint16_t baseAddress,
     }
 
     // Check if transfer timed out
-    if (timeout == 0) {
-      return (STATUS_FAIL);
-    }
+    if (timeout == 0) { return (STATUS_FAIL); }
   }
 
   // Send single byte data.
@@ -356,7 +348,7 @@ bool EUSCI_B_I2C_masterSendMultiByteNextWithTimeout(uint16_t baseAddress,
 }
 
 void EUSCI_B_I2C_masterSendMultiByteFinish(uint16_t baseAddress,
-                                           uint8_t txData) {
+                                           uint8_t  txData) {
   // If interrupts are not used, poll for flags
   if (!(HWREG16(baseAddress + OFS_UCBxIE) & UCTXIE)) {
     // Poll for transmit interrupt flag.
@@ -378,7 +370,7 @@ void EUSCI_B_I2C_masterSendMultiByteFinish(uint16_t baseAddress,
 }
 
 bool EUSCI_B_I2C_masterSendMultiByteFinishWithTimeout(uint16_t baseAddress,
-                                                      uint8_t txData,
+                                                      uint8_t  txData,
                                                       uint32_t timeout) {
   uint32_t timeout2 = timeout;
 
@@ -390,9 +382,7 @@ bool EUSCI_B_I2C_masterSendMultiByteFinishWithTimeout(uint16_t baseAddress,
     }
 
     // Check if transfer timed out
-    if (timeout == 0) {
-      return (STATUS_FAIL);
-    }
+    if (timeout == 0) { return (STATUS_FAIL); }
   }
 
   // Send single byte data.
@@ -404,9 +394,7 @@ bool EUSCI_B_I2C_masterSendMultiByteFinishWithTimeout(uint16_t baseAddress,
   }
 
   // Check if transfer timed out
-  if (timeout2 == 0) {
-    return (STATUS_FAIL);
-  }
+  if (timeout2 == 0) { return (STATUS_FAIL); }
 
   // Send stop condition.
   HWREG16(baseAddress + OFS_UCBxCTLW0) |= UCTXSTP;
@@ -441,9 +429,7 @@ bool EUSCI_B_I2C_masterSendMultiByteStopWithTimeout(uint16_t baseAddress,
     }
 
     // Check if transfer timed out
-    if (timeout == 0) {
-      return (STATUS_FAIL);
-    }
+    if (timeout == 0) { return (STATUS_FAIL); }
   }
 
   // Send stop condition.
@@ -481,7 +467,7 @@ uint8_t EUSCI_B_I2C_masterReceiveMultiByteFinish(uint16_t baseAddress) {
 }
 
 bool EUSCI_B_I2C_masterReceiveMultiByteFinishWithTimeout(uint16_t baseAddress,
-                                                         uint8_t *txData,
+                                                         uint8_t* txData,
                                                          uint32_t timeout) {
   uint32_t timeout2 = timeout;
 
@@ -494,9 +480,7 @@ bool EUSCI_B_I2C_masterReceiveMultiByteFinishWithTimeout(uint16_t baseAddress,
   }
 
   // Check if transfer timed out
-  if (timeout == 0) {
-    return (STATUS_FAIL);
-  }
+  if (timeout == 0) { return (STATUS_FAIL); }
 
   // Wait for RX buffer
   while ((!(HWREG16(baseAddress + OFS_UCBxIFG) & UCRXIFG)) && --timeout2) {
@@ -504,9 +488,7 @@ bool EUSCI_B_I2C_masterReceiveMultiByteFinishWithTimeout(uint16_t baseAddress,
   }
 
   // Check if transfer timed out
-  if (timeout2 == 0) {
-    return (STATUS_FAIL);
-  }
+  if (timeout2 == 0) { return (STATUS_FAIL); }
 
   // Capture data from receive buffer after setting stop bit due to
   // MSP430 I2C critical timing.

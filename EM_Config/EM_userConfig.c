@@ -60,51 +60,51 @@
 #include "hal.h"
 
 HAL_ADC_SD24_B_Channel adcChannelArray[EM_CHANNEL_LENGTH] = {
-    {.gain = SD24_B_GAIN_1,
+    {.gain      = SD24_B_GAIN_1,
      .converter = SD24_B_CONVERTER_0,
      .alignment = SD24_B_ALIGN_LEFT},
-    {.gain = SD24_B_GAIN_1,
+    {.gain      = SD24_B_GAIN_1,
      .converter = SD24_B_CONVERTER_2,
      .alignment = SD24_B_ALIGN_RIGHT},
 };
 
 SD24_B_initParam sd24Param = {.clockSourceSelect = SD24_B_CLOCKSOURCE_SMCLK,
-                              .referenceSelect = SD24_B_REF_INTERNAL};
+                              .referenceSelect   = SD24_B_REF_INTERNAL};
 
 HAL_ADC_SD24_B_Configuration halAdcConfig = {
-    .SMCLKFrequency = EM_SMCLK_FREQ_IN_HZ,
-    .sampleFreq = EM_SAMPLING_FREQ_HZ,
-    .sd24Param = &sd24Param,
-    .adcChannelPtr = adcChannelArray,
+    .SMCLKFrequency   = EM_SMCLK_FREQ_IN_HZ,
+    .sampleFreq       = EM_SAMPLING_FREQ_HZ,
+    .sd24Param        = &sd24Param,
+    .adcChannelPtr    = adcChannelArray,
     .adcChannelLength = EM_CHANNEL_LENGTH,
-    .overSampleRatio = SD24_B_OVERSAMPLE_256};
+    .overSampleRatio  = SD24_B_OVERSAMPLE_256};
 
 uint16_t HAL_ADC_maxFreqCount = EM_MAX_FREQ_COUNT;
 uint16_t HAL_ADC_minFreqCount = EM_MIN_FREQ_COUNT;
 
-uint16_t *EMSWLIB_EM_HAL_ADC_maxFreqCount = &HAL_ADC_maxFreqCount;
-uint16_t *EMSWLIB_EM_HAL_ADC_minFreqCount = &HAL_ADC_minFreqCount;
+uint16_t* EMSWLIB_EM_HAL_ADC_maxFreqCount = &HAL_ADC_maxFreqCount;
+uint16_t* EMSWLIB_EM_HAL_ADC_minFreqCount = &HAL_ADC_minFreqCount;
 
 EM_Pulse_Settings emPulseSetting[EM_PULSE_ARRAY_LENGTH] = {
     // PHASE_A
     {
-        .activePulseGpioPin = GPIO_PIN6,
-        .activePulseGpioPort = GPIO_PORT_P1,
-        .reactivePulseGpioPin = GPIO_PIN7,
+        .activePulseGpioPin    = GPIO_PIN6,
+        .activePulseGpioPort   = GPIO_PORT_P1,
+        .reactivePulseGpioPin  = GPIO_PIN7,
         .reactivePulseGpioPort = GPIO_PORT_P1,
-        .activeEnergyCounter = 0,
+        .activeEnergyCounter   = 0,
         .reactiveEnergyCounter = 0,
     },
 };
 
 EM_System_Configuration emSystemConfig = {
-    .pulseArray = emPulseSetting,
-    .pulseArrayLength = EM_PULSE_ARRAY_LENGTH,
-    .indPhaseMeterConstant = EM_PHASE_CONSTANT,
-    .indPhasePulseDuration = EM_PHASE_PULSE_DUR,
+    .pulseArray              = emPulseSetting,
+    .pulseArrayLength        = EM_PULSE_ARRAY_LENGTH,
+    .indPhaseMeterConstant   = EM_PHASE_CONSTANT,
+    .indPhasePulseDuration   = EM_PHASE_PULSE_DUR,
     .totalPhaseMeterConstant = EM_TOTAL_PHASE_CONSTANT,
     .totalPhasePulseDuration = EM_TOTAL_PHASE_PULSE_DUR,
-    .pulseGeneration = (EM_PULSE_GEN_PHASE_A)};
+    .pulseGeneration         = (EM_PULSE_GEN_PHASE_A)};
 
 #if defined(__TI_COMPILER_VERSION__)
 #pragma LOCATION(g_savedEmPhaseCalibration, SYSTEM_NONV_CALIB_ADDR);
@@ -117,9 +117,9 @@ const uint16_t g_calibrationChecksum;
 EM_Phase_Calibration g_emPhaseCalibration[EM_PHASE_LENGTH] = {
     // PHASE_A
     {
-        .voltageSF = _IQ24(11.781816602),
-        .currentSF = _IQ24(21.328466535),
-        .activePowerSF = _IQ30(0.251303842),
+        .voltageSF       = _IQ24(11.781816602),
+        .currentSF       = _IQ24(21.328466535),
+        .activePowerSF   = _IQ30(0.251303842),
         .reactivePowerSF = _IQ30(0.251303842),
         .phaseCorrection = 0x005D,
     },
@@ -127,31 +127,31 @@ EM_Phase_Calibration g_emPhaseCalibration[EM_PHASE_LENGTH] = {
 
 EM_Phase_Configuration emPhaseConfiguration[EM_PHASE_LENGTH] = {
     {.phaseResultsSupported = 0x0FFF,
-     .phaseCalibPtr = &g_emPhaseCalibration[EM_PH_A_IDX],
-     .currentSensor = EM_Phase_Sensor_CT},
+     .phaseCalibPtr         = &g_emPhaseCalibration[EM_PH_A_IDX],
+     .currentSensor         = EM_Phase_Sensor_CT},
 };
 
 EM_Algorithm_Configuration emAlgorithmConfig = {
-    .residualPowerCutoff = EM_PHASE_START_UP_POWER_mW,
+    .residualPowerCutoff      = EM_PHASE_START_UP_POWER_mW,
     .totalResidualPowerCutoff = EM_TOTAL_START_UP_POWER_mW,
-    .mainNomFreq = EM_MAIN_NOMINAL_FREQ_HZ,
-    .freqSampling = EM_SAMPLING_FREQ_HZ,
-    .reactPowIIRLength = IIR_COEFF_TABLE_LEN,
-    .reactPowIIRMinFreq = IIR_COEFF_MIN_FREQ,
-    .reactPowIIRShift = IIR_COEFF_SHIFT,
-    .reactPowIIRTable = (_iq30 *)G_CONSTANT};
+    .mainNomFreq              = EM_MAIN_NOMINAL_FREQ_HZ,
+    .freqSampling             = EM_SAMPLING_FREQ_HZ,
+    .reactPowIIRLength        = IIR_COEFF_TABLE_LEN,
+    .reactPowIIRMinFreq       = IIR_COEFF_MIN_FREQ,
+    .reactPowIIRShift         = IIR_COEFF_SHIFT,
+    .reactPowIIRTable         = (_iq30*)G_CONSTANT};
 
 EM_Meter_Configuration emMeterConfig = {
-    .phaseConfigPtr = emPhaseConfiguration,
-    .phaseLength = EM_PHASE_LENGTH,
-    .meterName = "EVM430-F6736",
+    .phaseConfigPtr   = emPhaseConfiguration,
+    .phaseLength      = EM_PHASE_LENGTH,
+    .meterName        = "EVM430-F6736",
     .libVersionNumber = "1.40.00.00",
 };
 
 EM_SW_Lib_Config_Handle gEmSWConfig = {
-    .systemConfig = &emSystemConfig,
+    .systemConfig    = &emSystemConfig,
     .algorithmConfig = &emAlgorithmConfig,
-    .meterConfig = &emMeterConfig,
+    .meterConfig     = &emMeterConfig,
 };
 
 EM_Total_Results emTotalResult = {0};
@@ -166,20 +166,21 @@ EM_Metrology emMetrologyPong[EM_PHASE_LENGTH] = {0};
 
 EM_Phase_BG_Results emPhaseBackground[EM_PHASE_LENGTH] = {0};
 
-EM_Metrology *emMetrologyPingArray[EM_PHASE_LENGTH] = {&emMetrologyPing[0]};
-EM_Metrology *emMetrologyPongArray[EM_PHASE_LENGTH] = {&emMetrologyPong[0]};
+EM_Metrology* emMetrologyPingArray[EM_PHASE_LENGTH] = {&emMetrologyPing[0]};
+EM_Metrology* emMetrologyPongArray[EM_PHASE_LENGTH] = {&emMetrologyPong[0]};
 
 EM_SW_Lib_Result_Handle gEmSWResult = {
-    .emTotalResult = &emTotalResult,
-    .phaseResults = &emPhaseResult[0],
-    .phaseBGResults = &emPhaseBackground[0],
-    .phaseMetrologyPing = emMetrologyPingArray,
-    .phaseMetrologyPong = emMetrologyPongArray,
+    .emTotalResult            = &emTotalResult,
+    .phaseResults             = &emPhaseResult[0],
+    .phaseBGResults           = &emPhaseBackground[0],
+    .phaseMetrologyPing       = emMetrologyPingArray,
+    .phaseMetrologyPong       = emMetrologyPongArray,
     .phaseResultsSupportedLen = EM_PHASE_LENGTH,
 };
 
-void EM_perSampleProc(EM_Metrology *metro, EM_Phase_Configuration *phase,
-                      EM_Phase_BG_Results *bgData) {
+void EM_perSampleProc(EM_Metrology*           metro,
+                      EM_Phase_Configuration* phase,
+                      EM_Phase_BG_Results*    bgData) {
   // VRMS
   EM_calcVRMSMultAcc(metro, phase);
 
@@ -267,7 +268,7 @@ void EM_processForegroundData(uint8_t phaseIdx) {
   EM_clearMetrology(gEmSWResult.phaseMetrologyPong[phaseIdx]);
 }
 
-void EM_foregroundProc(uint8_t *resultStatus) {
+void EM_foregroundProc(uint8_t* resultStatus) {
   *resultStatus = HAL_ADC_PHASE_NO_DATA_READY;
 
   // Check if the background data is ready to process
@@ -283,12 +284,11 @@ void EM_foregroundProc(uint8_t *resultStatus) {
   }
 }
 
-void EM_genPulseIndPhase(EM_System_Configuration *config,
-                         EM_Pulse_Settings *pulse, EM_Phase_Results *result) {
+void EM_genPulseIndPhase(EM_System_Configuration* config,
+                         EM_Pulse_Settings*       pulse,
+                         EM_Phase_Results*        result) {
   // Check if the selected phase is enabled
-  if ((result->phaseID & config->pulseGeneration) == 0x00) {
-    return;
-  }
+  if ((result->phaseID & config->pulseGeneration) == 0x00) { return; }
 
   // Active Power Pulse Generation
   if (result->activePower != 0) {
@@ -353,9 +353,9 @@ void EM_genPulseIndPhase(EM_System_Configuration *config,
   }
 }
 
-void EM_genPulseTotalPhases(EM_System_Configuration *config,
-                            EM_Pulse_Settings *pulse,
-                            EM_Total_Results *result) {
+void EM_genPulseTotalPhases(EM_System_Configuration* config,
+                            EM_Pulse_Settings*       pulse,
+                            EM_Total_Results*        result) {
   // Check if generating pulses for the aggregate total is enabled
   if ((EM_PULSE_GEN_PHASE_AGGREGATE & config->pulseGeneration) == 0x00) {
     return;
@@ -424,11 +424,11 @@ void EM_genPulseTotalPhases(EM_System_Configuration *config,
   }
 }
 
-void EM_initalizeCalibrationValues(uint8_t *pWorkingCalibration,
-                                   uint8_t *pFlashCalibration) {
-  bool bStatus;
+void EM_initalizeCalibrationValues(uint8_t* pWorkingCalibration,
+                                   uint8_t* pFlashCalibration) {
+  bool     bStatus;
   uint16_t ui16tempChecksum = 0;
-  uint8_t ui8Idx;
+  uint8_t  ui8Idx;
 
   // Check if Flash is cleared
   bStatus = FlashCtl_performEraseCheck(
@@ -453,11 +453,11 @@ void EM_initalizeCalibrationValues(uint8_t *pWorkingCalibration,
   }
 }
 
-void EM_updateFlashCalibrationValues(uint8_t *pWorkingCalibration,
-                                     uint8_t *pFlashCalibration) {
-  bool bStatus;
+void EM_updateFlashCalibrationValues(uint8_t* pWorkingCalibration,
+                                     uint8_t* pFlashCalibration) {
+  bool     bStatus;
   uint16_t ui16tempChecksum = 0;
-  uint8_t ui8Idx;
+  uint8_t  ui8Idx;
   uint16_t ui16GIE;
 
   // Mask global interrupts for safety
@@ -469,7 +469,7 @@ void EM_updateFlashCalibrationValues(uint8_t *pWorkingCalibration,
 
   // Erase segment
   do {
-    FlashCtl_eraseSegment((uint8_t *)pFlashCalibration);
+    FlashCtl_eraseSegment((uint8_t*)pFlashCalibration);
     bStatus =
         FlashCtl_performEraseCheck(pFlashCalibration, SYSTEM_NONV_SEGMENT_SIZE);
   } while (bStatus == STATUS_FAIL);
@@ -485,7 +485,7 @@ void EM_updateFlashCalibrationValues(uint8_t *pWorkingCalibration,
   }
 
   // Store the checksum in flash
-  FlashCtl_write16(&ui16tempChecksum, (uint16_t *)&g_calibrationChecksum, 1);
+  FlashCtl_write16(&ui16tempChecksum, (uint16_t*)&g_calibrationChecksum, 1);
 
   // Lock Info A
   FlashCtl_lockInfoA();

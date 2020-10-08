@@ -73,15 +73,15 @@ extern "C" {
 #define Q12 12
 #define Q11 11
 #define Q10 10
-#define Q9 9
-#define Q8 8
-#define Q7 7
-#define Q6 6
-#define Q5 5
-#define Q4 4
-#define Q3 3
-#define Q2 2
-#define Q1 1
+#define Q9  9
+#define Q8  8
+#define Q7  7
+#define Q6  6
+#define Q5  5
+#define Q4  4
+#define Q3  3
+#define Q2  2
+#define Q1  1
 #ifndef QG
 #define QG GLOBAL_Q
 #endif
@@ -118,15 +118,15 @@ typedef int16_t _q;
 // Simple multiplies or divides, which are accomplished with simple shifts.
 //
 //*****************************************************************************
-#define _Qmpy2(A) ((A) << 1)
-#define _Qmpy4(A) ((A) << 2)
-#define _Qmpy8(A) ((A) << 3)
+#define _Qmpy2(A)  ((A) << 1)
+#define _Qmpy4(A)  ((A) << 2)
+#define _Qmpy8(A)  ((A) << 3)
 #define _Qmpy16(A) ((A) << 4)
 #define _Qmpy32(A) ((A) << 5)
 #define _Qmpy64(A) ((A) << 6)
-#define _Qdiv2(A) ((A) >> 1)
-#define _Qdiv4(A) ((A) >> 2)
-#define _Qdiv8(A) ((A) >> 3)
+#define _Qdiv2(A)  ((A) >> 1)
+#define _Qdiv4(A)  ((A) >> 2)
+#define _Qdiv8(A)  ((A) >> 3)
 #define _Qdiv16(A) ((A) >> 4)
 #define _Qdiv32(A) ((A) >> 5)
 #define _Qdiv64(A) ((A) >> 6)
@@ -142,15 +142,15 @@ typedef int16_t _q;
 #define _Q12(A) ((_q12)((A) * ((_q12)1 << 12)))
 #define _Q11(A) ((_q11)((A) * ((_q11)1 << 11)))
 #define _Q10(A) ((_q10)((A) * ((_q10)1 << 10)))
-#define _Q9(A) ((_q9)((A) * ((_q9)1 << 9)))
-#define _Q8(A) ((_q8)((A) * ((_q8)1 << 8)))
-#define _Q7(A) ((_q7)((A) * ((_q7)1 << 7)))
-#define _Q6(A) ((_q6)((A) * ((_q6)1 << 6)))
-#define _Q5(A) ((_q5)((A) * ((_q5)1 << 5)))
-#define _Q4(A) ((_q4)((A) * ((_q4)1 << 4)))
-#define _Q3(A) ((_q3)((A) * ((_q3)1 << 3)))
-#define _Q2(A) ((_q2)((A) * ((_q2)1 << 2)))
-#define _Q1(A) ((_q1)((A) * ((_q1)1 << 1)))
+#define _Q9(A)  ((_q9)((A) * ((_q9)1 << 9)))
+#define _Q8(A)  ((_q8)((A) * ((_q8)1 << 8)))
+#define _Q7(A)  ((_q7)((A) * ((_q7)1 << 7)))
+#define _Q6(A)  ((_q6)((A) * ((_q6)1 << 6)))
+#define _Q5(A)  ((_q5)((A) * ((_q5)1 << 5)))
+#define _Q4(A)  ((_q4)((A) * ((_q4)1 << 4)))
+#define _Q3(A)  ((_q3)((A) * ((_q3)1 << 3)))
+#define _Q2(A)  ((_q2)((A) * ((_q2)1 << 2)))
+#define _Q1(A)  ((_q1)((A) * ((_q1)1 << 1)))
 
 #if GLOBAL_Q == 15
 #define _Q(A) _Q15(A)
@@ -406,15 +406,15 @@ extern _q13 _Q13mpy(_q13 A, _q13 B);
 extern _q12 _Q12mpy(_q12 A, _q12 B);
 extern _q11 _Q11mpy(_q11 A, _q11 B);
 extern _q10 _Q10mpy(_q10 A, _q10 B);
-extern _q9 _Q9mpy(_q9 A, _q9 B);
-extern _q8 _Q8mpy(_q8 A, _q8 B);
-extern _q7 _Q7mpy(_q7 A, _q7 B);
-extern _q6 _Q6mpy(_q6 A, _q6 B);
-extern _q5 _Q5mpy(_q5 A, _q5 B);
-extern _q4 _Q4mpy(_q4 A, _q4 B);
-extern _q3 _Q3mpy(_q3 A, _q3 B);
-extern _q2 _Q2mpy(_q2 A, _q2 B);
-extern _q1 _Q1mpy(_q1 A, _q1 B);
+extern _q9  _Q9mpy(_q9 A, _q9 B);
+extern _q8  _Q8mpy(_q8 A, _q8 B);
+extern _q7  _Q7mpy(_q7 A, _q7 B);
+extern _q6  _Q6mpy(_q6 A, _q6 B);
+extern _q5  _Q5mpy(_q5 A, _q5 B);
+extern _q4  _Q4mpy(_q4 A, _q4 B);
+extern _q3  _Q3mpy(_q3 A, _q3 B);
+extern _q2  _Q2mpy(_q2 A, _q2 B);
+extern _q1  _Q1mpy(_q1 A, _q1 B);
 
 #if GLOBAL_Q == 15
 #define _Qmpy(A, B) _Q15mpy(A, B)
@@ -473,15 +473,15 @@ extern _q13 _Q13rmpy(_q13 A, _q13 B);
 extern _q12 _Q12rmpy(_q12 A, _q12 B);
 extern _q11 _Q11rmpy(_q11 A, _q11 B);
 extern _q10 _Q10rmpy(_q10 A, _q10 B);
-extern _q9 _Q9rmpy(_q9 A, _q9 B);
-extern _q8 _Q8rmpy(_q8 A, _q8 B);
-extern _q7 _Q7rmpy(_q7 A, _q7 B);
-extern _q6 _Q6rmpy(_q6 A, _q6 B);
-extern _q5 _Q5rmpy(_q5 A, _q5 B);
-extern _q4 _Q4rmpy(_q4 A, _q4 B);
-extern _q3 _Q3rmpy(_q3 A, _q3 B);
-extern _q2 _Q2rmpy(_q2 A, _q2 B);
-extern _q1 _Q1rmpy(_q1 A, _q1 B);
+extern _q9  _Q9rmpy(_q9 A, _q9 B);
+extern _q8  _Q8rmpy(_q8 A, _q8 B);
+extern _q7  _Q7rmpy(_q7 A, _q7 B);
+extern _q6  _Q6rmpy(_q6 A, _q6 B);
+extern _q5  _Q5rmpy(_q5 A, _q5 B);
+extern _q4  _Q4rmpy(_q4 A, _q4 B);
+extern _q3  _Q3rmpy(_q3 A, _q3 B);
+extern _q2  _Q2rmpy(_q2 A, _q2 B);
+extern _q1  _Q1rmpy(_q1 A, _q1 B);
 
 #if GLOBAL_Q == 15
 #define _Qrmpy(A, B) _Q15rmpy(A, B)
@@ -540,15 +540,15 @@ extern _q13 _Q13rsmpy(_q13 A, _q13 B);
 extern _q12 _Q12rsmpy(_q12 A, _q12 B);
 extern _q11 _Q11rsmpy(_q11 A, _q11 B);
 extern _q10 _Q10rsmpy(_q10 A, _q10 B);
-extern _q9 _Q9rsmpy(_q9 A, _q9 B);
-extern _q8 _Q8rsmpy(_q8 A, _q8 B);
-extern _q7 _Q7rsmpy(_q7 A, _q7 B);
-extern _q6 _Q6rsmpy(_q6 A, _q6 B);
-extern _q5 _Q5rsmpy(_q5 A, _q5 B);
-extern _q4 _Q4rsmpy(_q4 A, _q4 B);
-extern _q3 _Q3rsmpy(_q3 A, _q3 B);
-extern _q2 _Q2rsmpy(_q2 A, _q2 B);
-extern _q1 _Q1rsmpy(_q1 A, _q1 B);
+extern _q9  _Q9rsmpy(_q9 A, _q9 B);
+extern _q8  _Q8rsmpy(_q8 A, _q8 B);
+extern _q7  _Q7rsmpy(_q7 A, _q7 B);
+extern _q6  _Q6rsmpy(_q6 A, _q6 B);
+extern _q5  _Q5rsmpy(_q5 A, _q5 B);
+extern _q4  _Q4rsmpy(_q4 A, _q4 B);
+extern _q3  _Q3rsmpy(_q3 A, _q3 B);
+extern _q2  _Q2rsmpy(_q2 A, _q2 B);
+extern _q1  _Q1rsmpy(_q1 A, _q1 B);
 
 #if GLOBAL_Q == 15
 #define _Qrsmpy(A, B) _Q15rsmpy(A, B)
@@ -607,15 +607,15 @@ extern _q13 _Q13div(_q13 A, _q13 B);
 extern _q12 _Q12div(_q12 A, _q12 B);
 extern _q11 _Q11div(_q11 A, _q11 B);
 extern _q10 _Q10div(_q10 A, _q10 B);
-extern _q9 _Q9div(_q9 A, _q9 B);
-extern _q8 _Q8div(_q8 A, _q8 B);
-extern _q7 _Q7div(_q7 A, _q7 B);
-extern _q6 _Q6div(_q6 A, _q6 B);
-extern _q5 _Q5div(_q5 A, _q5 B);
-extern _q4 _Q4div(_q4 A, _q4 B);
-extern _q3 _Q3div(_q3 A, _q3 B);
-extern _q2 _Q2div(_q2 A, _q2 B);
-extern _q1 _Q1div(_q1 A, _q1 B);
+extern _q9  _Q9div(_q9 A, _q9 B);
+extern _q8  _Q8div(_q8 A, _q8 B);
+extern _q7  _Q7div(_q7 A, _q7 B);
+extern _q6  _Q6div(_q6 A, _q6 B);
+extern _q5  _Q5div(_q5 A, _q5 B);
+extern _q4  _Q4div(_q4 A, _q4 B);
+extern _q3  _Q3div(_q3 A, _q3 B);
+extern _q2  _Q2div(_q2 A, _q2 B);
+extern _q1  _Q1div(_q1 A, _q1 B);
 
 #if GLOBAL_Q == 15
 #define _Qdiv(A, B) _Q15div(A, B)
@@ -674,15 +674,15 @@ extern _q13 _Q13sin(_q13 A);
 extern _q12 _Q12sin(_q12 A);
 extern _q11 _Q11sin(_q11 A);
 extern _q10 _Q10sin(_q10 A);
-extern _q9 _Q9sin(_q9 A);
-extern _q8 _Q8sin(_q8 A);
-extern _q7 _Q7sin(_q7 A);
-extern _q6 _Q6sin(_q6 A);
-extern _q5 _Q5sin(_q5 A);
-extern _q4 _Q4sin(_q4 A);
-extern _q3 _Q3sin(_q3 A);
-extern _q2 _Q2sin(_q2 A);
-extern _q1 _Q1sin(_q1 A);
+extern _q9  _Q9sin(_q9 A);
+extern _q8  _Q8sin(_q8 A);
+extern _q7  _Q7sin(_q7 A);
+extern _q6  _Q6sin(_q6 A);
+extern _q5  _Q5sin(_q5 A);
+extern _q4  _Q4sin(_q4 A);
+extern _q3  _Q3sin(_q3 A);
+extern _q2  _Q2sin(_q2 A);
+extern _q1  _Q1sin(_q1 A);
 
 #if GLOBAL_Q == 15
 #define _Qsin(A) _Q15sin(A)
@@ -741,15 +741,15 @@ extern _q13 _Q13sinPU(_q13 A);
 extern _q12 _Q12sinPU(_q12 A);
 extern _q11 _Q11sinPU(_q11 A);
 extern _q10 _Q10sinPU(_q10 A);
-extern _q9 _Q9sinPU(_q9 A);
-extern _q8 _Q8sinPU(_q8 A);
-extern _q7 _Q7sinPU(_q7 A);
-extern _q6 _Q6sinPU(_q6 A);
-extern _q5 _Q5sinPU(_q5 A);
-extern _q4 _Q4sinPU(_q4 A);
-extern _q3 _Q3sinPU(_q3 A);
-extern _q2 _Q2sinPU(_q2 A);
-extern _q1 _Q1sinPU(_q1 A);
+extern _q9  _Q9sinPU(_q9 A);
+extern _q8  _Q8sinPU(_q8 A);
+extern _q7  _Q7sinPU(_q7 A);
+extern _q6  _Q6sinPU(_q6 A);
+extern _q5  _Q5sinPU(_q5 A);
+extern _q4  _Q4sinPU(_q4 A);
+extern _q3  _Q3sinPU(_q3 A);
+extern _q2  _Q2sinPU(_q2 A);
+extern _q1  _Q1sinPU(_q1 A);
 
 #if GLOBAL_Q == 15
 #define _QsinPU(A) _Q15sinPU(A)
@@ -807,15 +807,15 @@ extern _q13 _Q13asin(_q13 A);
 extern _q12 _Q12asin(_q12 A);
 extern _q11 _Q11asin(_q11 A);
 extern _q10 _Q10asin(_q10 A);
-extern _q9 _Q9asin(_q9 A);
-extern _q8 _Q8asin(_q8 A);
-extern _q7 _Q7asin(_q7 A);
-extern _q6 _Q6asin(_q6 A);
-extern _q5 _Q5asin(_q5 A);
-extern _q4 _Q4asin(_q4 A);
-extern _q3 _Q3asin(_q3 A);
-extern _q2 _Q2asin(_q2 A);
-extern _q1 _Q1asin(_q1 A);
+extern _q9  _Q9asin(_q9 A);
+extern _q8  _Q8asin(_q8 A);
+extern _q7  _Q7asin(_q7 A);
+extern _q6  _Q6asin(_q6 A);
+extern _q5  _Q5asin(_q5 A);
+extern _q4  _Q4asin(_q4 A);
+extern _q3  _Q3asin(_q3 A);
+extern _q2  _Q2asin(_q2 A);
+extern _q1  _Q1asin(_q1 A);
 
 #if GLOBAL_Q == 14
 #define _Qasin(A) _Q14asin(A)
@@ -871,15 +871,15 @@ extern _q13 _Q13cos(_q13 A);
 extern _q12 _Q12cos(_q12 A);
 extern _q11 _Q11cos(_q11 A);
 extern _q10 _Q10cos(_q10 A);
-extern _q9 _Q9cos(_q9 A);
-extern _q8 _Q8cos(_q8 A);
-extern _q7 _Q7cos(_q7 A);
-extern _q6 _Q6cos(_q6 A);
-extern _q5 _Q5cos(_q5 A);
-extern _q4 _Q4cos(_q4 A);
-extern _q3 _Q3cos(_q3 A);
-extern _q2 _Q2cos(_q2 A);
-extern _q1 _Q1cos(_q1 A);
+extern _q9  _Q9cos(_q9 A);
+extern _q8  _Q8cos(_q8 A);
+extern _q7  _Q7cos(_q7 A);
+extern _q6  _Q6cos(_q6 A);
+extern _q5  _Q5cos(_q5 A);
+extern _q4  _Q4cos(_q4 A);
+extern _q3  _Q3cos(_q3 A);
+extern _q2  _Q2cos(_q2 A);
+extern _q1  _Q1cos(_q1 A);
 
 #if GLOBAL_Q == 15
 #define _Qcos(A) _Q15cos(A)
@@ -938,15 +938,15 @@ extern _q13 _Q13cosPU(_q13 A);
 extern _q12 _Q12cosPU(_q12 A);
 extern _q11 _Q11cosPU(_q11 A);
 extern _q10 _Q10cosPU(_q10 A);
-extern _q9 _Q9cosPU(_q9 A);
-extern _q8 _Q8cosPU(_q8 A);
-extern _q7 _Q7cosPU(_q7 A);
-extern _q6 _Q6cosPU(_q6 A);
-extern _q5 _Q5cosPU(_q5 A);
-extern _q4 _Q4cosPU(_q4 A);
-extern _q3 _Q3cosPU(_q3 A);
-extern _q2 _Q2cosPU(_q2 A);
-extern _q1 _Q1cosPU(_q1 A);
+extern _q9  _Q9cosPU(_q9 A);
+extern _q8  _Q8cosPU(_q8 A);
+extern _q7  _Q7cosPU(_q7 A);
+extern _q6  _Q6cosPU(_q6 A);
+extern _q5  _Q5cosPU(_q5 A);
+extern _q4  _Q4cosPU(_q4 A);
+extern _q3  _Q3cosPU(_q3 A);
+extern _q2  _Q2cosPU(_q2 A);
+extern _q1  _Q1cosPU(_q1 A);
 
 #if GLOBAL_Q == 15
 #define _QcosPU(A) _Q15cosPU(A)
@@ -1004,15 +1004,15 @@ extern _q1 _Q1cosPU(_q1 A);
 #define _Q12acos(A) (_Q12(1.570796327) - _Q12asin(A))
 #define _Q11acos(A) (_Q11(1.570796327) - _Q11asin(A))
 #define _Q10acos(A) (_Q10(1.570796327) - _Q10asin(A))
-#define _Q9acos(A) (_Q9(1.570796327) - _Q9asin(A))
-#define _Q8acos(A) (_Q8(1.570796327) - _Q8asin(A))
-#define _Q7acos(A) (_Q7(1.570796327) - _Q7asin(A))
-#define _Q6acos(A) (_Q6(1.570796327) - _Q6asin(A))
-#define _Q5acos(A) (_Q5(1.570796327) - _Q5asin(A))
-#define _Q4acos(A) (_Q4(1.570796327) - _Q4asin(A))
-#define _Q3acos(A) (_Q3(1.570796327) - _Q3asin(A))
-#define _Q2acos(A) (_Q2(1.570796327) - _Q2asin(A))
-#define _Q1acos(A) (_Q1(1.570796327) - _Q1asin(A))
+#define _Q9acos(A)  (_Q9(1.570796327) - _Q9asin(A))
+#define _Q8acos(A)  (_Q8(1.570796327) - _Q8asin(A))
+#define _Q7acos(A)  (_Q7(1.570796327) - _Q7asin(A))
+#define _Q6acos(A)  (_Q6(1.570796327) - _Q6asin(A))
+#define _Q5acos(A)  (_Q5(1.570796327) - _Q5asin(A))
+#define _Q4acos(A)  (_Q4(1.570796327) - _Q4asin(A))
+#define _Q3acos(A)  (_Q3(1.570796327) - _Q3asin(A))
+#define _Q2acos(A)  (_Q2(1.570796327) - _Q2asin(A))
+#define _Q1acos(A)  (_Q1(1.570796327) - _Q1asin(A))
 
 #if GLOBAL_Q == 14
 #define _Qacos(A) _Q14acos(A)
@@ -1068,15 +1068,15 @@ extern _q13 _Q13atan2(_q13 A, _q13 B);
 extern _q12 _Q12atan2(_q12 A, _q12 B);
 extern _q11 _Q11atan2(_q11 A, _q11 B);
 extern _q10 _Q10atan2(_q10 A, _q10 B);
-extern _q9 _Q9atan2(_q9 A, _q9 B);
-extern _q8 _Q8atan2(_q8 A, _q8 B);
-extern _q7 _Q7atan2(_q7 A, _q7 B);
-extern _q6 _Q6atan2(_q6 A, _q6 B);
-extern _q5 _Q5atan2(_q5 A, _q5 B);
-extern _q4 _Q4atan2(_q4 A, _q4 B);
-extern _q3 _Q3atan2(_q3 A, _q3 B);
-extern _q2 _Q2atan2(_q2 A, _q2 B);
-extern _q1 _Q1atan2(_q1 A, _q1 B);
+extern _q9  _Q9atan2(_q9 A, _q9 B);
+extern _q8  _Q8atan2(_q8 A, _q8 B);
+extern _q7  _Q7atan2(_q7 A, _q7 B);
+extern _q6  _Q6atan2(_q6 A, _q6 B);
+extern _q5  _Q5atan2(_q5 A, _q5 B);
+extern _q4  _Q4atan2(_q4 A, _q4 B);
+extern _q3  _Q3atan2(_q3 A, _q3 B);
+extern _q2  _Q2atan2(_q2 A, _q2 B);
+extern _q1  _Q1atan2(_q1 A, _q1 B);
 
 #if GLOBAL_Q == 15
 #define _Qatan2(A, B) _Q15atan2(A, B)
@@ -1136,15 +1136,15 @@ extern _q13 _Q13atan2PU(_q13 A, _q13 B);
 extern _q12 _Q12atan2PU(_q12 A, _q12 B);
 extern _q11 _Q11atan2PU(_q11 A, _q11 B);
 extern _q10 _Q10atan2PU(_q10 A, _q10 B);
-extern _q9 _Q9atan2PU(_q9 A, _q9 B);
-extern _q8 _Q8atan2PU(_q8 A, _q8 B);
-extern _q7 _Q7atan2PU(_q7 A, _q7 B);
-extern _q6 _Q6atan2PU(_q6 A, _q6 B);
-extern _q5 _Q5atan2PU(_q5 A, _q5 B);
-extern _q4 _Q4atan2PU(_q4 A, _q4 B);
-extern _q3 _Q3atan2PU(_q3 A, _q3 B);
-extern _q2 _Q2atan2PU(_q2 A, _q2 B);
-extern _q1 _Q1atan2PU(_q1 A, _q1 B);
+extern _q9  _Q9atan2PU(_q9 A, _q9 B);
+extern _q8  _Q8atan2PU(_q8 A, _q8 B);
+extern _q7  _Q7atan2PU(_q7 A, _q7 B);
+extern _q6  _Q6atan2PU(_q6 A, _q6 B);
+extern _q5  _Q5atan2PU(_q5 A, _q5 B);
+extern _q4  _Q4atan2PU(_q4 A, _q4 B);
+extern _q3  _Q3atan2PU(_q3 A, _q3 B);
+extern _q2  _Q2atan2PU(_q2 A, _q2 B);
+extern _q1  _Q1atan2PU(_q1 A, _q1 B);
 
 #if GLOBAL_Q == 15
 #define _Qatan2PU(A, B) _Q15atan2PU(A, B)
@@ -1202,15 +1202,15 @@ extern _q1 _Q1atan2PU(_q1 A, _q1 B);
 #define _Q12atan(A) _Q12atan2(A, _Q12(1.0))
 #define _Q11atan(A) _Q11atan2(A, _Q11(1.0))
 #define _Q10atan(A) _Q10atan2(A, _Q10(1.0))
-#define _Q9atan(A) _Q9atan2(A, _Q9(1.0))
-#define _Q8atan(A) _Q8atan2(A, _Q8(1.0))
-#define _Q7atan(A) _Q7atan2(A, _Q7(1.0))
-#define _Q6atan(A) _Q6atan2(A, _Q6(1.0))
-#define _Q5atan(A) _Q5atan2(A, _Q5(1.0))
-#define _Q4atan(A) _Q4atan2(A, _Q4(1.0))
-#define _Q3atan(A) _Q3atan2(A, _Q3(1.0))
-#define _Q2atan(A) _Q2atan2(A, _Q2(1.0))
-#define _Q1atan(A) _Q1atan2(A, _Q1(1.0))
+#define _Q9atan(A)  _Q9atan2(A, _Q9(1.0))
+#define _Q8atan(A)  _Q8atan2(A, _Q8(1.0))
+#define _Q7atan(A)  _Q7atan2(A, _Q7(1.0))
+#define _Q6atan(A)  _Q6atan2(A, _Q6(1.0))
+#define _Q5atan(A)  _Q5atan2(A, _Q5(1.0))
+#define _Q4atan(A)  _Q4atan2(A, _Q4(1.0))
+#define _Q3atan(A)  _Q3atan2(A, _Q3(1.0))
+#define _Q2atan(A)  _Q2atan2(A, _Q2(1.0))
+#define _Q1atan(A)  _Q1atan2(A, _Q1(1.0))
 
 #if GLOBAL_Q == 15
 #define _Qatan(A) _Q15atan2(A, _Q15(1.0))
@@ -1269,15 +1269,15 @@ extern _q13 _Q13sqrt(_q13 A);
 extern _q12 _Q12sqrt(_q12 A);
 extern _q11 _Q11sqrt(_q11 A);
 extern _q10 _Q10sqrt(_q10 A);
-extern _q9 _Q9sqrt(_q9 A);
-extern _q8 _Q8sqrt(_q8 A);
-extern _q7 _Q7sqrt(_q7 A);
-extern _q6 _Q6sqrt(_q6 A);
-extern _q5 _Q5sqrt(_q5 A);
-extern _q4 _Q4sqrt(_q4 A);
-extern _q3 _Q3sqrt(_q3 A);
-extern _q2 _Q2sqrt(_q2 A);
-extern _q1 _Q1sqrt(_q1 A);
+extern _q9  _Q9sqrt(_q9 A);
+extern _q8  _Q8sqrt(_q8 A);
+extern _q7  _Q7sqrt(_q7 A);
+extern _q6  _Q6sqrt(_q6 A);
+extern _q5  _Q5sqrt(_q5 A);
+extern _q4  _Q4sqrt(_q4 A);
+extern _q3  _Q3sqrt(_q3 A);
+extern _q2  _Q2sqrt(_q2 A);
+extern _q1  _Q1sqrt(_q1 A);
 
 #if GLOBAL_Q == 15
 #define _Qsqrt(A) _Q15sqrt(A)
@@ -1336,15 +1336,15 @@ extern _q13 _Q13isqrt(_q13 A);
 extern _q12 _Q12isqrt(_q12 A);
 extern _q11 _Q11isqrt(_q11 A);
 extern _q10 _Q10isqrt(_q10 A);
-extern _q9 _Q9isqrt(_q9 A);
-extern _q8 _Q8isqrt(_q8 A);
-extern _q7 _Q7isqrt(_q7 A);
-extern _q6 _Q6isqrt(_q6 A);
-extern _q5 _Q5isqrt(_q5 A);
-extern _q4 _Q4isqrt(_q4 A);
-extern _q3 _Q3isqrt(_q3 A);
-extern _q2 _Q2isqrt(_q2 A);
-extern _q1 _Q1isqrt(_q1 A);
+extern _q9  _Q9isqrt(_q9 A);
+extern _q8  _Q8isqrt(_q8 A);
+extern _q7  _Q7isqrt(_q7 A);
+extern _q6  _Q6isqrt(_q6 A);
+extern _q5  _Q5isqrt(_q5 A);
+extern _q4  _Q4isqrt(_q4 A);
+extern _q3  _Q3isqrt(_q3 A);
+extern _q2  _Q2isqrt(_q2 A);
+extern _q1  _Q1isqrt(_q1 A);
 
 #if GLOBAL_Q == 15
 #define _Qisqrt(A) _Q15isqrt(A)
@@ -1403,15 +1403,15 @@ extern _q13 _Q13exp(_q13 A);
 extern _q12 _Q12exp(_q12 A);
 extern _q11 _Q11exp(_q11 A);
 extern _q10 _Q10exp(_q10 A);
-extern _q9 _Q9exp(_q9 A);
-extern _q8 _Q8exp(_q8 A);
-extern _q7 _Q7exp(_q7 A);
-extern _q6 _Q6exp(_q6 A);
-extern _q5 _Q5exp(_q5 A);
-extern _q4 _Q4exp(_q4 A);
-extern _q3 _Q3exp(_q3 A);
-extern _q2 _Q2exp(_q2 A);
-extern _q1 _Q1exp(_q1 A);
+extern _q9  _Q9exp(_q9 A);
+extern _q8  _Q8exp(_q8 A);
+extern _q7  _Q7exp(_q7 A);
+extern _q6  _Q6exp(_q6 A);
+extern _q5  _Q5exp(_q5 A);
+extern _q4  _Q4exp(_q4 A);
+extern _q3  _Q3exp(_q3 A);
+extern _q2  _Q2exp(_q2 A);
+extern _q1  _Q1exp(_q1 A);
 
 #if GLOBAL_Q == 15
 #define _Qexp(A) _Q15exp(A)
@@ -1470,15 +1470,15 @@ extern _q13 _Q13log(_q13 A);
 extern _q12 _Q12log(_q12 A);
 extern _q11 _Q11log(_q11 A);
 extern _q10 _Q10log(_q10 A);
-extern _q9 _Q9log(_q9 A);
-extern _q8 _Q8log(_q8 A);
-extern _q7 _Q7log(_q7 A);
-extern _q6 _Q6log(_q6 A);
-extern _q5 _Q5log(_q5 A);
-extern _q4 _Q4log(_q4 A);
-extern _q3 _Q3log(_q3 A);
-extern _q2 _Q2log(_q2 A);
-extern _q1 _Q1log(_q1 A);
+extern _q9  _Q9log(_q9 A);
+extern _q8  _Q8log(_q8 A);
+extern _q7  _Q7log(_q7 A);
+extern _q6  _Q6log(_q6 A);
+extern _q5  _Q5log(_q5 A);
+extern _q4  _Q4log(_q4 A);
+extern _q3  _Q3log(_q3 A);
+extern _q2  _Q2log(_q2 A);
+extern _q1  _Q1log(_q1 A);
 
 #if GLOBAL_Q == 15
 #define _Qlog(A) _Q15log(A)
@@ -1537,16 +1537,16 @@ extern _q1 _Q1log(_q1 A);
 #define _Q12int(A) ((A) >> 12)
 #define _Q11int(A) ((A) >> 11)
 #define _Q10int(A) ((A) >> 10)
-#define _Q9int(A) ((A) >> 9)
-#define _Q8int(A) ((A) >> 8)
-#define _Q7int(A) ((A) >> 7)
-#define _Q6int(A) ((A) >> 6)
-#define _Q5int(A) ((A) >> 5)
-#define _Q4int(A) ((A) >> 4)
-#define _Q3int(A) ((A) >> 3)
-#define _Q2int(A) ((A) >> 2)
-#define _Q1int(A) ((A) >> 1)
-#define _Qint(A) ((A) >> GLOBAL_Q)
+#define _Q9int(A)  ((A) >> 9)
+#define _Q8int(A)  ((A) >> 8)
+#define _Q7int(A)  ((A) >> 7)
+#define _Q6int(A)  ((A) >> 6)
+#define _Q5int(A)  ((A) >> 5)
+#define _Q4int(A)  ((A) >> 4)
+#define _Q3int(A)  ((A) >> 3)
+#define _Q2int(A)  ((A) >> 2)
+#define _Q1int(A)  ((A) >> 1)
+#define _Qint(A)   ((A) >> GLOBAL_Q)
 
 //*****************************************************************************
 //
@@ -1559,15 +1559,15 @@ extern _q13 _Q13frac(_q13 A);
 extern _q12 _Q12frac(_q12 A);
 extern _q11 _Q11frac(_q11 A);
 extern _q10 _Q10frac(_q10 A);
-extern _q9 _Q9frac(_q9 A);
-extern _q8 _Q8frac(_q8 A);
-extern _q7 _Q7frac(_q7 A);
-extern _q6 _Q6frac(_q6 A);
-extern _q5 _Q5frac(_q5 A);
-extern _q4 _Q4frac(_q4 A);
-extern _q3 _Q3frac(_q3 A);
-extern _q2 _Q2frac(_q2 A);
-extern _q1 _Q1frac(_q1 A);
+extern _q9  _Q9frac(_q9 A);
+extern _q8  _Q8frac(_q8 A);
+extern _q7  _Q7frac(_q7 A);
+extern _q6  _Q6frac(_q6 A);
+extern _q5  _Q5frac(_q5 A);
+extern _q4  _Q4frac(_q4 A);
+extern _q3  _Q3frac(_q3 A);
+extern _q2  _Q2frac(_q2 A);
+extern _q1  _Q1frac(_q1 A);
 
 #if GLOBAL_Q == 15
 #define _Qfrac(A) _Q15frac(A)
@@ -1694,16 +1694,16 @@ extern int16_t _Q1mpyQX(int16_t A, int n1, int16_t B, int n2);
 #define _Q12mpyI16(A, B) ((A) * (B))
 #define _Q11mpyI16(A, B) ((A) * (B))
 #define _Q10mpyI16(A, B) ((A) * (B))
-#define _Q9mpyI16(A, B) ((A) * (B))
-#define _Q8mpyI16(A, B) ((A) * (B))
-#define _Q7mpyI16(A, B) ((A) * (B))
-#define _Q6mpyI16(A, B) ((A) * (B))
-#define _Q5mpyI16(A, B) ((A) * (B))
-#define _Q4mpyI16(A, B) ((A) * (B))
-#define _Q3mpyI16(A, B) ((A) * (B))
-#define _Q2mpyI16(A, B) ((A) * (B))
-#define _Q1mpyI16(A, B) ((A) * (B))
-#define _QmpyI16(A, B) ((A) * (B))
+#define _Q9mpyI16(A, B)  ((A) * (B))
+#define _Q8mpyI16(A, B)  ((A) * (B))
+#define _Q7mpyI16(A, B)  ((A) * (B))
+#define _Q6mpyI16(A, B)  ((A) * (B))
+#define _Q5mpyI16(A, B)  ((A) * (B))
+#define _Q4mpyI16(A, B)  ((A) * (B))
+#define _Q3mpyI16(A, B)  ((A) * (B))
+#define _Q2mpyI16(A, B)  ((A) * (B))
+#define _Q1mpyI16(A, B)  ((A) * (B))
+#define _QmpyI16(A, B)   ((A) * (B))
 
 //*****************************************************************************
 //
@@ -1716,15 +1716,15 @@ extern int16_t _Q1mpyQX(int16_t A, int n1, int16_t B, int n2);
 #define _Q12mpyI16int(A, B) _Q12int(_Q12mpyI16(A, B))
 #define _Q11mpyI16int(A, B) _Q11int(_Q11mpyI16(A, B))
 #define _Q10mpyI16int(A, B) _Q10int(_Q10mpyI16(A, B))
-#define _Q9mpyI16int(A, B) _Q9int(_Q9mpyI16(A, B))
-#define _Q8mpyI16int(A, B) _Q8int(_Q8mpyI16(A, B))
-#define _Q7mpyI16int(A, B) _Q7int(_Q7mpyI16(A, B))
-#define _Q6mpyI16int(A, B) _Q6int(_Q6mpyI16(A, B))
-#define _Q5mpyI16int(A, B) _Q5int(_Q5mpyI16(A, B))
-#define _Q4mpyI16int(A, B) _Q4int(_Q4mpyI16(A, B))
-#define _Q3mpyI16int(A, B) _Q3int(_Q3mpyI16(A, B))
-#define _Q2mpyI16int(A, B) _Q2int(_Q2mpyI16(A, B))
-#define _Q1mpyI16int(A, B) _Q1int(_Q1mpyI16(A, B))
+#define _Q9mpyI16int(A, B)  _Q9int(_Q9mpyI16(A, B))
+#define _Q8mpyI16int(A, B)  _Q8int(_Q8mpyI16(A, B))
+#define _Q7mpyI16int(A, B)  _Q7int(_Q7mpyI16(A, B))
+#define _Q6mpyI16int(A, B)  _Q6int(_Q6mpyI16(A, B))
+#define _Q5mpyI16int(A, B)  _Q5int(_Q5mpyI16(A, B))
+#define _Q4mpyI16int(A, B)  _Q4int(_Q4mpyI16(A, B))
+#define _Q3mpyI16int(A, B)  _Q3int(_Q3mpyI16(A, B))
+#define _Q2mpyI16int(A, B)  _Q2int(_Q2mpyI16(A, B))
+#define _Q1mpyI16int(A, B)  _Q1int(_Q1mpyI16(A, B))
 
 #if GLOBAL_Q == 15
 #define _QmpyI16int(A, B) _Q15mpyI16int(A, B)
@@ -1783,15 +1783,15 @@ extern int16_t _Q1mpyQX(int16_t A, int n1, int16_t B, int n2);
 #define _Q12mpyI16frac(A, B) _Q12frac(_Q12mpyI16(A, B))
 #define _Q11mpyI16frac(A, B) _Q11frac(_Q11mpyI16(A, B))
 #define _Q10mpyI16frac(A, B) _Q10frac(_Q10mpyI16(A, B))
-#define _Q9mpyI16frac(A, B) _Q9frac(_Q9mpyI16(A, B))
-#define _Q8mpyI16frac(A, B) _Q8frac(_Q8mpyI16(A, B))
-#define _Q7mpyI16frac(A, B) _Q7frac(_Q7mpyI16(A, B))
-#define _Q6mpyI16frac(A, B) _Q6frac(_Q6mpyI16(A, B))
-#define _Q5mpyI16frac(A, B) _Q5frac(_Q5mpyI16(A, B))
-#define _Q4mpyI16frac(A, B) _Q4frac(_Q4mpyI16(A, B))
-#define _Q3mpyI16frac(A, B) _Q3frac(_Q3mpyI16(A, B))
-#define _Q2mpyI16frac(A, B) _Q2frac(_Q2mpyI16(A, B))
-#define _Q1mpyI16frac(A, B) _Q1frac(_Q1mpyI16(A, B))
+#define _Q9mpyI16frac(A, B)  _Q9frac(_Q9mpyI16(A, B))
+#define _Q8mpyI16frac(A, B)  _Q8frac(_Q8mpyI16(A, B))
+#define _Q7mpyI16frac(A, B)  _Q7frac(_Q7mpyI16(A, B))
+#define _Q6mpyI16frac(A, B)  _Q6frac(_Q6mpyI16(A, B))
+#define _Q5mpyI16frac(A, B)  _Q5frac(_Q5mpyI16(A, B))
+#define _Q4mpyI16frac(A, B)  _Q4frac(_Q4mpyI16(A, B))
+#define _Q3mpyI16frac(A, B)  _Q3frac(_Q3mpyI16(A, B))
+#define _Q2mpyI16frac(A, B)  _Q2frac(_Q2mpyI16(A, B))
+#define _Q1mpyI16frac(A, B)  _Q1frac(_Q1mpyI16(A, B))
 
 #if GLOBAL_Q == 15
 #define _QmpyI16frac(A, B) _Q15mpyI16frac(A, B)
@@ -1851,15 +1851,15 @@ extern int16_t _Qmag(int16_t A, int16_t B);
 #define _Q12mag(A, B) _Qmag(A, B)
 #define _Q11mag(A, B) _Qmag(A, B)
 #define _Q10mag(A, B) _Qmag(A, B)
-#define _Q9mag(A, B) _Qmag(A, B)
-#define _Q8mag(A, B) _Qmag(A, B)
-#define _Q7mag(A, B) _Qmag(A, B)
-#define _Q6mag(A, B) _Qmag(A, B)
-#define _Q5mag(A, B) _Qmag(A, B)
-#define _Q4mag(A, B) _Qmag(A, B)
-#define _Q3mag(A, B) _Qmag(A, B)
-#define _Q2mag(A, B) _Qmag(A, B)
-#define _Q1mag(A, B) _Qmag(A, B)
+#define _Q9mag(A, B)  _Qmag(A, B)
+#define _Q8mag(A, B)  _Qmag(A, B)
+#define _Q7mag(A, B)  _Qmag(A, B)
+#define _Q6mag(A, B)  _Qmag(A, B)
+#define _Q5mag(A, B)  _Qmag(A, B)
+#define _Q4mag(A, B)  _Qmag(A, B)
+#define _Q3mag(A, B)  _Qmag(A, B)
+#define _Q2mag(A, B)  _Qmag(A, B)
+#define _Q1mag(A, B)  _Qmag(A, B)
 
 //*****************************************************************************
 //
@@ -1872,15 +1872,15 @@ extern _q13 _Q13imag(_q13 A, _q13 B);
 extern _q12 _Q12imag(_q12 A, _q12 B);
 extern _q11 _Q11imag(_q11 A, _q11 B);
 extern _q10 _Q10imag(_q10 A, _q10 B);
-extern _q9 _Q9imag(_q9 A, _q9 B);
-extern _q8 _Q8imag(_q8 A, _q8 B);
-extern _q7 _Q7imag(_q7 A, _q7 B);
-extern _q6 _Q6imag(_q6 A, _q6 B);
-extern _q5 _Q5imag(_q5 A, _q5 B);
-extern _q4 _Q4imag(_q4 A, _q4 B);
-extern _q3 _Q3imag(_q3 A, _q3 B);
-extern _q2 _Q2imag(_q2 A, _q2 B);
-extern _q1 _Q1imag(_q1 A, _q1 B);
+extern _q9  _Q9imag(_q9 A, _q9 B);
+extern _q8  _Q8imag(_q8 A, _q8 B);
+extern _q7  _Q7imag(_q7 A, _q7 B);
+extern _q6  _Q6imag(_q6 A, _q6 B);
+extern _q5  _Q5imag(_q5 A, _q5 B);
+extern _q4  _Q4imag(_q4 A, _q4 B);
+extern _q3  _Q3imag(_q3 A, _q3 B);
+extern _q2  _Q2imag(_q2 A, _q2 B);
+extern _q1  _Q1imag(_q1 A, _q1 B);
 
 #if GLOBAL_Q == 15
 #define _Qimag(A, B) _Q15imag(A, B)
@@ -1933,21 +1933,21 @@ extern _q1 _Q1imag(_q1 A, _q1 B);
 // Converts a string into an Q number.
 //
 //*****************************************************************************
-extern _q15 _atoQ15(const char *A);
-extern _q14 _atoQ14(const char *A);
-extern _q13 _atoQ13(const char *A);
-extern _q12 _atoQ12(const char *A);
-extern _q11 _atoQ11(const char *A);
-extern _q10 _atoQ10(const char *A);
-extern _q9 _atoQ9(const char *A);
-extern _q8 _atoQ8(const char *A);
-extern _q7 _atoQ7(const char *A);
-extern _q6 _atoQ6(const char *A);
-extern _q5 _atoQ5(const char *A);
-extern _q4 _atoQ4(const char *A);
-extern _q3 _atoQ3(const char *A);
-extern _q2 _atoQ2(const char *A);
-extern _q1 _atoQ1(const char *A);
+extern _q15 _atoQ15(const char* A);
+extern _q14 _atoQ14(const char* A);
+extern _q13 _atoQ13(const char* A);
+extern _q12 _atoQ12(const char* A);
+extern _q11 _atoQ11(const char* A);
+extern _q10 _atoQ10(const char* A);
+extern _q9  _atoQ9(const char* A);
+extern _q8  _atoQ8(const char* A);
+extern _q7  _atoQ7(const char* A);
+extern _q6  _atoQ6(const char* A);
+extern _q5  _atoQ5(const char* A);
+extern _q4  _atoQ4(const char* A);
+extern _q3  _atoQ3(const char* A);
+extern _q2  _atoQ2(const char* A);
+extern _q1  _atoQ1(const char* A);
 
 #if GLOBAL_Q == 15
 #define _atoQ(A) _atoQ15(A)
@@ -2000,21 +2000,21 @@ extern _q1 _atoQ1(const char *A);
 // Converts an Q number into a string.
 //
 //*****************************************************************************
-extern int16_t _Q15toa(char *string, const char *format, _q15 input);
-extern int16_t _Q14toa(char *string, const char *format, _q14 input);
-extern int16_t _Q13toa(char *string, const char *format, _q13 input);
-extern int16_t _Q12toa(char *string, const char *format, _q12 input);
-extern int16_t _Q11toa(char *string, const char *format, _q11 input);
-extern int16_t _Q10toa(char *string, const char *format, _q10 input);
-extern int16_t _Q9toa(char *string, const char *format, _q9 input);
-extern int16_t _Q8toa(char *string, const char *format, _q8 input);
-extern int16_t _Q7toa(char *string, const char *format, _q7 input);
-extern int16_t _Q6toa(char *string, const char *format, _q6 input);
-extern int16_t _Q5toa(char *string, const char *format, _q5 input);
-extern int16_t _Q4toa(char *string, const char *format, _q4 input);
-extern int16_t _Q3toa(char *string, const char *format, _q3 input);
-extern int16_t _Q2toa(char *string, const char *format, _q2 input);
-extern int16_t _Q1toa(char *string, const char *format, _q1 input);
+extern int16_t _Q15toa(char* string, const char* format, _q15 input);
+extern int16_t _Q14toa(char* string, const char* format, _q14 input);
+extern int16_t _Q13toa(char* string, const char* format, _q13 input);
+extern int16_t _Q12toa(char* string, const char* format, _q12 input);
+extern int16_t _Q11toa(char* string, const char* format, _q11 input);
+extern int16_t _Q10toa(char* string, const char* format, _q10 input);
+extern int16_t _Q9toa(char* string, const char* format, _q9 input);
+extern int16_t _Q8toa(char* string, const char* format, _q8 input);
+extern int16_t _Q7toa(char* string, const char* format, _q7 input);
+extern int16_t _Q6toa(char* string, const char* format, _q6 input);
+extern int16_t _Q5toa(char* string, const char* format, _q5 input);
+extern int16_t _Q4toa(char* string, const char* format, _q4 input);
+extern int16_t _Q3toa(char* string, const char* format, _q3 input);
+extern int16_t _Q2toa(char* string, const char* format, _q2 input);
+extern int16_t _Q1toa(char* string, const char* format, _q1 input);
 
 #if GLOBAL_Q == 15
 #define _Qtoa(A, B, C) _Q15toa(A, B, C)
@@ -2073,16 +2073,16 @@ extern int16_t _Q1toa(char *string, const char *format, _q1 input);
 #define _Q12abs(A) (((A) < 0) ? -(A) : (A))
 #define _Q11abs(A) (((A) < 0) ? -(A) : (A))
 #define _Q10abs(A) (((A) < 0) ? -(A) : (A))
-#define _Q9abs(A) (((A) < 0) ? -(A) : (A))
-#define _Q8abs(A) (((A) < 0) ? -(A) : (A))
-#define _Q7abs(A) (((A) < 0) ? -(A) : (A))
-#define _Q6abs(A) (((A) < 0) ? -(A) : (A))
-#define _Q5abs(A) (((A) < 0) ? -(A) : (A))
-#define _Q4abs(A) (((A) < 0) ? -(A) : (A))
-#define _Q3abs(A) (((A) < 0) ? -(A) : (A))
-#define _Q2abs(A) (((A) < 0) ? -(A) : (A))
-#define _Q1abs(A) (((A) < 0) ? -(A) : (A))
-#define _Qabs(A) (((A) < 0) ? -(A) : (A))
+#define _Q9abs(A)  (((A) < 0) ? -(A) : (A))
+#define _Q8abs(A)  (((A) < 0) ? -(A) : (A))
+#define _Q7abs(A)  (((A) < 0) ? -(A) : (A))
+#define _Q6abs(A)  (((A) < 0) ? -(A) : (A))
+#define _Q5abs(A)  (((A) < 0) ? -(A) : (A))
+#define _Q4abs(A)  (((A) < 0) ? -(A) : (A))
+#define _Q3abs(A)  (((A) < 0) ? -(A) : (A))
+#define _Q2abs(A)  (((A) < 0) ? -(A) : (A))
+#define _Q1abs(A)  (((A) < 0) ? -(A) : (A))
+#define _Qabs(A)   (((A) < 0) ? -(A) : (A))
 
 //*****************************************************************************
 //
