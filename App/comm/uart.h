@@ -13,8 +13,8 @@
 
 #include "eusci_a_uart.h"
 
-#define BAUDRATE_250K 250
-#define BAUDRATE_115K 115
+#define BAUDRATE_250K 250  // 250,000
+#define BAUDRATE_115K 115  // 115,200
 
 //*****************************************************************************
 // COMM RAM Buffer Definitions and Global Variables

@@ -27,6 +27,6 @@
 //! \return none
 //
 // *****************************************************************************
-extern void system_Init(void);
+extern void initSystem(void);
 
 #endif /* HAL_SYSTEM_H_ */

@@ -26,7 +26,7 @@ static void hal_system_GPIOInit(void);
 //
 // Function declarations
 //
-void system_Init(void) {
+void initSystem(void) {
   hal_system_ClockInit(EM_SMCLK_FREQ_IN_HZ);
   hal_system_GPIOInit();
 }
@@ -83,8 +83,4 @@ static void hal_system_GPIOInit(void) {
         gEmSWConfig.systemConfig->pulseArray[i].reactivePulseGpioPort,
         gEmSWConfig.systemConfig->pulseArray[i].reactivePulseGpioPin);
   }
-
-  /* P1.2: UCA0 UART RX & P1.3: UCA0 UART TX  */
-  GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P1,
-                                             GPIO_PIN2 | GPIO_PIN3);
 }

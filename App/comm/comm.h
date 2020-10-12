@@ -2,6 +2,6 @@
 #define COMM_H_
 
 //! \brief Setup the COMM module for operation.
-extern void Setup_comm(void);
+extern void initComm(void);
 
 #endif /* COMM_H_ */
