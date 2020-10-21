@@ -7,7 +7,6 @@
 #include "shell.h"
 #include <msp430.h>
 #include <stdarg.h>
-#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -18,20 +17,17 @@
 #include "uart.h"
 
 #define PRINT_BUF_SIZE 150
-#define SHELL_PORT     EUSCI_A1_BASE
+#define SHELL_PORT     EUSCI_A0_BASE
+
+volatile bool isShellActive = false;
 
 // create microrl object and pointer on it
 microrl_t  rl;
 microrl_t* prl = &rl;
 
-volatile bool        isRxComplete  = false;
-volatile bool        isShellActive = false;
-static volatile char rxData        = 0;
+static volatile uint8_t rxData = 0;
 
-/*
-AVR platform specific implementation routines (for Atmega8, rewrite for your MC)
-*/
-#define _MSP_DEMO_VER "1.0"
+#define _MSP_DEMO_VER "Security Light v1.0"
 
 // definition commands word
 #define _CMD_HELP1 "?"
@@ -71,6 +67,8 @@ void initShell(void) {
   // set callback for completion (optionally)
   microrl_set_complete_callback(prl, complet);
 
+  print("\033[2J");  // ESC seq for clear entire screen
+  print("\033[H");   // ESC seq for move cursor at left-top corner
   print("If you want to use shell, Press Ctrl + C\n\r");  // Help
 }
 
@@ -104,14 +102,12 @@ int execute(int argc, const char* const* argv) {
     if (strcmp(argv[i], _CMD_HELP1) == 0) {
       print("microrl v");
       print(MICRORL_LIB_VER);
-      print(" library MSP DEMO v");
       print(_MSP_DEMO_VER);
       print("\n\r");
       print_help();  // print help
     } else if (strcmp(argv[i], _CMD_HELP2) == 0) {
       print("microrl v");
       print(MICRORL_LIB_VER);
-      print(" library MSP DEMO v");
       print(_MSP_DEMO_VER);
       print("\n\r");
       print_help();  // print help
@@ -139,13 +135,10 @@ int execute(int argc, const char* const* argv) {
       print("\033[2J");  // ESC seq for clear entire screen
       print("\033[H");   // ESC seq for move cursor at left-top corner
     } else if (strcmp(argv[i], _CMD_EXIT) == 0) {
-      print("microrl v");
-      print(MICRORL_LIB_VER);
-      print(" library MSP DEMO v");
-      print(_MSP_DEMO_VER);
-      print("\n\r");
       print(RED_FONT " [ EXIT SHELL ] ");
       print(WHITE_FONT "\n\r");
+      print("If you want to use shell, Press Ctrl + C\n\r");  // Help
+      isShellActive = false;
     } else {
       print("command: '");
       print((char*)argv[i]);
@@ -196,11 +189,16 @@ char** complet(int argc, const char* const* argv) {
   return compl_world;
 }
 #endif
+EUSCI_A_UART_initParam shell_uartPort;
 
 static void initShellPort(void) {
+  // RX,TX
   GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P1,
                                              GPIO_PIN2 | GPIO_PIN3);
-  EUSCI_A_UART_initParam shell_uartPort = Get_BaudrateConfig(BAUDRATE_115K);
+  // RS232
+  /** GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P1, */
+  /**                                            GPIO_PIN4 | GPIO_PIN5); */
+  shell_uartPort = Get_BaudrateConfig(BAUDRATE_115200);
   Init_Uart(SHELL_PORT, &shell_uartPort);
 }
 
@@ -220,12 +218,18 @@ static void print_help(void) {
 // This is the Shell interrupt vector service routine.
 //
 //******************************************************************************
-#pragma vector = USCI_A1_VECTOR
-__interrupt void USCI_A1_ISR(void) {
-  switch (__even_in_range(UCA1IV, USCI_UART_UCTXIFG)) {
-    case USCI_NONE: break;
-
-    case USCI_UART_UCRXIFG: break;
+#pragma vector = USCI_A0_VECTOR
+__interrupt void USCI_A0_ISR(void) {
+  switch (__even_in_range(UCA0IV, USCI_UART_UCTXIFG)) {
+    case USCI_UART_UCRXIFG:
+      rxData = EUSCI_A_UART_receiveData(EUSCI_A0_BASE);
+      if (isShellActive) { microrl_insert_char(prl, rxData); }
+      // Ctrl + C
+      if (rxData == 0x03 || rxData == 240) {
+        prl->print(prl->prompt_str);
+        isShellActive = true;
+      }
+      break;
 
     case USCI_UART_UCTXIFG: break;
 

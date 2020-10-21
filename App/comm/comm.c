@@ -13,20 +13,3 @@ void initComm(void) {
   Init_Uart(COMM_PORT, &Comm_uartPort);
 }
 
-//******************************************************************************
-//
-// This is the comm interrupt vector service routine.
-//
-//******************************************************************************
-#pragma vector = USCI_A0_VECTOR
-__interrupt void USCI_A0_ISR(void) {
-  switch (__even_in_range(UCA1IV, USCI_UART_UCTXIFG)) {
-    case USCI_NONE: break;
-
-    case USCI_UART_UCRXIFG: break;
-
-    case USCI_UART_UCTXIFG: break;
-
-    default: break;
-  }
-}

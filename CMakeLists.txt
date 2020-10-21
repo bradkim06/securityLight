@@ -4,6 +4,7 @@ cmake_minimum_required(VERSION 3.14)    # CMake 버전을 명시
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 add_compile_definitions(__MSP430F6736__)
+add_compile_definitions(__TEST__)
 set(CCS_BASE_ROOT /mnt/c/ti/ccsv8/ccs_base)
 set(PROJECT_ROOT /mnt/c/Users/User/workspace_v8/securityLight)
 set(CG_TOOL_ROOT /mnt/c/ti/ccsv8/tools/compiler/ti-cgt-msp430_18.12.0.LTS)
@@ -23,6 +24,7 @@ ADD_EXECUTABLE(App ${SRC})
 include_directories(
     ${CCS_BASE_ROOT}/msp430/include
     ${PROJECT_ROOT}
+    ${PROJECT_ROOT}/test
     ${PROJECT_ROOT}/App
     ${PROJECT_ROOT}/App/comm
     ${PROJECT_ROOT}/App/shell

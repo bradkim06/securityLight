@@ -7,8 +7,10 @@ BUGS and TODO:
 
 #include "microrl.h"
 #include <ctype.h>
+#include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
+#include "shell.h"
 #ifdef _USE_LIBC_STDIO
 #include <stdio.h>
 #endif
@@ -505,7 +507,7 @@ void new_line_handler(microrl_t* pThis) {
     pThis->print(ENDL);
   }
   if ((status > 0) && (pThis->execute != NULL)) pThis->execute(status, tkn_arr);
-  print_prompt(pThis);
+  if (isShellActive) { print_prompt(pThis); }
   pThis->cmdlen = 0;
   pThis->cursor = 0;
   memset(pThis->cmdline, 0, _COMMAND_LINE_LEN);

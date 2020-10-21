@@ -3,9 +3,6 @@
 
 #include "config.h"
 
-#define true 1
-#define false 0
-
 /* define the Key codes */
 #define KEY_NUL 0  /**< ^@ Null character */
 #define KEY_SOH 1  /**< ^A Start of heading, = console interrupt */

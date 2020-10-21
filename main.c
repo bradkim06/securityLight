@@ -9,11 +9,40 @@
 
 #include "EMLibApp.h"
 #include "comm.h"
+#include "gpio.h"
 #include "hal_system.h"
 #include "shell.h"
 #include "wdt_a.h"
 
+#ifdef __TEST__
+#include "test_led.h"
+#include "test_uart.h"
+#endif
+
 static void initialize(void);
+
+/**
+ * main.c
+ */
+int main(void) {
+  // Stop WDT
+  WDT_A_hold(WDT_A_BASE);
+
+  initialize();
+
+  initEMLibGUIApp();
+
+  WDT_A_initWatchdogTimer(WDT_A_BASE, WDT_A_CLOCKSOURCE_VLOCLK,
+                          WDT_A_CLOCKDIVIDER_512K);
+  WDT_A_start(WDT_A_BASE);
+
+  while (true) {
+    WDT_A_resetTimer(WDT_A_BASE);
+#ifdef __TEST__
+    test_led();
+#endif
+  }
+}
 
 //*****************************************************************************
 //
@@ -24,24 +53,7 @@ static void initialize(void);
 // *****************************************************************************
 static void initialize(void) {
   initSystem();
-  initComm();
+  /** initComm(); */
   initShell();
-}
-
-/**
- * main.c
- */
-int main(void) {
-  // Stop WDT
-  WDT_A_hold(WDT_A_BASE);
-  /** WDTCTL = WDTPW + WDTHOLD; */
-
-  initialize();
-
-  initEMLibGUIApp();
-
-  while (true) { }
-
-  return 0;
 }
 

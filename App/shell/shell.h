@@ -8,8 +8,12 @@
 #ifndef __SHELL_H__
 #define __SHELL_H__
 
+#include <stdbool.h>
+
 #define RED_FONT   (char*)"\033[31m"
 #define WHITE_FONT (char*)"\033[0m"
+
+extern volatile bool isShellActive;
 
 // print to stream callback
 void print(const char* __restrict str, ...);
