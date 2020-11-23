@@ -36,7 +36,8 @@
 // defines
 //*****************************************************************************
 
-#define EM_SMCLK_FREQ_IN_HZ (25165824)
+// #define EM_SMCLK_FREQ_IN_HZ (25165824)
+#define EM_SMCLK_FREQ_IN_HZ (8388608)
 
 #define EM_CHANNEL_LENGTH     (2)
 #define EM_PHASE_LENGTH       (1)

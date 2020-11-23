@@ -25,6 +25,7 @@ int execute(int argc, const char* const* argv);
 char** complet(int argc, const char* const* argv);
 
 void initShell(void);
+void print_EMResult(void);
 
 #endif /* SHELL_SHELL_H_ */
 

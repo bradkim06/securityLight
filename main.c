@@ -8,6 +8,7 @@
 #include <msp430.h>
 
 #include "EMLibApp.h"
+#include "EM_userConfig.h"
 #include "comm.h"
 #include "gpio.h"
 #include "hal_system.h"
@@ -15,9 +16,12 @@
 #include "wdt_a.h"
 
 #ifdef __TEST__
+#include "test_clock.h"
 #include "test_led.h"
 #include "test_uart.h"
 #endif
+
+uint8_t gemResultStatus;
 
 static void initialize(void);
 
@@ -38,8 +42,13 @@ int main(void) {
 
   while (true) {
     WDT_A_resetTimer(WDT_A_BASE);
+    EM_foregroundProc(&gemResultStatus);
+
 #ifdef __TEST__
-    test_led();
+    if (gemResultStatus) {
+      print_EMResult();
+      test_led();
+    }
 #endif
   }
 }
@@ -55,5 +64,9 @@ static void initialize(void) {
   initSystem();
   /** initComm(); */
   initShell();
+#ifdef __TEST__
+  /** GPIO_setOutputLowOnPin(GPIO_PORT_P1, GPIO_PIN7); */
+  test_clock();
+#endif
 }
 

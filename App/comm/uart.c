@@ -35,9 +35,9 @@ EUSCI_A_UART_initParam Get_BaudrateConfig(int baudrate) {
       break;
     // 115200 Baud Rate @ 25MHz
     case BAUDRATE_115200:
-      config.clockPrescalar = 13;
-      config.firstModReg    = 10;
-      config.secondModReg   = 0;
+      config.clockPrescalar = 4;
+      config.firstModReg    = 7;
+      config.secondModReg   = 4;
       config.overSampling   = EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION;
       break;
 

@@ -745,11 +745,16 @@ void UCS_initFLL(uint16_t fsystem, uint16_t ratio) {
   // Re-enable FLL
   __bic_SR_register(SCG0);
 
+  __delay_cycles(1000000);
+
   while (HWREG8(UCS_BASE + OFS_UCSCTL7_L) & DCOFFG) {
     // Clear OSC flaut Flags
+    uint8_t debug = 0;
+    debug         = HWREG8(UCS_BASE + OFS_UCSCTL7_L);
     HWREG8(UCS_BASE + OFS_UCSCTL7_L) &= ~(DCOFFG);
 
     // Clear OFIFG fault flag
+    debug = HWREG8(SFR_BASE + OFS_SFRIFG1);
     HWREG8(SFR_BASE + OFS_SFRIFG1) &= ~OFIFG;
   }
 

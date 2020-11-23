@@ -1,8 +1,6 @@
 #include "EMLibApp.h"
 #include "EM_userConfig.h"
 
-uint8_t gemResultStatus;
-
 void initEMLibGUIApp(void) {
   EM_message_code code;
 
