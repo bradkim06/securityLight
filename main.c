@@ -47,7 +47,7 @@ int main(void) {
 #ifdef __TEST__
     if (gemResultStatus) {
       print_EMResult();
-      test_led();
+      /** test_led(); */
     }
 #endif
   }

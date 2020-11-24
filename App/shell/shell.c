@@ -21,6 +21,13 @@
 #define PRINT_BUF_SIZE 150
 #define SHELL_PORT     EUSCI_A0_BASE
 
+extern uint8_t gemResultStatus;
+
+union converter {
+  unsigned long hex;
+  float         var;
+};
+
 volatile bool isShellActive = false;
 
 // create microrl object and pointer on it
@@ -94,51 +101,42 @@ void print(const char* __restrict format, ...) {
   }
 }
 
-extern uint8_t gemResultStatus;
+float convertHex2Float(unsigned long input) {
+  union converter My;
+  My.hex = input;
+  return My.var;
+}
 
 void print_EMResult(void) {
-  union converter {
-    unsigned long hex;
-    float         var;
-  };
-  union converter My;
-  float           float_test = 32.5;
-  unsigned long   hex_test   = 0x42020000;
-  My.var                     = 32.5;
-
-  // Unpack IEEE-854
-  uint32_t value = hex_test;
-  float *  pf, f;
-  pf = (float*)&(value);
-  f  = *pf;
+  unsigned long hex_test = 345123;
 
   print(RED_FONT "EM Result print\n\r");
-  print(WHITE_FONT "gemResultStatus : %d\n\r", gemResultStatus);
-  print("test value = %f\n\r", f);
-  print("hex = %08lx, float = %f\n\r", My.hex, My.var);
-  print("hex_test = %lx\n\r", hex_test);
-  print("float %f\n\r", f);
-  print("float test = %f\n\r", float_test);
-  print("VRMS : %lu\n\r", gEmSWResult.phaseResults[EM_PH_A_IDX].VRMS);
-  print("IRMS : %lu\n\r", gEmSWResult.phaseResults[EM_PH_A_IDX].IRMS);
-  print("vPeak : %lu\n\r", gEmSWResult.phaseResults[EM_PH_A_IDX].vPeak);
-  print("iPeak : %lu\n\r", gEmSWResult.phaseResults[EM_PH_A_IDX].iPeak);
-  /** print("powerFactor : %ld\n\r", */
-  /**       gEmSWResult.phaseResults[EM_PH_A_IDX].powerFactor); */
-  /** print("frequency : %u\n\r",
-   * gEmSWResult.phaseResults[EM_PH_A_IDX].frequency); */
-  /** print("activePower : %llu\n\r", */
-  /**       gEmSWResult.phaseResults[EM_PH_A_IDX].activePower); */
-  /** print("reactivePower : %llu\n\r", */
-  /**       gEmSWResult.phaseResults[EM_PH_A_IDX].reactivePower); */
-  /** print("apparentPower : %llu\n\r", */
-  /**       gEmSWResult.phaseResults[EM_PH_A_IDX].apparentPower); */
-  /** print("activeEnergy : %llu\n\r", */
-  /**       gEmSWResult.phaseResults[EM_PH_A_IDX].activeEnergy); */
-  /** print("reactiveEnergy : %llu\n\r", */
-  /**       gEmSWResult.phaseResults[EM_PH_A_IDX].reactiveEnergy); */
-  /** print("apparentEnergy : %llu\n\r", */
-  /**       gEmSWResult.phaseResults[EM_PH_A_IDX].apparentEnergy); */
+  print(WHITE_FONT "decimal = %lu, float = %.3f\n\r", hex_test,
+        ((float)hex_test / 1000));
+  print(WHITE_FONT "VRMS_Dec : %.3fV\n\r",
+        ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].VRMS) / 1000);
+  print("IRMS : %.3fmA\n\r",
+        ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].IRMS / 1000));
+  print("vPeak : %.3fV\n\r",
+        ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].vPeak / 1000));
+  print("iPeak : %.3fmA\n\r",
+        ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].iPeak / 1000));
+  print("powerFactor : %ld\n\r",
+        gEmSWResult.phaseResults[EM_PH_A_IDX].powerFactor);
+  print("frequency : %.2fHz\n\r",
+        ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].frequency) / 100);
+  print("activePower : %llduW\n\r",
+        gEmSWResult.phaseResults[EM_PH_A_IDX].activePower);
+  print("reactivePower : %llduVAr\n\r",
+        gEmSWResult.phaseResults[EM_PH_A_IDX].reactivePower);
+  print("apparentPower : %llduVA\n\r",
+        gEmSWResult.phaseResults[EM_PH_A_IDX].apparentPower);
+  print("activeEnergy : %lluuWh\n\r",
+        gEmSWResult.phaseResults[EM_PH_A_IDX].activeEnergy);
+  print("reactiveEnergy : %lluuVArh\n\r",
+        gEmSWResult.phaseResults[EM_PH_A_IDX].reactiveEnergy);
+  print("apparentEnergy : %lluuVAh\n\r",
+        gEmSWResult.phaseResults[EM_PH_A_IDX].apparentEnergy);
 }
 
 //*****************************************************************************
