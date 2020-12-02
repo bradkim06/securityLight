@@ -64,7 +64,7 @@ HAL_ADC_SD24_B_Channel adcChannelArray[EM_CHANNEL_LENGTH] = {
      .converter = SD24_B_CONVERTER_0,
      .alignment = SD24_B_ALIGN_LEFT},
     {.gain      = SD24_B_GAIN_1,
-     .converter = SD24_B_CONVERTER_2,
+     .converter = SD24_B_CONVERTER_1,
      .alignment = SD24_B_ALIGN_RIGHT},
 };
 

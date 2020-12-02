@@ -301,13 +301,11 @@ void __attribute__((interrupt(SD24_VECTOR))) SD24_ISR(void)
       phAWriteVIdx = (phAWriteVIdx + 1) & (HAL_ADC_V_MASK);
       break;
     case SD24BIV_SD24IFG1:  // SD24MEM1 IFG
-      break;
-    case SD24BIV_SD24IFG2:  // SD24MEM2 IFG
-      chReadStatus |= HAL_ADC_CH2_READ;
+      chReadStatus |= HAL_ADC_CH1_READ;
 
       // Store Current Results
       phAISamples[phAWriteIIdx] =
-          SD24_B_getResults(SD24_BASE, SD24_B_CONVERTER_2);
+          SD24_B_getResults(SD24_BASE, SD24_B_CONVERTER_1);
       tempI                     = phAISamples[phAWriteIIdx] >> 1;
       phAISamples[phAWriteIIdx] = tempI;
 
@@ -320,12 +318,14 @@ void __attribute__((interrupt(SD24_VECTOR))) SD24_ISR(void)
       // Increase Index and Mask
       phAWriteIIdx = (phAWriteIIdx + 1) & (HAL_ADC_I_MASK);
       break;
+    case SD24BIV_SD24IFG2:  // SD24MEM2 IFG
+      break;
     default: break;
   }
 
   // Check if both channels were read for all phases
-  if ((chReadStatus & (HAL_ADC_CH0_READ + HAL_ADC_CH2_READ)) ==
-      (HAL_ADC_CH0_READ + HAL_ADC_CH2_READ)) {
+  if ((chReadStatus & (HAL_ADC_CH0_READ + HAL_ADC_CH1_READ)) ==
+      (HAL_ADC_CH0_READ + HAL_ADC_CH1_READ)) {
     chReadStatus = 0;
 
     // Phase A Data Processing
