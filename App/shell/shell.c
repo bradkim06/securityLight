@@ -46,16 +46,18 @@ static volatile uint8_t rxData = 0;
 #define _CMD_CLEAR "clear"
 #define _CMD_EXIT  "exit"
 
+#define _CMD_RESULT "result"
+
 // sub commands for version command
 #define _SCMD_MRL  "microrl"
 #define _SCMD_DEMO "demo"
 
-#define _NUM_OF_CMD      6
+#define _NUM_OF_CMD      7
 #define _NUM_OF_VER_SCMD 2
 
 // available  commands
-char* keyworld[] = {_CMD_HELP1, _CMD_HELP2, _CMD_VER,
-                    _CMD_LIST,  _CMD_CLEAR, _CMD_EXIT};
+char* keyworld[] = {_CMD_HELP1, _CMD_HELP2, _CMD_VER,   _CMD_LIST,
+                    _CMD_CLEAR, _CMD_EXIT,  _CMD_RESULT};
 // version subcommands
 char* ver_keyworld[] = {_SCMD_MRL, _SCMD_DEMO};
 
@@ -108,12 +110,8 @@ float convertHex2Float(unsigned long input) {
 }
 
 void print_EMResult(void) {
-  unsigned long hex_test = 345123;
-
   print(RED_FONT "EM Result print\n\r");
-  print(WHITE_FONT "decimal = %lu, float = %.3f\n\r", hex_test,
-        ((float)hex_test / 1000));
-  print(WHITE_FONT "VRMS_Dec : %.3fV\n\r",
+  print(WHITE_FONT "VRMS : %.3fV\n\r",
         ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].VRMS) / 1000);
   print("IRMS : %.3fmA\n\r",
         ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].IRMS / 1000));
@@ -186,6 +184,8 @@ int execute(int argc, const char* const* argv) {
       print(WHITE_FONT "\n\r");
       print("If you want to use shell, Press Ctrl + C\n\r");  // Help
       isShellActive = false;
+    } else if (strcmp(argv[i], _CMD_RESULT) == 0) {
+      print_EMResult();
     } else {
       print("command: '");
       print((char*)argv[i]);
@@ -242,10 +242,8 @@ static void initShellPort(void) {
   // RX,TX
   GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P1,
                                              GPIO_PIN2 | GPIO_PIN3);
-  // RS232
-  /** GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P1, */
-  /**                                            GPIO_PIN4 | GPIO_PIN5); */
-  shell_uartPort = Get_BaudrateConfig(BAUDRATE_115200);
+
+  shell_uartPort = Get_BaudrateConfig(EM_SMCLK_FREQ_IN_HZ);
   Init_Uart(SHELL_PORT, &shell_uartPort);
 }
 

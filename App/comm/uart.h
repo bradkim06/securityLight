@@ -13,9 +13,6 @@
 
 #include "eusci_a_uart.h"
 
-#define BAUDRATE_250K   250  // 250,000
-#define BAUDRATE_115200 115  // 115,200
-
 //*****************************************************************************
 // COMM RAM Buffer Definitions and Global Variables
 //*****************************************************************************
@@ -85,6 +82,6 @@ void Init_Uart(uint16_t baseAddress, EUSCI_A_UART_initParam* params);
  * @Returns EUSCI_A_UART_initParam config
  */
 /* ==========================================================================*/
-EUSCI_A_UART_initParam Get_BaudrateConfig(int baudrate);
+EUSCI_A_UART_initParam Get_BaudrateConfig(uint32_t baudrate);
 
 #endif

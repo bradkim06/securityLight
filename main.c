@@ -9,7 +9,6 @@
 
 #include "EMLibApp.h"
 #include "EM_userConfig.h"
-#include "comm.h"
 #include "gpio.h"
 #include "hal_system.h"
 #include "shell.h"
@@ -46,7 +45,7 @@ int main(void) {
 
 #ifdef __TEST__
     if (gemResultStatus) {
-      print_EMResult();
+      //     print_EMResult();
       /** test_led(); */
     }
 #endif
@@ -62,10 +61,8 @@ int main(void) {
 // *****************************************************************************
 static void initialize(void) {
   initSystem();
-  /** initComm(); */
   initShell();
 #ifdef __TEST__
-  /** GPIO_setOutputLowOnPin(GPIO_PORT_P1, GPIO_PIN7); */
   test_clock();
 #endif
 }

@@ -22,13 +22,11 @@
 // Local function prototypes
 //
 static void hal_system_ClockInit(uint32_t mclkFreq);
-static void hal_system_GPIOInit(void);
 
 //
 // Function declarations
 //
 void initSystem(void) {
-  /** hal_system_GPIOInit(); */
   hal_system_ClockInit(EM_SMCLK_FREQ_IN_HZ);
 }
 
@@ -46,10 +44,6 @@ void initSystem(void) {
 // *****************************************************************************
 static void hal_system_ClockInit(uint32_t mclkFreq) {
   PMM_setVCore(PMM_CORE_LEVEL_3);
-  /** UCS_turnOnLFXT1(UCS_XT1_DRIVE_0, UCS_XCAP_0); */
-  /** UCSCTL3 |= SELREF_2;  // Set DCO FLL reference = REFO */
-  /** UCSCTL4 |= SELA_2;    // Set ACLK = REFO */
-  /** UCS_initFLLSettle(mclkFreq / 1000, mclkFreq / 32768); */
 
   // Setup P1.0 output, J1.0 SMCLK, J1.1 MCLK, J1.3 ACLK
   P1DIR |= BIT0;                // Set P1.0 to output direction
@@ -64,18 +58,34 @@ static void hal_system_ClockInit(uint32_t mclkFreq) {
   __bis_SR_register(SCG0);  // Disable the FLL control loop
   UCSCTL0 = 0x0000;         // Set lowest possible DCOx, MODx
   UCSCTL1 = DCORSEL_5;      // Select DCO range 16MHz operation
-  /** UCSCTL2 = FLLD_1 | 243;   // Set DCO Multiplier for 8MHz */
-  UCSCTL2 = FLLD_1 | 255;   // Set DCO Multiplier for 8MHz
-                            // (N + 1) * FLLRef = Fdco
-                            // (243 + 1) * 32768 = 8MHz
-                            // Set FLL Div = fDCOCLK/2
-  __bic_SR_register(SCG0);  // Enable the FLL control loop
 
   // Worst-case settling time for the DCO when the DCO range bits have been
   // changed is n x 32 x 32 x f_MCLK / f_FLL_reference. See UCS chapter in 5xx
   // UG for optimization.
   // 32 x 32 x 8 MHz / 32,768 Hz = 250000 = MCLK cycles for DCO to settle
-  __delay_cycles(1000000);
+  //
+  // (N + 1) * FLLRef = Fdco
+  // (243 + 1) * 32768 = 8MHz
+  // Set FLL Div = fDCOCLK/2
+  switch (mclkFreq) {
+    /** Clock 25Mhz Not Working */
+    case CLK_25MHZ:
+      UCSCTL2 = FLLD_1 | 767;   // Set DCO Multiplier for 25165824Hz
+      __bic_SR_register(SCG0);  // Enable the FLL control loop
+      __delay_cycles(786432);
+      break;
+    case CLK_16MHZ:
+      UCSCTL2 = FLLD_1 | 511;   // Set DCO Multiplier for 16777216Hz
+      __bic_SR_register(SCG0);  // Enable the FLL control loop
+      __delay_cycles(524288);
+      break;
+    case CLK_8MHZ:
+      UCSCTL2 = FLLD_1 | 255;   // Set DCO Multiplier for 8388608Hz
+      __bic_SR_register(SCG0);  // Enable the FLL control loop
+      __delay_cycles(262144);
+      break;
+    default: break;
+  }
 
   // Loop until XT1, XT2 & DCO fault flag is cleared
   do {
@@ -83,34 +93,4 @@ static void hal_system_ClockInit(uint32_t mclkFreq) {
     // Clear XT2,XT1,DCO fault flags
     SFRIFG1 &= ~OFIFG;        // Clear fault flags
   } while (SFRIFG1 & OFIFG);  // Test oscillator fault flag
-}
-
-//*****************************************************************************
-//
-//! Initializes GPIOs
-//!
-//! \return none
-//
-// *****************************************************************************
-static void hal_system_GPIOInit(void) {
-  uint8_t i;
-
-  // LED 1,2 Init
-  for (i = 0; i < gEmSWConfig.systemConfig->pulseArrayLength; i++) {
-    GPIO_setAsOutputPin(
-        gEmSWConfig.systemConfig->pulseArray[i].activePulseGpioPort,
-        gEmSWConfig.systemConfig->pulseArray[i].activePulseGpioPin);
-
-    GPIO_setAsOutputPin(
-        gEmSWConfig.systemConfig->pulseArray[i].reactivePulseGpioPort,
-        gEmSWConfig.systemConfig->pulseArray[i].reactivePulseGpioPin);
-
-    GPIO_setOutputHighOnPin(
-        gEmSWConfig.systemConfig->pulseArray[i].activePulseGpioPort,
-        gEmSWConfig.systemConfig->pulseArray[i].activePulseGpioPin);
-
-    GPIO_setOutputHighOnPin(
-        gEmSWConfig.systemConfig->pulseArray[i].reactivePulseGpioPort,
-        gEmSWConfig.systemConfig->pulseArray[i].reactivePulseGpioPin);
-  }
 }

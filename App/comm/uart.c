@@ -6,6 +6,8 @@
  */
 
 #include "uart.h"
+#include "EM_userConfig.h"
+#include "shell.h"
 
 void Init_Uart(uint16_t baseAddress, EUSCI_A_UART_initParam* params) {
   EUSCI_A_UART_disable(baseAddress);
@@ -16,7 +18,7 @@ void Init_Uart(uint16_t baseAddress, EUSCI_A_UART_initParam* params) {
   EUSCI_A_UART_enableInterrupt(baseAddress, EUSCI_A_UART_RECEIVE_INTERRUPT);
 }
 
-EUSCI_A_UART_initParam Get_BaudrateConfig(int baudrate) {
+EUSCI_A_UART_initParam Get_BaudrateConfig(uint32_t smclk) {
   EUSCI_A_UART_initParam config;
 
   config.selectClockSource = EUSCI_A_UART_CLOCKSOURCE_SMCLK;
@@ -25,23 +27,33 @@ EUSCI_A_UART_initParam Get_BaudrateConfig(int baudrate) {
   config.numberofStopBits  = EUSCI_A_UART_ONE_STOP_BIT;
   config.uartMode          = EUSCI_A_UART_MODE;
 
-  switch (baudrate) {
-    // 250000 Baud Rate @ 25MHz
-    case BAUDRATE_250K:
-      config.clockPrescalar = 0x06;
-      config.firstModReg    = 0x03;
-      config.secondModReg   = 0x02;
+  switch (smclk) {
+    // 115200 Baud Rate @ 25MHz
+    case CLK_25MHZ:
+      config.clockPrescalar = 13;
+      config.firstModReg    = 10;
+      config.secondModReg   = 0;
       config.overSampling   = EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION;
       break;
-    // 115200 Baud Rate @ 25MHz
-    case BAUDRATE_115200:
+    // 115200 Baud Rate @ 16MHz
+    case CLK_16MHZ:
+      config.clockPrescalar = 9;
+      config.firstModReg    = 2;
+      config.secondModReg   = 0;
+      config.overSampling   = EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION;
+      break;
+
+    // 115200 Baud Rate @ 16MHz
+    case CLK_8MHZ:
       config.clockPrescalar = 4;
       config.firstModReg    = 7;
       config.secondModReg   = 4;
       config.overSampling   = EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION;
       break;
 
-    default: break;
+    default:
+      print("Baudrate Setting Error Out of acceptable clock range\n\r");
+      break;
   }
 
   return config;

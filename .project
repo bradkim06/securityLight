@@ -3,7 +3,6 @@
 	<name>securityLight</name>
 	<comment></comment>
 	<projects>
-		<project>EVM430-F6736_CT_1V_1C_60Hz</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

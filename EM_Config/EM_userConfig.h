@@ -36,8 +36,13 @@
 // defines
 //*****************************************************************************
 
-// #define EM_SMCLK_FREQ_IN_HZ (25165824)
-#define EM_SMCLK_FREQ_IN_HZ (8388608)
+//#define EM_SMCLK_FREQ_IN_HZ (25165824)
+#define EM_SMCLK_FREQ_IN_HZ (16777216)
+//#define EM_SMCLK_FREQ_IN_HZ (8388608)
+
+#define CLK_25MHZ 25165824
+#define CLK_16MHZ 16777216
+#define CLK_8MHZ  8388608
 
 #define EM_CHANNEL_LENGTH     (2)
 #define EM_PHASE_LENGTH       (1)
@@ -45,7 +50,7 @@
 #define EM_PULSE_ARRAY_LENGTH (EM_PHASE_LENGTH + EM_AGGREGATE_ENABLE)
 
 #define EM_MAIN_NOMINAL_FREQ_HZ     (60)
-#define EM_SAMPLING_FREQ_HZ         (HAL_ADC_FREQ_4096_HZ)
+#define EM_SAMPLING_FREQ_HZ         (HAL_ADC_FREQ_8192_HZ)
 #define EM_PHASE_IMP_PER_KWHR       (6400)
 #define EM_PHASE_PULSE_DUR          (20)
 #define EM_TOTAL_PHASE_IMP_PER_KWHR (6400)
