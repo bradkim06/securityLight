@@ -23,6 +23,7 @@ extern flash_t flash;
 
 uint8_t calcChecksum(uint8_t* p, uint8_t len);
 bool    confirmChecksum(uint8_t* p, uint8_t len);
+void    readFlash(void);
 void    writeFlashCalib(void);
 
 #endif

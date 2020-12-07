@@ -1,4 +1,5 @@
 #include "flash.h"
+#include <string.h>
 #include "EM_userConfig.h"
 #include "flashctl.h"
 #include "shell.h"
@@ -23,6 +24,17 @@ bool confirmChecksum(uint8_t* p, uint8_t len) {
   if (checksum == *FLASH_CHECKSUM) return true;
   return false;
 }
+
+void readFlash(void) {
+  if (confirmChecksum(FLASH_D_ADDR, sizeof(flash_t) - 1)) {
+    memcpy(&flash, FLASH_D_ADDR, sizeof(flash_t));
+    memcpy(&g_emPhaseCalibration, &flash.calib, sizeof(EM_Phase_Calibration));
+#ifdef __TEST__
+    print("read flash!\n\r");
+    print("copy Calibration Factor!\n\r");
+#endif
+  }
+};
 
 void writeFlashCalib(void) {
   uint8_t* ptr      = (uint8_t*)&flash;
