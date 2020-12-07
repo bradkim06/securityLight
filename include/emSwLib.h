@@ -342,6 +342,7 @@ typedef struct _EM_System_Configuration_ {
 
 //! \brief Contains EM SW Lib Phase Calibration
 //!
+#pragma pack(push, 1)
 typedef struct _EM_Phase_Calibration_ {
   uint32_t voltageSF;
   //!< Voltage Scaling Factor - used to calculate VRMS
@@ -355,7 +356,7 @@ typedef struct _EM_Phase_Calibration_ {
   //!< Phase Correction between voltage and current (register units)
 
 } EM_Phase_Calibration;
-
+#pragma pack(pop)
 //! \brief Contains EM SW Lib System Configuration
 //!
 typedef struct _EM_Phase_Configuration_ {

@@ -12,6 +12,8 @@
 #include <string.h>
 #include "config.h"
 #include "eusci_a_uart.h"
+#include "flash.h"
+#include "flashctl.h"
 #include "gpio.h"
 #include "microrl.h"
 #include "uart.h"
@@ -46,20 +48,37 @@ static volatile uint8_t rxData = 0;
 #define _CMD_CLEAR "clear"
 #define _CMD_EXIT  "exit"
 
-#define _CMD_RESULT "result"
+#define _CMD_RESULT      "result"
+#define _CMD_PARAMETER   "params"
+#define _CMD_CALIBRATION "calib"
 
+#define _NUM_OF_CMD 9
 // sub commands for version command
+#define _NUM_OF_VER_SCMD 2
+
 #define _SCMD_MRL  "microrl"
 #define _SCMD_DEMO "demo"
 
-#define _NUM_OF_CMD      7
-#define _NUM_OF_VER_SCMD 2
-
-// available  commands
-char* keyworld[] = {_CMD_HELP1, _CMD_HELP2, _CMD_VER,   _CMD_LIST,
-                    _CMD_CLEAR, _CMD_EXIT,  _CMD_RESULT};
 // version subcommands
 char* ver_keyworld[] = {_SCMD_MRL, _SCMD_DEMO};
+
+// sub commands for calibration command
+#define _SCMD_VOLT     "voltage"
+#define _SCMD_CURRENT  "current"
+#define _SCMD_ACTIVE   "active"
+#define _SCMD_REACTIVE "reactive"
+#define _SCMD_PHASE    "phase"
+
+// calibration subcommands
+char* calib_keyworld[] = {_SCMD_VOLT, _SCMD_CURRENT, _SCMD_ACTIVE,
+                          _SCMD_REACTIVE, _SCMD_PHASE};
+
+#define _NUM_OF_CALIB_SCMD 5
+
+// available  commands
+char* keyworld[] = {_CMD_HELP1,  _CMD_HELP2,       _CMD_VER,
+                    _CMD_LIST,   _CMD_CLEAR,       _CMD_EXIT,
+                    _CMD_RESULT, _CMD_CALIBRATION, _CMD_PARAMETER};
 
 // array for comletion
 char* compl_world[_NUM_OF_CMD + 1];
@@ -67,6 +86,7 @@ char* compl_world[_NUM_OF_CMD + 1];
 // Initialize shell uart
 static void initShellPort(void);
 static void print_help(void);
+static void print_Parameters(void);
 
 void initShell(void) {
   initShellPort();
@@ -137,6 +157,56 @@ void print_EMResult(void) {
         gEmSWResult.phaseResults[EM_PH_A_IDX].apparentEnergy);
 }
 
+static void print_Parameters(void) {
+  print("voltageSF = %lu\n\r", g_emPhaseCalibration[0].voltageSF);
+  print("currentSF = %lu\n\r", g_emPhaseCalibration[0].currentSF);
+  print("activePowerSF = %lu\n\r", g_emPhaseCalibration[0].activePowerSF);
+  print("reactivePowerSF = %lu\n\r", g_emPhaseCalibration[0].reactivePowerSF);
+  print("phaseCorrection = %d\n\r", g_emPhaseCalibration[0].phaseCorrection);
+}
+
+void calibrateFactor(const char* const* argv) {
+  // if (gEmSWResult.phaseResults[EM_PH_A_IDX].VRMS < 10000) {
+  //   print("Can't calibration because Input Voltage is lower than 10V
+  //   %luuV\n\r",
+  //         gEmSWResult.phaseResults[EM_PH_A_IDX].VRMS);
+  //   return;
+  // }
+
+  float calibRate;
+
+  if (strcmp(argv[1], "voltage") == 0) {
+    calibRate =
+        (atof(argv[2]) * 1000) / gEmSWResult.phaseResults[EM_PH_A_IDX].VRMS;
+    calibRate = (float)g_emPhaseCalibration[0].voltageSF * calibRate;
+    g_emPhaseCalibration[0].voltageSF = (uint32_t)calibRate;
+  } else if (strcmp(argv[1], "current") == 0) {
+    calibRate =
+        (atof(argv[2]) * 1000000) / gEmSWResult.phaseResults[EM_PH_A_IDX].IRMS;
+    calibRate = (float)g_emPhaseCalibration[0].currentSF * calibRate;
+    g_emPhaseCalibration[0].currentSF = (uint32_t)calibRate;
+  } else if (strcmp(argv[1], "active") == 0) {
+    calibRate = (atof(argv[2]) * 1000000) /
+                gEmSWResult.phaseResults[EM_PH_A_IDX].activePower;
+    calibRate = (float)g_emPhaseCalibration[0].activePowerSF * calibRate;
+    g_emPhaseCalibration[0].activePowerSF = (uint32_t)calibRate;
+  } else if (strcmp(argv[1], "reactive") == 0) {
+    calibRate = (atof(argv[2]) * 1000000) /
+                gEmSWResult.phaseResults[EM_PH_A_IDX].reactivePower;
+    calibRate = (float)g_emPhaseCalibration[0].reactivePowerSF * calibRate;
+    g_emPhaseCalibration[0].reactivePowerSF = (uint32_t)calibRate;
+  } else if (strcmp(argv[1], "phase") == 0) {
+    print("phase corretion not working yet\n\r");
+    return;
+  } else {
+    print("argument is wrong\n\r");
+    return;
+  }
+
+  memcpy(&flash.calib, &g_emPhaseCalibration, sizeof(EM_Phase_Calibration));
+  writeFlashCalib();
+}
+
 //*****************************************************************************
 // execute callback for microrl library
 // do what you want here, but don't write to argv!!! read only!!
@@ -186,10 +256,16 @@ int execute(int argc, const char* const* argv) {
       isShellActive = false;
     } else if (strcmp(argv[i], _CMD_RESULT) == 0) {
       print_EMResult();
+    } else if (strcmp(argv[i], _CMD_CALIBRATION) == 0) {
+      calibrateFactor(argv);
+      i += argc;
+    } else if (strcmp(argv[i], _CMD_PARAMETER) == 0) {
+      print_Parameters();
     } else {
       print("command: '");
       print((char*)argv[i]);
       print("' Not found.\n\r");
+      break;
     }
     i++;
   }
@@ -216,12 +292,17 @@ char** complet(int argc, const char* const* argv) {
         compl_world[j++] = keyworld[i];
       }
     }
-  } else if ((argc > 1) && (strcmp(argv[0], _CMD_VER) ==
-                            0)) {  // if command needs subcommands
+  } else if ((argc > 1) && (strcmp(argv[0], _CMD_VER) == 0)) {
     // iterate through subcommand for command _CMD_VER array
     for (int i = 0; i < _NUM_OF_VER_SCMD; i++) {
       if (strstr(ver_keyworld[i], argv[argc - 1]) == ver_keyworld[i]) {
         compl_world[j++] = ver_keyworld[i];
+      }
+    }
+  } else if ((argc > 1) && (strcmp(argv[0], _CMD_CALIBRATION) == 0)) {
+    for (int i = 0; i < _NUM_OF_CALIB_SCMD; i++) {
+      if (strstr(calib_keyworld[i], argv[argc - 1]) == calib_keyworld[i]) {
+        compl_world[j++] = calib_keyworld[i];
       }
     }
   } else {  // if there is no token in cmdline, just print all available token
@@ -256,6 +337,11 @@ static void print_help(void) {
   print("\tlist                - list all commands in tree\n\r");
   print("\tclear               - clear screen\n\r");
   print("\texit                - exit shell\n\r");
+  print("\tresult              - all measuring result\n\r");
+  print(
+      "\tcalib               - [calib] [param1](voltage,current... "
+      "etc) [param2](value)\n\r");
+  print("\tparams              - parameter value\n\r");
 }
 
 //******************************************************************************

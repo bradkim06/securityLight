@@ -117,10 +117,15 @@ const uint16_t g_calibrationChecksum;
 EM_Phase_Calibration g_emPhaseCalibration[EM_PHASE_LENGTH] = {
     // PHASE_A
     {
-        .voltageSF       = _IQ24(11.781816602),
-        .currentSF       = _IQ24(21.328466535),
-        .activePowerSF   = _IQ30(0.251303842),
-        .reactivePowerSF = _IQ30(0.251303842),
+        /** .voltageSF       = _IQ24(11.781816602), */
+        /** .currentSF       = _IQ24(21.328466535), */
+        /** .activePowerSF   = _IQ30(0.251303842), */
+        /** .reactivePowerSF = _IQ30(0.251303842), */
+        /** .phaseCorrection = 0x005D, */
+        .voltageSF       = _IQ24(11.400169372),
+        .currentSF       = _IQ24(20.846422196),
+        .activePowerSF   = _IQ30(0.122366689),
+        .reactivePowerSF = _IQ30(0.122366689),
         .phaseCorrection = 0x005D,
     },
 };

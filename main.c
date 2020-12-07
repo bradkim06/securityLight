@@ -6,9 +6,11 @@
  */
 
 #include <msp430.h>
+#include <string.h>
 
 #include "EMLibApp.h"
 #include "EM_userConfig.h"
+#include "flash.h"
 #include "gpio.h"
 #include "hal_system.h"
 #include "shell.h"
@@ -23,6 +25,7 @@
 uint8_t gemResultStatus;
 
 static void initialize(void);
+static void readFlash(void);
 
 /**
  * main.c
@@ -62,8 +65,20 @@ int main(void) {
 static void initialize(void) {
   initSystem();
   initShell();
+  readFlash();
 #ifdef __TEST__
   test_clock();
 #endif
 }
+
+static void readFlash(void) {
+  if (confirmChecksum(FLASH_D_ADDR, sizeof(flash_t) - 1)) {
+    memcpy(&flash, FLASH_D_ADDR, sizeof(flash_t));
+    memcpy(&g_emPhaseCalibration, &flash.calib, sizeof(EM_Phase_Calibration));
+#ifdef __TEST__
+    print("read flash!\n\r");
+    print("copy Calibration Factor!\n\r");
+#endif
+  }
+};
 
