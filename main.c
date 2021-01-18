@@ -17,6 +17,7 @@
 #include "shell.h"
 #include "wdt_a.h"
 #include "uart.h"
+#include "metering.h"
 
 #ifdef __TEST__
 #include "test_clock.h"
@@ -33,6 +34,10 @@ static void initialize(void)
 {
 	initSystem();
 	initUart();
+
+	/* /1* turn on global interrupts *1/ */
+	/* __enable_interrupt(); */
+
 	initShell();
 	initLCD();
 	initRTC();
@@ -57,13 +62,14 @@ int main(void)
 
 #ifdef __TEST__
 		if (gemResultStatus) {
-			print_EMResult();
+			/* print_EMResult(); */
 			/* LCD_SelectMode(++currentLCDMode); */
 			/* print("second = %d, minute = %d\n", */
 			/*       HWREG8(RTC_C_BASE + OFS_RTCTIM0_L), RTCMIN); */
 		}
 		/* rtcData = RTC_C_getCalendarTime(RTC_C_BASE); */
 		// lcd_updateAll();
+		testMeterTx();
 #endif
 	}
 }

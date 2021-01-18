@@ -19,6 +19,7 @@ BUGS and TODO:
 //"\033[33m");fprintf(stderr,__VA_ARGS__);fprintf(stderr,"\033[0m");
 
 char *prompt_default = _PROMPT_DEFAULT;
+extern volatile bool isShellActive;
 
 #ifdef _USE_HISTORY
 

@@ -22,6 +22,9 @@
 
 #define PRINT_BUF_SIZE 150
 
+#define TX_STATE_IDLE 0
+#define TX_STATE_BUSY 1
+
 extern uint8_t gemResultStatus;
 
 union converter {
@@ -29,13 +32,19 @@ union converter {
 	float var;
 };
 
+struct shellTx {
+	char buf[PRINT_BUF_SIZE];
+	int len;
+	int index;
+	bool status;
+};
+
+static volatile struct shellTx tx;
 volatile bool isShellActive = false;
 
 // create microrl object and pointer on it
-microrl_t rl;
-microrl_t *prl = &rl;
-
-static volatile uint8_t rxData = 0;
+static microrl_t rl;
+static microrl_t *prl = &rl;
 
 #define _MSP_DEMO_VER "Security Light v1.0"
 
@@ -88,6 +97,7 @@ static void print_Parameters(void);
 
 void initShell(void)
 {
+	memset((void *)&tx, 0, sizeof(struct shellTx));
 	// call init with ptr to microrl instance and print callback
 	microrl_init(prl, print);
 	// set callback for execute
@@ -105,20 +115,21 @@ void initShell(void)
 
 void print(const char *__restrict format, ...)
 {
-	static char pbuf[PRINT_BUF_SIZE];
+	memset((void *)&tx, 0, sizeof(struct shellTx));
 
 	va_list arg;
 	va_start(arg, format);
-	int len = vsnprintf(NULL, 0, format, arg);
-	if (len > PRINT_BUF_SIZE) {
+	tx.len = vsnprintf(NULL, 0, format, arg);
+	if (tx.len > PRINT_BUF_SIZE) {
 		print(RED_FONT "Print Size(%d) Overflow\n\r", PRINT_BUF_SIZE);
+		return;
 	}
 
-	vsprintf(pbuf, format, arg);
+	vsprintf((void *)tx.buf, format, arg);
 	va_end(arg);
 
-	for (int i = 0; i < len; i++) {
-		EUSCI_A_UART_transmitData(SHELL_PORT, pbuf[i]);
+	for (int i = 0; i < tx.len; i++) {
+		EUSCI_A_UART_transmitData(SHELL_PORT, tx.buf[tx.index++]);
 	}
 }
 
@@ -358,22 +369,34 @@ static void print_help(void)
 __interrupt void USCI_A0_ISR(void)
 {
 	switch (__even_in_range(UCA0IV, USCI_UART_UCTXIFG)) {
-	case USCI_UART_UCRXIFG:
+	case USCI_UART_UCRXIFG: {
+		volatile uint8_t rxData = 0;
+
 		rxData = EUSCI_A_UART_receiveData(EUSCI_A0_BASE);
 		if (isShellActive) {
 			microrl_insert_char(prl, rxData);
 		}
 		// Ctrl + C
-		if (rxData == 0x03) {
+		else if (rxData == 0x03) {
 			prl->print(prl->prompt_str);
 			isShellActive = true;
 		}
 		break;
+	}
 
-	case USCI_UART_UCTXIFG:
+	case USCI_UART_UCTXIFG: {
+		/* if (tx.index < tx.len) { */
+		/* 	EUSCI_A_UART_transmitData(SHELL_PORT, */
+		/* 				  tx.buf[tx.index++]); */
+		/* 	tx.status = TX_STATE_BUSY; */
+		/* } else { */
+		/* 	tx.status = TX_STATE_IDLE; */
+		/* } */
 		break;
+	}
 
 	default:
+
 		break;
 	}
 }
