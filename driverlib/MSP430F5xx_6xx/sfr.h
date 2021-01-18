@@ -61,12 +61,12 @@ extern "C" {
 // function.
 //
 //*****************************************************************************
-#define SFR_JTAG_OUTBOX_INTERRUPT                       JMBOUTIE
-#define SFR_JTAG_INBOX_INTERRUPT                        JMBINIE
-#define SFR_NMI_PIN_INTERRUPT                           NMIIE
-#define SFR_VACANT_MEMORY_ACCESS_INTERRUPT              VMAIE
-#define SFR_OSCILLATOR_FAULT_INTERRUPT                  OFIE
-#define SFR_WATCHDOG_INTERVAL_TIMER_INTERRUPT           WDTIE
+#define SFR_JTAG_OUTBOX_INTERRUPT JMBOUTIE
+#define SFR_JTAG_INBOX_INTERRUPT JMBINIE
+#define SFR_NMI_PIN_INTERRUPT NMIIE
+#define SFR_VACANT_MEMORY_ACCESS_INTERRUPT VMAIE
+#define SFR_OSCILLATOR_FAULT_INTERRUPT OFIE
+#define SFR_WATCHDOG_INTERVAL_TIMER_INTERRUPT WDTIE
 #define SFR_FLASH_CONTROLLER_ACCESS_VIOLATION_INTERRUPT ACCVIE
 
 //*****************************************************************************
@@ -75,8 +75,8 @@ extern "C" {
 // parameter for functions: SFR_setResetPinPullResistor().
 //
 //*****************************************************************************
-#define SFR_RESISTORDISABLE         (!(SYSRSTRE + SYSRSTUP))
-#define SFR_RESISTORENABLE_PULLUP   (SYSRSTRE + SYSRSTUP)
+#define SFR_RESISTORDISABLE (!(SYSRSTRE + SYSRSTUP))
+#define SFR_RESISTORENABLE_PULLUP (SYSRSTRE + SYSRSTUP)
 #define SFR_RESISTORENABLE_PULLDOWN (SYSRSTRE)
 
 //*****************************************************************************
@@ -85,7 +85,7 @@ extern "C" {
 // for functions: SFR_setNMIEdge().
 //
 //*****************************************************************************
-#define SFR_NMI_RISINGEDGE  (!(SYSNMIIES))
+#define SFR_NMI_RISINGEDGE (!(SYSNMIIES))
 #define SFR_NMI_FALLINGEDGE (SYSNMIIES)
 
 //*****************************************************************************
@@ -95,7 +95,7 @@ extern "C" {
 //
 //*****************************************************************************
 #define SFR_RESETPINFUNC_RESET (!(SYSNMI))
-#define SFR_RESETPINFUNC_NMI   (SYSNMI)
+#define SFR_RESETPINFUNC_NMI (SYSNMI)
 
 //*****************************************************************************
 //
@@ -300,4 +300,4 @@ extern void SFR_setResetNMIPinFunction(uint8_t resetPinFunction);
 #endif
 
 #endif
-#endif  // __MSP430WARE_SFR_H__
+#endif // __MSP430WARE_SFR_H__

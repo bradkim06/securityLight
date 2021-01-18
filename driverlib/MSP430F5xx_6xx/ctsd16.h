@@ -60,78 +60,78 @@ extern "C" {
 //
 //*****************************************************************************
 typedef struct CTSD16_initConverterAdvancedParam {
-  //! The converter to initialize.
-  //! \n Valid values are:
-  //! - \b CTSD16_CONVERTER_0
-  //! - \b CTSD16_CONVERTER_1
-  //! - \b CTSD16_CONVERTER_2
-  //! - \b CTSD16_CONVERTER_3
-  //! - \b CTSD16_CONVERTER_4
-  //! - \b CTSD16_CONVERTER_5
-  //! - \b CTSD16_CONVERTER_6
-  uint8_t converter;
-  //! Determines whether the converter will do continuous samples or a single
-  //! sample
-  //! \n Valid values are:
-  //! - \b CTSD16_CONTINUOUS_MODE [Default]
-  //! - \b CTSD16_SINGLE_MODE
-  uint16_t conversionMode;
-  //! \n Valid values are:
-  //! - \b CTSD16_NOT_GROUPED
-  //! - \b CTSD16_GROUPED [Default]
-  uint8_t groupEnable;
-  //! Selects oversampling ratio for the converter
-  //! \n Valid values are:
-  //! - \b CTSD16_INPUT_CH0
-  //! - \b CTSD16_INPUT_CH1
-  //! - \b CTSD16_INPUT_CH2
-  //! - \b CTSD16_INPUT_CH3
-  //! - \b CTSD16_INPUT_CH4
-  //! - \b CTSD16_INPUT_CH5
-  //! - \b CTSD16_INPUT_CH6
-  //! - \b CTSD16_INPUT_CH7
-  //! - \b CTSD16_INPUT_CH8
-  //! - \b CTSD16_INPUT_CH9
-  //! - \b CTSD16_INPUT_CH10
-  //! - \b CTSD16_INPUT_CH11
-  //! - \b CTSD16_INPUT_CH12
-  //! - \b CTSD16_INPUT_CH13
-  //! - \b CTSD16_INPUT_CH14
-  //! - \b CTSD16_INPUT_CH15
-  //! - \b CTSD16_INPUT_CH16
-  //! - \b CTSD16_INPUT_CH17
-  //! - \b CTSD16_INPUT_CH18
-  uint8_t inputChannel;
-  //! Selects how the data format of the results
-  //! \n Valid values are:
-  //! - \b CTSD16_DATA_FORMAT_BINARY [Default]
-  //! - \b CTSD16_DATA_FORMAT_2COMPLEMENT
-  uint8_t dataFormat;
-  //! Determines the rail-to-rail input enabled or disabled.
-  //! \n Valid values are:
-  //! - \b CTSD16_RTR_INPUT_ENABLE
-  //! - \b CTSD16_RTR_INPUT_DISABLE [Default]
-  uint16_t railToRailInput;
-  //! Selects the delay for the interrupt
-  //! \n Valid values are:
-  //! - \b CTSD16_FIRST_SAMPLE_INTERRUPT
-  //! - \b CTSD16_FOURTH_SAMPLE_INTERRUPT [Default]
-  uint16_t interruptDelay;
-  //! Selects oversampling ratio for the converter
-  //! \n Valid values are:
-  //! - \b CTSD16_OVERSAMPLE_32
-  //! - \b CTSD16_OVERSAMPLE_64
-  //! - \b CTSD16_OVERSAMPLE_128
-  //! - \b CTSD16_OVERSAMPLE_256 [Default]
-  uint16_t oversampleRatio;
-  //! Selects the gain for the converter
-  //! \n Valid values are:
-  //! - \b CTSD16_GAIN_1 [Default]
-  //! - \b CTSD16_GAIN_2
-  //! - \b CTSD16_GAIN_4
-  //! - \b CTSD16_GAIN_8
-  //! - \b CTSD16_GAIN_16
-  uint8_t gain;
+	//! The converter to initialize.
+	//! \n Valid values are:
+	//! - \b CTSD16_CONVERTER_0
+	//! - \b CTSD16_CONVERTER_1
+	//! - \b CTSD16_CONVERTER_2
+	//! - \b CTSD16_CONVERTER_3
+	//! - \b CTSD16_CONVERTER_4
+	//! - \b CTSD16_CONVERTER_5
+	//! - \b CTSD16_CONVERTER_6
+	uint8_t converter;
+	//! Determines whether the converter will do continuous samples or a single
+	//! sample
+	//! \n Valid values are:
+	//! - \b CTSD16_CONTINUOUS_MODE [Default]
+	//! - \b CTSD16_SINGLE_MODE
+	uint16_t conversionMode;
+	//! \n Valid values are:
+	//! - \b CTSD16_NOT_GROUPED
+	//! - \b CTSD16_GROUPED [Default]
+	uint8_t groupEnable;
+	//! Selects oversampling ratio for the converter
+	//! \n Valid values are:
+	//! - \b CTSD16_INPUT_CH0
+	//! - \b CTSD16_INPUT_CH1
+	//! - \b CTSD16_INPUT_CH2
+	//! - \b CTSD16_INPUT_CH3
+	//! - \b CTSD16_INPUT_CH4
+	//! - \b CTSD16_INPUT_CH5
+	//! - \b CTSD16_INPUT_CH6
+	//! - \b CTSD16_INPUT_CH7
+	//! - \b CTSD16_INPUT_CH8
+	//! - \b CTSD16_INPUT_CH9
+	//! - \b CTSD16_INPUT_CH10
+	//! - \b CTSD16_INPUT_CH11
+	//! - \b CTSD16_INPUT_CH12
+	//! - \b CTSD16_INPUT_CH13
+	//! - \b CTSD16_INPUT_CH14
+	//! - \b CTSD16_INPUT_CH15
+	//! - \b CTSD16_INPUT_CH16
+	//! - \b CTSD16_INPUT_CH17
+	//! - \b CTSD16_INPUT_CH18
+	uint8_t inputChannel;
+	//! Selects how the data format of the results
+	//! \n Valid values are:
+	//! - \b CTSD16_DATA_FORMAT_BINARY [Default]
+	//! - \b CTSD16_DATA_FORMAT_2COMPLEMENT
+	uint8_t dataFormat;
+	//! Determines the rail-to-rail input enabled or disabled.
+	//! \n Valid values are:
+	//! - \b CTSD16_RTR_INPUT_ENABLE
+	//! - \b CTSD16_RTR_INPUT_DISABLE [Default]
+	uint16_t railToRailInput;
+	//! Selects the delay for the interrupt
+	//! \n Valid values are:
+	//! - \b CTSD16_FIRST_SAMPLE_INTERRUPT
+	//! - \b CTSD16_FOURTH_SAMPLE_INTERRUPT [Default]
+	uint16_t interruptDelay;
+	//! Selects oversampling ratio for the converter
+	//! \n Valid values are:
+	//! - \b CTSD16_OVERSAMPLE_32
+	//! - \b CTSD16_OVERSAMPLE_64
+	//! - \b CTSD16_OVERSAMPLE_128
+	//! - \b CTSD16_OVERSAMPLE_256 [Default]
+	uint16_t oversampleRatio;
+	//! Selects the gain for the converter
+	//! \n Valid values are:
+	//! - \b CTSD16_GAIN_1 [Default]
+	//! - \b CTSD16_GAIN_2
+	//! - \b CTSD16_GAIN_4
+	//! - \b CTSD16_GAIN_8
+	//! - \b CTSD16_GAIN_16
+	uint8_t gain;
 } CTSD16_initConverterAdvancedParam;
 
 //*****************************************************************************
@@ -162,8 +162,8 @@ typedef struct CTSD16_initConverterAdvancedParam {
 // CTSD16_initConverterAdvanced().
 //
 //*****************************************************************************
-#define CTSD16_OVERSAMPLE_32  (CTSD16OSR__32)
-#define CTSD16_OVERSAMPLE_64  (CTSD16OSR__64)
+#define CTSD16_OVERSAMPLE_32 (CTSD16OSR__32)
+#define CTSD16_OVERSAMPLE_64 (CTSD16OSR__64)
 #define CTSD16_OVERSAMPLE_128 (CTSD16OSR__128)
 #define CTSD16_OVERSAMPLE_256 (CTSD16OSR__256)
 
@@ -174,16 +174,16 @@ typedef struct CTSD16_initConverterAdvancedParam {
 // param parameter for functions: CTSD16_initConverterAdvanced().
 //
 //*****************************************************************************
-#define CTSD16_INPUT_CH0  (CTSD16INCH_0)
-#define CTSD16_INPUT_CH1  (CTSD16INCH_1)
-#define CTSD16_INPUT_CH2  (CTSD16INCH_2)
-#define CTSD16_INPUT_CH3  (CTSD16INCH_3)
-#define CTSD16_INPUT_CH4  (CTSD16INCH_4)
-#define CTSD16_INPUT_CH5  (CTSD16INCH_5)
-#define CTSD16_INPUT_CH6  (CTSD16INCH_6)
-#define CTSD16_INPUT_CH7  (CTSD16INCH_7)
-#define CTSD16_INPUT_CH8  (CTSD16INCH_8)
-#define CTSD16_INPUT_CH9  (CTSD16INCH_9)
+#define CTSD16_INPUT_CH0 (CTSD16INCH_0)
+#define CTSD16_INPUT_CH1 (CTSD16INCH_1)
+#define CTSD16_INPUT_CH2 (CTSD16INCH_2)
+#define CTSD16_INPUT_CH3 (CTSD16INCH_3)
+#define CTSD16_INPUT_CH4 (CTSD16INCH_4)
+#define CTSD16_INPUT_CH5 (CTSD16INCH_5)
+#define CTSD16_INPUT_CH6 (CTSD16INCH_6)
+#define CTSD16_INPUT_CH7 (CTSD16INCH_7)
+#define CTSD16_INPUT_CH8 (CTSD16INCH_8)
+#define CTSD16_INPUT_CH9 (CTSD16INCH_9)
 #define CTSD16_INPUT_CH10 (CTSD16INCH_10)
 #define CTSD16_INPUT_CH11 (CTSD16INCH_11)
 #define CTSD16_INPUT_CH12 (CTSD16INCH_12)
@@ -201,7 +201,7 @@ typedef struct CTSD16_initConverterAdvancedParam {
 // functions: CTSD16_initConverterAdvanced().
 //
 //*****************************************************************************
-#define CTSD16_DATA_FORMAT_BINARY      (0x00)
+#define CTSD16_DATA_FORMAT_BINARY (0x00)
 #define CTSD16_DATA_FORMAT_2COMPLEMENT (CTSD16DF)
 
 //*****************************************************************************
@@ -211,10 +211,10 @@ typedef struct CTSD16_initConverterAdvancedParam {
 // CTSD16_initConverterAdvanced().
 //
 //*****************************************************************************
-#define CTSD16_GAIN_1  (CTSD16GAIN_1)
-#define CTSD16_GAIN_2  (CTSD16GAIN_2)
-#define CTSD16_GAIN_4  (CTSD16GAIN_4)
-#define CTSD16_GAIN_8  (CTSD16GAIN_8)
+#define CTSD16_GAIN_1 (CTSD16GAIN_1)
+#define CTSD16_GAIN_2 (CTSD16GAIN_2)
+#define CTSD16_GAIN_4 (CTSD16GAIN_4)
+#define CTSD16_GAIN_8 (CTSD16GAIN_8)
 #define CTSD16_GAIN_16 (CTSD16GAIN_16)
 
 //*****************************************************************************
@@ -224,7 +224,7 @@ typedef struct CTSD16_initConverterAdvancedParam {
 // functions: CTSD16_initConverterAdvanced().
 //
 //*****************************************************************************
-#define CTSD16_FIRST_SAMPLE_INTERRUPT  (CTSD16INTDLY)
+#define CTSD16_FIRST_SAMPLE_INTERRUPT (CTSD16INTDLY)
 #define CTSD16_FOURTH_SAMPLE_INTERRUPT (0x00)
 
 //*****************************************************************************
@@ -234,7 +234,7 @@ typedef struct CTSD16_initConverterAdvancedParam {
 //
 //*****************************************************************************
 #define CTSD16_NOT_GROUPED (0x00)
-#define CTSD16_GROUPED     (CTSD16GRP)
+#define CTSD16_GROUPED (CTSD16GRP)
 
 //*****************************************************************************
 //
@@ -244,7 +244,7 @@ typedef struct CTSD16_initConverterAdvancedParam {
 // by the CTSD16_getInterruptStatus() function.
 //
 //*****************************************************************************
-#define CTSD16_CONVERTER_INTERRUPT          (CTSD16IE0)
+#define CTSD16_CONVERTER_INTERRUPT (CTSD16IE0)
 #define CTSD16_CONVERTER_OVERFLOW_INTERRUPT (CTSD16OVIE0)
 
 //*****************************************************************************
@@ -253,7 +253,7 @@ typedef struct CTSD16_initConverterAdvancedParam {
 // parameter for functions: CTSD16_init().
 //
 //*****************************************************************************
-#define CTSD16_RTR_INPUT_CHARGEPUMP_BURST_REQUEST_ENABLE  (CTSD16RRIBURST)
+#define CTSD16_RTR_INPUT_CHARGEPUMP_BURST_REQUEST_ENABLE (CTSD16RRIBURST)
 #define CTSD16_RTR_INPUT_CHARGEPUMP_BURST_REQUEST_DISABLE (0x0)
 
 //*****************************************************************************
@@ -273,7 +273,7 @@ typedef struct CTSD16_initConverterAdvancedParam {
 //
 //*****************************************************************************
 #define CTSD16_CONTINUOUS_MODE (0x0)
-#define CTSD16_SINGLE_MODE     (CTSD16SNGL)
+#define CTSD16_SINGLE_MODE (CTSD16SNGL)
 
 //*****************************************************************************
 //
@@ -282,7 +282,7 @@ typedef struct CTSD16_initConverterAdvancedParam {
 // functions: CTSD16_initConverterAdvanced().
 //
 //*****************************************************************************
-#define CTSD16_RTR_INPUT_ENABLE  (CTSD16RRI)
+#define CTSD16_RTR_INPUT_ENABLE (CTSD16RRI)
 #define CTSD16_RTR_INPUT_DISABLE (0x0)
 
 //*****************************************************************************
@@ -291,7 +291,7 @@ typedef struct CTSD16_initConverterAdvancedParam {
 // can be returned by the CTSD16_isRailToRailInputReady() function.
 //
 //*****************************************************************************
-#define CTSD16_RTR_INPUT_READY     (CTSD16RRIRDY)
+#define CTSD16_RTR_INPUT_READY (CTSD16RRIRDY)
 #define CTSD16_RTR_INPUT_NOT_READY (0x0)
 
 //*****************************************************************************
@@ -327,9 +327,8 @@ typedef struct CTSD16_initConverterAdvancedParam {
 //! \return None
 //
 //*****************************************************************************
-extern void CTSD16_init(uint16_t baseAddress,
-                        uint16_t chargePumpBurstRequest,
-                        uint8_t  referenceSelect);
+extern void CTSD16_init(uint16_t baseAddress, uint16_t chargePumpBurstRequest,
+			uint8_t referenceSelect);
 
 //*****************************************************************************
 //
@@ -382,10 +381,8 @@ extern void CTSD16_init(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void CTSD16_initConverter(uint16_t baseAddress,
-                                 uint8_t  converter,
-                                 uint16_t conversionMode,
-                                 uint8_t  inputChannel);
+extern void CTSD16_initConverter(uint16_t baseAddress, uint8_t converter,
+				 uint16_t conversionMode, uint8_t inputChannel);
 
 //*****************************************************************************
 //
@@ -401,9 +398,9 @@ extern void CTSD16_initConverter(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void CTSD16_initConverterAdvanced(
-    uint16_t                           baseAddress,
-    CTSD16_initConverterAdvancedParam* param);
+extern void
+CTSD16_initConverterAdvanced(uint16_t baseAddress,
+			     CTSD16_initConverterAdvancedParam *param);
 
 //*****************************************************************************
 //
@@ -427,7 +424,7 @@ extern void CTSD16_initConverterAdvanced(
 //
 //*****************************************************************************
 extern void CTSD16_startConverterConversion(uint16_t baseAddress,
-                                            uint8_t  converter);
+					    uint8_t converter);
 
 //*****************************************************************************
 //
@@ -451,7 +448,7 @@ extern void CTSD16_startConverterConversion(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void CTSD16_stopConverterConversion(uint16_t baseAddress,
-                                           uint8_t  converter);
+					   uint8_t converter);
 
 //*****************************************************************************
 //
@@ -481,8 +478,8 @@ extern void CTSD16_stopConverterConversion(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void CTSD16_setConverterDataFormat(uint16_t baseAddress,
-                                          uint8_t  converter,
-                                          uint8_t  dataFormat);
+					  uint8_t converter,
+					  uint8_t dataFormat);
 
 //*****************************************************************************
 //
@@ -527,9 +524,8 @@ extern void CTSD16_setConverterDataFormat(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void CTSD16_setInputChannel(uint16_t baseAddress,
-                                   uint8_t  converter,
-                                   uint8_t  inputChannel);
+extern void CTSD16_setInputChannel(uint16_t baseAddress, uint8_t converter,
+				   uint8_t inputChannel);
 
 //*****************************************************************************
 //
@@ -556,9 +552,8 @@ extern void CTSD16_setInputChannel(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void CTSD16_setRailToRailInput(uint16_t baseAddress,
-                                      uint8_t  converter,
-                                      uint16_t railToRailInput);
+extern void CTSD16_setRailToRailInput(uint16_t baseAddress, uint8_t converter,
+				      uint16_t railToRailInput);
 
 //*****************************************************************************
 //
@@ -588,9 +583,8 @@ extern void CTSD16_setRailToRailInput(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void CTSD16_setInterruptDelay(uint16_t baseAddress,
-                                     uint8_t  converter,
-                                     uint16_t interruptDelay);
+extern void CTSD16_setInterruptDelay(uint16_t baseAddress, uint8_t converter,
+				     uint16_t interruptDelay);
 
 //*****************************************************************************
 //
@@ -619,9 +613,8 @@ extern void CTSD16_setInterruptDelay(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void CTSD16_setOversampling(uint16_t baseAddress,
-                                   uint8_t  converter,
-                                   uint16_t oversampleRatio);
+extern void CTSD16_setOversampling(uint16_t baseAddress, uint8_t converter,
+				   uint16_t oversampleRatio);
 
 //*****************************************************************************
 //
@@ -651,9 +644,8 @@ extern void CTSD16_setOversampling(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void CTSD16_setGain(uint16_t baseAddress,
-                           uint8_t  converter,
-                           uint8_t  gain);
+extern void CTSD16_setGain(uint16_t baseAddress, uint8_t converter,
+			   uint8_t gain);
 
 //*****************************************************************************
 //
@@ -701,7 +693,7 @@ extern uint32_t CTSD16_getResults(uint16_t baseAddress, uint8_t converter);
 //
 //*****************************************************************************
 extern uint16_t CTSD16_getHighWordResults(uint16_t baseAddress,
-                                          uint8_t  converter);
+					  uint8_t converter);
 
 //*****************************************************************************
 //
@@ -747,9 +739,8 @@ extern uint16_t CTSD16_isRailToRailInputReady(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void CTSD16_enableInterrupt(uint16_t baseAddress,
-                                   uint8_t  converter,
-                                   uint16_t mask);
+extern void CTSD16_enableInterrupt(uint16_t baseAddress, uint8_t converter,
+				   uint16_t mask);
 
 //*****************************************************************************
 //
@@ -779,9 +770,8 @@ extern void CTSD16_enableInterrupt(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void CTSD16_disableInterrupt(uint16_t baseAddress,
-                                    uint8_t  converter,
-                                    uint16_t mask);
+extern void CTSD16_disableInterrupt(uint16_t baseAddress, uint8_t converter,
+				    uint16_t mask);
 
 //*****************************************************************************
 //
@@ -808,9 +798,8 @@ extern void CTSD16_disableInterrupt(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void CTSD16_clearInterrupt(uint16_t baseAddress,
-                                  uint8_t  converter,
-                                  uint16_t mask);
+extern void CTSD16_clearInterrupt(uint16_t baseAddress, uint8_t converter,
+				  uint16_t mask);
 
 //*****************************************************************************
 //
@@ -840,8 +829,7 @@ extern void CTSD16_clearInterrupt(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern uint16_t CTSD16_getInterruptStatus(uint16_t baseAddress,
-                                          uint8_t  converter,
-                                          uint16_t mask);
+					  uint8_t converter, uint16_t mask);
 
 //*****************************************************************************
 //
@@ -853,4 +841,4 @@ extern uint16_t CTSD16_getInterruptStatus(uint16_t baseAddress,
 #endif
 
 #endif
-#endif  // __MSP430WARE_CTSD16_H__
+#endif // __MSP430WARE_CTSD16_H__

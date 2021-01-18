@@ -71,17 +71,17 @@ extern "C" {
 //
 //*****************************************************************************
 #define PMM_SVSMLDLYIFG SVSMLDLYIFG
-#define PMM_SVMLIFG     SVMLIFG
-#define PMM_SVMLVLRIFG  SVMLVLRIFG
+#define PMM_SVMLIFG SVMLIFG
+#define PMM_SVMLVLRIFG SVMLVLRIFG
 #define PMM_SVSMHDLYIFG SVSMHDLYIFG
-#define PMM_SVMHIFG     SVMHIFG
-#define PMM_SVMHVLRIFG  SVMHVLRIFG
-#define PMM_PMMBORIFG   PMMBORIFG
-#define PMM_PMMRSTIFG   PMMRSTIFG
-#define PMM_PMMPORIFG   PMMPORIFG
-#define PMM_SVSHIFG     SVSHIFG
-#define PMM_SVSLIFG     SVSLIFG
-#define PMM_PMMLPM5IFG  PMMLPM5IFG
+#define PMM_SVMHIFG SVMHIFG
+#define PMM_SVMHVLRIFG SVMHVLRIFG
+#define PMM_PMMBORIFG PMMBORIFG
+#define PMM_PMMRSTIFG PMMRSTIFG
+#define PMM_PMMPORIFG PMMPORIFG
+#define PMM_SVSHIFG SVSHIFG
+#define PMM_SVSLIFG SVSLIFG
+#define PMM_PMMLPM5IFG PMMLPM5IFG
 
 //*****************************************************************************
 //
@@ -581,4 +581,4 @@ extern uint16_t PMM_getInterruptStatus(uint16_t mask);
 #endif
 
 #endif
-#endif  // __MSP430WARE_PMM_H__
+#endif // __MSP430WARE_PMM_H__

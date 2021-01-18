@@ -12,8 +12,11 @@
 #include "flash.h"
 #include "gpio.h"
 #include "hal_system.h"
+#include "lcd.h"
+#include "rtc.h"
 #include "shell.h"
 #include "wdt_a.h"
+#include "uart.h"
 
 #ifdef __TEST__
 #include "test_clock.h"
@@ -23,49 +26,44 @@
 
 uint8_t gemResultStatus;
 
-static void initialize(void);
-
-/**
- * main.c
- */
-int main(void) {
-  // Stop WDT
-  WDT_A_hold(WDT_A_BASE);
-
-  initialize();
-
-  initEMLibGUIApp();
-
-  WDT_A_initWatchdogTimer(WDT_A_BASE, WDT_A_CLOCKSOURCE_VLOCLK,
-                          WDT_A_CLOCKDIVIDER_512K);
-  WDT_A_start(WDT_A_BASE);
-
-  while (true) {
-    WDT_A_resetTimer(WDT_A_BASE);
-    EM_foregroundProc(&gemResultStatus);
-
-#ifdef __TEST__
-    if (gemResultStatus) {
-      //     print_EMResult();
-      /** test_led(); */
-    }
-#endif
-  }
-}
-
 //*****************************************************************************
-//
 //! This Function Initializes all the ports on the MCU
-//!
-//! \return none
-//
 // *****************************************************************************
-static void initialize(void) {
-  initSystem();
-  initShell();
-  readFlash();
+static void initialize(void)
+{
+	initSystem();
+	initUart();
+	initShell();
+	initLCD();
+	initRTC();
+	readFlash();
 #ifdef __TEST__
-  test_clock();
+	test_clock();
 #endif
 }
 
+int main(void)
+{
+	WDT_A_initWatchdogTimer(WDT_A_BASE, WDT_A_CLOCKSOURCE_VLOCLK,
+				WDT_A_CLOCKDIVIDER_512K);
+	WDT_A_start(WDT_A_BASE);
+
+	initialize();
+	initEMLibGUIApp();
+
+	while (true) {
+		WDT_A_resetTimer(WDT_A_BASE);
+		EM_foregroundProc(&gemResultStatus);
+
+#ifdef __TEST__
+		if (gemResultStatus) {
+			print_EMResult();
+			/* LCD_SelectMode(++currentLCDMode); */
+			/* print("second = %d, minute = %d\n", */
+			/*       HWREG8(RTC_C_BASE + OFS_RTCTIM0_L), RTCMIN); */
+		}
+		/* rtcData = RTC_C_getCalendarTime(RTC_C_BASE); */
+		// lcd_updateAll();
+#endif
+	}
+}

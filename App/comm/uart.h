@@ -13,6 +13,9 @@
 
 #include "eusci_a_uart.h"
 
+#define SHELL_PORT EUSCI_A0_BASE
+#define METER_PORT EUSCI_A1_BASE
+
 //*****************************************************************************
 // COMM RAM Buffer Definitions and Global Variables
 //*****************************************************************************
@@ -44,26 +47,26 @@ enum tUARTStates { eUARTIsClosed, eUARTIsIdle, eUARTIsTransmitting };
 //
 //*****************************************************************************
 typedef struct {
-  //
-  //! Receive Callback.  This function will be called
-  //! after each UART byte is received.  This fxn is called
-  //! from the foreground (ISR), and as such it should be kept
-  //! as short as possible.
-  //
-  bool (*pbReceiveCallback)(uint8_t);
+	//
+	//! Receive Callback.  This function will be called
+	//! after each UART byte is received.  This fxn is called
+	//! from the foreground (ISR), and as such it should be kept
+	//! as short as possible.
+	//
+	bool (*pbReceiveCallback)(uint8_t);
 
-  //
-  //! Error Callback.  This function will be called after
-  //! a UART error is detected.  The passed tUARTErrors
-  //! parameter indicates what caused the error.
-  //
-  bool (*pbErrorCallback)(uint8_t);
+	//
+	//! Error Callback.  This function will be called after
+	//! a UART error is detected.  The passed tUARTErrors
+	//! parameter indicates what caused the error.
+	//
+	bool (*pbErrorCallback)(uint8_t);
 
-  //
-  //! eUSCI_A initialization parameters.  This structure
-  //! is defined in the MSP430 peripheral driver library.
-  //
-  EUSCI_A_UART_initParam peripheralParameters;
+	//
+	//! eUSCI_A initialization parameters.  This structure
+	//! is defined in the MSP430 peripheral driver library.
+	//
+	EUSCI_A_UART_initParam peripheralParameters;
 
 } tUARTPort;
 
@@ -72,7 +75,7 @@ typedef struct {
  * @brief
  */
 /* ==========================================================================*/
-void Init_Uart(uint16_t baseAddress, EUSCI_A_UART_initParam* params);
+void initUart(void);
 /* ==========================================================================*/
 /**
  * @brief 설정된 Baudrate에 맞는 EUSCI Init Config 반환.

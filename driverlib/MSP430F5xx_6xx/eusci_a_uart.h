@@ -58,7 +58,7 @@ extern "C" {
 // The following values are the sync characters possible.
 //
 //*****************************************************************************
-#define DEFAULT_SYNC                        0x00
+#define DEFAULT_SYNC 0x00
 #define EUSCI_A_UART_AUTOMATICBAUDRATE_SYNC 0x55
 
 //*****************************************************************************
@@ -67,50 +67,50 @@ extern "C" {
 //
 //*****************************************************************************
 typedef struct EUSCI_A_UART_initParam {
-  //! Selects Clock source. Refer to device specific datasheet for available
-  //! options.
-  //! \n Valid values are:
-  //! - \b EUSCI_A_UART_CLOCKSOURCE_SMCLK
-  //! - \b EUSCI_A_UART_CLOCKSOURCE_ACLK
-  uint8_t selectClockSource;
-  //! Is the value to be written into UCBRx bits
-  uint16_t clockPrescalar;
-  //! Is First modulation stage register setting. This value is a pre-
-  //! calculated value which can be obtained from the Device Users Guide.
-  //! This value is written into UCBRFx bits of UCAxMCTLW.
-  uint8_t firstModReg;
-  //! Is Second modulation stage register setting. This value is a pre-
-  //! calculated value which can be obtained from the Device Users Guide.
-  //! This value is written into UCBRSx bits of UCAxMCTLW.
-  uint8_t secondModReg;
-  //! Is the desired parity.
-  //! \n Valid values are:
-  //! - \b EUSCI_A_UART_NO_PARITY [Default]
-  //! - \b EUSCI_A_UART_ODD_PARITY
-  //! - \b EUSCI_A_UART_EVEN_PARITY
-  uint8_t parity;
-  //! Controls direction of receive and transmit shift register.
-  //! \n Valid values are:
-  //! - \b EUSCI_A_UART_MSB_FIRST
-  //! - \b EUSCI_A_UART_LSB_FIRST [Default]
-  uint16_t msborLsbFirst;
-  //! Indicates one/two STOP bits
-  //! \n Valid values are:
-  //! - \b EUSCI_A_UART_ONE_STOP_BIT [Default]
-  //! - \b EUSCI_A_UART_TWO_STOP_BITS
-  uint16_t numberofStopBits;
-  //! Selects the mode of operation
-  //! \n Valid values are:
-  //! - \b EUSCI_A_UART_MODE [Default]
-  //! - \b EUSCI_A_UART_IDLE_LINE_MULTI_PROCESSOR_MODE
-  //! - \b EUSCI_A_UART_ADDRESS_BIT_MULTI_PROCESSOR_MODE
-  //! - \b EUSCI_A_UART_AUTOMATIC_BAUDRATE_DETECTION_MODE
-  uint16_t uartMode;
-  //! Indicates low frequency or oversampling baud generation
-  //! \n Valid values are:
-  //! - \b EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION
-  //! - \b EUSCI_A_UART_LOW_FREQUENCY_BAUDRATE_GENERATION
-  uint8_t overSampling;
+	//! Selects Clock source. Refer to device specific datasheet for available
+	//! options.
+	//! \n Valid values are:
+	//! - \b EUSCI_A_UART_CLOCKSOURCE_SMCLK
+	//! - \b EUSCI_A_UART_CLOCKSOURCE_ACLK
+	uint8_t selectClockSource;
+	//! Is the value to be written into UCBRx bits
+	uint16_t clockPrescalar;
+	//! Is First modulation stage register setting. This value is a pre-
+	//! calculated value which can be obtained from the Device Users Guide.
+	//! This value is written into UCBRFx bits of UCAxMCTLW.
+	uint8_t firstModReg;
+	//! Is Second modulation stage register setting. This value is a pre-
+	//! calculated value which can be obtained from the Device Users Guide.
+	//! This value is written into UCBRSx bits of UCAxMCTLW.
+	uint8_t secondModReg;
+	//! Is the desired parity.
+	//! \n Valid values are:
+	//! - \b EUSCI_A_UART_NO_PARITY [Default]
+	//! - \b EUSCI_A_UART_ODD_PARITY
+	//! - \b EUSCI_A_UART_EVEN_PARITY
+	uint8_t parity;
+	//! Controls direction of receive and transmit shift register.
+	//! \n Valid values are:
+	//! - \b EUSCI_A_UART_MSB_FIRST
+	//! - \b EUSCI_A_UART_LSB_FIRST [Default]
+	uint16_t msborLsbFirst;
+	//! Indicates one/two STOP bits
+	//! \n Valid values are:
+	//! - \b EUSCI_A_UART_ONE_STOP_BIT [Default]
+	//! - \b EUSCI_A_UART_TWO_STOP_BITS
+	uint16_t numberofStopBits;
+	//! Selects the mode of operation
+	//! \n Valid values are:
+	//! - \b EUSCI_A_UART_MODE [Default]
+	//! - \b EUSCI_A_UART_IDLE_LINE_MULTI_PROCESSOR_MODE
+	//! - \b EUSCI_A_UART_ADDRESS_BIT_MULTI_PROCESSOR_MODE
+	//! - \b EUSCI_A_UART_AUTOMATIC_BAUDRATE_DETECTION_MODE
+	uint16_t uartMode;
+	//! Indicates low frequency or oversampling baud generation
+	//! \n Valid values are:
+	//! - \b EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION
+	//! - \b EUSCI_A_UART_LOW_FREQUENCY_BAUDRATE_GENERATION
+	uint8_t overSampling;
 } EUSCI_A_UART_initParam;
 
 //*****************************************************************************
@@ -119,8 +119,8 @@ typedef struct EUSCI_A_UART_initParam {
 // functions: EUSCI_A_UART_init().
 //
 //*****************************************************************************
-#define EUSCI_A_UART_NO_PARITY   0x00
-#define EUSCI_A_UART_ODD_PARITY  0x01
+#define EUSCI_A_UART_NO_PARITY 0x00
+#define EUSCI_A_UART_ODD_PARITY 0x01
 #define EUSCI_A_UART_EVEN_PARITY 0x02
 
 //*****************************************************************************
@@ -138,9 +138,9 @@ typedef struct EUSCI_A_UART_initParam {
 // functions: EUSCI_A_UART_init().
 //
 //*****************************************************************************
-#define EUSCI_A_UART_MODE                              UCMODE_0
-#define EUSCI_A_UART_IDLE_LINE_MULTI_PROCESSOR_MODE    UCMODE_1
-#define EUSCI_A_UART_ADDRESS_BIT_MULTI_PROCESSOR_MODE  UCMODE_2
+#define EUSCI_A_UART_MODE UCMODE_0
+#define EUSCI_A_UART_IDLE_LINE_MULTI_PROCESSOR_MODE UCMODE_1
+#define EUSCI_A_UART_ADDRESS_BIT_MULTI_PROCESSOR_MODE UCMODE_2
 #define EUSCI_A_UART_AUTOMATIC_BAUDRATE_DETECTION_MODE UCMODE_3
 
 //*****************************************************************************
@@ -150,7 +150,7 @@ typedef struct EUSCI_A_UART_initParam {
 //
 //*****************************************************************************
 #define EUSCI_A_UART_CLOCKSOURCE_SMCLK UCSSEL__SMCLK
-#define EUSCI_A_UART_CLOCKSOURCE_ACLK  UCSSEL__ACLK
+#define EUSCI_A_UART_CLOCKSOURCE_ACLK UCSSEL__ACLK
 
 //*****************************************************************************
 //
@@ -158,7 +158,7 @@ typedef struct EUSCI_A_UART_initParam {
 // functions: EUSCI_A_UART_init().
 //
 //*****************************************************************************
-#define EUSCI_A_UART_ONE_STOP_BIT  0x00
+#define EUSCI_A_UART_ONE_STOP_BIT 0x00
 #define EUSCI_A_UART_TWO_STOP_BITS UCSPB
 
 //*****************************************************************************
@@ -167,7 +167,7 @@ typedef struct EUSCI_A_UART_initParam {
 // functions: EUSCI_A_UART_init().
 //
 //*****************************************************************************
-#define EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION  0x01
+#define EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION 0x01
 #define EUSCI_A_UART_LOW_FREQUENCY_BAUDRATE_GENERATION 0x00
 
 //*****************************************************************************
@@ -177,12 +177,12 @@ typedef struct EUSCI_A_UART_initParam {
 // EUSCI_A_UART_disableInterrupt().
 //
 //*****************************************************************************
-#define EUSCI_A_UART_RECEIVE_INTERRUPT               UCRXIE
-#define EUSCI_A_UART_TRANSMIT_INTERRUPT              UCTXIE
+#define EUSCI_A_UART_RECEIVE_INTERRUPT UCRXIE
+#define EUSCI_A_UART_TRANSMIT_INTERRUPT UCTXIE
 #define EUSCI_A_UART_RECEIVE_ERRONEOUSCHAR_INTERRUPT UCRXEIE
-#define EUSCI_A_UART_BREAKCHAR_INTERRUPT             UCBRKIE
-#define EUSCI_A_UART_STARTBIT_INTERRUPT              UCSTTIE
-#define EUSCI_A_UART_TRANSMIT_COMPLETE_INTERRUPT     UCTXCPTIE
+#define EUSCI_A_UART_BREAKCHAR_INTERRUPT UCBRKIE
+#define EUSCI_A_UART_STARTBIT_INTERRUPT UCSTTIE
+#define EUSCI_A_UART_TRANSMIT_COMPLETE_INTERRUPT UCTXCPTIE
 
 //*****************************************************************************
 //
@@ -192,9 +192,9 @@ typedef struct EUSCI_A_UART_initParam {
 // EUSCI_A_UART_getInterruptStatus() function.
 //
 //*****************************************************************************
-#define EUSCI_A_UART_RECEIVE_INTERRUPT_FLAG           UCRXIFG
-#define EUSCI_A_UART_TRANSMIT_INTERRUPT_FLAG          UCTXIFG
-#define EUSCI_A_UART_STARTBIT_INTERRUPT_FLAG          UCSTTIFG
+#define EUSCI_A_UART_RECEIVE_INTERRUPT_FLAG UCRXIFG
+#define EUSCI_A_UART_TRANSMIT_INTERRUPT_FLAG UCTXIFG
+#define EUSCI_A_UART_STARTBIT_INTERRUPT_FLAG UCSTTIFG
 #define EUSCI_A_UART_TRANSMIT_COMPLETE_INTERRUPT_FLAG UCTXCPTIFG
 
 //*****************************************************************************
@@ -204,15 +204,15 @@ typedef struct EUSCI_A_UART_initParam {
 // EUSCI_A_UART_queryStatusFlags() function.
 //
 //*****************************************************************************
-#define EUSCI_A_UART_LISTEN_ENABLE    UCLISTEN
-#define EUSCI_A_UART_FRAMING_ERROR    UCFE
-#define EUSCI_A_UART_OVERRUN_ERROR    UCOE
-#define EUSCI_A_UART_PARITY_ERROR     UCPE
-#define EUSCI_A_UART_BREAK_DETECT     UCBRK
-#define EUSCI_A_UART_RECEIVE_ERROR    UCRXERR
+#define EUSCI_A_UART_LISTEN_ENABLE UCLISTEN
+#define EUSCI_A_UART_FRAMING_ERROR UCFE
+#define EUSCI_A_UART_OVERRUN_ERROR UCOE
+#define EUSCI_A_UART_PARITY_ERROR UCPE
+#define EUSCI_A_UART_BREAK_DETECT UCBRK
+#define EUSCI_A_UART_RECEIVE_ERROR UCRXERR
 #define EUSCI_A_UART_ADDRESS_RECEIVED UCADDR
-#define EUSCI_A_UART_IDLELINE         UCIDLE
-#define EUSCI_A_UART_BUSY             UCBUSY
+#define EUSCI_A_UART_IDLELINE UCIDLE
+#define EUSCI_A_UART_BUSY UCBUSY
 
 //*****************************************************************************
 //
@@ -220,8 +220,8 @@ typedef struct EUSCI_A_UART_initParam {
 // for functions: EUSCI_A_UART_selectDeglitchTime().
 //
 //*****************************************************************************
-#define EUSCI_A_UART_DEGLITCH_TIME_2ns   0x00
-#define EUSCI_A_UART_DEGLITCH_TIME_50ns  UCGLIT0
+#define EUSCI_A_UART_DEGLITCH_TIME_2ns 0x00
+#define EUSCI_A_UART_DEGLITCH_TIME_50ns UCGLIT0
 #define EUSCI_A_UART_DEGLITCH_TIME_100ns UCGLIT1
 #define EUSCI_A_UART_DEGLITCH_TIME_200ns (UCGLIT0 + UCGLIT1)
 
@@ -256,8 +256,8 @@ typedef struct EUSCI_A_UART_initParam {
 //! \return STATUS_SUCCESS or STATUS_FAIL of the initialization process
 //
 //*****************************************************************************
-extern bool EUSCI_A_UART_init(uint16_t                baseAddress,
-                              EUSCI_A_UART_initParam* param);
+extern bool EUSCI_A_UART_init(uint16_t baseAddress,
+			      EUSCI_A_UART_initParam *param);
 
 //*****************************************************************************
 //
@@ -278,7 +278,7 @@ extern bool EUSCI_A_UART_init(uint16_t                baseAddress,
 //
 //*****************************************************************************
 extern void EUSCI_A_UART_transmitData(uint16_t baseAddress,
-                                      uint8_t  transmitData);
+				      uint8_t transmitData);
 
 //*****************************************************************************
 //
@@ -381,7 +381,7 @@ extern void EUSCI_A_UART_disableInterrupt(uint16_t baseAddress, uint8_t mask);
 //
 //*****************************************************************************
 extern uint8_t EUSCI_A_UART_getInterruptStatus(uint16_t baseAddress,
-                                               uint8_t  mask);
+					       uint8_t mask);
 
 //*****************************************************************************
 //
@@ -471,7 +471,7 @@ extern void EUSCI_A_UART_disable(uint16_t baseAddress);
 //
 //*****************************************************************************
 extern uint8_t EUSCI_A_UART_queryStatusFlags(uint16_t baseAddress,
-                                             uint8_t  mask);
+					     uint8_t mask);
 
 //*****************************************************************************
 //
@@ -519,7 +519,7 @@ extern void EUSCI_A_UART_resetDormant(uint16_t baseAddress);
 //
 //*****************************************************************************
 extern void EUSCI_A_UART_transmitAddress(uint16_t baseAddress,
-                                         uint8_t  transmitAddress);
+					 uint8_t transmitAddress);
 
 //*****************************************************************************
 //
@@ -585,7 +585,7 @@ extern uint32_t EUSCI_A_UART_getTransmitBufferAddress(uint16_t baseAddress);
 //
 //*****************************************************************************
 extern void EUSCI_A_UART_selectDeglitchTime(uint16_t baseAddress,
-                                            uint16_t deglitchTime);
+					    uint16_t deglitchTime);
 
 //*****************************************************************************
 //
@@ -597,4 +597,4 @@ extern void EUSCI_A_UART_selectDeglitchTime(uint16_t baseAddress,
 #endif
 
 #endif
-#endif  // __MSP430WARE_EUSCI_A_UART_H__
+#endif // __MSP430WARE_EUSCI_A_UART_H__

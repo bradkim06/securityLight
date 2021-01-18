@@ -59,29 +59,29 @@ extern "C" {
 //
 //*****************************************************************************
 typedef struct USCI_B_SPI_initMasterParam {
-  //! Selects Clock source.
-  //! \n Valid values are:
-  //! - \b USCI_B_SPI_CLOCKSOURCE_ACLK
-  //! - \b USCI_B_SPI_CLOCKSOURCE_SMCLK
-  uint8_t selectClockSource;
-  //! Is the frequency of the selected clock source
-  uint32_t clockSourceFrequency;
-  //! Is the desired clock rate for SPI communication
-  uint32_t desiredSpiClock;
-  //! Controls the direction of the receive and transmit shift register.
-  //! \n Valid values are:
-  //! - \b USCI_B_SPI_MSB_FIRST
-  //! - \b USCI_B_SPI_LSB_FIRST [Default]
-  uint8_t msbFirst;
-  //! Is clock phase select.
-  //! \n Valid values are:
-  //! - \b USCI_B_SPI_PHASE_DATA_CHANGED_ONFIRST_CAPTURED_ON_NEXT [Default]
-  //! - \b USCI_B_SPI_PHASE_DATA_CAPTURED_ONFIRST_CHANGED_ON_NEXT
-  uint8_t clockPhase;
-  //! \n Valid values are:
-  //! - \b USCI_B_SPI_CLOCKPOLARITY_INACTIVITY_HIGH
-  //! - \b USCI_B_SPI_CLOCKPOLARITY_INACTIVITY_LOW [Default]
-  uint8_t clockPolarity;
+	//! Selects Clock source.
+	//! \n Valid values are:
+	//! - \b USCI_B_SPI_CLOCKSOURCE_ACLK
+	//! - \b USCI_B_SPI_CLOCKSOURCE_SMCLK
+	uint8_t selectClockSource;
+	//! Is the frequency of the selected clock source
+	uint32_t clockSourceFrequency;
+	//! Is the desired clock rate for SPI communication
+	uint32_t desiredSpiClock;
+	//! Controls the direction of the receive and transmit shift register.
+	//! \n Valid values are:
+	//! - \b USCI_B_SPI_MSB_FIRST
+	//! - \b USCI_B_SPI_LSB_FIRST [Default]
+	uint8_t msbFirst;
+	//! Is clock phase select.
+	//! \n Valid values are:
+	//! - \b USCI_B_SPI_PHASE_DATA_CHANGED_ONFIRST_CAPTURED_ON_NEXT [Default]
+	//! - \b USCI_B_SPI_PHASE_DATA_CAPTURED_ONFIRST_CHANGED_ON_NEXT
+	uint8_t clockPhase;
+	//! \n Valid values are:
+	//! - \b USCI_B_SPI_CLOCKPOLARITY_INACTIVITY_HIGH
+	//! - \b USCI_B_SPI_CLOCKPOLARITY_INACTIVITY_LOW [Default]
+	uint8_t clockPolarity;
 } USCI_B_SPI_initMasterParam;
 
 //*****************************************************************************
@@ -91,10 +91,10 @@ typedef struct USCI_B_SPI_initMasterParam {
 //
 //*****************************************************************************
 typedef struct USCI_B_SPI_changeMasterClockParam {
-  //! Is the frequency of the selected clock source
-  uint32_t clockSourceFrequency;
-  //! Is the desired clock rate for SPI communication
-  uint32_t desiredSpiClock;
+	//! Is the frequency of the selected clock source
+	uint32_t clockSourceFrequency;
+	//! Is the desired clock rate for SPI communication
+	uint32_t desiredSpiClock;
 } USCI_B_SPI_changeMasterClockParam;
 
 //*****************************************************************************
@@ -127,7 +127,7 @@ typedef struct USCI_B_SPI_changeMasterClockParam {
 //
 //*****************************************************************************
 #define USCI_B_SPI_CLOCKPOLARITY_INACTIVITY_HIGH UCCKPL
-#define USCI_B_SPI_CLOCKPOLARITY_INACTIVITY_LOW  0x00
+#define USCI_B_SPI_CLOCKPOLARITY_INACTIVITY_LOW 0x00
 
 //*****************************************************************************
 //
@@ -135,7 +135,7 @@ typedef struct USCI_B_SPI_changeMasterClockParam {
 // functions: USCI_B_SPI_initMaster().
 //
 //*****************************************************************************
-#define USCI_B_SPI_CLOCKSOURCE_ACLK  UCSSEL__ACLK
+#define USCI_B_SPI_CLOCKSOURCE_ACLK UCSSEL__ACLK
 #define USCI_B_SPI_CLOCKSOURCE_SMCLK UCSSEL__SMCLK
 
 //*****************************************************************************
@@ -147,7 +147,7 @@ typedef struct USCI_B_SPI_changeMasterClockParam {
 //
 //*****************************************************************************
 #define USCI_B_SPI_TRANSMIT_INTERRUPT UCTXIE
-#define USCI_B_SPI_RECEIVE_INTERRUPT  UCRXIE
+#define USCI_B_SPI_RECEIVE_INTERRUPT UCRXIE
 
 //*****************************************************************************
 //
@@ -155,7 +155,7 @@ typedef struct USCI_B_SPI_changeMasterClockParam {
 // can be returned by the USCI_B_SPI_isBusy() function.
 //
 //*****************************************************************************
-#define USCI_B_SPI_BUSY     UCBUSY
+#define USCI_B_SPI_BUSY UCBUSY
 #define USCI_B_SPI_NOT_BUSY 0x00
 
 //*****************************************************************************
@@ -181,8 +181,8 @@ typedef struct USCI_B_SPI_changeMasterClockParam {
 //! \return STATUS_SUCCESS
 //
 //*****************************************************************************
-extern bool USCI_B_SPI_initMaster(uint16_t                    baseAddress,
-                                  USCI_B_SPI_initMasterParam* param);
+extern bool USCI_B_SPI_initMaster(uint16_t baseAddress,
+				  USCI_B_SPI_initMasterParam *param);
 
 //*****************************************************************************
 //
@@ -197,9 +197,9 @@ extern bool USCI_B_SPI_initMaster(uint16_t                    baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void USCI_B_SPI_changeMasterClock(
-    uint16_t                           baseAddress,
-    USCI_B_SPI_changeMasterClockParam* param);
+extern void
+USCI_B_SPI_changeMasterClock(uint16_t baseAddress,
+			     USCI_B_SPI_changeMasterClockParam *param);
 
 //*****************************************************************************
 //
@@ -232,10 +232,8 @@ extern void USCI_B_SPI_changeMasterClock(
 //! \return STATUS_SUCCESS
 //
 //*****************************************************************************
-extern bool USCI_B_SPI_initSlave(uint16_t baseAddress,
-                                 uint8_t  msbFirst,
-                                 uint8_t  clockPhase,
-                                 uint8_t  clockPolarity);
+extern bool USCI_B_SPI_initSlave(uint16_t baseAddress, uint8_t msbFirst,
+				 uint8_t clockPhase, uint8_t clockPolarity);
 
 //*****************************************************************************
 //
@@ -259,8 +257,8 @@ extern bool USCI_B_SPI_initSlave(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void USCI_B_SPI_changeClockPhasePolarity(uint16_t baseAddress,
-                                                uint8_t  clockPhase,
-                                                uint8_t  clockPolarity);
+						uint8_t clockPhase,
+						uint8_t clockPolarity);
 
 //*****************************************************************************
 //
@@ -354,7 +352,7 @@ extern void USCI_B_SPI_disableInterrupt(uint16_t baseAddress, uint8_t mask);
 //
 //*****************************************************************************
 extern uint8_t USCI_B_SPI_getInterruptStatus(uint16_t baseAddress,
-                                             uint8_t  mask);
+					     uint8_t mask);
 
 //*****************************************************************************
 //
@@ -460,4 +458,4 @@ extern uint8_t USCI_B_SPI_isBusy(uint16_t baseAddress);
 #endif
 
 #endif
-#endif  // __MSP430WARE_USCI_B_SPI_H__
+#endif // __MSP430WARE_USCI_B_SPI_H__

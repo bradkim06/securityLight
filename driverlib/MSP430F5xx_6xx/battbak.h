@@ -76,7 +76,7 @@ extern "C" {
 // for functions: BattBak_initAndEnableCharger().
 //
 //*****************************************************************************
-#define BATTBAK_CHARGECURRENT_5KOHM  (BAKCHC0)
+#define BATTBAK_CHARGECURRENT_5KOHM (BAKCHC0)
 #define BATTBAK_CHARGECURRENT_10KOHM (BAKCHC1)
 #define BATTBAK_CHARGECURRENT_20KOHM (BAKCHC0 + BAKCHC1)
 
@@ -206,8 +206,8 @@ extern void BattBak_disable(uint16_t baseAddress);
 //
 //*****************************************************************************
 extern void BattBak_initAndEnableCharger(uint16_t baseAddress,
-                                         uint8_t  chargerEndVoltage,
-                                         uint8_t  chargeCurrent);
+					 uint8_t chargerEndVoltage,
+					 uint8_t chargeCurrent);
 
 //*****************************************************************************
 //
@@ -244,8 +244,7 @@ extern void BattBak_disableCharger(uint16_t baseAddress);
 //
 //*****************************************************************************
 extern void BattBak_setBackupRAMData(uint16_t baseAddress,
-                                     uint8_t  backupRAMSelect,
-                                     uint16_t data);
+				     uint8_t backupRAMSelect, uint16_t data);
 
 //*****************************************************************************
 //
@@ -266,7 +265,7 @@ extern void BattBak_setBackupRAMData(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern uint16_t BattBak_getBackupRAMData(uint16_t baseAddress,
-                                         uint8_t  backupRAMSelect);
+					 uint8_t backupRAMSelect);
 
 //*****************************************************************************
 //
@@ -278,4 +277,4 @@ extern uint16_t BattBak_getBackupRAMData(uint16_t baseAddress,
 #endif
 
 #endif
-#endif  // __MSP430WARE_BATTBAK_H__
+#endif // __MSP430WARE_BATTBAK_H__

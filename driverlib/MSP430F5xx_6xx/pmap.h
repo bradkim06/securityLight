@@ -59,17 +59,17 @@ extern "C" {
 //
 //*****************************************************************************
 typedef struct PMAP_initPortsParam {
-  //! Is the pointer to init Data
-  const uint8_t* portMapping;
-  //! Is the pointer start of first PMAP to initialize
-  uint8_t* PxMAPy;
-  //! Is the number of Ports to initialize
-  uint8_t numberOfPorts;
-  //! Is used to enable/disable reconfiguration
-  //! \n Valid values are:
-  //! - \b PMAP_ENABLE_RECONFIGURATION
-  //! - \b PMAP_DISABLE_RECONFIGURATION [Default]
-  uint8_t portMapReconfigure;
+	//! Is the pointer to init Data
+	const uint8_t *portMapping;
+	//! Is the pointer start of first PMAP to initialize
+	uint8_t *PxMAPy;
+	//! Is the number of Ports to initialize
+	uint8_t numberOfPorts;
+	//! Is used to enable/disable reconfiguration
+	//! \n Valid values are:
+	//! - \b PMAP_ENABLE_RECONFIGURATION
+	//! - \b PMAP_DISABLE_RECONFIGURATION [Default]
+	uint8_t portMapReconfigure;
 } PMAP_initPortsParam;
 
 //*****************************************************************************
@@ -78,7 +78,7 @@ typedef struct PMAP_initPortsParam {
 // functions: PMAP_initPorts().
 //
 //*****************************************************************************
-#define PMAP_ENABLE_RECONFIGURATION  PMAPRECFG
+#define PMAP_ENABLE_RECONFIGURATION PMAPRECFG
 #define PMAP_DISABLE_RECONFIGURATION 0x00
 
 //*****************************************************************************
@@ -99,7 +99,7 @@ typedef struct PMAP_initPortsParam {
 //! \return None
 //
 //*****************************************************************************
-extern void PMAP_initPorts(uint16_t baseAddress, PMAP_initPortsParam* param);
+extern void PMAP_initPorts(uint16_t baseAddress, PMAP_initPortsParam *param);
 
 //*****************************************************************************
 //
@@ -111,4 +111,4 @@ extern void PMAP_initPorts(uint16_t baseAddress, PMAP_initPortsParam* param);
 #endif
 
 #endif
-#endif  // __MSP430WARE_PMAP_H__
+#endif // __MSP430WARE_PMAP_H__

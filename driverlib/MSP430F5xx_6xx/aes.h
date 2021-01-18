@@ -58,7 +58,7 @@ extern "C" {
 // can be returned by the AES_isBusy() function.
 //
 //*****************************************************************************
-#define AES_BUSY     AESBUSY
+#define AES_BUSY AESBUSY
 #define AES_NOT_BUSY 0x00
 
 //*****************************************************************************
@@ -68,7 +68,7 @@ extern "C" {
 //
 //*****************************************************************************
 #define AES_ERROR_OCCURRED AESERRFG
-#define AES_NO_ERROR       0x00
+#define AES_NO_ERROR 0x00
 
 //*****************************************************************************
 //
@@ -89,7 +89,7 @@ extern "C" {
 //! \return STATUS_SUCCESS
 //
 //*****************************************************************************
-extern uint8_t AES_setCipherKey(uint16_t baseAddress, const uint8_t* CipherKey);
+extern uint8_t AES_setCipherKey(uint16_t baseAddress, const uint8_t *CipherKey);
 
 //*****************************************************************************
 //
@@ -107,9 +107,8 @@ extern uint8_t AES_setCipherKey(uint16_t baseAddress, const uint8_t* CipherKey);
 //! \return STATUS_SUCCESS
 //
 //*****************************************************************************
-extern uint8_t AES_encryptData(uint16_t       baseAddress,
-                               const uint8_t* Data,
-                               uint8_t*       encryptedData);
+extern uint8_t AES_encryptData(uint16_t baseAddress, const uint8_t *Data,
+			       uint8_t *encryptedData);
 
 //*****************************************************************************
 //
@@ -128,9 +127,8 @@ extern uint8_t AES_encryptData(uint16_t       baseAddress,
 //! \return STATUS_SUCCESS
 //
 //*****************************************************************************
-extern uint8_t AES_decryptData(uint16_t       baseAddress,
-                               const uint8_t* Data,
-                               uint8_t*       decryptedData);
+extern uint8_t AES_decryptData(uint16_t baseAddress, const uint8_t *Data,
+			       uint8_t *decryptedData);
 
 //*****************************************************************************
 //
@@ -146,8 +144,8 @@ extern uint8_t AES_decryptData(uint16_t       baseAddress,
 //! \return STATUS_SUCCESS
 //
 //*****************************************************************************
-extern uint8_t AES_setDecipherKey(uint16_t       baseAddress,
-                                  const uint8_t* CipherKey);
+extern uint8_t AES_setDecipherKey(uint16_t baseAddress,
+				  const uint8_t *CipherKey);
 
 //*****************************************************************************
 //
@@ -249,9 +247,8 @@ extern void AES_reset(uint16_t baseAddress);
 //! \return STATUS_SUCCESS
 //
 //*****************************************************************************
-extern uint8_t AES_startEncryptData(uint16_t       baseAddress,
-                                    const uint8_t* Data,
-                                    uint8_t*       encryptedData);
+extern uint8_t AES_startEncryptData(uint16_t baseAddress, const uint8_t *Data,
+				    uint8_t *encryptedData);
 
 //*****************************************************************************
 //
@@ -271,7 +268,7 @@ extern uint8_t AES_startEncryptData(uint16_t       baseAddress,
 //! \return STATUS_SUCCESS
 //
 //*****************************************************************************
-extern uint8_t AES_startDecryptData(uint16_t baseAddress, const uint8_t* Data);
+extern uint8_t AES_startDecryptData(uint16_t baseAddress, const uint8_t *Data);
 
 //*****************************************************************************
 //
@@ -288,8 +285,8 @@ extern uint8_t AES_startDecryptData(uint16_t baseAddress, const uint8_t* Data);
 //! \return STATUS_SUCCESS
 //
 //*****************************************************************************
-extern uint8_t AES_startSetDecipherKey(uint16_t       baseAddress,
-                                       const uint8_t* CipherKey);
+extern uint8_t AES_startSetDecipherKey(uint16_t baseAddress,
+				       const uint8_t *CipherKey);
 
 //*****************************************************************************
 //
@@ -307,7 +304,7 @@ extern uint8_t AES_startSetDecipherKey(uint16_t       baseAddress,
 //! \return STATUS_SUCCESS if AES is not busy, STATUS_FAIL if it is busy
 //
 //*****************************************************************************
-extern uint8_t AES_getDataOut(uint16_t baseAddress, uint8_t* OutputData);
+extern uint8_t AES_getDataOut(uint16_t baseAddress, uint8_t *OutputData);
 
 //*****************************************************************************
 //
@@ -379,7 +376,7 @@ extern uint32_t AES_getErrorFlagStatus(uint16_t baseAddress);
 //
 //*****************************************************************************
 extern uint8_t AES_startDecryptDataUsingEncryptionKey(uint16_t baseAddress,
-                                                      const uint8_t* Data);
+						      const uint8_t *Data);
 
 //*****************************************************************************
 //
@@ -397,9 +394,9 @@ extern uint8_t AES_startDecryptDataUsingEncryptionKey(uint16_t baseAddress,
 //! \return STATUS_SUCCESS
 //
 //*****************************************************************************
-extern uint8_t AES_decryptDataUsingEncryptionKey(uint16_t       baseAddress,
-                                                 const uint8_t* Data,
-                                                 uint8_t*       decryptedData);
+extern uint8_t AES_decryptDataUsingEncryptionKey(uint16_t baseAddress,
+						 const uint8_t *Data,
+						 uint8_t *decryptedData);
 
 //*****************************************************************************
 //
@@ -411,4 +408,4 @@ extern uint8_t AES_decryptDataUsingEncryptionKey(uint16_t       baseAddress,
 #endif
 
 #endif
-#endif  // __MSP430WARE_AES_H__
+#endif // __MSP430WARE_AES_H__

@@ -200,4 +200,4 @@ extern uint16_t CRC_getResultBitsReversed(uint16_t baseAddress);
 #endif
 
 #endif
-#endif  // __MSP430WARE_CRC_H__
+#endif // __MSP430WARE_CRC_H__

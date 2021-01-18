@@ -88,15 +88,15 @@ extern "C" {
 #define Q12 12
 #define Q11 11
 #define Q10 10
-#define Q9  9
-#define Q8  8
-#define Q7  7
-#define Q6  6
-#define Q5  5
-#define Q4  4
-#define Q3  3
-#define Q2  2
-#define Q1  1
+#define Q9 9
+#define Q8 8
+#define Q7 7
+#define Q6 6
+#define Q5 5
+#define Q4 4
+#define Q3 3
+#define Q2 2
+#define Q1 1
 #ifndef QG
 #define QG GLOBAL_IQ
 #endif
@@ -148,15 +148,15 @@ typedef int32_t _iq;
 // Simple multiplies or divides, which are accomplished with simple shifts.
 //
 //*****************************************************************************
-#define _IQmpy2(A)  ((A) << 1)
-#define _IQmpy4(A)  ((A) << 2)
-#define _IQmpy8(A)  ((A) << 3)
+#define _IQmpy2(A) ((A) << 1)
+#define _IQmpy4(A) ((A) << 2)
+#define _IQmpy8(A) ((A) << 3)
 #define _IQmpy16(A) ((A) << 4)
 #define _IQmpy32(A) ((A) << 5)
 #define _IQmpy64(A) ((A) << 6)
-#define _IQdiv2(A)  ((A) >> 1)
-#define _IQdiv4(A)  ((A) >> 2)
-#define _IQdiv8(A)  ((A) >> 3)
+#define _IQdiv2(A) ((A) >> 1)
+#define _IQdiv4(A) ((A) >> 2)
+#define _IQdiv8(A) ((A) >> 3)
 #define _IQdiv16(A) ((A) >> 4)
 #define _IQdiv32(A) ((A) >> 5)
 #define _IQdiv64(A) ((A) >> 6)
@@ -187,15 +187,15 @@ typedef int32_t _iq;
 #define _IQ12(A) ((_iq12)((A) * ((_iq12)1 << 12)))
 #define _IQ11(A) ((_iq11)((A) * ((_iq11)1 << 11)))
 #define _IQ10(A) ((_iq10)((A) * ((_iq10)1 << 10)))
-#define _IQ9(A)  ((_iq9)((A) * ((_iq9)1 << 9)))
-#define _IQ8(A)  ((_iq8)((A) * ((_iq8)1 << 8)))
-#define _IQ7(A)  ((_iq7)((A) * ((_iq7)1 << 7)))
-#define _IQ6(A)  ((_iq6)((A) * ((_iq6)1 << 6)))
-#define _IQ5(A)  ((_iq5)((A) * ((_iq5)1 << 5)))
-#define _IQ4(A)  ((_iq4)((A) * ((_iq4)1 << 4)))
-#define _IQ3(A)  ((_iq3)((A) * ((_iq3)1 << 3)))
-#define _IQ2(A)  ((_iq2)((A) * ((_iq2)1 << 2)))
-#define _IQ1(A)  ((_iq1)((A) * ((_iq1)1 << 1)))
+#define _IQ9(A) ((_iq9)((A) * ((_iq9)1 << 9)))
+#define _IQ8(A) ((_iq8)((A) * ((_iq8)1 << 8)))
+#define _IQ7(A) ((_iq7)((A) * ((_iq7)1 << 7)))
+#define _IQ6(A) ((_iq6)((A) * ((_iq6)1 << 6)))
+#define _IQ5(A) ((_iq5)((A) * ((_iq5)1 << 5)))
+#define _IQ4(A) ((_iq4)((A) * ((_iq4)1 << 4)))
+#define _IQ3(A) ((_iq3)((A) * ((_iq3)1 << 3)))
+#define _IQ2(A) ((_iq2)((A) * ((_iq2)1 << 2)))
+#define _IQ1(A) ((_iq1)((A) * ((_iq1)1 << 1)))
 
 #if GLOBAL_IQ == 30
 #define _IQ(A) _IQ30(A)
@@ -420,8 +420,8 @@ extern float _IQ1toF(_iq1 A);
 // Saturates an IQ number in a given range.
 //
 //*****************************************************************************
-#define _IQsat(A, Pos, Neg) \
-  (((A) > (Pos)) ? (Pos) : (((A) < (Neg)) ? (Neg) : (A)))
+#define _IQsat(A, Pos, Neg)                                                    \
+	(((A) > (Pos)) ? (Pos) : (((A) < (Neg)) ? (Neg) : (A)))
 
 //*****************************************************************************
 //
@@ -805,15 +805,15 @@ extern _iq13 _IQ13mpy(_iq13 A, _iq13 B);
 extern _iq12 _IQ12mpy(_iq12 A, _iq12 B);
 extern _iq11 _IQ11mpy(_iq11 A, _iq11 B);
 extern _iq10 _IQ10mpy(_iq10 A, _iq10 B);
-extern _iq9  _IQ9mpy(_iq9 A, _iq9 B);
-extern _iq8  _IQ8mpy(_iq8 A, _iq8 B);
-extern _iq7  _IQ7mpy(_iq7 A, _iq7 B);
-extern _iq6  _IQ6mpy(_iq6 A, _iq6 B);
-extern _iq5  _IQ5mpy(_iq5 A, _iq5 B);
-extern _iq4  _IQ4mpy(_iq4 A, _iq4 B);
-extern _iq3  _IQ3mpy(_iq3 A, _iq3 B);
-extern _iq2  _IQ2mpy(_iq2 A, _iq2 B);
-extern _iq1  _IQ1mpy(_iq1 A, _iq1 B);
+extern _iq9 _IQ9mpy(_iq9 A, _iq9 B);
+extern _iq8 _IQ8mpy(_iq8 A, _iq8 B);
+extern _iq7 _IQ7mpy(_iq7 A, _iq7 B);
+extern _iq6 _IQ6mpy(_iq6 A, _iq6 B);
+extern _iq5 _IQ5mpy(_iq5 A, _iq5 B);
+extern _iq4 _IQ4mpy(_iq4 A, _iq4 B);
+extern _iq3 _IQ3mpy(_iq3 A, _iq3 B);
+extern _iq2 _IQ2mpy(_iq2 A, _iq2 B);
+extern _iq1 _IQ1mpy(_iq1 A, _iq1 B);
 
 #if GLOBAL_IQ == 30
 #define _IQmpy(A, B) _IQ30mpy(A, B)
@@ -932,15 +932,15 @@ extern _iq13 _IQ13rmpy(_iq13 A, _iq13 B);
 extern _iq12 _IQ12rmpy(_iq12 A, _iq12 B);
 extern _iq11 _IQ11rmpy(_iq11 A, _iq11 B);
 extern _iq10 _IQ10rmpy(_iq10 A, _iq10 B);
-extern _iq9  _IQ9rmpy(_iq9 A, _iq9 B);
-extern _iq8  _IQ8rmpy(_iq8 A, _iq8 B);
-extern _iq7  _IQ7rmpy(_iq7 A, _iq7 B);
-extern _iq6  _IQ6rmpy(_iq6 A, _iq6 B);
-extern _iq5  _IQ5rmpy(_iq5 A, _iq5 B);
-extern _iq4  _IQ4rmpy(_iq4 A, _iq4 B);
-extern _iq3  _IQ3rmpy(_iq3 A, _iq3 B);
-extern _iq2  _IQ2rmpy(_iq2 A, _iq2 B);
-extern _iq1  _IQ1rmpy(_iq1 A, _iq1 B);
+extern _iq9 _IQ9rmpy(_iq9 A, _iq9 B);
+extern _iq8 _IQ8rmpy(_iq8 A, _iq8 B);
+extern _iq7 _IQ7rmpy(_iq7 A, _iq7 B);
+extern _iq6 _IQ6rmpy(_iq6 A, _iq6 B);
+extern _iq5 _IQ5rmpy(_iq5 A, _iq5 B);
+extern _iq4 _IQ4rmpy(_iq4 A, _iq4 B);
+extern _iq3 _IQ3rmpy(_iq3 A, _iq3 B);
+extern _iq2 _IQ2rmpy(_iq2 A, _iq2 B);
+extern _iq1 _IQ1rmpy(_iq1 A, _iq1 B);
 
 #if GLOBAL_IQ == 30
 #define _IQrmpy(A, B) _IQ30rmpy(A, B)
@@ -1059,15 +1059,15 @@ extern _iq13 _IQ13rsmpy(_iq13 A, _iq13 B);
 extern _iq12 _IQ12rsmpy(_iq12 A, _iq12 B);
 extern _iq11 _IQ11rsmpy(_iq11 A, _iq11 B);
 extern _iq10 _IQ10rsmpy(_iq10 A, _iq10 B);
-extern _iq9  _IQ9rsmpy(_iq9 A, _iq9 B);
-extern _iq8  _IQ8rsmpy(_iq8 A, _iq8 B);
-extern _iq7  _IQ7rsmpy(_iq7 A, _iq7 B);
-extern _iq6  _IQ6rsmpy(_iq6 A, _iq6 B);
-extern _iq5  _IQ5rsmpy(_iq5 A, _iq5 B);
-extern _iq4  _IQ4rsmpy(_iq4 A, _iq4 B);
-extern _iq3  _IQ3rsmpy(_iq3 A, _iq3 B);
-extern _iq2  _IQ2rsmpy(_iq2 A, _iq2 B);
-extern _iq1  _IQ1rsmpy(_iq1 A, _iq1 B);
+extern _iq9 _IQ9rsmpy(_iq9 A, _iq9 B);
+extern _iq8 _IQ8rsmpy(_iq8 A, _iq8 B);
+extern _iq7 _IQ7rsmpy(_iq7 A, _iq7 B);
+extern _iq6 _IQ6rsmpy(_iq6 A, _iq6 B);
+extern _iq5 _IQ5rsmpy(_iq5 A, _iq5 B);
+extern _iq4 _IQ4rsmpy(_iq4 A, _iq4 B);
+extern _iq3 _IQ3rsmpy(_iq3 A, _iq3 B);
+extern _iq2 _IQ2rsmpy(_iq2 A, _iq2 B);
+extern _iq1 _IQ1rsmpy(_iq1 A, _iq1 B);
 
 #if GLOBAL_IQ == 30
 #define _IQrsmpy(A, B) _IQ30rsmpy(A, B)
@@ -1186,15 +1186,15 @@ extern _iq13 _IQ13div(_iq13 A, _iq13 B);
 extern _iq12 _IQ12div(_iq12 A, _iq12 B);
 extern _iq11 _IQ11div(_iq11 A, _iq11 B);
 extern _iq10 _IQ10div(_iq10 A, _iq10 B);
-extern _iq9  _IQ9div(_iq9 A, _iq9 B);
-extern _iq8  _IQ8div(_iq8 A, _iq8 B);
-extern _iq7  _IQ7div(_iq7 A, _iq7 B);
-extern _iq6  _IQ6div(_iq6 A, _iq6 B);
-extern _iq5  _IQ5div(_iq5 A, _iq5 B);
-extern _iq4  _IQ4div(_iq4 A, _iq4 B);
-extern _iq3  _IQ3div(_iq3 A, _iq3 B);
-extern _iq2  _IQ2div(_iq2 A, _iq2 B);
-extern _iq1  _IQ1div(_iq1 A, _iq1 B);
+extern _iq9 _IQ9div(_iq9 A, _iq9 B);
+extern _iq8 _IQ8div(_iq8 A, _iq8 B);
+extern _iq7 _IQ7div(_iq7 A, _iq7 B);
+extern _iq6 _IQ6div(_iq6 A, _iq6 B);
+extern _iq5 _IQ5div(_iq5 A, _iq5 B);
+extern _iq4 _IQ4div(_iq4 A, _iq4 B);
+extern _iq3 _IQ3div(_iq3 A, _iq3 B);
+extern _iq2 _IQ2div(_iq2 A, _iq2 B);
+extern _iq1 _IQ1div(_iq1 A, _iq1 B);
 
 #if GLOBAL_IQ == 30
 #define _IQdiv(A, B) _IQ30div(A, B)
@@ -1312,15 +1312,15 @@ extern _iq13 _IQ13sin(_iq13 A);
 extern _iq12 _IQ12sin(_iq12 A);
 extern _iq11 _IQ11sin(_iq11 A);
 extern _iq10 _IQ10sin(_iq10 A);
-extern _iq9  _IQ9sin(_iq9 A);
-extern _iq8  _IQ8sin(_iq8 A);
-extern _iq7  _IQ7sin(_iq7 A);
-extern _iq6  _IQ6sin(_iq6 A);
-extern _iq5  _IQ5sin(_iq5 A);
-extern _iq4  _IQ4sin(_iq4 A);
-extern _iq3  _IQ3sin(_iq3 A);
-extern _iq2  _IQ2sin(_iq2 A);
-extern _iq1  _IQ1sin(_iq1 A);
+extern _iq9 _IQ9sin(_iq9 A);
+extern _iq8 _IQ8sin(_iq8 A);
+extern _iq7 _IQ7sin(_iq7 A);
+extern _iq6 _IQ6sin(_iq6 A);
+extern _iq5 _IQ5sin(_iq5 A);
+extern _iq4 _IQ4sin(_iq4 A);
+extern _iq3 _IQ3sin(_iq3 A);
+extern _iq2 _IQ2sin(_iq2 A);
+extern _iq1 _IQ1sin(_iq1 A);
 
 #if GLOBAL_IQ == 29
 #define _IQsin(A) _IQ29sin(A)
@@ -1436,15 +1436,15 @@ extern _iq13 _IQ13sinPU(_iq13 A);
 extern _iq12 _IQ12sinPU(_iq12 A);
 extern _iq11 _IQ11sinPU(_iq11 A);
 extern _iq10 _IQ10sinPU(_iq10 A);
-extern _iq9  _IQ9sinPU(_iq9 A);
-extern _iq8  _IQ8sinPU(_iq8 A);
-extern _iq7  _IQ7sinPU(_iq7 A);
-extern _iq6  _IQ6sinPU(_iq6 A);
-extern _iq5  _IQ5sinPU(_iq5 A);
-extern _iq4  _IQ4sinPU(_iq4 A);
-extern _iq3  _IQ3sinPU(_iq3 A);
-extern _iq2  _IQ2sinPU(_iq2 A);
-extern _iq1  _IQ1sinPU(_iq1 A);
+extern _iq9 _IQ9sinPU(_iq9 A);
+extern _iq8 _IQ8sinPU(_iq8 A);
+extern _iq7 _IQ7sinPU(_iq7 A);
+extern _iq6 _IQ6sinPU(_iq6 A);
+extern _iq5 _IQ5sinPU(_iq5 A);
+extern _iq4 _IQ4sinPU(_iq4 A);
+extern _iq3 _IQ3sinPU(_iq3 A);
+extern _iq2 _IQ2sinPU(_iq2 A);
+extern _iq1 _IQ1sinPU(_iq1 A);
 
 #if GLOBAL_IQ == 30
 #define _IQsinPU(A) _IQ30sinPU(A)
@@ -1562,15 +1562,15 @@ extern _iq13 _IQ13asin(_iq13 A);
 extern _iq12 _IQ12asin(_iq12 A);
 extern _iq11 _IQ11asin(_iq11 A);
 extern _iq10 _IQ10asin(_iq10 A);
-extern _iq9  _IQ9asin(_iq9 A);
-extern _iq8  _IQ8asin(_iq8 A);
-extern _iq7  _IQ7asin(_iq7 A);
-extern _iq6  _IQ6asin(_iq6 A);
-extern _iq5  _IQ5asin(_iq5 A);
-extern _iq4  _IQ4asin(_iq4 A);
-extern _iq3  _IQ3asin(_iq3 A);
-extern _iq2  _IQ2asin(_iq2 A);
-extern _iq1  _IQ1asin(_iq1 A);
+extern _iq9 _IQ9asin(_iq9 A);
+extern _iq8 _IQ8asin(_iq8 A);
+extern _iq7 _IQ7asin(_iq7 A);
+extern _iq6 _IQ6asin(_iq6 A);
+extern _iq5 _IQ5asin(_iq5 A);
+extern _iq4 _IQ4asin(_iq4 A);
+extern _iq3 _IQ3asin(_iq3 A);
+extern _iq2 _IQ2asin(_iq2 A);
+extern _iq1 _IQ1asin(_iq1 A);
 
 #if GLOBAL_IQ == 29
 #define _IQasin(A) _IQ29asin(A)
@@ -1685,15 +1685,15 @@ extern _iq13 _IQ13cos(_iq13 A);
 extern _iq12 _IQ12cos(_iq12 A);
 extern _iq11 _IQ11cos(_iq11 A);
 extern _iq10 _IQ10cos(_iq10 A);
-extern _iq9  _IQ9cos(_iq9 A);
-extern _iq8  _IQ8cos(_iq8 A);
-extern _iq7  _IQ7cos(_iq7 A);
-extern _iq6  _IQ6cos(_iq6 A);
-extern _iq5  _IQ5cos(_iq5 A);
-extern _iq4  _IQ4cos(_iq4 A);
-extern _iq3  _IQ3cos(_iq3 A);
-extern _iq2  _IQ2cos(_iq2 A);
-extern _iq1  _IQ1cos(_iq1 A);
+extern _iq9 _IQ9cos(_iq9 A);
+extern _iq8 _IQ8cos(_iq8 A);
+extern _iq7 _IQ7cos(_iq7 A);
+extern _iq6 _IQ6cos(_iq6 A);
+extern _iq5 _IQ5cos(_iq5 A);
+extern _iq4 _IQ4cos(_iq4 A);
+extern _iq3 _IQ3cos(_iq3 A);
+extern _iq2 _IQ2cos(_iq2 A);
+extern _iq1 _IQ1cos(_iq1 A);
 
 #if GLOBAL_IQ == 29
 #define _IQcos(A) _IQ29cos(A)
@@ -1809,15 +1809,15 @@ extern _iq13 _IQ13cosPU(_iq13 A);
 extern _iq12 _IQ12cosPU(_iq12 A);
 extern _iq11 _IQ11cosPU(_iq11 A);
 extern _iq10 _IQ10cosPU(_iq10 A);
-extern _iq9  _IQ9cosPU(_iq9 A);
-extern _iq8  _IQ8cosPU(_iq8 A);
-extern _iq7  _IQ7cosPU(_iq7 A);
-extern _iq6  _IQ6cosPU(_iq6 A);
-extern _iq5  _IQ5cosPU(_iq5 A);
-extern _iq4  _IQ4cosPU(_iq4 A);
-extern _iq3  _IQ3cosPU(_iq3 A);
-extern _iq2  _IQ2cosPU(_iq2 A);
-extern _iq1  _IQ1cosPU(_iq1 A);
+extern _iq9 _IQ9cosPU(_iq9 A);
+extern _iq8 _IQ8cosPU(_iq8 A);
+extern _iq7 _IQ7cosPU(_iq7 A);
+extern _iq6 _IQ6cosPU(_iq6 A);
+extern _iq5 _IQ5cosPU(_iq5 A);
+extern _iq4 _IQ4cosPU(_iq4 A);
+extern _iq3 _IQ3cosPU(_iq3 A);
+extern _iq2 _IQ2cosPU(_iq2 A);
+extern _iq1 _IQ1cosPU(_iq1 A);
 
 #if GLOBAL_IQ == 30
 #define _IQcosPU(A) _IQ30cosPU(A)
@@ -1935,15 +1935,15 @@ extern _iq1  _IQ1cosPU(_iq1 A);
 #define _IQ12acos(A) (_IQ12(1.570796327) - _IQ12asin(A))
 #define _IQ11acos(A) (_IQ11(1.570796327) - _IQ11asin(A))
 #define _IQ10acos(A) (_IQ10(1.570796327) - _IQ10asin(A))
-#define _IQ9acos(A)  (_IQ9(1.570796327) - _IQ9asin(A))
-#define _IQ8acos(A)  (_IQ8(1.570796327) - _IQ8asin(A))
-#define _IQ7acos(A)  (_IQ7(1.570796327) - _IQ7asin(A))
-#define _IQ6acos(A)  (_IQ6(1.570796327) - _IQ6asin(A))
-#define _IQ5acos(A)  (_IQ5(1.570796327) - _IQ5asin(A))
-#define _IQ4acos(A)  (_IQ4(1.570796327) - _IQ4asin(A))
-#define _IQ3acos(A)  (_IQ3(1.570796327) - _IQ3asin(A))
-#define _IQ2acos(A)  (_IQ2(1.570796327) - _IQ2asin(A))
-#define _IQ1acos(A)  (_IQ1(1.570796327) - _IQ1asin(A))
+#define _IQ9acos(A) (_IQ9(1.570796327) - _IQ9asin(A))
+#define _IQ8acos(A) (_IQ8(1.570796327) - _IQ8asin(A))
+#define _IQ7acos(A) (_IQ7(1.570796327) - _IQ7asin(A))
+#define _IQ6acos(A) (_IQ6(1.570796327) - _IQ6asin(A))
+#define _IQ5acos(A) (_IQ5(1.570796327) - _IQ5asin(A))
+#define _IQ4acos(A) (_IQ4(1.570796327) - _IQ4asin(A))
+#define _IQ3acos(A) (_IQ3(1.570796327) - _IQ3asin(A))
+#define _IQ2acos(A) (_IQ2(1.570796327) - _IQ2asin(A))
+#define _IQ1acos(A) (_IQ1(1.570796327) - _IQ1asin(A))
 
 #if GLOBAL_IQ == 29
 #define _IQacos(A) _IQ29acos(A)
@@ -2058,15 +2058,15 @@ extern _iq13 _IQ13atan2(_iq13 A, _iq13 B);
 extern _iq12 _IQ12atan2(_iq12 A, _iq12 B);
 extern _iq11 _IQ11atan2(_iq11 A, _iq11 B);
 extern _iq10 _IQ10atan2(_iq10 A, _iq10 B);
-extern _iq9  _IQ9atan2(_iq9 A, _iq9 B);
-extern _iq8  _IQ8atan2(_iq8 A, _iq8 B);
-extern _iq7  _IQ7atan2(_iq7 A, _iq7 B);
-extern _iq6  _IQ6atan2(_iq6 A, _iq6 B);
-extern _iq5  _IQ5atan2(_iq5 A, _iq5 B);
-extern _iq4  _IQ4atan2(_iq4 A, _iq4 B);
-extern _iq3  _IQ3atan2(_iq3 A, _iq3 B);
-extern _iq2  _IQ2atan2(_iq2 A, _iq2 B);
-extern _iq1  _IQ1atan2(_iq1 A, _iq1 B);
+extern _iq9 _IQ9atan2(_iq9 A, _iq9 B);
+extern _iq8 _IQ8atan2(_iq8 A, _iq8 B);
+extern _iq7 _IQ7atan2(_iq7 A, _iq7 B);
+extern _iq6 _IQ6atan2(_iq6 A, _iq6 B);
+extern _iq5 _IQ5atan2(_iq5 A, _iq5 B);
+extern _iq4 _IQ4atan2(_iq4 A, _iq4 B);
+extern _iq3 _IQ3atan2(_iq3 A, _iq3 B);
+extern _iq2 _IQ2atan2(_iq2 A, _iq2 B);
+extern _iq1 _IQ1atan2(_iq1 A, _iq1 B);
 
 #if GLOBAL_IQ == 29
 #define _IQatan2(A, B) _IQ29atan2(A, B)
@@ -2183,15 +2183,15 @@ extern _iq13 _IQ13atan2PU(_iq13 A, _iq13 B);
 extern _iq12 _IQ12atan2PU(_iq12 A, _iq12 B);
 extern _iq11 _IQ11atan2PU(_iq11 A, _iq11 B);
 extern _iq10 _IQ10atan2PU(_iq10 A, _iq10 B);
-extern _iq9  _IQ9atan2PU(_iq9 A, _iq9 B);
-extern _iq8  _IQ8atan2PU(_iq8 A, _iq8 B);
-extern _iq7  _IQ7atan2PU(_iq7 A, _iq7 B);
-extern _iq6  _IQ6atan2PU(_iq6 A, _iq6 B);
-extern _iq5  _IQ5atan2PU(_iq5 A, _iq5 B);
-extern _iq4  _IQ4atan2PU(_iq4 A, _iq4 B);
-extern _iq3  _IQ3atan2PU(_iq3 A, _iq3 B);
-extern _iq2  _IQ2atan2PU(_iq2 A, _iq2 B);
-extern _iq1  _IQ1atan2PU(_iq1 A, _iq1 B);
+extern _iq9 _IQ9atan2PU(_iq9 A, _iq9 B);
+extern _iq8 _IQ8atan2PU(_iq8 A, _iq8 B);
+extern _iq7 _IQ7atan2PU(_iq7 A, _iq7 B);
+extern _iq6 _IQ6atan2PU(_iq6 A, _iq6 B);
+extern _iq5 _IQ5atan2PU(_iq5 A, _iq5 B);
+extern _iq4 _IQ4atan2PU(_iq4 A, _iq4 B);
+extern _iq3 _IQ3atan2PU(_iq3 A, _iq3 B);
+extern _iq2 _IQ2atan2PU(_iq2 A, _iq2 B);
+extern _iq1 _IQ1atan2PU(_iq1 A, _iq1 B);
 
 #if GLOBAL_IQ == 30
 #define _IQatan2PU(A, B) _IQ30atan2PU(A, B)
@@ -2309,15 +2309,15 @@ extern _iq1  _IQ1atan2PU(_iq1 A, _iq1 B);
 #define _IQ12atan(A) _IQ12atan2(A, _IQ12(1.0))
 #define _IQ11atan(A) _IQ11atan2(A, _IQ11(1.0))
 #define _IQ10atan(A) _IQ10atan2(A, _IQ10(1.0))
-#define _IQ9atan(A)  _IQ9atan2(A, _IQ9(1.0))
-#define _IQ8atan(A)  _IQ8atan2(A, _IQ8(1.0))
-#define _IQ7atan(A)  _IQ7atan2(A, _IQ7(1.0))
-#define _IQ6atan(A)  _IQ6atan2(A, _IQ6(1.0))
-#define _IQ5atan(A)  _IQ5atan2(A, _IQ5(1.0))
-#define _IQ4atan(A)  _IQ4atan2(A, _IQ4(1.0))
-#define _IQ3atan(A)  _IQ3atan2(A, _IQ3(1.0))
-#define _IQ2atan(A)  _IQ2atan2(A, _IQ2(1.0))
-#define _IQ1atan(A)  _IQ1atan2(A, _IQ1(1.0))
+#define _IQ9atan(A) _IQ9atan2(A, _IQ9(1.0))
+#define _IQ8atan(A) _IQ8atan2(A, _IQ8(1.0))
+#define _IQ7atan(A) _IQ7atan2(A, _IQ7(1.0))
+#define _IQ6atan(A) _IQ6atan2(A, _IQ6(1.0))
+#define _IQ5atan(A) _IQ5atan2(A, _IQ5(1.0))
+#define _IQ4atan(A) _IQ4atan2(A, _IQ4(1.0))
+#define _IQ3atan(A) _IQ3atan2(A, _IQ3(1.0))
+#define _IQ2atan(A) _IQ2atan2(A, _IQ2(1.0))
+#define _IQ1atan(A) _IQ1atan2(A, _IQ1(1.0))
 
 #if GLOBAL_IQ == 29
 #define _IQatan(A) _IQ29atan2(A, _IQ29(1.0))
@@ -2433,15 +2433,15 @@ extern _iq13 _IQ13sqrt(_iq13 A);
 extern _iq12 _IQ12sqrt(_iq12 A);
 extern _iq11 _IQ11sqrt(_iq11 A);
 extern _iq10 _IQ10sqrt(_iq10 A);
-extern _iq9  _IQ9sqrt(_iq9 A);
-extern _iq8  _IQ8sqrt(_iq8 A);
-extern _iq7  _IQ7sqrt(_iq7 A);
-extern _iq6  _IQ6sqrt(_iq6 A);
-extern _iq5  _IQ5sqrt(_iq5 A);
-extern _iq4  _IQ4sqrt(_iq4 A);
-extern _iq3  _IQ3sqrt(_iq3 A);
-extern _iq2  _IQ2sqrt(_iq2 A);
-extern _iq1  _IQ1sqrt(_iq1 A);
+extern _iq9 _IQ9sqrt(_iq9 A);
+extern _iq8 _IQ8sqrt(_iq8 A);
+extern _iq7 _IQ7sqrt(_iq7 A);
+extern _iq6 _IQ6sqrt(_iq6 A);
+extern _iq5 _IQ5sqrt(_iq5 A);
+extern _iq4 _IQ4sqrt(_iq4 A);
+extern _iq3 _IQ3sqrt(_iq3 A);
+extern _iq2 _IQ2sqrt(_iq2 A);
+extern _iq1 _IQ1sqrt(_iq1 A);
 
 #if GLOBAL_IQ == 30
 #define _IQsqrt(A) _IQ30sqrt(A)
@@ -2560,15 +2560,15 @@ extern _iq13 _IQ13isqrt(_iq13 A);
 extern _iq12 _IQ12isqrt(_iq12 A);
 extern _iq11 _IQ11isqrt(_iq11 A);
 extern _iq10 _IQ10isqrt(_iq10 A);
-extern _iq9  _IQ9isqrt(_iq9 A);
-extern _iq8  _IQ8isqrt(_iq8 A);
-extern _iq7  _IQ7isqrt(_iq7 A);
-extern _iq6  _IQ6isqrt(_iq6 A);
-extern _iq5  _IQ5isqrt(_iq5 A);
-extern _iq4  _IQ4isqrt(_iq4 A);
-extern _iq3  _IQ3isqrt(_iq3 A);
-extern _iq2  _IQ2isqrt(_iq2 A);
-extern _iq1  _IQ1isqrt(_iq1 A);
+extern _iq9 _IQ9isqrt(_iq9 A);
+extern _iq8 _IQ8isqrt(_iq8 A);
+extern _iq7 _IQ7isqrt(_iq7 A);
+extern _iq6 _IQ6isqrt(_iq6 A);
+extern _iq5 _IQ5isqrt(_iq5 A);
+extern _iq4 _IQ4isqrt(_iq4 A);
+extern _iq3 _IQ3isqrt(_iq3 A);
+extern _iq2 _IQ2isqrt(_iq2 A);
+extern _iq1 _IQ1isqrt(_iq1 A);
 
 #if GLOBAL_IQ == 30
 #define _IQisqrt(A) _IQ30isqrt(A)
@@ -2687,15 +2687,15 @@ extern _iq13 _IQ13exp(_iq13 A);
 extern _iq12 _IQ12exp(_iq12 A);
 extern _iq11 _IQ11exp(_iq11 A);
 extern _iq10 _IQ10exp(_iq10 A);
-extern _iq9  _IQ9exp(_iq9 A);
-extern _iq8  _IQ8exp(_iq8 A);
-extern _iq7  _IQ7exp(_iq7 A);
-extern _iq6  _IQ6exp(_iq6 A);
-extern _iq5  _IQ5exp(_iq5 A);
-extern _iq4  _IQ4exp(_iq4 A);
-extern _iq3  _IQ3exp(_iq3 A);
-extern _iq2  _IQ2exp(_iq2 A);
-extern _iq1  _IQ1exp(_iq1 A);
+extern _iq9 _IQ9exp(_iq9 A);
+extern _iq8 _IQ8exp(_iq8 A);
+extern _iq7 _IQ7exp(_iq7 A);
+extern _iq6 _IQ6exp(_iq6 A);
+extern _iq5 _IQ5exp(_iq5 A);
+extern _iq4 _IQ4exp(_iq4 A);
+extern _iq3 _IQ3exp(_iq3 A);
+extern _iq2 _IQ2exp(_iq2 A);
+extern _iq1 _IQ1exp(_iq1 A);
 
 #if GLOBAL_IQ == 30
 #define _IQexp(A) _IQ30exp(A)
@@ -2814,15 +2814,15 @@ extern _iq13 _IQ13log(_iq13 A);
 extern _iq12 _IQ12log(_iq12 A);
 extern _iq11 _IQ11log(_iq11 A);
 extern _iq10 _IQ10log(_iq10 A);
-extern _iq9  _IQ9log(_iq9 A);
-extern _iq8  _IQ8log(_iq8 A);
-extern _iq7  _IQ7log(_iq7 A);
-extern _iq6  _IQ6log(_iq6 A);
-extern _iq5  _IQ5log(_iq5 A);
-extern _iq4  _IQ4log(_iq4 A);
-extern _iq3  _IQ3log(_iq3 A);
-extern _iq2  _IQ2log(_iq2 A);
-extern _iq1  _IQ1log(_iq1 A);
+extern _iq9 _IQ9log(_iq9 A);
+extern _iq8 _IQ8log(_iq8 A);
+extern _iq7 _IQ7log(_iq7 A);
+extern _iq6 _IQ6log(_iq6 A);
+extern _iq5 _IQ5log(_iq5 A);
+extern _iq4 _IQ4log(_iq4 A);
+extern _iq3 _IQ3log(_iq3 A);
+extern _iq2 _IQ2log(_iq2 A);
+extern _iq1 _IQ1log(_iq1 A);
 
 #if GLOBAL_IQ == 30
 #define _IQlog(A) _IQ30log(A)
@@ -2941,16 +2941,16 @@ extern _iq1  _IQ1log(_iq1 A);
 #define _IQ12int(A) ((A) >> 12)
 #define _IQ11int(A) ((A) >> 11)
 #define _IQ10int(A) ((A) >> 10)
-#define _IQ9int(A)  ((A) >> 9)
-#define _IQ8int(A)  ((A) >> 8)
-#define _IQ7int(A)  ((A) >> 7)
-#define _IQ6int(A)  ((A) >> 6)
-#define _IQ5int(A)  ((A) >> 5)
-#define _IQ4int(A)  ((A) >> 4)
-#define _IQ3int(A)  ((A) >> 3)
-#define _IQ2int(A)  ((A) >> 2)
-#define _IQ1int(A)  ((A) >> 1)
-#define _IQint(A)   ((A) >> GLOBAL_IQ)
+#define _IQ9int(A) ((A) >> 9)
+#define _IQ8int(A) ((A) >> 8)
+#define _IQ7int(A) ((A) >> 7)
+#define _IQ6int(A) ((A) >> 6)
+#define _IQ5int(A) ((A) >> 5)
+#define _IQ4int(A) ((A) >> 4)
+#define _IQ3int(A) ((A) >> 3)
+#define _IQ2int(A) ((A) >> 2)
+#define _IQ1int(A) ((A) >> 1)
+#define _IQint(A) ((A) >> GLOBAL_IQ)
 
 //*****************************************************************************
 //
@@ -2978,15 +2978,15 @@ extern _iq13 _IQ13frac(_iq13 A);
 extern _iq12 _IQ12frac(_iq12 A);
 extern _iq11 _IQ11frac(_iq11 A);
 extern _iq10 _IQ10frac(_iq10 A);
-extern _iq9  _IQ9frac(_iq9 A);
-extern _iq8  _IQ8frac(_iq8 A);
-extern _iq7  _IQ7frac(_iq7 A);
-extern _iq6  _IQ6frac(_iq6 A);
-extern _iq5  _IQ5frac(_iq5 A);
-extern _iq4  _IQ4frac(_iq4 A);
-extern _iq3  _IQ3frac(_iq3 A);
-extern _iq2  _IQ2frac(_iq2 A);
-extern _iq1  _IQ1frac(_iq1 A);
+extern _iq9 _IQ9frac(_iq9 A);
+extern _iq8 _IQ8frac(_iq8 A);
+extern _iq7 _IQ7frac(_iq7 A);
+extern _iq6 _IQ6frac(_iq6 A);
+extern _iq5 _IQ5frac(_iq5 A);
+extern _iq4 _IQ4frac(_iq4 A);
+extern _iq3 _IQ3frac(_iq3 A);
+extern _iq2 _IQ2frac(_iq2 A);
+extern _iq1 _IQ1frac(_iq1 A);
 
 #if GLOBAL_IQ == 30
 #define _IQfrac(A) _IQ30frac(A)
@@ -3233,16 +3233,16 @@ extern int32_t _IQ1mpyIQX(int32_t A, int n1, int32_t B, int n2);
 #define _IQ12mpyI32(A, B) ((A) * (B))
 #define _IQ11mpyI32(A, B) ((A) * (B))
 #define _IQ10mpyI32(A, B) ((A) * (B))
-#define _IQ9mpyI32(A, B)  ((A) * (B))
-#define _IQ8mpyI32(A, B)  ((A) * (B))
-#define _IQ7mpyI32(A, B)  ((A) * (B))
-#define _IQ6mpyI32(A, B)  ((A) * (B))
-#define _IQ5mpyI32(A, B)  ((A) * (B))
-#define _IQ4mpyI32(A, B)  ((A) * (B))
-#define _IQ3mpyI32(A, B)  ((A) * (B))
-#define _IQ2mpyI32(A, B)  ((A) * (B))
-#define _IQ1mpyI32(A, B)  ((A) * (B))
-#define _IQmpyI32(A, B)   ((A) * (B))
+#define _IQ9mpyI32(A, B) ((A) * (B))
+#define _IQ8mpyI32(A, B) ((A) * (B))
+#define _IQ7mpyI32(A, B) ((A) * (B))
+#define _IQ6mpyI32(A, B) ((A) * (B))
+#define _IQ5mpyI32(A, B) ((A) * (B))
+#define _IQ4mpyI32(A, B) ((A) * (B))
+#define _IQ3mpyI32(A, B) ((A) * (B))
+#define _IQ2mpyI32(A, B) ((A) * (B))
+#define _IQ1mpyI32(A, B) ((A) * (B))
+#define _IQmpyI32(A, B) ((A) * (B))
 
 //*****************************************************************************
 //
@@ -3270,15 +3270,15 @@ extern int32_t _IQ1mpyIQX(int32_t A, int n1, int32_t B, int n2);
 #define _IQ12mpyI32int(A, B) _IQ12int(_IQ12mpyI32(A, B))
 #define _IQ11mpyI32int(A, B) _IQ11int(_IQ11mpyI32(A, B))
 #define _IQ10mpyI32int(A, B) _IQ10int(_IQ10mpyI32(A, B))
-#define _IQ9mpyI32int(A, B)  _IQ9int(_IQ9mpyI32(A, B))
-#define _IQ8mpyI32int(A, B)  _IQ8int(_IQ8mpyI32(A, B))
-#define _IQ7mpyI32int(A, B)  _IQ7int(_IQ7mpyI32(A, B))
-#define _IQ6mpyI32int(A, B)  _IQ6int(_IQ6mpyI32(A, B))
-#define _IQ5mpyI32int(A, B)  _IQ5int(_IQ5mpyI32(A, B))
-#define _IQ4mpyI32int(A, B)  _IQ4int(_IQ4mpyI32(A, B))
-#define _IQ3mpyI32int(A, B)  _IQ3int(_IQ3mpyI32(A, B))
-#define _IQ2mpyI32int(A, B)  _IQ2int(_IQ2mpyI32(A, B))
-#define _IQ1mpyI32int(A, B)  _IQ1int(_IQ1mpyI32(A, B))
+#define _IQ9mpyI32int(A, B) _IQ9int(_IQ9mpyI32(A, B))
+#define _IQ8mpyI32int(A, B) _IQ8int(_IQ8mpyI32(A, B))
+#define _IQ7mpyI32int(A, B) _IQ7int(_IQ7mpyI32(A, B))
+#define _IQ6mpyI32int(A, B) _IQ6int(_IQ6mpyI32(A, B))
+#define _IQ5mpyI32int(A, B) _IQ5int(_IQ5mpyI32(A, B))
+#define _IQ4mpyI32int(A, B) _IQ4int(_IQ4mpyI32(A, B))
+#define _IQ3mpyI32int(A, B) _IQ3int(_IQ3mpyI32(A, B))
+#define _IQ2mpyI32int(A, B) _IQ2int(_IQ2mpyI32(A, B))
+#define _IQ1mpyI32int(A, B) _IQ1int(_IQ1mpyI32(A, B))
 
 #if GLOBAL_IQ == 30
 #define _IQmpyI32int(A, B) _IQ30mpyI32int(A, B)
@@ -3397,15 +3397,15 @@ extern int32_t _IQ1mpyIQX(int32_t A, int n1, int32_t B, int n2);
 #define _IQ12mpyI32frac(A, B) _IQ12frac(_IQ12mpyI32(A, B))
 #define _IQ11mpyI32frac(A, B) _IQ11frac(_IQ11mpyI32(A, B))
 #define _IQ10mpyI32frac(A, B) _IQ10frac(_IQ10mpyI32(A, B))
-#define _IQ9mpyI32frac(A, B)  _IQ9frac(_IQ9mpyI32(A, B))
-#define _IQ8mpyI32frac(A, B)  _IQ8frac(_IQ8mpyI32(A, B))
-#define _IQ7mpyI32frac(A, B)  _IQ7frac(_IQ7mpyI32(A, B))
-#define _IQ6mpyI32frac(A, B)  _IQ6frac(_IQ6mpyI32(A, B))
-#define _IQ5mpyI32frac(A, B)  _IQ5frac(_IQ5mpyI32(A, B))
-#define _IQ4mpyI32frac(A, B)  _IQ4frac(_IQ4mpyI32(A, B))
-#define _IQ3mpyI32frac(A, B)  _IQ3frac(_IQ3mpyI32(A, B))
-#define _IQ2mpyI32frac(A, B)  _IQ2frac(_IQ2mpyI32(A, B))
-#define _IQ1mpyI32frac(A, B)  _IQ1frac(_IQ1mpyI32(A, B))
+#define _IQ9mpyI32frac(A, B) _IQ9frac(_IQ9mpyI32(A, B))
+#define _IQ8mpyI32frac(A, B) _IQ8frac(_IQ8mpyI32(A, B))
+#define _IQ7mpyI32frac(A, B) _IQ7frac(_IQ7mpyI32(A, B))
+#define _IQ6mpyI32frac(A, B) _IQ6frac(_IQ6mpyI32(A, B))
+#define _IQ5mpyI32frac(A, B) _IQ5frac(_IQ5mpyI32(A, B))
+#define _IQ4mpyI32frac(A, B) _IQ4frac(_IQ4mpyI32(A, B))
+#define _IQ3mpyI32frac(A, B) _IQ3frac(_IQ3mpyI32(A, B))
+#define _IQ2mpyI32frac(A, B) _IQ2frac(_IQ2mpyI32(A, B))
+#define _IQ1mpyI32frac(A, B) _IQ1frac(_IQ1mpyI32(A, B))
 
 #if GLOBAL_IQ == 30
 #define _IQmpyI32frac(A, B) _IQ30mpyI32frac(A, B)
@@ -3525,15 +3525,15 @@ extern int32_t _IQmag(int32_t A, int32_t B);
 #define _IQ12mag(A, B) _IQmag(A, B)
 #define _IQ11mag(A, B) _IQmag(A, B)
 #define _IQ10mag(A, B) _IQmag(A, B)
-#define _IQ9mag(A, B)  _IQmag(A, B)
-#define _IQ8mag(A, B)  _IQmag(A, B)
-#define _IQ7mag(A, B)  _IQmag(A, B)
-#define _IQ6mag(A, B)  _IQmag(A, B)
-#define _IQ5mag(A, B)  _IQmag(A, B)
-#define _IQ4mag(A, B)  _IQmag(A, B)
-#define _IQ3mag(A, B)  _IQmag(A, B)
-#define _IQ2mag(A, B)  _IQmag(A, B)
-#define _IQ1mag(A, B)  _IQmag(A, B)
+#define _IQ9mag(A, B) _IQmag(A, B)
+#define _IQ8mag(A, B) _IQmag(A, B)
+#define _IQ7mag(A, B) _IQmag(A, B)
+#define _IQ6mag(A, B) _IQmag(A, B)
+#define _IQ5mag(A, B) _IQmag(A, B)
+#define _IQ4mag(A, B) _IQmag(A, B)
+#define _IQ3mag(A, B) _IQmag(A, B)
+#define _IQ2mag(A, B) _IQmag(A, B)
+#define _IQ1mag(A, B) _IQmag(A, B)
 
 //*****************************************************************************
 //
@@ -3561,15 +3561,15 @@ extern _iq13 _IQ13imag(_iq13 A, _iq13 B);
 extern _iq12 _IQ12imag(_iq12 A, _iq12 B);
 extern _iq11 _IQ11imag(_iq11 A, _iq11 B);
 extern _iq10 _IQ10imag(_iq10 A, _iq10 B);
-extern _iq9  _IQ9imag(_iq9 A, _iq9 B);
-extern _iq8  _IQ8imag(_iq8 A, _iq8 B);
-extern _iq7  _IQ7imag(_iq7 A, _iq7 B);
-extern _iq6  _IQ6imag(_iq6 A, _iq6 B);
-extern _iq5  _IQ5imag(_iq5 A, _iq5 B);
-extern _iq4  _IQ4imag(_iq4 A, _iq4 B);
-extern _iq3  _IQ3imag(_iq3 A, _iq3 B);
-extern _iq2  _IQ2imag(_iq2 A, _iq2 B);
-extern _iq1  _IQ1imag(_iq1 A, _iq1 B);
+extern _iq9 _IQ9imag(_iq9 A, _iq9 B);
+extern _iq8 _IQ8imag(_iq8 A, _iq8 B);
+extern _iq7 _IQ7imag(_iq7 A, _iq7 B);
+extern _iq6 _IQ6imag(_iq6 A, _iq6 B);
+extern _iq5 _IQ5imag(_iq5 A, _iq5 B);
+extern _iq4 _IQ4imag(_iq4 A, _iq4 B);
+extern _iq3 _IQ3imag(_iq3 A, _iq3 B);
+extern _iq2 _IQ2imag(_iq2 A, _iq2 B);
+extern _iq1 _IQ1imag(_iq1 A, _iq1 B);
 
 #if GLOBAL_IQ == 30
 #define _IQimag(A, B) _IQ30imag(A, B)
@@ -3667,36 +3667,36 @@ extern _iq1  _IQ1imag(_iq1 A, _iq1 B);
 // Converts a string into an IQ number.
 //
 //*****************************************************************************
-extern _iq30 _atoIQ30(const char* A);
-extern _iq29 _atoIQ29(const char* A);
-extern _iq28 _atoIQ28(const char* A);
-extern _iq27 _atoIQ27(const char* A);
-extern _iq26 _atoIQ26(const char* A);
-extern _iq25 _atoIQ25(const char* A);
-extern _iq24 _atoIQ24(const char* A);
-extern _iq23 _atoIQ23(const char* A);
-extern _iq22 _atoIQ22(const char* A);
-extern _iq21 _atoIQ21(const char* A);
-extern _iq20 _atoIQ20(const char* A);
-extern _iq19 _atoIQ19(const char* A);
-extern _iq18 _atoIQ18(const char* A);
-extern _iq17 _atoIQ17(const char* A);
-extern _iq16 _atoIQ16(const char* A);
-extern _iq15 _atoIQ15(const char* A);
-extern _iq14 _atoIQ14(const char* A);
-extern _iq13 _atoIQ13(const char* A);
-extern _iq12 _atoIQ12(const char* A);
-extern _iq11 _atoIQ11(const char* A);
-extern _iq10 _atoIQ10(const char* A);
-extern _iq9  _atoIQ9(const char* A);
-extern _iq8  _atoIQ8(const char* A);
-extern _iq7  _atoIQ7(const char* A);
-extern _iq6  _atoIQ6(const char* A);
-extern _iq5  _atoIQ5(const char* A);
-extern _iq4  _atoIQ4(const char* A);
-extern _iq3  _atoIQ3(const char* A);
-extern _iq2  _atoIQ2(const char* A);
-extern _iq1  _atoIQ1(const char* A);
+extern _iq30 _atoIQ30(const char *A);
+extern _iq29 _atoIQ29(const char *A);
+extern _iq28 _atoIQ28(const char *A);
+extern _iq27 _atoIQ27(const char *A);
+extern _iq26 _atoIQ26(const char *A);
+extern _iq25 _atoIQ25(const char *A);
+extern _iq24 _atoIQ24(const char *A);
+extern _iq23 _atoIQ23(const char *A);
+extern _iq22 _atoIQ22(const char *A);
+extern _iq21 _atoIQ21(const char *A);
+extern _iq20 _atoIQ20(const char *A);
+extern _iq19 _atoIQ19(const char *A);
+extern _iq18 _atoIQ18(const char *A);
+extern _iq17 _atoIQ17(const char *A);
+extern _iq16 _atoIQ16(const char *A);
+extern _iq15 _atoIQ15(const char *A);
+extern _iq14 _atoIQ14(const char *A);
+extern _iq13 _atoIQ13(const char *A);
+extern _iq12 _atoIQ12(const char *A);
+extern _iq11 _atoIQ11(const char *A);
+extern _iq10 _atoIQ10(const char *A);
+extern _iq9 _atoIQ9(const char *A);
+extern _iq8 _atoIQ8(const char *A);
+extern _iq7 _atoIQ7(const char *A);
+extern _iq6 _atoIQ6(const char *A);
+extern _iq5 _atoIQ5(const char *A);
+extern _iq4 _atoIQ4(const char *A);
+extern _iq3 _atoIQ3(const char *A);
+extern _iq2 _atoIQ2(const char *A);
+extern _iq1 _atoIQ1(const char *A);
 
 #if GLOBAL_IQ == 30
 #define _atoIQ(A) _atoIQ30(A)
@@ -3794,36 +3794,36 @@ extern _iq1  _atoIQ1(const char* A);
 // Converts an IQ number into a string.
 //
 //*****************************************************************************
-extern int16_t _IQ30toa(char* string, const char* format, _iq30 input);
-extern int16_t _IQ29toa(char* string, const char* format, _iq29 input);
-extern int16_t _IQ28toa(char* string, const char* format, _iq28 input);
-extern int16_t _IQ27toa(char* string, const char* format, _iq27 input);
-extern int16_t _IQ26toa(char* string, const char* format, _iq26 input);
-extern int16_t _IQ25toa(char* string, const char* format, _iq25 input);
-extern int16_t _IQ24toa(char* string, const char* format, _iq24 input);
-extern int16_t _IQ23toa(char* string, const char* format, _iq23 input);
-extern int16_t _IQ22toa(char* string, const char* format, _iq22 input);
-extern int16_t _IQ21toa(char* string, const char* format, _iq21 input);
-extern int16_t _IQ20toa(char* string, const char* format, _iq20 input);
-extern int16_t _IQ19toa(char* string, const char* format, _iq19 input);
-extern int16_t _IQ18toa(char* string, const char* format, _iq18 input);
-extern int16_t _IQ17toa(char* string, const char* format, _iq17 input);
-extern int16_t _IQ16toa(char* string, const char* format, _iq16 input);
-extern int16_t _IQ15toa(char* string, const char* format, _iq15 input);
-extern int16_t _IQ14toa(char* string, const char* format, _iq14 input);
-extern int16_t _IQ13toa(char* string, const char* format, _iq13 input);
-extern int16_t _IQ12toa(char* string, const char* format, _iq12 input);
-extern int16_t _IQ11toa(char* string, const char* format, _iq11 input);
-extern int16_t _IQ10toa(char* string, const char* format, _iq10 input);
-extern int16_t _IQ9toa(char* string, const char* format, _iq9 input);
-extern int16_t _IQ8toa(char* string, const char* format, _iq8 input);
-extern int16_t _IQ7toa(char* string, const char* format, _iq7 input);
-extern int16_t _IQ6toa(char* string, const char* format, _iq6 input);
-extern int16_t _IQ5toa(char* string, const char* format, _iq5 input);
-extern int16_t _IQ4toa(char* string, const char* format, _iq4 input);
-extern int16_t _IQ3toa(char* string, const char* format, _iq3 input);
-extern int16_t _IQ2toa(char* string, const char* format, _iq2 input);
-extern int16_t _IQ1toa(char* string, const char* format, _iq1 input);
+extern int16_t _IQ30toa(char *string, const char *format, _iq30 input);
+extern int16_t _IQ29toa(char *string, const char *format, _iq29 input);
+extern int16_t _IQ28toa(char *string, const char *format, _iq28 input);
+extern int16_t _IQ27toa(char *string, const char *format, _iq27 input);
+extern int16_t _IQ26toa(char *string, const char *format, _iq26 input);
+extern int16_t _IQ25toa(char *string, const char *format, _iq25 input);
+extern int16_t _IQ24toa(char *string, const char *format, _iq24 input);
+extern int16_t _IQ23toa(char *string, const char *format, _iq23 input);
+extern int16_t _IQ22toa(char *string, const char *format, _iq22 input);
+extern int16_t _IQ21toa(char *string, const char *format, _iq21 input);
+extern int16_t _IQ20toa(char *string, const char *format, _iq20 input);
+extern int16_t _IQ19toa(char *string, const char *format, _iq19 input);
+extern int16_t _IQ18toa(char *string, const char *format, _iq18 input);
+extern int16_t _IQ17toa(char *string, const char *format, _iq17 input);
+extern int16_t _IQ16toa(char *string, const char *format, _iq16 input);
+extern int16_t _IQ15toa(char *string, const char *format, _iq15 input);
+extern int16_t _IQ14toa(char *string, const char *format, _iq14 input);
+extern int16_t _IQ13toa(char *string, const char *format, _iq13 input);
+extern int16_t _IQ12toa(char *string, const char *format, _iq12 input);
+extern int16_t _IQ11toa(char *string, const char *format, _iq11 input);
+extern int16_t _IQ10toa(char *string, const char *format, _iq10 input);
+extern int16_t _IQ9toa(char *string, const char *format, _iq9 input);
+extern int16_t _IQ8toa(char *string, const char *format, _iq8 input);
+extern int16_t _IQ7toa(char *string, const char *format, _iq7 input);
+extern int16_t _IQ6toa(char *string, const char *format, _iq6 input);
+extern int16_t _IQ5toa(char *string, const char *format, _iq5 input);
+extern int16_t _IQ4toa(char *string, const char *format, _iq4 input);
+extern int16_t _IQ3toa(char *string, const char *format, _iq3 input);
+extern int16_t _IQ2toa(char *string, const char *format, _iq2 input);
+extern int16_t _IQ1toa(char *string, const char *format, _iq1 input);
 
 #if GLOBAL_IQ == 30
 #define _IQtoa(A, B, C) _IQ30toa(A, B, C)
@@ -3942,16 +3942,16 @@ extern int16_t _IQ1toa(char* string, const char* format, _iq1 input);
 #define _IQ12abs(A) (((A) < 0) ? -(A) : (A))
 #define _IQ11abs(A) (((A) < 0) ? -(A) : (A))
 #define _IQ10abs(A) (((A) < 0) ? -(A) : (A))
-#define _IQ9abs(A)  (((A) < 0) ? -(A) : (A))
-#define _IQ8abs(A)  (((A) < 0) ? -(A) : (A))
-#define _IQ7abs(A)  (((A) < 0) ? -(A) : (A))
-#define _IQ6abs(A)  (((A) < 0) ? -(A) : (A))
-#define _IQ5abs(A)  (((A) < 0) ? -(A) : (A))
-#define _IQ4abs(A)  (((A) < 0) ? -(A) : (A))
-#define _IQ3abs(A)  (((A) < 0) ? -(A) : (A))
-#define _IQ2abs(A)  (((A) < 0) ? -(A) : (A))
-#define _IQ1abs(A)  (((A) < 0) ? -(A) : (A))
-#define _IQabs(A)   (((A) < 0) ? -(A) : (A))
+#define _IQ9abs(A) (((A) < 0) ? -(A) : (A))
+#define _IQ8abs(A) (((A) < 0) ? -(A) : (A))
+#define _IQ7abs(A) (((A) < 0) ? -(A) : (A))
+#define _IQ6abs(A) (((A) < 0) ? -(A) : (A))
+#define _IQ5abs(A) (((A) < 0) ? -(A) : (A))
+#define _IQ4abs(A) (((A) < 0) ? -(A) : (A))
+#define _IQ3abs(A) (((A) < 0) ? -(A) : (A))
+#define _IQ2abs(A) (((A) < 0) ? -(A) : (A))
+#define _IQ1abs(A) (((A) < 0) ? -(A) : (A))
+#define _IQabs(A) (((A) < 0) ? -(A) : (A))
 
 //*****************************************************************************
 //
@@ -3962,4 +3962,4 @@ extern int16_t _IQ1toa(char* string, const char* format, _iq1 input);
 }
 #endif
 
-#endif  // __IQMATHLIB_H__
+#endif // __IQMATHLIB_H__

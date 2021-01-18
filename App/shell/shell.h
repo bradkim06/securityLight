@@ -10,22 +10,21 @@
 
 #include <stdbool.h>
 
-#define RED_FONT   (char*)"\033[31m"
-#define WHITE_FONT (char*)"\033[0m"
+#define RED_FONT (char *)"\033[31m"
+#define WHITE_FONT (char *)"\033[0m"
 
 extern volatile bool isShellActive;
 
 // print to stream callback
-void print(const char* __restrict str, ...);
+void print(const char *__restrict str, ...);
 
 // execute callback
-int execute(int argc, const char* const* argv);
+int execute(int argc, const char *const *argv);
 
 // completion callback
-char** complet(int argc, const char* const* argv);
+char **complet(int argc, const char *const *argv);
 
 void initShell(void);
 void print_EMResult(void);
 
 #endif /* SHELL_SHELL_H_ */
-

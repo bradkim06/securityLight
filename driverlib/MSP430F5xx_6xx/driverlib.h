@@ -45,7 +45,7 @@
 #include "flashctl.h"
 #include "gpio.h"
 #include "inc/hw_memmap.h"
-#include "lcd_b.h"
+#include "lcd_c.h"
 #include "ldopwr.h"
 #include "mpy32.h"
 #include "oa.h"

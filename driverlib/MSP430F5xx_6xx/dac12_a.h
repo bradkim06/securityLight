@@ -59,72 +59,72 @@ extern "C" {
 //
 //*****************************************************************************
 typedef struct DAC12_A_initParam {
-  //! Decides which DAC12_A sub-module to configure.
-  //! \n Valid values are:
-  //! - \b DAC12_A_SUBMODULE_0
-  //! - \b DAC12_A_SUBMODULE_1
-  uint8_t submoduleSelect;
-  //! Selects the output pin that the selected DAC12_A module will output to.
-  //! \n Valid values are:
-  //! - \b DAC12_A_OUTPUT_1 [Default]
-  //! - \b DAC12_A_OUTPUT_2
-  uint16_t outputSelect;
-  //! Is the upper limit voltage that the data can be converted in to.
-  //! \n Valid values are:
-  //! - \b DAC12_A_VREF_INT [Default]
-  //! - \b DAC12_A_VREF_AVCC
-  //! - \b DAC12_A_VREF_EXT - For devices with CTSD16, use Ref module
-  //!    Ref_enableReferenceVoltageOutput/Ref__disableReferenceVoltageOutput
-  //!    to select VeREF(external reference signal) or VREFBG(internally
-  //!    generated reference signal)
-  uint16_t positiveReferenceVoltage;
-  //! Is the multiplier of the Vout voltage.
-  //! \n Valid values are:
-  //! - \b DAC12_A_VREFx1 [Default]
-  //! - \b DAC12_A_VREFx2
-  //! - \b DAC12_A_VREFx3
-  uint16_t outputVoltageMultiplier;
-  //! Is the setting of the settling speed and current of the Vref+ and the
-  //! Vout buffer.
-  //! \n Valid values are:
-  //! - \b DAC12_A_AMP_OFF_PINOUTHIGHZ [Default] - Initialize the DAC12_A
-  //!    Module with settings, but do not turn it on.
-  //! - \b DAC12_A_AMP_OFF_PINOUTLOW - Initialize the DAC12_A Module with
-  //!    settings, and allow it to take control of the selected output pin to
-  //!    pull it low (Note: this takes control away port mapping module).
-  //! - \b DAC12_A_AMP_LOWIN_LOWOUT - Select a slow settling speed and
-  //!    current for Vref+ input buffer and for Vout output buffer.
-  //! - \b DAC12_A_AMP_LOWIN_MEDOUT - Select a slow settling speed and
-  //!    current for Vref+ input buffer and a medium settling speed and
-  //!    current for Vout output buffer.
-  //! - \b DAC12_A_AMP_LOWIN_HIGHOUT - Select a slow settling speed and
-  //!    current for Vref+ input buffer and a high settling speed and current
-  //!    for Vout output buffer.
-  //! - \b DAC12_A_AMP_MEDIN_MEDOUT - Select a medium settling speed and
-  //!    current for Vref+ input buffer and for Vout output buffer.
-  //! - \b DAC12_A_AMP_MEDIN_HIGHOUT - Select a medium settling speed and
-  //!    current for Vref+ input buffer and a high settling speed and current
-  //!    for Vout output buffer.
-  //! - \b DAC12_A_AMP_HIGHIN_HIGHOUT - Select a high settling speed and
-  //!    current for Vref+ input buffer and for Vout output buffer.
-  uint8_t amplifierSetting;
-  //! Selects the trigger that will start a conversion.
-  //! \n Valid values are:
-  //! - \b DAC12_A_TRIGGER_ENCBYPASS [Default] - Automatically converts data
-  //!    as soon as it is written into the data buffer. (Note: Do not use
-  //!    this selection if grouping DAC's).
-  //! - \b DAC12_A_TRIGGER_ENC - Requires a call to enableConversions() to
-  //!    allow a conversion, but starts a conversion as soon as data is
-  //!    written to the data buffer (Note: with DAC12_A module's grouped,
-  //!    data has to be set in BOTH DAC12_A data buffers to start a
-  //!    conversion).
-  //! - \b DAC12_A_TRIGGER_TA - Requires a call to enableConversions() to
-  //!    allow a conversion, and a rising edge of Timer_A's Out1 (TA1) to
-  //!    start a conversion.
-  //! - \b DAC12_A_TRIGGER_TB - Requires a call to enableConversions() to
-  //!    allow a conversion, and a rising edge of Timer_B's Out2 (TB2) to
-  //!    start a conversion.
-  uint16_t conversionTriggerSelect;
+	//! Decides which DAC12_A sub-module to configure.
+	//! \n Valid values are:
+	//! - \b DAC12_A_SUBMODULE_0
+	//! - \b DAC12_A_SUBMODULE_1
+	uint8_t submoduleSelect;
+	//! Selects the output pin that the selected DAC12_A module will output to.
+	//! \n Valid values are:
+	//! - \b DAC12_A_OUTPUT_1 [Default]
+	//! - \b DAC12_A_OUTPUT_2
+	uint16_t outputSelect;
+	//! Is the upper limit voltage that the data can be converted in to.
+	//! \n Valid values are:
+	//! - \b DAC12_A_VREF_INT [Default]
+	//! - \b DAC12_A_VREF_AVCC
+	//! - \b DAC12_A_VREF_EXT - For devices with CTSD16, use Ref module
+	//!    Ref_enableReferenceVoltageOutput/Ref__disableReferenceVoltageOutput
+	//!    to select VeREF(external reference signal) or VREFBG(internally
+	//!    generated reference signal)
+	uint16_t positiveReferenceVoltage;
+	//! Is the multiplier of the Vout voltage.
+	//! \n Valid values are:
+	//! - \b DAC12_A_VREFx1 [Default]
+	//! - \b DAC12_A_VREFx2
+	//! - \b DAC12_A_VREFx3
+	uint16_t outputVoltageMultiplier;
+	//! Is the setting of the settling speed and current of the Vref+ and the
+	//! Vout buffer.
+	//! \n Valid values are:
+	//! - \b DAC12_A_AMP_OFF_PINOUTHIGHZ [Default] - Initialize the DAC12_A
+	//!    Module with settings, but do not turn it on.
+	//! - \b DAC12_A_AMP_OFF_PINOUTLOW - Initialize the DAC12_A Module with
+	//!    settings, and allow it to take control of the selected output pin to
+	//!    pull it low (Note: this takes control away port mapping module).
+	//! - \b DAC12_A_AMP_LOWIN_LOWOUT - Select a slow settling speed and
+	//!    current for Vref+ input buffer and for Vout output buffer.
+	//! - \b DAC12_A_AMP_LOWIN_MEDOUT - Select a slow settling speed and
+	//!    current for Vref+ input buffer and a medium settling speed and
+	//!    current for Vout output buffer.
+	//! - \b DAC12_A_AMP_LOWIN_HIGHOUT - Select a slow settling speed and
+	//!    current for Vref+ input buffer and a high settling speed and current
+	//!    for Vout output buffer.
+	//! - \b DAC12_A_AMP_MEDIN_MEDOUT - Select a medium settling speed and
+	//!    current for Vref+ input buffer and for Vout output buffer.
+	//! - \b DAC12_A_AMP_MEDIN_HIGHOUT - Select a medium settling speed and
+	//!    current for Vref+ input buffer and a high settling speed and current
+	//!    for Vout output buffer.
+	//! - \b DAC12_A_AMP_HIGHIN_HIGHOUT - Select a high settling speed and
+	//!    current for Vref+ input buffer and for Vout output buffer.
+	uint8_t amplifierSetting;
+	//! Selects the trigger that will start a conversion.
+	//! \n Valid values are:
+	//! - \b DAC12_A_TRIGGER_ENCBYPASS [Default] - Automatically converts data
+	//!    as soon as it is written into the data buffer. (Note: Do not use
+	//!    this selection if grouping DAC's).
+	//! - \b DAC12_A_TRIGGER_ENC - Requires a call to enableConversions() to
+	//!    allow a conversion, but starts a conversion as soon as data is
+	//!    written to the data buffer (Note: with DAC12_A module's grouped,
+	//!    data has to be set in BOTH DAC12_A data buffers to start a
+	//!    conversion).
+	//! - \b DAC12_A_TRIGGER_TA - Requires a call to enableConversions() to
+	//!    allow a conversion, and a rising edge of Timer_A's Out1 (TA1) to
+	//!    start a conversion.
+	//! - \b DAC12_A_TRIGGER_TB - Requires a call to enableConversions() to
+	//!    allow a conversion, and a rising edge of Timer_B's Out2 (TB2) to
+	//!    start a conversion.
+	uint16_t conversionTriggerSelect;
 } DAC12_A_initParam;
 
 //*****************************************************************************
@@ -134,9 +134,9 @@ typedef struct DAC12_A_initParam {
 // DAC12_A_init().
 //
 //*****************************************************************************
-#define DAC12_A_VREF_INT  (DAC12SREF_0)
+#define DAC12_A_VREF_INT (DAC12SREF_0)
 #define DAC12_A_VREF_AVCC (DAC12SREF_1)
-#define DAC12_A_VREF_EXT  (DAC12SREF_2)
+#define DAC12_A_VREF_EXT (DAC12SREF_2)
 
 //*****************************************************************************
 //
@@ -146,13 +146,13 @@ typedef struct DAC12_A_initParam {
 //
 //*****************************************************************************
 #define DAC12_A_AMP_OFF_PINOUTHIGHZ (DAC12AMP_0)
-#define DAC12_A_AMP_OFF_PINOUTLOW   (DAC12AMP_1)
-#define DAC12_A_AMP_LOWIN_LOWOUT    (DAC12AMP_2)
-#define DAC12_A_AMP_LOWIN_MEDOUT    (DAC12AMP_3)
-#define DAC12_A_AMP_LOWIN_HIGHOUT   (DAC12AMP_4)
-#define DAC12_A_AMP_MEDIN_MEDOUT    (DAC12AMP_5)
-#define DAC12_A_AMP_MEDIN_HIGHOUT   (DAC12AMP_6)
-#define DAC12_A_AMP_HIGHIN_HIGHOUT  (DAC12AMP_7)
+#define DAC12_A_AMP_OFF_PINOUTLOW (DAC12AMP_1)
+#define DAC12_A_AMP_LOWIN_LOWOUT (DAC12AMP_2)
+#define DAC12_A_AMP_LOWIN_MEDOUT (DAC12AMP_3)
+#define DAC12_A_AMP_LOWIN_HIGHOUT (DAC12AMP_4)
+#define DAC12_A_AMP_MEDIN_MEDOUT (DAC12AMP_5)
+#define DAC12_A_AMP_MEDIN_HIGHOUT (DAC12AMP_6)
+#define DAC12_A_AMP_HIGHIN_HIGHOUT (DAC12AMP_7)
 
 //*****************************************************************************
 //
@@ -200,9 +200,9 @@ typedef struct DAC12_A_initParam {
 //
 //*****************************************************************************
 #define DAC12_A_TRIGGER_ENCBYPASS (DAC12LSEL_0)
-#define DAC12_A_TRIGGER_ENC       (DAC12LSEL_1)
-#define DAC12_A_TRIGGER_TA        (DAC12LSEL_2)
-#define DAC12_A_TRIGGER_TB        (DAC12LSEL_3)
+#define DAC12_A_TRIGGER_ENC (DAC12LSEL_1)
+#define DAC12_A_TRIGGER_TA (DAC12LSEL_2)
+#define DAC12_A_TRIGGER_TB (DAC12LSEL_3)
 
 //*****************************************************************************
 //
@@ -210,7 +210,7 @@ typedef struct DAC12_A_initParam {
 // parameter for functions: DAC12_A_setResolution().
 //
 //*****************************************************************************
-#define DAC12_A_RESOLUTION_8BIT  (DAC12RES)
+#define DAC12_A_RESOLUTION_8BIT (DAC12RES)
 #define DAC12_A_RESOLUTION_12BIT (!(DAC12RES))
 
 //*****************************************************************************
@@ -220,7 +220,7 @@ typedef struct DAC12_A_initParam {
 //
 //*****************************************************************************
 #define DAC12_A_JUSTIFICATION_RIGHT (!(DAC12DFJ))
-#define DAC12_A_JUSTIFICATION_LEFT  (DAC12DFJ)
+#define DAC12_A_JUSTIFICATION_LEFT (DAC12DFJ)
 
 //*****************************************************************************
 //
@@ -228,7 +228,7 @@ typedef struct DAC12_A_initParam {
 // functions: DAC12_A_setInputDataFormat().
 //
 //*****************************************************************************
-#define DAC12_A_UNSIGNED_BINARY     (!(DAC12DF))
+#define DAC12_A_UNSIGNED_BINARY (!(DAC12DF))
 #define DAC12_A_SIGNED_2SCOMPLEMENT (DAC12DF)
 
 //*****************************************************************************
@@ -237,7 +237,7 @@ typedef struct DAC12_A_initParam {
 // can be returned by the DAC12_A_getInterruptStatus() function.
 //
 //*****************************************************************************
-#define DAC12_A_INT_ACTIVE   (DAC12IFG)
+#define DAC12_A_INT_ACTIVE (DAC12IFG)
 #define DAC12_A_INT_INACTIVE (0x00)
 
 //*****************************************************************************
@@ -263,7 +263,7 @@ typedef struct DAC12_A_initParam {
 //! \return STATUS_SUCCESS or STATUS_FAILURE of the initialization process.
 //
 //*****************************************************************************
-extern bool DAC12_A_init(uint16_t baseAddress, DAC12_A_initParam* param);
+extern bool DAC12_A_init(uint16_t baseAddress, DAC12_A_initParam *param);
 
 //*****************************************************************************
 //
@@ -307,8 +307,8 @@ extern bool DAC12_A_init(uint16_t baseAddress, DAC12_A_initParam* param);
 //
 //*****************************************************************************
 extern void DAC12_A_setAmplifierSetting(uint16_t baseAddress,
-                                        uint8_t  submoduleSelect,
-                                        uint8_t  amplifierSetting);
+					uint8_t submoduleSelect,
+					uint8_t amplifierSetting);
 
 //*****************************************************************************
 //
@@ -386,7 +386,7 @@ extern void DAC12_A_disableGrouping(uint16_t baseAddress);
 //
 //*****************************************************************************
 extern void DAC12_A_enableInterrupt(uint16_t baseAddress,
-                                    uint8_t  submoduleSelect);
+				    uint8_t submoduleSelect);
 
 //*****************************************************************************
 //
@@ -406,7 +406,7 @@ extern void DAC12_A_enableInterrupt(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void DAC12_A_disableInterrupt(uint16_t baseAddress,
-                                     uint8_t  submoduleSelect);
+				     uint8_t submoduleSelect);
 
 //*****************************************************************************
 //
@@ -429,7 +429,7 @@ extern void DAC12_A_disableInterrupt(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern uint16_t DAC12_A_getInterruptStatus(uint16_t baseAddress,
-                                           uint8_t  submoduleSelect);
+					   uint8_t submoduleSelect);
 
 //*****************************************************************************
 //
@@ -451,7 +451,7 @@ extern uint16_t DAC12_A_getInterruptStatus(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void DAC12_A_clearInterrupt(uint16_t baseAddress,
-                                   uint8_t  submoduleSelect);
+				   uint8_t submoduleSelect);
 
 //*****************************************************************************
 //
@@ -475,7 +475,7 @@ extern void DAC12_A_clearInterrupt(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void DAC12_A_calibrateOutput(uint16_t baseAddress,
-                                    uint8_t  submoduleSelect);
+				    uint8_t submoduleSelect);
 
 //*****************************************************************************
 //
@@ -497,7 +497,7 @@ extern void DAC12_A_calibrateOutput(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern uint16_t DAC12_A_getCalibrationData(uint16_t baseAddress,
-                                           uint8_t  submoduleSelect);
+					   uint8_t submoduleSelect);
 
 //*****************************************************************************
 //
@@ -522,8 +522,8 @@ extern uint16_t DAC12_A_getCalibrationData(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void DAC12_A_setCalibrationOffset(uint16_t baseAddress,
-                                         uint8_t  submoduleSelect,
-                                         uint16_t calibrationOffsetValue);
+					 uint8_t submoduleSelect,
+					 uint16_t calibrationOffsetValue);
 
 //*****************************************************************************
 //
@@ -546,7 +546,7 @@ extern void DAC12_A_setCalibrationOffset(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void DAC12_A_enableConversions(uint16_t baseAddress,
-                                      uint8_t  submoduleSelect);
+				      uint8_t submoduleSelect);
 
 //*****************************************************************************
 //
@@ -577,9 +577,8 @@ extern void DAC12_A_enableConversions(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void DAC12_A_setData(uint16_t baseAddress,
-                            uint8_t  submoduleSelect,
-                            uint16_t data);
+extern void DAC12_A_setData(uint16_t baseAddress, uint8_t submoduleSelect,
+			    uint16_t data);
 
 //*****************************************************************************
 //
@@ -601,7 +600,7 @@ extern void DAC12_A_setData(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void DAC12_A_disableConversions(uint16_t baseAddress,
-                                       uint8_t  submoduleSelect);
+				       uint8_t submoduleSelect);
 
 //*****************************************************************************
 //
@@ -625,9 +624,8 @@ extern void DAC12_A_disableConversions(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void DAC12_A_setResolution(uint16_t baseAddress,
-                                  uint8_t  submoduleSelect,
-                                  uint16_t resolutionSelect);
+extern void DAC12_A_setResolution(uint16_t baseAddress, uint8_t submoduleSelect,
+				  uint16_t resolutionSelect);
 
 //*****************************************************************************
 //
@@ -655,9 +653,9 @@ extern void DAC12_A_setResolution(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void DAC12_A_setInputDataFormat(uint16_t baseAddress,
-                                       uint8_t  submoduleSelect,
-                                       uint8_t  inputJustification,
-                                       uint8_t  inputSign);
+				       uint8_t submoduleSelect,
+				       uint8_t inputJustification,
+				       uint8_t inputSign);
 
 //*****************************************************************************
 //
@@ -676,9 +674,9 @@ extern void DAC12_A_setInputDataFormat(uint16_t baseAddress,
 //! \return The address of the specified memory buffer
 //
 //*****************************************************************************
-extern uint32_t DAC12_A_getDataBufferMemoryAddressForDMA(
-    uint16_t baseAddress,
-    uint8_t  submoduleSelect);
+extern uint32_t
+DAC12_A_getDataBufferMemoryAddressForDMA(uint16_t baseAddress,
+					 uint8_t submoduleSelect);
 
 //*****************************************************************************
 //
@@ -690,4 +688,4 @@ extern uint32_t DAC12_A_getDataBufferMemoryAddressForDMA(
 #endif
 
 #endif
-#endif  // __MSP430WARE_DAC12_A_H__
+#endif // __MSP430WARE_DAC12_A_H__

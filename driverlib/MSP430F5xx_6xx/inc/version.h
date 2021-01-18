@@ -37,5 +37,6 @@
 #endif
 
 #define getVersion()                                                           \
-  ((uint32_t)DRIVERLIB_VER_MAJOR << 24 | (uint32_t)DRIVERLIB_VER_MINOR << 16 | \
-   (uint32_t)DRIVERLIB_VER_PATCH << 8 | (uint32_t)DRIVERLIB_VER_BUILD)
+	((uint32_t)DRIVERLIB_VER_MAJOR << 24 |                                 \
+	 (uint32_t)DRIVERLIB_VER_MINOR << 16 |                                 \
+	 (uint32_t)DRIVERLIB_VER_PATCH << 8 | (uint32_t)DRIVERLIB_VER_BUILD)

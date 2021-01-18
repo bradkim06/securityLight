@@ -3,7 +3,7 @@ set(AUTHOR_NAME "bradkim06")
 cmake_minimum_required(VERSION 3.14)    # CMake 버전을 명시
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-add_compile_definitions(__MSP430F6736__)
+add_compile_definitions(__MSP430F6736A__)
 add_compile_definitions(__TEST__)
 set(CCS_BASE_ROOT /mnt/c/ti/ccsv8/ccs_base)
 set(PROJECT_ROOT /mnt/c/Users/User/workspace_v8/securityLight)

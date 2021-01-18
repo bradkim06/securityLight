@@ -68,62 +68,62 @@ extern "C" {
 //
 //*****************************************************************************
 typedef struct Timer_B_outputPWMParam {
-  //! Selects the clock source
-  //! \n Valid values are:
-  //! - \b TIMER_B_CLOCKSOURCE_EXTERNAL_TXCLK [Default]
-  //! - \b TIMER_B_CLOCKSOURCE_ACLK
-  //! - \b TIMER_B_CLOCKSOURCE_SMCLK
-  //! - \b TIMER_B_CLOCKSOURCE_INVERTED_EXTERNAL_TXCLK
-  uint16_t clockSource;
-  //! Is the divider for Clock source.
-  //! \n Valid values are:
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_1 [Default]
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_2
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_3
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_4
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_5
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_6
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_7
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_8
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_10
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_12
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_14
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_16
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_20
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_24
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_28
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_32
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_40
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_48
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_56
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_64
-  uint16_t clockSourceDivider;
-  //! Selects the desired Timer_B period
-  uint16_t timerPeriod;
-  //! Selects the compare register being used. Refer to datasheet to ensure
-  //! the device has the compare register being used.
-  //! \n Valid values are:
-  //! - \b TIMER_B_CAPTURECOMPARE_REGISTER_0
-  //! - \b TIMER_B_CAPTURECOMPARE_REGISTER_1
-  //! - \b TIMER_B_CAPTURECOMPARE_REGISTER_2
-  //! - \b TIMER_B_CAPTURECOMPARE_REGISTER_3
-  //! - \b TIMER_B_CAPTURECOMPARE_REGISTER_4
-  //! - \b TIMER_B_CAPTURECOMPARE_REGISTER_5
-  //! - \b TIMER_B_CAPTURECOMPARE_REGISTER_6
-  uint16_t compareRegister;
-  //! Specifies the output mode.
-  //! \n Valid values are:
-  //! - \b TIMER_B_OUTPUTMODE_OUTBITVALUE [Default]
-  //! - \b TIMER_B_OUTPUTMODE_SET
-  //! - \b TIMER_B_OUTPUTMODE_TOGGLE_RESET
-  //! - \b TIMER_B_OUTPUTMODE_SET_RESET
-  //! - \b TIMER_B_OUTPUTMODE_TOGGLE
-  //! - \b TIMER_B_OUTPUTMODE_RESET
-  //! - \b TIMER_B_OUTPUTMODE_TOGGLE_SET
-  //! - \b TIMER_B_OUTPUTMODE_RESET_SET
-  uint16_t compareOutputMode;
-  //! Specifies the dutycycle for the generated waveform
-  uint16_t dutyCycle;
+	//! Selects the clock source
+	//! \n Valid values are:
+	//! - \b TIMER_B_CLOCKSOURCE_EXTERNAL_TXCLK [Default]
+	//! - \b TIMER_B_CLOCKSOURCE_ACLK
+	//! - \b TIMER_B_CLOCKSOURCE_SMCLK
+	//! - \b TIMER_B_CLOCKSOURCE_INVERTED_EXTERNAL_TXCLK
+	uint16_t clockSource;
+	//! Is the divider for Clock source.
+	//! \n Valid values are:
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_1 [Default]
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_2
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_3
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_4
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_5
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_6
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_7
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_8
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_10
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_12
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_14
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_16
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_20
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_24
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_28
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_32
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_40
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_48
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_56
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_64
+	uint16_t clockSourceDivider;
+	//! Selects the desired Timer_B period
+	uint16_t timerPeriod;
+	//! Selects the compare register being used. Refer to datasheet to ensure
+	//! the device has the compare register being used.
+	//! \n Valid values are:
+	//! - \b TIMER_B_CAPTURECOMPARE_REGISTER_0
+	//! - \b TIMER_B_CAPTURECOMPARE_REGISTER_1
+	//! - \b TIMER_B_CAPTURECOMPARE_REGISTER_2
+	//! - \b TIMER_B_CAPTURECOMPARE_REGISTER_3
+	//! - \b TIMER_B_CAPTURECOMPARE_REGISTER_4
+	//! - \b TIMER_B_CAPTURECOMPARE_REGISTER_5
+	//! - \b TIMER_B_CAPTURECOMPARE_REGISTER_6
+	uint16_t compareRegister;
+	//! Specifies the output mode.
+	//! \n Valid values are:
+	//! - \b TIMER_B_OUTPUTMODE_OUTBITVALUE [Default]
+	//! - \b TIMER_B_OUTPUTMODE_SET
+	//! - \b TIMER_B_OUTPUTMODE_TOGGLE_RESET
+	//! - \b TIMER_B_OUTPUTMODE_SET_RESET
+	//! - \b TIMER_B_OUTPUTMODE_TOGGLE
+	//! - \b TIMER_B_OUTPUTMODE_RESET
+	//! - \b TIMER_B_OUTPUTMODE_TOGGLE_SET
+	//! - \b TIMER_B_OUTPUTMODE_RESET_SET
+	uint16_t compareOutputMode;
+	//! Specifies the dutycycle for the generated waveform
+	uint16_t dutyCycle;
 } Timer_B_outputPWMParam;
 
 //*****************************************************************************
@@ -132,57 +132,57 @@ typedef struct Timer_B_outputPWMParam {
 //
 //*****************************************************************************
 typedef struct Timer_B_initUpModeParam {
-  //! Selects the clock source
-  //! \n Valid values are:
-  //! - \b TIMER_B_CLOCKSOURCE_EXTERNAL_TXCLK [Default]
-  //! - \b TIMER_B_CLOCKSOURCE_ACLK
-  //! - \b TIMER_B_CLOCKSOURCE_SMCLK
-  //! - \b TIMER_B_CLOCKSOURCE_INVERTED_EXTERNAL_TXCLK
-  uint16_t clockSource;
-  //! Is the divider for Clock source.
-  //! \n Valid values are:
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_1 [Default]
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_2
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_3
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_4
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_5
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_6
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_7
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_8
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_10
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_12
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_14
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_16
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_20
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_24
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_28
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_32
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_40
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_48
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_56
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_64
-  uint16_t clockSourceDivider;
-  //! Is the specified Timer_B period. This is the value that gets written
-  //! into the CCR0. Limited to 16 bits[uint16_t]
-  uint16_t timerPeriod;
-  //! Is to enable or disable Timer_B interrupt
-  //! \n Valid values are:
-  //! - \b TIMER_B_TBIE_INTERRUPT_ENABLE
-  //! - \b TIMER_B_TBIE_INTERRUPT_DISABLE [Default]
-  uint16_t timerInterruptEnable_TBIE;
-  //! Is to enable or disable Timer_B CCR0 capture compare interrupt.
-  //! \n Valid values are:
-  //! - \b TIMER_B_CCIE_CCR0_INTERRUPT_ENABLE
-  //! - \b TIMER_B_CCIE_CCR0_INTERRUPT_DISABLE [Default]
-  uint16_t captureCompareInterruptEnable_CCR0_CCIE;
-  //! Decides if Timer_B clock divider, count direction, count need to be
-  //! reset.
-  //! \n Valid values are:
-  //! - \b TIMER_B_DO_CLEAR
-  //! - \b TIMER_B_SKIP_CLEAR [Default]
-  uint16_t timerClear;
-  //! Whether to start the timer immediately
-  bool startTimer;
+	//! Selects the clock source
+	//! \n Valid values are:
+	//! - \b TIMER_B_CLOCKSOURCE_EXTERNAL_TXCLK [Default]
+	//! - \b TIMER_B_CLOCKSOURCE_ACLK
+	//! - \b TIMER_B_CLOCKSOURCE_SMCLK
+	//! - \b TIMER_B_CLOCKSOURCE_INVERTED_EXTERNAL_TXCLK
+	uint16_t clockSource;
+	//! Is the divider for Clock source.
+	//! \n Valid values are:
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_1 [Default]
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_2
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_3
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_4
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_5
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_6
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_7
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_8
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_10
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_12
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_14
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_16
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_20
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_24
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_28
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_32
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_40
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_48
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_56
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_64
+	uint16_t clockSourceDivider;
+	//! Is the specified Timer_B period. This is the value that gets written
+	//! into the CCR0. Limited to 16 bits[uint16_t]
+	uint16_t timerPeriod;
+	//! Is to enable or disable Timer_B interrupt
+	//! \n Valid values are:
+	//! - \b TIMER_B_TBIE_INTERRUPT_ENABLE
+	//! - \b TIMER_B_TBIE_INTERRUPT_DISABLE [Default]
+	uint16_t timerInterruptEnable_TBIE;
+	//! Is to enable or disable Timer_B CCR0 capture compare interrupt.
+	//! \n Valid values are:
+	//! - \b TIMER_B_CCIE_CCR0_INTERRUPT_ENABLE
+	//! - \b TIMER_B_CCIE_CCR0_INTERRUPT_DISABLE [Default]
+	uint16_t captureCompareInterruptEnable_CCR0_CCIE;
+	//! Decides if Timer_B clock divider, count direction, count need to be
+	//! reset.
+	//! \n Valid values are:
+	//! - \b TIMER_B_DO_CLEAR
+	//! - \b TIMER_B_SKIP_CLEAR [Default]
+	uint16_t timerClear;
+	//! Whether to start the timer immediately
+	bool startTimer;
 } Timer_B_initUpModeParam;
 
 //*****************************************************************************
@@ -192,52 +192,52 @@ typedef struct Timer_B_initUpModeParam {
 //
 //*****************************************************************************
 typedef struct Timer_B_initCaptureModeParam {
-  //! Selects the capture register being used. Refer to datasheet to ensure
-  //! the device has the capture register being used.
-  //! \n Valid values are:
-  //! - \b TIMER_B_CAPTURECOMPARE_REGISTER_0
-  //! - \b TIMER_B_CAPTURECOMPARE_REGISTER_1
-  //! - \b TIMER_B_CAPTURECOMPARE_REGISTER_2
-  //! - \b TIMER_B_CAPTURECOMPARE_REGISTER_3
-  //! - \b TIMER_B_CAPTURECOMPARE_REGISTER_4
-  //! - \b TIMER_B_CAPTURECOMPARE_REGISTER_5
-  //! - \b TIMER_B_CAPTURECOMPARE_REGISTER_6
-  uint16_t captureRegister;
-  //! Is the capture mode selected.
-  //! \n Valid values are:
-  //! - \b TIMER_B_CAPTUREMODE_NO_CAPTURE [Default]
-  //! - \b TIMER_B_CAPTUREMODE_RISING_EDGE
-  //! - \b TIMER_B_CAPTUREMODE_FALLING_EDGE
-  //! - \b TIMER_B_CAPTUREMODE_RISING_AND_FALLING_EDGE
-  uint16_t captureMode;
-  //! Decides the Input Select
-  //! \n Valid values are:
-  //! - \b TIMER_B_CAPTURE_INPUTSELECT_CCIxA [Default]
-  //! - \b TIMER_B_CAPTURE_INPUTSELECT_CCIxB
-  //! - \b TIMER_B_CAPTURE_INPUTSELECT_GND
-  //! - \b TIMER_B_CAPTURE_INPUTSELECT_Vcc
-  uint16_t captureInputSelect;
-  //! Decides if capture source should be synchronized with Timer_B clock
-  //! \n Valid values are:
-  //! - \b TIMER_B_CAPTURE_ASYNCHRONOUS [Default]
-  //! - \b TIMER_B_CAPTURE_SYNCHRONOUS
-  uint16_t synchronizeCaptureSource;
-  //! Is to enable or disable Timer_B capture compare interrupt.
-  //! \n Valid values are:
-  //! - \b TIMER_B_CAPTURECOMPARE_INTERRUPT_DISABLE [Default]
-  //! - \b TIMER_B_CAPTURECOMPARE_INTERRUPT_ENABLE
-  uint16_t captureInterruptEnable;
-  //! Specifies the output mode.
-  //! \n Valid values are:
-  //! - \b TIMER_B_OUTPUTMODE_OUTBITVALUE [Default]
-  //! - \b TIMER_B_OUTPUTMODE_SET
-  //! - \b TIMER_B_OUTPUTMODE_TOGGLE_RESET
-  //! - \b TIMER_B_OUTPUTMODE_SET_RESET
-  //! - \b TIMER_B_OUTPUTMODE_TOGGLE
-  //! - \b TIMER_B_OUTPUTMODE_RESET
-  //! - \b TIMER_B_OUTPUTMODE_TOGGLE_SET
-  //! - \b TIMER_B_OUTPUTMODE_RESET_SET
-  uint16_t captureOutputMode;
+	//! Selects the capture register being used. Refer to datasheet to ensure
+	//! the device has the capture register being used.
+	//! \n Valid values are:
+	//! - \b TIMER_B_CAPTURECOMPARE_REGISTER_0
+	//! - \b TIMER_B_CAPTURECOMPARE_REGISTER_1
+	//! - \b TIMER_B_CAPTURECOMPARE_REGISTER_2
+	//! - \b TIMER_B_CAPTURECOMPARE_REGISTER_3
+	//! - \b TIMER_B_CAPTURECOMPARE_REGISTER_4
+	//! - \b TIMER_B_CAPTURECOMPARE_REGISTER_5
+	//! - \b TIMER_B_CAPTURECOMPARE_REGISTER_6
+	uint16_t captureRegister;
+	//! Is the capture mode selected.
+	//! \n Valid values are:
+	//! - \b TIMER_B_CAPTUREMODE_NO_CAPTURE [Default]
+	//! - \b TIMER_B_CAPTUREMODE_RISING_EDGE
+	//! - \b TIMER_B_CAPTUREMODE_FALLING_EDGE
+	//! - \b TIMER_B_CAPTUREMODE_RISING_AND_FALLING_EDGE
+	uint16_t captureMode;
+	//! Decides the Input Select
+	//! \n Valid values are:
+	//! - \b TIMER_B_CAPTURE_INPUTSELECT_CCIxA [Default]
+	//! - \b TIMER_B_CAPTURE_INPUTSELECT_CCIxB
+	//! - \b TIMER_B_CAPTURE_INPUTSELECT_GND
+	//! - \b TIMER_B_CAPTURE_INPUTSELECT_Vcc
+	uint16_t captureInputSelect;
+	//! Decides if capture source should be synchronized with Timer_B clock
+	//! \n Valid values are:
+	//! - \b TIMER_B_CAPTURE_ASYNCHRONOUS [Default]
+	//! - \b TIMER_B_CAPTURE_SYNCHRONOUS
+	uint16_t synchronizeCaptureSource;
+	//! Is to enable or disable Timer_B capture compare interrupt.
+	//! \n Valid values are:
+	//! - \b TIMER_B_CAPTURECOMPARE_INTERRUPT_DISABLE [Default]
+	//! - \b TIMER_B_CAPTURECOMPARE_INTERRUPT_ENABLE
+	uint16_t captureInterruptEnable;
+	//! Specifies the output mode.
+	//! \n Valid values are:
+	//! - \b TIMER_B_OUTPUTMODE_OUTBITVALUE [Default]
+	//! - \b TIMER_B_OUTPUTMODE_SET
+	//! - \b TIMER_B_OUTPUTMODE_TOGGLE_RESET
+	//! - \b TIMER_B_OUTPUTMODE_SET_RESET
+	//! - \b TIMER_B_OUTPUTMODE_TOGGLE
+	//! - \b TIMER_B_OUTPUTMODE_RESET
+	//! - \b TIMER_B_OUTPUTMODE_TOGGLE_SET
+	//! - \b TIMER_B_OUTPUTMODE_RESET_SET
+	uint16_t captureOutputMode;
 } Timer_B_initCaptureModeParam;
 
 //*****************************************************************************
@@ -247,49 +247,49 @@ typedef struct Timer_B_initCaptureModeParam {
 //
 //*****************************************************************************
 typedef struct Timer_B_initContinuousModeParam {
-  //! Selects the clock source
-  //! \n Valid values are:
-  //! - \b TIMER_B_CLOCKSOURCE_EXTERNAL_TXCLK [Default]
-  //! - \b TIMER_B_CLOCKSOURCE_ACLK
-  //! - \b TIMER_B_CLOCKSOURCE_SMCLK
-  //! - \b TIMER_B_CLOCKSOURCE_INVERTED_EXTERNAL_TXCLK
-  uint16_t clockSource;
-  //! Is the divider for Clock source.
-  //! \n Valid values are:
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_1 [Default]
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_2
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_3
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_4
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_5
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_6
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_7
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_8
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_10
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_12
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_14
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_16
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_20
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_24
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_28
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_32
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_40
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_48
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_56
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_64
-  uint16_t clockSourceDivider;
-  //! Is to enable or disable Timer_B interrupt
-  //! \n Valid values are:
-  //! - \b TIMER_B_TBIE_INTERRUPT_ENABLE
-  //! - \b TIMER_B_TBIE_INTERRUPT_DISABLE [Default]
-  uint16_t timerInterruptEnable_TBIE;
-  //! Decides if Timer_B clock divider, count direction, count need to be
-  //! reset.
-  //! \n Valid values are:
-  //! - \b TIMER_B_DO_CLEAR
-  //! - \b TIMER_B_SKIP_CLEAR [Default]
-  uint16_t timerClear;
-  //! Whether to start the timer immediately
-  bool startTimer;
+	//! Selects the clock source
+	//! \n Valid values are:
+	//! - \b TIMER_B_CLOCKSOURCE_EXTERNAL_TXCLK [Default]
+	//! - \b TIMER_B_CLOCKSOURCE_ACLK
+	//! - \b TIMER_B_CLOCKSOURCE_SMCLK
+	//! - \b TIMER_B_CLOCKSOURCE_INVERTED_EXTERNAL_TXCLK
+	uint16_t clockSource;
+	//! Is the divider for Clock source.
+	//! \n Valid values are:
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_1 [Default]
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_2
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_3
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_4
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_5
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_6
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_7
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_8
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_10
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_12
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_14
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_16
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_20
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_24
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_28
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_32
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_40
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_48
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_56
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_64
+	uint16_t clockSourceDivider;
+	//! Is to enable or disable Timer_B interrupt
+	//! \n Valid values are:
+	//! - \b TIMER_B_TBIE_INTERRUPT_ENABLE
+	//! - \b TIMER_B_TBIE_INTERRUPT_DISABLE [Default]
+	uint16_t timerInterruptEnable_TBIE;
+	//! Decides if Timer_B clock divider, count direction, count need to be
+	//! reset.
+	//! \n Valid values are:
+	//! - \b TIMER_B_DO_CLEAR
+	//! - \b TIMER_B_SKIP_CLEAR [Default]
+	uint16_t timerClear;
+	//! Whether to start the timer immediately
+	bool startTimer;
 } Timer_B_initContinuousModeParam;
 
 //*****************************************************************************
@@ -299,56 +299,56 @@ typedef struct Timer_B_initContinuousModeParam {
 //
 //*****************************************************************************
 typedef struct Timer_B_initUpDownModeParam {
-  //! Selects the clock source
-  //! \n Valid values are:
-  //! - \b TIMER_B_CLOCKSOURCE_EXTERNAL_TXCLK [Default]
-  //! - \b TIMER_B_CLOCKSOURCE_ACLK
-  //! - \b TIMER_B_CLOCKSOURCE_SMCLK
-  //! - \b TIMER_B_CLOCKSOURCE_INVERTED_EXTERNAL_TXCLK
-  uint16_t clockSource;
-  //! Is the divider for Clock source.
-  //! \n Valid values are:
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_1 [Default]
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_2
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_3
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_4
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_5
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_6
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_7
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_8
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_10
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_12
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_14
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_16
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_20
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_24
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_28
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_32
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_40
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_48
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_56
-  //! - \b TIMER_B_CLOCKSOURCE_DIVIDER_64
-  uint16_t clockSourceDivider;
-  //! Is the specified Timer_B period
-  uint16_t timerPeriod;
-  //! Is to enable or disable Timer_B interrupt
-  //! \n Valid values are:
-  //! - \b TIMER_B_TBIE_INTERRUPT_ENABLE
-  //! - \b TIMER_B_TBIE_INTERRUPT_DISABLE [Default]
-  uint16_t timerInterruptEnable_TBIE;
-  //! Is to enable or disable Timer_B CCR0 capture compare interrupt.
-  //! \n Valid values are:
-  //! - \b TIMER_B_CCIE_CCR0_INTERRUPT_ENABLE
-  //! - \b TIMER_B_CCIE_CCR0_INTERRUPT_DISABLE [Default]
-  uint16_t captureCompareInterruptEnable_CCR0_CCIE;
-  //! Decides if Timer_B clock divider, count direction, count need to be
-  //! reset.
-  //! \n Valid values are:
-  //! - \b TIMER_B_DO_CLEAR
-  //! - \b TIMER_B_SKIP_CLEAR [Default]
-  uint16_t timerClear;
-  //! Whether to start the timer immediately
-  bool startTimer;
+	//! Selects the clock source
+	//! \n Valid values are:
+	//! - \b TIMER_B_CLOCKSOURCE_EXTERNAL_TXCLK [Default]
+	//! - \b TIMER_B_CLOCKSOURCE_ACLK
+	//! - \b TIMER_B_CLOCKSOURCE_SMCLK
+	//! - \b TIMER_B_CLOCKSOURCE_INVERTED_EXTERNAL_TXCLK
+	uint16_t clockSource;
+	//! Is the divider for Clock source.
+	//! \n Valid values are:
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_1 [Default]
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_2
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_3
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_4
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_5
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_6
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_7
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_8
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_10
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_12
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_14
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_16
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_20
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_24
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_28
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_32
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_40
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_48
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_56
+	//! - \b TIMER_B_CLOCKSOURCE_DIVIDER_64
+	uint16_t clockSourceDivider;
+	//! Is the specified Timer_B period
+	uint16_t timerPeriod;
+	//! Is to enable or disable Timer_B interrupt
+	//! \n Valid values are:
+	//! - \b TIMER_B_TBIE_INTERRUPT_ENABLE
+	//! - \b TIMER_B_TBIE_INTERRUPT_DISABLE [Default]
+	uint16_t timerInterruptEnable_TBIE;
+	//! Is to enable or disable Timer_B CCR0 capture compare interrupt.
+	//! \n Valid values are:
+	//! - \b TIMER_B_CCIE_CCR0_INTERRUPT_ENABLE
+	//! - \b TIMER_B_CCIE_CCR0_INTERRUPT_DISABLE [Default]
+	uint16_t captureCompareInterruptEnable_CCR0_CCIE;
+	//! Decides if Timer_B clock divider, count direction, count need to be
+	//! reset.
+	//! \n Valid values are:
+	//! - \b TIMER_B_DO_CLEAR
+	//! - \b TIMER_B_SKIP_CLEAR [Default]
+	uint16_t timerClear;
+	//! Whether to start the timer immediately
+	bool startTimer;
 } Timer_B_initUpDownModeParam;
 
 //*****************************************************************************
@@ -358,35 +358,35 @@ typedef struct Timer_B_initUpDownModeParam {
 //
 //*****************************************************************************
 typedef struct Timer_B_initCompareModeParam {
-  //! Selects the compare register being used. Refer to datasheet to ensure
-  //! the device has the compare register being used.
-  //! \n Valid values are:
-  //! - \b TIMER_B_CAPTURECOMPARE_REGISTER_0
-  //! - \b TIMER_B_CAPTURECOMPARE_REGISTER_1
-  //! - \b TIMER_B_CAPTURECOMPARE_REGISTER_2
-  //! - \b TIMER_B_CAPTURECOMPARE_REGISTER_3
-  //! - \b TIMER_B_CAPTURECOMPARE_REGISTER_4
-  //! - \b TIMER_B_CAPTURECOMPARE_REGISTER_5
-  //! - \b TIMER_B_CAPTURECOMPARE_REGISTER_6
-  uint16_t compareRegister;
-  //! Is to enable or disable Timer_B capture compare interrupt.
-  //! \n Valid values are:
-  //! - \b TIMER_B_CAPTURECOMPARE_INTERRUPT_DISABLE [Default]
-  //! - \b TIMER_B_CAPTURECOMPARE_INTERRUPT_ENABLE
-  uint16_t compareInterruptEnable;
-  //! Specifies the output mode.
-  //! \n Valid values are:
-  //! - \b TIMER_B_OUTPUTMODE_OUTBITVALUE [Default]
-  //! - \b TIMER_B_OUTPUTMODE_SET
-  //! - \b TIMER_B_OUTPUTMODE_TOGGLE_RESET
-  //! - \b TIMER_B_OUTPUTMODE_SET_RESET
-  //! - \b TIMER_B_OUTPUTMODE_TOGGLE
-  //! - \b TIMER_B_OUTPUTMODE_RESET
-  //! - \b TIMER_B_OUTPUTMODE_TOGGLE_SET
-  //! - \b TIMER_B_OUTPUTMODE_RESET_SET
-  uint16_t compareOutputMode;
-  //! Is the count to be compared with in compare mode
-  uint16_t compareValue;
+	//! Selects the compare register being used. Refer to datasheet to ensure
+	//! the device has the compare register being used.
+	//! \n Valid values are:
+	//! - \b TIMER_B_CAPTURECOMPARE_REGISTER_0
+	//! - \b TIMER_B_CAPTURECOMPARE_REGISTER_1
+	//! - \b TIMER_B_CAPTURECOMPARE_REGISTER_2
+	//! - \b TIMER_B_CAPTURECOMPARE_REGISTER_3
+	//! - \b TIMER_B_CAPTURECOMPARE_REGISTER_4
+	//! - \b TIMER_B_CAPTURECOMPARE_REGISTER_5
+	//! - \b TIMER_B_CAPTURECOMPARE_REGISTER_6
+	uint16_t compareRegister;
+	//! Is to enable or disable Timer_B capture compare interrupt.
+	//! \n Valid values are:
+	//! - \b TIMER_B_CAPTURECOMPARE_INTERRUPT_DISABLE [Default]
+	//! - \b TIMER_B_CAPTURECOMPARE_INTERRUPT_ENABLE
+	uint16_t compareInterruptEnable;
+	//! Specifies the output mode.
+	//! \n Valid values are:
+	//! - \b TIMER_B_OUTPUTMODE_OUTBITVALUE [Default]
+	//! - \b TIMER_B_OUTPUTMODE_SET
+	//! - \b TIMER_B_OUTPUTMODE_TOGGLE_RESET
+	//! - \b TIMER_B_OUTPUTMODE_SET_RESET
+	//! - \b TIMER_B_OUTPUTMODE_TOGGLE
+	//! - \b TIMER_B_OUTPUTMODE_RESET
+	//! - \b TIMER_B_OUTPUTMODE_TOGGLE_SET
+	//! - \b TIMER_B_OUTPUTMODE_RESET_SET
+	uint16_t compareOutputMode;
+	//! Is the count to be compared with in compare mode
+	uint16_t compareValue;
 } Timer_B_initCompareModeParam;
 
 //*****************************************************************************
@@ -396,14 +396,14 @@ typedef struct Timer_B_initCompareModeParam {
 // Timer_B_initUpDownMode(), and Timer_B_outputPWM().
 //
 //*****************************************************************************
-#define TIMER_B_CLOCKSOURCE_DIVIDER_1  0x00
-#define TIMER_B_CLOCKSOURCE_DIVIDER_2  0x08
-#define TIMER_B_CLOCKSOURCE_DIVIDER_3  0x02
-#define TIMER_B_CLOCKSOURCE_DIVIDER_4  0x10
-#define TIMER_B_CLOCKSOURCE_DIVIDER_5  0x04
-#define TIMER_B_CLOCKSOURCE_DIVIDER_6  0x05
-#define TIMER_B_CLOCKSOURCE_DIVIDER_7  0x06
-#define TIMER_B_CLOCKSOURCE_DIVIDER_8  0x18
+#define TIMER_B_CLOCKSOURCE_DIVIDER_1 0x00
+#define TIMER_B_CLOCKSOURCE_DIVIDER_2 0x08
+#define TIMER_B_CLOCKSOURCE_DIVIDER_3 0x02
+#define TIMER_B_CLOCKSOURCE_DIVIDER_4 0x10
+#define TIMER_B_CLOCKSOURCE_DIVIDER_5 0x04
+#define TIMER_B_CLOCKSOURCE_DIVIDER_6 0x05
+#define TIMER_B_CLOCKSOURCE_DIVIDER_7 0x06
+#define TIMER_B_CLOCKSOURCE_DIVIDER_8 0x18
 #define TIMER_B_CLOCKSOURCE_DIVIDER_10 0x0C
 #define TIMER_B_CLOCKSOURCE_DIVIDER_12 0x0D
 #define TIMER_B_CLOCKSOURCE_DIVIDER_14 0x0E
@@ -423,10 +423,10 @@ typedef struct Timer_B_initCompareModeParam {
 // functions: Timer_B_startCounter().
 //
 //*****************************************************************************
-#define TIMER_B_STOP_MODE       MC_0
-#define TIMER_B_UP_MODE         MC_1
+#define TIMER_B_STOP_MODE MC_0
+#define TIMER_B_UP_MODE MC_1
 #define TIMER_B_CONTINUOUS_MODE MC_2
-#define TIMER_B_UPDOWN_MODE     MC_3
+#define TIMER_B_UPDOWN_MODE MC_3
 
 //*****************************************************************************
 //
@@ -435,7 +435,7 @@ typedef struct Timer_B_initCompareModeParam {
 // Timer_B_initUpDownMode().
 //
 //*****************************************************************************
-#define TIMER_B_DO_CLEAR   TBCLR
+#define TIMER_B_DO_CLEAR TBCLR
 #define TIMER_B_SKIP_CLEAR 0x00
 
 //*****************************************************************************
@@ -445,9 +445,9 @@ typedef struct Timer_B_initCompareModeParam {
 // Timer_B_initUpDownMode(), and Timer_B_outputPWM().
 //
 //*****************************************************************************
-#define TIMER_B_CLOCKSOURCE_EXTERNAL_TXCLK          TBSSEL__TACLK
-#define TIMER_B_CLOCKSOURCE_ACLK                    TBSSEL__ACLK
-#define TIMER_B_CLOCKSOURCE_SMCLK                   TBSSEL__SMCLK
+#define TIMER_B_CLOCKSOURCE_EXTERNAL_TXCLK TBSSEL__TACLK
+#define TIMER_B_CLOCKSOURCE_ACLK TBSSEL__ACLK
+#define TIMER_B_CLOCKSOURCE_SMCLK TBSSEL__SMCLK
 #define TIMER_B_CLOCKSOURCE_INVERTED_EXTERNAL_TXCLK TBSSEL__INCLK
 
 //*****************************************************************************
@@ -457,7 +457,7 @@ typedef struct Timer_B_initCompareModeParam {
 // Timer_B_initUpDownMode().
 //
 //*****************************************************************************
-#define TIMER_B_TBIE_INTERRUPT_ENABLE  TBIE
+#define TIMER_B_TBIE_INTERRUPT_ENABLE TBIE
 #define TIMER_B_TBIE_INTERRUPT_DISABLE 0x00
 
 //*****************************************************************************
@@ -466,7 +466,7 @@ typedef struct Timer_B_initCompareModeParam {
 // functions: Timer_B_initUpMode(), and Timer_B_initUpDownMode().
 //
 //*****************************************************************************
-#define TIMER_B_CCIE_CCR0_INTERRUPT_ENABLE  CCIE
+#define TIMER_B_CCIE_CCR0_INTERRUPT_ENABLE CCIE
 #define TIMER_B_CCIE_CCR0_INTERRUPT_DISABLE 0x00
 
 //*****************************************************************************
@@ -476,7 +476,7 @@ typedef struct Timer_B_initCompareModeParam {
 //
 //*****************************************************************************
 #define TIMER_B_CAPTURECOMPARE_INTERRUPT_DISABLE 0x00
-#define TIMER_B_CAPTURECOMPARE_INTERRUPT_ENABLE  CCIE
+#define TIMER_B_CAPTURECOMPARE_INTERRUPT_ENABLE CCIE
 
 //*****************************************************************************
 //
@@ -486,8 +486,8 @@ typedef struct Timer_B_initCompareModeParam {
 //*****************************************************************************
 #define TIMER_B_CAPTURE_INPUTSELECT_CCIxA CCIS_0
 #define TIMER_B_CAPTURE_INPUTSELECT_CCIxB CCIS_1
-#define TIMER_B_CAPTURE_INPUTSELECT_GND   CCIS_2
-#define TIMER_B_CAPTURE_INPUTSELECT_Vcc   CCIS_3
+#define TIMER_B_CAPTURE_INPUTSELECT_GND CCIS_2
+#define TIMER_B_CAPTURE_INPUTSELECT_Vcc CCIS_3
 
 //*****************************************************************************
 //
@@ -497,14 +497,14 @@ typedef struct Timer_B_initCompareModeParam {
 // Timer_B_outputPWM().
 //
 //*****************************************************************************
-#define TIMER_B_OUTPUTMODE_OUTBITVALUE  OUTMOD_0
-#define TIMER_B_OUTPUTMODE_SET          OUTMOD_1
+#define TIMER_B_OUTPUTMODE_OUTBITVALUE OUTMOD_0
+#define TIMER_B_OUTPUTMODE_SET OUTMOD_1
 #define TIMER_B_OUTPUTMODE_TOGGLE_RESET OUTMOD_2
-#define TIMER_B_OUTPUTMODE_SET_RESET    OUTMOD_3
-#define TIMER_B_OUTPUTMODE_TOGGLE       OUTMOD_4
-#define TIMER_B_OUTPUTMODE_RESET        OUTMOD_5
-#define TIMER_B_OUTPUTMODE_TOGGLE_SET   OUTMOD_6
-#define TIMER_B_OUTPUTMODE_RESET_SET    OUTMOD_7
+#define TIMER_B_OUTPUTMODE_SET_RESET OUTMOD_3
+#define TIMER_B_OUTPUTMODE_TOGGLE OUTMOD_4
+#define TIMER_B_OUTPUTMODE_RESET OUTMOD_5
+#define TIMER_B_OUTPUTMODE_TOGGLE_SET OUTMOD_6
+#define TIMER_B_OUTPUTMODE_RESET_SET OUTMOD_7
 
 //*****************************************************************************
 //
@@ -538,9 +538,9 @@ typedef struct Timer_B_initCompareModeParam {
 // functions: Timer_B_initCaptureMode().
 //
 //*****************************************************************************
-#define TIMER_B_CAPTUREMODE_NO_CAPTURE              CM_0
-#define TIMER_B_CAPTUREMODE_RISING_EDGE             CM_1
-#define TIMER_B_CAPTUREMODE_FALLING_EDGE            CM_2
+#define TIMER_B_CAPTUREMODE_NO_CAPTURE CM_0
+#define TIMER_B_CAPTUREMODE_RISING_EDGE CM_1
+#define TIMER_B_CAPTUREMODE_FALLING_EDGE CM_2
 #define TIMER_B_CAPTUREMODE_RISING_AND_FALLING_EDGE CM_3
 
 //*****************************************************************************
@@ -550,7 +550,7 @@ typedef struct Timer_B_initCompareModeParam {
 //
 //*****************************************************************************
 #define TIMER_B_CAPTURE_ASYNCHRONOUS 0x00
-#define TIMER_B_CAPTURE_SYNCHRONOUS  SCS
+#define TIMER_B_CAPTURE_SYNCHRONOUS SCS
 
 //*****************************************************************************
 //
@@ -559,7 +559,7 @@ typedef struct Timer_B_initCompareModeParam {
 // the Timer_B_getCaptureCompareInterruptStatus() function.
 //
 //*****************************************************************************
-#define TIMER_B_CAPTURE_OVERFLOW              COV
+#define TIMER_B_CAPTURE_OVERFLOW COV
 #define TIMER_B_CAPTURECOMPARE_INTERRUPT_FLAG CCIFG
 
 //*****************************************************************************
@@ -569,7 +569,7 @@ typedef struct Timer_B_initCompareModeParam {
 //
 //*****************************************************************************
 #define TIMER_B_READ_SYNCHRONIZED_CAPTURECOMPAREINPUT SCCI
-#define TIMER_B_READ_CAPTURE_COMPARE_INPUT            CCI
+#define TIMER_B_READ_CAPTURE_COMPARE_INPUT CCI
 
 //*****************************************************************************
 //
@@ -579,7 +579,7 @@ typedef struct Timer_B_initCompareModeParam {
 //
 //*****************************************************************************
 #define TIMER_B_CAPTURECOMPARE_INPUT_HIGH 0x01
-#define TIMER_B_CAPTURECOMPARE_INPUT_LOW  0x00
+#define TIMER_B_CAPTURECOMPARE_INPUT_LOW 0x00
 
 //*****************************************************************************
 //
@@ -589,7 +589,7 @@ typedef struct Timer_B_initCompareModeParam {
 //
 //*****************************************************************************
 #define TIMER_B_OUTPUTMODE_OUTBITVALUE_HIGH OUT
-#define TIMER_B_OUTPUTMODE_OUTBITVALUE_LOW  0x00
+#define TIMER_B_OUTPUTMODE_OUTBITVALUE_LOW 0x00
 
 //*****************************************************************************
 //
@@ -600,7 +600,7 @@ typedef struct Timer_B_initCompareModeParam {
 #define TIMER_B_COUNTER_16BIT CNTL_3
 #define TIMER_B_COUNTER_12BIT CNTL_2
 #define TIMER_B_COUNTER_10BIT CNTL_1
-#define TIMER_B_COUNTER_8BIT  CNTL_0
+#define TIMER_B_COUNTER_8BIT CNTL_0
 
 //*****************************************************************************
 //
@@ -608,10 +608,10 @@ typedef struct Timer_B_initCompareModeParam {
 // functions: Timer_B_selectLatchingGroup().
 //
 //*****************************************************************************
-#define TIMER_B_GROUP_NONE           TBCLGRP_0
+#define TIMER_B_GROUP_NONE TBCLGRP_0
 #define TIMER_B_GROUP_CL12_CL23_CL56 TBCLGRP_1
-#define TIMER_B_GROUP_CL123_CL456    TBCLGRP_2
-#define TIMER_B_GROUP_ALL            TBCLGRP_3
+#define TIMER_B_GROUP_CL123_CL456 TBCLGRP_2
+#define TIMER_B_GROUP_ALL TBCLGRP_3
 
 //*****************************************************************************
 //
@@ -619,9 +619,9 @@ typedef struct Timer_B_initCompareModeParam {
 // parameter for functions: Timer_B_initCompareLatchLoadEvent().
 //
 //*****************************************************************************
-#define TIMER_B_LATCH_ON_WRITE_TO_TBxCCRn_COMPARE_REGISTER               CLLD_0
-#define TIMER_B_LATCH_WHEN_COUNTER_COUNTS_TO_0_IN_UP_OR_CONT_MODE        CLLD_1
-#define TIMER_B_LATCH_WHEN_COUNTER_COUNTS_TO_0_IN_UPDOWN_MODE            CLLD_2
+#define TIMER_B_LATCH_ON_WRITE_TO_TBxCCRn_COMPARE_REGISTER CLLD_0
+#define TIMER_B_LATCH_WHEN_COUNTER_COUNTS_TO_0_IN_UP_OR_CONT_MODE CLLD_1
+#define TIMER_B_LATCH_WHEN_COUNTER_COUNTS_TO_0_IN_UPDOWN_MODE CLLD_2
 #define TIMER_B_LATCH_WHEN_COUNTER_COUNTS_TO_CURRENT_COMPARE_LATCH_VALUE CLLD_3
 
 //*****************************************************************************
@@ -631,7 +631,7 @@ typedef struct Timer_B_initCompareModeParam {
 //
 //*****************************************************************************
 #define TIMER_B_INTERRUPT_NOT_PENDING 0x00
-#define TIMER_B_INTERRUPT_PENDING     0x01
+#define TIMER_B_INTERRUPT_PENDING 0x01
 
 //*****************************************************************************
 //
@@ -677,7 +677,7 @@ extern void Timer_B_startCounter(uint16_t baseAddress, uint16_t timerMode);
 //
 //*****************************************************************************
 extern void Timer_B_initContinuousMode(uint16_t baseAddress,
-                                       Timer_B_initContinuousModeParam* param);
+				       Timer_B_initContinuousModeParam *param);
 
 //*****************************************************************************
 //
@@ -695,8 +695,8 @@ extern void Timer_B_initContinuousMode(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_B_initUpMode(uint16_t                 baseAddress,
-                               Timer_B_initUpModeParam* param);
+extern void Timer_B_initUpMode(uint16_t baseAddress,
+			       Timer_B_initUpModeParam *param);
 
 //*****************************************************************************
 //
@@ -714,8 +714,8 @@ extern void Timer_B_initUpMode(uint16_t                 baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_B_initUpDownMode(uint16_t                     baseAddress,
-                                   Timer_B_initUpDownModeParam* param);
+extern void Timer_B_initUpDownMode(uint16_t baseAddress,
+				   Timer_B_initUpDownModeParam *param);
 
 //*****************************************************************************
 //
@@ -729,8 +729,8 @@ extern void Timer_B_initUpDownMode(uint16_t                     baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_B_initCaptureMode(uint16_t                      baseAddress,
-                                    Timer_B_initCaptureModeParam* param);
+extern void Timer_B_initCaptureMode(uint16_t baseAddress,
+				    Timer_B_initCaptureModeParam *param);
 
 //*****************************************************************************
 //
@@ -744,8 +744,8 @@ extern void Timer_B_initCaptureMode(uint16_t                      baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_B_initCompareMode(uint16_t                      baseAddress,
-                                    Timer_B_initCompareModeParam* param);
+extern void Timer_B_initCompareMode(uint16_t baseAddress,
+				    Timer_B_initCompareModeParam *param);
 
 //*****************************************************************************
 //
@@ -811,9 +811,9 @@ extern uint32_t Timer_B_getInterruptStatus(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_B_enableCaptureCompareInterrupt(
-    uint16_t baseAddress,
-    uint16_t captureCompareRegister);
+extern void
+Timer_B_enableCaptureCompareInterrupt(uint16_t baseAddress,
+				      uint16_t captureCompareRegister);
 
 //*****************************************************************************
 //
@@ -837,9 +837,9 @@ extern void Timer_B_enableCaptureCompareInterrupt(
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_B_disableCaptureCompareInterrupt(
-    uint16_t baseAddress,
-    uint16_t captureCompareRegister);
+extern void
+Timer_B_disableCaptureCompareInterrupt(uint16_t baseAddress,
+				       uint16_t captureCompareRegister);
 
 //*****************************************************************************
 //
@@ -869,9 +869,7 @@ extern void Timer_B_disableCaptureCompareInterrupt(
 //
 //*****************************************************************************
 extern uint32_t Timer_B_getCaptureCompareInterruptStatus(
-    uint16_t baseAddress,
-    uint16_t captureCompareRegister,
-    uint16_t mask);
+	uint16_t baseAddress, uint16_t captureCompareRegister, uint16_t mask);
 
 //*****************************************************************************
 //
@@ -912,10 +910,10 @@ extern void Timer_B_clear(uint16_t baseAddress);
 //!         - \b Timer_B_CAPTURECOMPARE_INPUT_LOW
 //
 //*****************************************************************************
-extern uint8_t Timer_B_getSynchronizedCaptureCompareInput(
-    uint16_t baseAddress,
-    uint16_t captureCompareRegister,
-    uint16_t synchronized);
+extern uint8_t
+Timer_B_getSynchronizedCaptureCompareInput(uint16_t baseAddress,
+					   uint16_t captureCompareRegister,
+					   uint16_t synchronized);
 
 //*****************************************************************************
 //
@@ -939,9 +937,9 @@ extern uint8_t Timer_B_getSynchronizedCaptureCompareInput(
 //!         - \b Timer_B_OUTPUTMODE_OUTBITVALUE_LOW
 //
 //*****************************************************************************
-extern uint8_t Timer_B_getOutputForOutputModeOutBitValue(
-    uint16_t baseAddress,
-    uint16_t captureCompareRegister);
+extern uint8_t
+Timer_B_getOutputForOutputModeOutBitValue(uint16_t baseAddress,
+					  uint16_t captureCompareRegister);
 
 //*****************************************************************************
 //
@@ -964,7 +962,7 @@ extern uint8_t Timer_B_getOutputForOutputModeOutBitValue(
 //
 //*****************************************************************************
 extern uint16_t Timer_B_getCaptureCompareCount(uint16_t baseAddress,
-                                               uint16_t captureCompareRegister);
+					       uint16_t captureCompareRegister);
 
 //*****************************************************************************
 //
@@ -992,10 +990,10 @@ extern uint16_t Timer_B_getCaptureCompareCount(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_B_setOutputForOutputModeOutBitValue(
-    uint16_t baseAddress,
-    uint16_t captureCompareRegister,
-    uint8_t  outputModeOutBitValue);
+extern void
+Timer_B_setOutputForOutputModeOutBitValue(uint16_t baseAddress,
+					  uint16_t captureCompareRegister,
+					  uint8_t outputModeOutBitValue);
 
 //*****************************************************************************
 //
@@ -1010,8 +1008,8 @@ extern void Timer_B_setOutputForOutputModeOutBitValue(
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_B_outputPWM(uint16_t                baseAddress,
-                              Timer_B_outputPWMParam* param);
+extern void Timer_B_outputPWM(uint16_t baseAddress,
+			      Timer_B_outputPWMParam *param);
 
 //*****************************************************************************
 //
@@ -1049,8 +1047,8 @@ extern void Timer_B_stop(uint16_t baseAddress);
 //
 //*****************************************************************************
 extern void Timer_B_setCompareValue(uint16_t baseAddress,
-                                    uint16_t compareRegister,
-                                    uint16_t compareValue);
+				    uint16_t compareRegister,
+				    uint16_t compareValue);
 
 //*****************************************************************************
 //
@@ -1087,9 +1085,9 @@ extern void Timer_B_clearTimerInterrupt(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_B_clearCaptureCompareInterrupt(
-    uint16_t baseAddress,
-    uint16_t captureCompareRegister);
+extern void
+Timer_B_clearCaptureCompareInterrupt(uint16_t baseAddress,
+				     uint16_t captureCompareRegister);
 
 //*****************************************************************************
 //
@@ -1109,7 +1107,7 @@ extern void Timer_B_clearCaptureCompareInterrupt(
 //
 //*****************************************************************************
 extern void Timer_B_selectCounterLength(uint16_t baseAddress,
-                                        uint16_t counterLength);
+					uint16_t counterLength);
 
 //*****************************************************************************
 //
@@ -1129,7 +1127,7 @@ extern void Timer_B_selectCounterLength(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void Timer_B_selectLatchingGroup(uint16_t baseAddress,
-                                        uint16_t groupLatch);
+					uint16_t groupLatch);
 
 //*****************************************************************************
 //
@@ -1160,8 +1158,8 @@ extern void Timer_B_selectLatchingGroup(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void Timer_B_initCompareLatchLoadEvent(uint16_t baseAddress,
-                                              uint16_t compareRegister,
-                                              uint16_t compareLatchLoadEvent);
+					      uint16_t compareRegister,
+					      uint16_t compareLatchLoadEvent);
 
 //*****************************************************************************
 //
@@ -1212,8 +1210,8 @@ extern uint16_t Timer_B_getCounterValue(uint16_t baseAddress);
 //
 //*****************************************************************************
 extern void Timer_B_setOutputMode(uint16_t baseAddress,
-                                  uint16_t compareRegister,
-                                  uint16_t compareOutputMode);
+				  uint16_t compareRegister,
+				  uint16_t compareOutputMode);
 
 //*****************************************************************************
 //
@@ -1225,4 +1223,4 @@ extern void Timer_B_setOutputMode(uint16_t baseAddress,
 #endif
 
 #endif
-#endif  // __MSP430WARE_TIMER_B_H__
+#endif // __MSP430WARE_TIMER_B_H__

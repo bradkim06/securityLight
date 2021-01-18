@@ -15,4 +15,3 @@
 void initEMLibGUIApp(void);
 
 #endif /* _EMLIBGUIAPP_H_ */
-

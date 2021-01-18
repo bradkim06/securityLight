@@ -60,31 +60,31 @@ extern "C" {
 //
 //*****************************************************************************
 typedef struct TEC_initExternalFaultInputParam {
-  //! Is the selected external fault
-  //! \n Valid values are:
-  //! - \b TEC_EXTERNAL_FAULT_0
-  //! - \b TEC_EXTERNAL_FAULT_1
-  //! - \b TEC_EXTERNAL_FAULT_2
-  //! - \b TEC_EXTERNAL_FAULT_3
-  //! - \b TEC_EXTERNAL_FAULT_4
-  //! - \b TEC_EXTERNAL_FAULT_5
-  //! - \b TEC_EXTERNAL_FAULT_6
-  uint8_t selectedExternalFault;
-  //! Is the selected signal type
-  //! \n Valid values are:
-  //! - \b TEC_EXTERNAL_FAULT_SIGNALTYPE_EDGE_SENSITIVE [Default]
-  //! - \b TEC_EXTERNAL_FAULT_SIGNALTYPE_LEVEL_SENSITIVE
-  uint16_t signalType;
-  //! Is the selected signal hold
-  //! \n Valid values are:
-  //! - \b TEC_EXTERNAL_FAULT_SIGNAL_NOT_HELD [Default]
-  //! - \b TEC_EXTERNAL_FAULT_SIGNAL_HELD
-  uint8_t signalHold;
-  //! Is the selected signal type
-  //! \n Valid values are:
-  //! - \b TEC_EXTERNAL_FAULT_POLARITY_FALLING_EDGE_OR_LOW_LEVEL [Default]
-  //! - \b TEC_EXTERNAL_FAULT_POLARITY_RISING_EDGE_OR_HIGH_LEVEL
-  uint8_t polarityBit;
+	//! Is the selected external fault
+	//! \n Valid values are:
+	//! - \b TEC_EXTERNAL_FAULT_0
+	//! - \b TEC_EXTERNAL_FAULT_1
+	//! - \b TEC_EXTERNAL_FAULT_2
+	//! - \b TEC_EXTERNAL_FAULT_3
+	//! - \b TEC_EXTERNAL_FAULT_4
+	//! - \b TEC_EXTERNAL_FAULT_5
+	//! - \b TEC_EXTERNAL_FAULT_6
+	uint8_t selectedExternalFault;
+	//! Is the selected signal type
+	//! \n Valid values are:
+	//! - \b TEC_EXTERNAL_FAULT_SIGNALTYPE_EDGE_SENSITIVE [Default]
+	//! - \b TEC_EXTERNAL_FAULT_SIGNALTYPE_LEVEL_SENSITIVE
+	uint16_t signalType;
+	//! Is the selected signal hold
+	//! \n Valid values are:
+	//! - \b TEC_EXTERNAL_FAULT_SIGNAL_NOT_HELD [Default]
+	//! - \b TEC_EXTERNAL_FAULT_SIGNAL_HELD
+	uint8_t signalHold;
+	//! Is the selected signal type
+	//! \n Valid values are:
+	//! - \b TEC_EXTERNAL_FAULT_POLARITY_FALLING_EDGE_OR_LOW_LEVEL [Default]
+	//! - \b TEC_EXTERNAL_FAULT_POLARITY_RISING_EDGE_OR_HIGH_LEVEL
+	uint8_t polarityBit;
 } TEC_initExternalFaultInputParam;
 
 //*****************************************************************************
@@ -94,7 +94,7 @@ typedef struct TEC_initExternalFaultInputParam {
 //
 //*****************************************************************************
 #define TEC_EXTERNAL_CLEAR_SIGNAL_NOT_HELD 0x00
-#define TEC_EXTERNAL_CLEAR_SIGNAL_HELD     TECEXCLRHLD
+#define TEC_EXTERNAL_CLEAR_SIGNAL_HELD TECEXCLRHLD
 
 //*****************************************************************************
 //
@@ -103,7 +103,7 @@ typedef struct TEC_initExternalFaultInputParam {
 //
 //*****************************************************************************
 #define TEC_EXTERNAL_FAULT_SIGNAL_NOT_HELD 0x00
-#define TEC_EXTERNAL_FAULT_SIGNAL_HELD     TECXFLTHLD0
+#define TEC_EXTERNAL_FAULT_SIGNAL_HELD TECXFLTHLD0
 
 //*****************************************************************************
 //
@@ -129,7 +129,7 @@ typedef struct TEC_initExternalFaultInputParam {
 // functions: TEC_initExternalClearInput().
 //
 //*****************************************************************************
-#define TEC_EXTERNAL_CLEAR_SIGNALTYPE_EDGE_SENSITIVE  0x00
+#define TEC_EXTERNAL_CLEAR_SIGNALTYPE_EDGE_SENSITIVE 0x00
 #define TEC_EXTERNAL_CLEAR_SIGNALTYPE_LEVEL_SENSITIVE TECEXCLRLVS
 
 //*****************************************************************************
@@ -138,7 +138,7 @@ typedef struct TEC_initExternalFaultInputParam {
 // functions: TEC_initExternalFaultInput().
 //
 //*****************************************************************************
-#define TEC_EXTERNAL_FAULT_SIGNALTYPE_EDGE_SENSITIVE  0x00
+#define TEC_EXTERNAL_FAULT_SIGNALTYPE_EDGE_SENSITIVE 0x00
 #define TEC_EXTERNAL_FAULT_SIGNALTYPE_LEVEL_SENSITIVE TECXFLTLVS0
 
 //*****************************************************************************
@@ -180,8 +180,8 @@ typedef struct TEC_initExternalFaultInputParam {
 // TEC_getInterruptStatus() function.
 //
 //*****************************************************************************
-#define TEC_EXTERNAL_FAULT_INTERRUPT  TECXFLTIFG
-#define TEC_EXTERNAL_CLEAR_INTERRUPT  TECEXCLRIFG
+#define TEC_EXTERNAL_FAULT_INTERRUPT TECXFLTIFG
+#define TEC_EXTERNAL_CLEAR_INTERRUPT TECEXCLRIFG
 #define TEC_AUXILIARY_CLEAR_INTERRUPT TECAXCLRIFG
 
 //*****************************************************************************
@@ -190,7 +190,7 @@ typedef struct TEC_initExternalFaultInputParam {
 // can be returned by the TEC_getExternalClearStatus() function.
 //
 //*****************************************************************************
-#define TEC_EXTERNAL_CLEAR_DETECTED     TECXCLRSTA
+#define TEC_EXTERNAL_CLEAR_DETECTED TECXCLRSTA
 #define TEC_EXTERNAL_CLEAR_NOT_DETECTED 0x00
 
 //*****************************************************************************
@@ -222,10 +222,8 @@ typedef struct TEC_initExternalFaultInputParam {
 //! \return None
 //
 //*****************************************************************************
-extern void TEC_initExternalClearInput(uint16_t baseAddress,
-                                       uint8_t  signalType,
-                                       uint8_t  signalHold,
-                                       uint8_t  polarityBit);
+extern void TEC_initExternalClearInput(uint16_t baseAddress, uint8_t signalType,
+				       uint8_t signalHold, uint8_t polarityBit);
 
 //*****************************************************************************
 //
@@ -241,7 +239,7 @@ extern void TEC_initExternalClearInput(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void TEC_initExternalFaultInput(uint16_t baseAddress,
-                                       TEC_initExternalFaultInputParam* param);
+				       TEC_initExternalFaultInputParam *param);
 
 //*****************************************************************************
 //
@@ -264,7 +262,7 @@ extern void TEC_initExternalFaultInput(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void TEC_enableExternalFaultInput(uint16_t baseAddress,
-                                         uint8_t  channelEventBlock);
+					 uint8_t channelEventBlock);
 
 //*****************************************************************************
 //
@@ -287,7 +285,7 @@ extern void TEC_enableExternalFaultInput(uint16_t baseAddress,
 //
 //*****************************************************************************
 extern void TEC_disableExternalFaultInput(uint16_t baseAddress,
-                                          uint8_t  channelEventBlock);
+					  uint8_t channelEventBlock);
 
 //*****************************************************************************
 //
@@ -517,4 +515,4 @@ extern void TEC_clearExternalClearStatus(uint16_t baseAddress);
 #endif
 
 #endif
-#endif  // __MSP430WARE_TEC_H__
+#endif // __MSP430WARE_TEC_H__

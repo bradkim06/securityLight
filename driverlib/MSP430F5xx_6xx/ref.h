@@ -69,7 +69,7 @@ extern "C" {
 // Ref_isRefGenActive() function.
 //
 //*****************************************************************************
-#define REF_ACTIVE   true
+#define REF_ACTIVE true
 #define REF_INACTIVE false
 
 //*****************************************************************************
@@ -88,7 +88,7 @@ extern "C" {
 //
 //*****************************************************************************
 #define REF_NOTBUSY 0x00
-#define REF_BUSY    REFGENBUSY
+#define REF_BUSY REFGENBUSY
 
 //*****************************************************************************
 //
@@ -118,7 +118,7 @@ extern "C" {
 //
 //*****************************************************************************
 extern void Ref_setReferenceVoltage(uint16_t baseAddress,
-                                    uint8_t  referenceVoltageSelect);
+				    uint8_t referenceVoltageSelect);
 
 //*****************************************************************************
 //
@@ -326,4 +326,4 @@ extern bool Ref_isRefGenActive(uint16_t baseAddress);
 #endif
 
 #endif
-#endif  // __MSP430WARE_REF_H__
+#endif // __MSP430WARE_REF_H__

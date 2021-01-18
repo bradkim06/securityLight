@@ -63,7 +63,7 @@ extern "C" {
 //
 //*****************************************************************************
 #define LDOPWR_PORTU_PIN_HIGH PUOUT0
-#define LDOPWR_PORTU_PIN_LOW  0x00
+#define LDOPWR_PORTU_PIN_LOW 0x00
 
 //*****************************************************************************
 //
@@ -71,7 +71,7 @@ extern "C" {
 // can be returned by the LDOPWR_isLDOInputValid() function.
 //
 //*****************************************************************************
-#define LDOPWR_LDO_INPUT_VALID   LDOBGVBV
+#define LDOPWR_LDO_INPUT_VALID LDOBGVBV
 #define LDOPWR_LDO_INPUT_INVALID 0x00
 
 //*****************************************************************************
@@ -80,7 +80,7 @@ extern "C" {
 // can be returned by the LDOPWR_getOverloadAutoOffStatus() function.
 //
 //*****************************************************************************
-#define LDOPWR_AUTOOFF_ENABLED  OVLAOFF_H
+#define LDOPWR_AUTOOFF_ENABLED OVLAOFF_H
 #define LDOPWR_AUTOOFF_DISABLED 0x00
 
 //*****************************************************************************
@@ -91,8 +91,8 @@ extern "C" {
 // by the LDOPWR_getInterruptStatus() function.
 //
 //*****************************************************************************
-#define LDOPWR_LDOI_VOLTAGE_GOING_OFF_INTERRUPT  LDOOFFIE_H
-#define LDOPWR_LDOI_VOLTAGE_COMING_ON_INTERRUPT  LDOONIE_H
+#define LDOPWR_LDOI_VOLTAGE_GOING_OFF_INTERRUPT LDOOFFIE_H
+#define LDOPWR_LDOI_VOLTAGE_COMING_ON_INTERRUPT LDOONIE_H
 #define LDOPWR_LDO_OVERLOAD_INDICATION_INTERRUPT LDOOVLIE_H
 
 //*****************************************************************************
@@ -455,4 +455,4 @@ extern uint8_t LDOPWR_getOverloadAutoOffStatus(uint16_t baseAddress);
 #endif
 
 #endif
-#endif  // __MSP430WARE_LDOPWR_H__
+#endif // __MSP430WARE_LDOPWR_H__

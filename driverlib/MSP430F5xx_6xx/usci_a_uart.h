@@ -58,7 +58,7 @@ extern "C" {
 // The following values are the sync characters possible
 //
 //*****************************************************************************
-#define DEFAULT_SYNC                       0x00
+#define DEFAULT_SYNC 0x00
 #define USCI_A_UART_AUTOMATICBAUDRATE_SYNC 0x55
 
 //*****************************************************************************
@@ -67,49 +67,49 @@ extern "C" {
 //
 //*****************************************************************************
 typedef struct USCI_A_UART_initParam {
-  //! Selects Clock source.
-  //! \n Valid values are:
-  //! - \b USCI_A_UART_CLOCKSOURCE_SMCLK
-  //! - \b USCI_A_UART_CLOCKSOURCE_ACLK
-  uint8_t selectClockSource;
-  //! Is the value to be written into UCBRx bits
-  uint16_t clockPrescalar;
-  //! Is First modulation stage register setting. This value is a pre-
-  //! calculated value which can be obtained from the Device Users Guide.
-  //! This value is written into UCBRFx bits of UCAxMCTLW.
-  uint8_t firstModReg;
-  //! Is Second modulation stage register setting. This value is a pre-
-  //! calculated value which can be obtained from the Device Users Guide.
-  //! This value is written into UCBRSx bits of UCAxMCTLW.
-  uint8_t secondModReg;
-  //! Is the desired parity.
-  //! \n Valid values are:
-  //! - \b USCI_A_UART_NO_PARITY [Default]
-  //! - \b USCI_A_UART_ODD_PARITY
-  //! - \b USCI_A_UART_EVEN_PARITY
-  uint8_t parity;
-  //! Controls direction of receive and transmit shift register.
-  //! \n Valid values are:
-  //! - \b USCI_A_UART_MSB_FIRST
-  //! - \b USCI_A_UART_LSB_FIRST [Default]
-  uint8_t msborLsbFirst;
-  //! Indicates one/two STOP bits
-  //! \n Valid values are:
-  //! - \b USCI_A_UART_ONE_STOP_BIT [Default]
-  //! - \b USCI_A_UART_TWO_STOP_BITS
-  uint8_t numberofStopBits;
-  //! Selects the mode of operation
-  //! \n Valid values are:
-  //! - \b USCI_A_UART_MODE [Default]
-  //! - \b USCI_A_UART_IDLE_LINE_MULTI_PROCESSOR_MODE
-  //! - \b USCI_A_UART_ADDRESS_BIT_MULTI_PROCESSOR_MODE
-  //! - \b USCI_A_UART_AUTOMATIC_BAUDRATE_DETECTION_MODE
-  uint8_t uartMode;
-  //! Indicates low frequency or oversampling baud generation
-  //! \n Valid values are:
-  //! - \b USCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION
-  //! - \b USCI_A_UART_LOW_FREQUENCY_BAUDRATE_GENERATION
-  uint8_t overSampling;
+	//! Selects Clock source.
+	//! \n Valid values are:
+	//! - \b USCI_A_UART_CLOCKSOURCE_SMCLK
+	//! - \b USCI_A_UART_CLOCKSOURCE_ACLK
+	uint8_t selectClockSource;
+	//! Is the value to be written into UCBRx bits
+	uint16_t clockPrescalar;
+	//! Is First modulation stage register setting. This value is a pre-
+	//! calculated value which can be obtained from the Device Users Guide.
+	//! This value is written into UCBRFx bits of UCAxMCTLW.
+	uint8_t firstModReg;
+	//! Is Second modulation stage register setting. This value is a pre-
+	//! calculated value which can be obtained from the Device Users Guide.
+	//! This value is written into UCBRSx bits of UCAxMCTLW.
+	uint8_t secondModReg;
+	//! Is the desired parity.
+	//! \n Valid values are:
+	//! - \b USCI_A_UART_NO_PARITY [Default]
+	//! - \b USCI_A_UART_ODD_PARITY
+	//! - \b USCI_A_UART_EVEN_PARITY
+	uint8_t parity;
+	//! Controls direction of receive and transmit shift register.
+	//! \n Valid values are:
+	//! - \b USCI_A_UART_MSB_FIRST
+	//! - \b USCI_A_UART_LSB_FIRST [Default]
+	uint8_t msborLsbFirst;
+	//! Indicates one/two STOP bits
+	//! \n Valid values are:
+	//! - \b USCI_A_UART_ONE_STOP_BIT [Default]
+	//! - \b USCI_A_UART_TWO_STOP_BITS
+	uint8_t numberofStopBits;
+	//! Selects the mode of operation
+	//! \n Valid values are:
+	//! - \b USCI_A_UART_MODE [Default]
+	//! - \b USCI_A_UART_IDLE_LINE_MULTI_PROCESSOR_MODE
+	//! - \b USCI_A_UART_ADDRESS_BIT_MULTI_PROCESSOR_MODE
+	//! - \b USCI_A_UART_AUTOMATIC_BAUDRATE_DETECTION_MODE
+	uint8_t uartMode;
+	//! Indicates low frequency or oversampling baud generation
+	//! \n Valid values are:
+	//! - \b USCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION
+	//! - \b USCI_A_UART_LOW_FREQUENCY_BAUDRATE_GENERATION
+	uint8_t overSampling;
 } USCI_A_UART_initParam;
 
 //*****************************************************************************
@@ -118,8 +118,8 @@ typedef struct USCI_A_UART_initParam {
 // functions: USCI_A_UART_init().
 //
 //*****************************************************************************
-#define USCI_A_UART_NO_PARITY   0x00
-#define USCI_A_UART_ODD_PARITY  0x01
+#define USCI_A_UART_NO_PARITY 0x00
+#define USCI_A_UART_ODD_PARITY 0x01
 #define USCI_A_UART_EVEN_PARITY 0x02
 
 //*****************************************************************************
@@ -137,9 +137,9 @@ typedef struct USCI_A_UART_initParam {
 // functions: USCI_A_UART_init().
 //
 //*****************************************************************************
-#define USCI_A_UART_MODE                              UCMODE_0
-#define USCI_A_UART_IDLE_LINE_MULTI_PROCESSOR_MODE    UCMODE_1
-#define USCI_A_UART_ADDRESS_BIT_MULTI_PROCESSOR_MODE  UCMODE_2
+#define USCI_A_UART_MODE UCMODE_0
+#define USCI_A_UART_IDLE_LINE_MULTI_PROCESSOR_MODE UCMODE_1
+#define USCI_A_UART_ADDRESS_BIT_MULTI_PROCESSOR_MODE UCMODE_2
 #define USCI_A_UART_AUTOMATIC_BAUDRATE_DETECTION_MODE UCMODE_3
 
 //*****************************************************************************
@@ -149,7 +149,7 @@ typedef struct USCI_A_UART_initParam {
 //
 //*****************************************************************************
 #define USCI_A_UART_CLOCKSOURCE_SMCLK UCSSEL__SMCLK
-#define USCI_A_UART_CLOCKSOURCE_ACLK  UCSSEL__ACLK
+#define USCI_A_UART_CLOCKSOURCE_ACLK UCSSEL__ACLK
 
 //*****************************************************************************
 //
@@ -157,7 +157,7 @@ typedef struct USCI_A_UART_initParam {
 // functions: USCI_A_UART_init().
 //
 //*****************************************************************************
-#define USCI_A_UART_ONE_STOP_BIT  0x00
+#define USCI_A_UART_ONE_STOP_BIT 0x00
 #define USCI_A_UART_TWO_STOP_BITS UCSPB
 
 //*****************************************************************************
@@ -166,7 +166,7 @@ typedef struct USCI_A_UART_initParam {
 // functions: USCI_A_UART_init().
 //
 //*****************************************************************************
-#define USCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION  0x01
+#define USCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION 0x01
 #define USCI_A_UART_LOW_FREQUENCY_BAUDRATE_GENERATION 0x00
 
 //*****************************************************************************
@@ -176,10 +176,10 @@ typedef struct USCI_A_UART_initParam {
 // USCI_A_UART_disableInterrupt().
 //
 //*****************************************************************************
-#define USCI_A_UART_RECEIVE_INTERRUPT               UCRXIE
-#define USCI_A_UART_TRANSMIT_INTERRUPT              UCTXIE
+#define USCI_A_UART_RECEIVE_INTERRUPT UCRXIE
+#define USCI_A_UART_TRANSMIT_INTERRUPT UCTXIE
 #define USCI_A_UART_RECEIVE_ERRONEOUSCHAR_INTERRUPT UCRXEIE
-#define USCI_A_UART_BREAKCHAR_INTERRUPT             UCBRKIE
+#define USCI_A_UART_BREAKCHAR_INTERRUPT UCBRKIE
 
 //*****************************************************************************
 //
@@ -189,7 +189,7 @@ typedef struct USCI_A_UART_initParam {
 // USCI_A_UART_getInterruptStatus() function.
 //
 //*****************************************************************************
-#define USCI_A_UART_RECEIVE_INTERRUPT_FLAG  UCRXIFG
+#define USCI_A_UART_RECEIVE_INTERRUPT_FLAG UCRXIFG
 #define USCI_A_UART_TRANSMIT_INTERRUPT_FLAG UCTXIFG
 
 //*****************************************************************************
@@ -199,15 +199,15 @@ typedef struct USCI_A_UART_initParam {
 // USCI_A_UART_queryStatusFlags() function.
 //
 //*****************************************************************************
-#define USCI_A_UART_LISTEN_ENABLE    UCLISTEN
-#define USCI_A_UART_FRAMING_ERROR    UCFE
-#define USCI_A_UART_OVERRUN_ERROR    UCOE
-#define USCI_A_UART_PARITY_ERROR     UCPE
-#define USCI_A_UART_BREAK_DETECT     UCBRK
-#define USCI_A_UART_RECEIVE_ERROR    UCRXERR
+#define USCI_A_UART_LISTEN_ENABLE UCLISTEN
+#define USCI_A_UART_FRAMING_ERROR UCFE
+#define USCI_A_UART_OVERRUN_ERROR UCOE
+#define USCI_A_UART_PARITY_ERROR UCPE
+#define USCI_A_UART_BREAK_DETECT UCBRK
+#define USCI_A_UART_RECEIVE_ERROR UCRXERR
 #define USCI_A_UART_ADDRESS_RECEIVED UCADDR
-#define USCI_A_UART_IDLELINE         UCIDLE
-#define USCI_A_UART_BUSY             UCBUSY
+#define USCI_A_UART_IDLELINE UCIDLE
+#define USCI_A_UART_BUSY UCBUSY
 
 //*****************************************************************************
 //
@@ -240,8 +240,8 @@ typedef struct USCI_A_UART_initParam {
 //! \return STATUS_SUCCESS or STATUS_FAIL of the initialization process
 //
 //*****************************************************************************
-extern bool USCI_A_UART_init(uint16_t               baseAddress,
-                             USCI_A_UART_initParam* param);
+extern bool USCI_A_UART_init(uint16_t baseAddress,
+			     USCI_A_UART_initParam *param);
 
 //*****************************************************************************
 //
@@ -259,7 +259,7 @@ extern bool USCI_A_UART_init(uint16_t               baseAddress,
 //
 //*****************************************************************************
 extern void USCI_A_UART_transmitData(uint16_t baseAddress,
-                                     uint8_t  transmitData);
+				     uint8_t transmitData);
 
 //*****************************************************************************
 //
@@ -350,7 +350,7 @@ extern void USCI_A_UART_disableInterrupt(uint16_t baseAddress, uint8_t mask);
 //
 //*****************************************************************************
 extern uint8_t USCI_A_UART_getInterruptStatus(uint16_t baseAddress,
-                                              uint8_t  mask);
+					      uint8_t mask);
 
 //*****************************************************************************
 //
@@ -485,7 +485,7 @@ extern void USCI_A_UART_resetDormant(uint16_t baseAddress);
 //
 //*****************************************************************************
 extern void USCI_A_UART_transmitAddress(uint16_t baseAddress,
-                                        uint8_t  transmitAddress);
+					uint8_t transmitAddress);
 
 //*****************************************************************************
 //
@@ -533,8 +533,8 @@ extern uint32_t USCI_A_UART_getReceiveBufferAddressForDMA(uint16_t baseAddress);
 //! \return Address of TX Buffer
 //
 //*****************************************************************************
-extern uint32_t USCI_A_UART_getTransmitBufferAddressForDMA(
-    uint16_t baseAddress);
+extern uint32_t
+USCI_A_UART_getTransmitBufferAddressForDMA(uint16_t baseAddress);
 
 //*****************************************************************************
 //
@@ -546,4 +546,4 @@ extern uint32_t USCI_A_UART_getTransmitBufferAddressForDMA(
 #endif
 
 #endif
-#endif  // __MSP430WARE_USCI_A_UART_H__
+#endif // __MSP430WARE_USCI_A_UART_H__

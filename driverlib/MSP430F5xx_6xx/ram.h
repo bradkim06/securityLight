@@ -137,4 +137,4 @@ extern uint8_t RAM_getSectorState(uint8_t sector);
 #endif
 
 #endif
-#endif  // __MSP430WARE_RAM_H__
+#endif // __MSP430WARE_RAM_H__

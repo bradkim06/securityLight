@@ -73,10 +73,10 @@ extern "C" {
 // parameter for functions: UCS_initClockSignal().
 //
 //*****************************************************************************
-#define UCS_CLOCK_DIVIDER_1  DIVM__1
-#define UCS_CLOCK_DIVIDER_2  DIVM__2
-#define UCS_CLOCK_DIVIDER_4  DIVM__4
-#define UCS_CLOCK_DIVIDER_8  DIVM__8
+#define UCS_CLOCK_DIVIDER_1 DIVM__1
+#define UCS_CLOCK_DIVIDER_2 DIVM__2
+#define UCS_CLOCK_DIVIDER_4 DIVM__4
+#define UCS_CLOCK_DIVIDER_8 DIVM__8
 #define UCS_CLOCK_DIVIDER_12 DIVM__32
 #define UCS_CLOCK_DIVIDER_16 DIVM__16
 #define UCS_CLOCK_DIVIDER_32 DIVM__32
@@ -87,9 +87,9 @@ extern "C" {
 // parameter for functions: UCS_initClockSignal().
 //
 //*****************************************************************************
-#define UCS_ACLK   0x01
-#define UCS_MCLK   0x02
-#define UCS_SMCLK  0x04
+#define UCS_ACLK 0x01
+#define UCS_MCLK 0x02
+#define UCS_SMCLK 0x04
 #define UCS_FLLREF 0x08
 
 //*****************************************************************************
@@ -98,12 +98,12 @@ extern "C" {
 // functions: UCS_initClockSignal().
 //
 //*****************************************************************************
-#define UCS_XT1CLK_SELECT    SELM__XT1CLK
-#define UCS_VLOCLK_SELECT    SELM__VLOCLK
-#define UCS_REFOCLK_SELECT   SELM__REFOCLK
-#define UCS_DCOCLK_SELECT    SELM__DCOCLK
+#define UCS_XT1CLK_SELECT SELM__XT1CLK
+#define UCS_VLOCLK_SELECT SELM__VLOCLK
+#define UCS_REFOCLK_SELECT SELM__REFOCLK
+#define UCS_DCOCLK_SELECT SELM__DCOCLK
 #define UCS_DCOCLKDIV_SELECT SELM__DCOCLKDIV
-#define UCS_XT2CLK_SELECT    SELM__XT2CLK
+#define UCS_XT2CLK_SELECT SELM__XT2CLK
 
 //*****************************************************************************
 //
@@ -135,7 +135,7 @@ extern "C" {
 //
 //*****************************************************************************
 #define UCS_XT1_HIGH_FREQUENCY XTS
-#define UCS_XT1_LOW_FREQUENCY  0x00
+#define UCS_XT1_LOW_FREQUENCY 0x00
 
 //*****************************************************************************
 //
@@ -143,8 +143,8 @@ extern "C" {
 // functions: UCS_turnOnXT2(), and UCS_turnOnXT2WithTimeout().
 //
 //*****************************************************************************
-#define UCS_XT2_DRIVE_4MHZ_8MHZ   XT2DRIVE_0
-#define UCS_XT2_DRIVE_8MHZ_16MHZ  XT2DRIVE_1
+#define UCS_XT2_DRIVE_4MHZ_8MHZ XT2DRIVE_0
+#define UCS_XT2_DRIVE_8MHZ_16MHZ XT2DRIVE_1
 #define UCS_XT2_DRIVE_16MHZ_24MHZ XT2DRIVE_2
 #define UCS_XT2_DRIVE_24MHZ_32MHZ XT2DRIVE_3
 
@@ -154,9 +154,9 @@ extern "C" {
 // functions: UCS_enableClockRequest(), and UCS_disableClockRequest().
 //
 //*****************************************************************************
-#define UCS_ACLK   0x01
-#define UCS_SMCLK  0x04
-#define UCS_MCLK   0x02
+#define UCS_ACLK 0x01
+#define UCS_SMCLK 0x04
+#define UCS_MCLK 0x02
 #define UCS_MODOSC MODOSCREQEN
 
 //*****************************************************************************
@@ -166,10 +166,10 @@ extern "C" {
 // returned by the UCS_clearAllOscFlagsWithTimeout() function.
 //
 //*****************************************************************************
-#define UCS_XT2OFFG   XT2OFFG
+#define UCS_XT2OFFG XT2OFFG
 #define UCS_XT1HFOFFG XT1HFOFFG
 #define UCS_XT1LFOFFG XT1LFOFFG
-#define UCS_DCOFFG    DCOFFG
+#define UCS_DCOFFG DCOFFG
 
 //*****************************************************************************
 //
@@ -194,7 +194,7 @@ extern "C" {
 //
 //*****************************************************************************
 extern void UCS_setExternalClockSource(uint32_t XT1CLK_frequency,
-                                       uint32_t XT2CLK_frequency);
+				       uint32_t XT2CLK_frequency);
 
 //*****************************************************************************
 //
@@ -237,9 +237,9 @@ extern void UCS_setExternalClockSource(uint32_t XT1CLK_frequency,
 //! \return None
 //
 //*****************************************************************************
-extern void UCS_initClockSignal(uint8_t  selectedClockSignal,
-                                uint16_t clockSource,
-                                uint16_t clockSourceDivider);
+extern void UCS_initClockSignal(uint8_t selectedClockSignal,
+				uint16_t clockSource,
+				uint16_t clockSourceDivider);
 
 //*****************************************************************************
 //
@@ -360,9 +360,8 @@ extern void UCS_bypassXT1(uint8_t highOrLowFrequency);
 //! \return STATUS_SUCCESS or STATUS_FAIL
 //
 //*****************************************************************************
-extern bool UCS_turnOnLFXT1WithTimeout(uint16_t xt1drive,
-                                       uint8_t  xcap,
-                                       uint16_t timeout);
+extern bool UCS_turnOnLFXT1WithTimeout(uint16_t xt1drive, uint8_t xcap,
+				       uint16_t timeout);
 
 //*****************************************************************************
 //
@@ -414,8 +413,8 @@ extern bool UCS_turnOnHFXT1WithTimeout(uint16_t xt1drive, uint16_t timeout);
 //! \return STATUS_SUCCESS or STATUS_FAIL
 //
 //*****************************************************************************
-extern bool UCS_bypassXT1WithTimeout(uint8_t  highOrLowFrequency,
-                                     uint16_t timeout);
+extern bool UCS_bypassXT1WithTimeout(uint8_t highOrLowFrequency,
+				     uint16_t timeout);
 
 //*****************************************************************************
 //
@@ -746,4 +745,4 @@ extern uint16_t UCS_clearAllOscFlagsWithTimeout(uint16_t timeout);
 #endif
 
 #endif
-#endif  // __MSP430WARE_UCS_H__
+#endif // __MSP430WARE_UCS_H__
