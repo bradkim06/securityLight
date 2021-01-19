@@ -27,11 +27,6 @@
 
 extern uint8_t gemResultStatus;
 
-union converter {
-	unsigned long hex;
-	float var;
-};
-
 struct shellTx {
 	char buf[PRINT_BUF_SIZE];
 	int len;
@@ -131,13 +126,6 @@ void print(const char *__restrict format, ...)
 	for (int i = 0; i < tx.len; i++) {
 		EUSCI_A_UART_transmitData(SHELL_PORT, tx.buf[tx.index++]);
 	}
-}
-
-float convertHex2Float(unsigned long input)
-{
-	union converter My;
-	My.hex = input;
-	return My.var;
 }
 
 void print_EMResult(void)

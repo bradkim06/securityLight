@@ -66,10 +66,10 @@ int main(void)
 			/* LCD_SelectMode(++currentLCDMode); */
 			/* print("second = %d, minute = %d\n", */
 			/*       HWREG8(RTC_C_BASE + OFS_RTCTIM0_L), RTCMIN); */
+			resp_read_meter();
 		}
 		/* rtcData = RTC_C_getCalendarTime(RTC_C_BASE); */
 		// lcd_updateAll();
-		testMeterTx();
 #endif
 	}
 }

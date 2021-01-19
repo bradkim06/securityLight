@@ -1,6 +1,9 @@
 #ifndef __METERING_H__
 #define __METERING_H__
 
+#include <stdint.h>
+#include "emSwLib.h"
+
 //**************************************
 // Electric Meter Message
 //**************************************
@@ -25,6 +28,15 @@
 #define RESP_RTC_TIME 0xB3
 #define RESP_CALIB_FACTOR 0xB4
 
-void testMeterTx(void);
+typedef struct {
+	uint8_t stx;
+	uint8_t msgType;
+	uint8_t reserved[8];
+	EM_Phase_Results results;
+	uint8_t checkSum;
+	uint8_t etx;
+} elecMeterResp_t;
+
+void resp_read_meter(void);
 
 #endif
