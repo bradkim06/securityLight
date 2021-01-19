@@ -6,10 +6,16 @@
 #include "EM_userConfig.h"
 #include <string.h>
 
-#define RX_MAX_SIZE 100
+#define LEN_MAX_METER_RX 0x40
+#define LEN_MAX_METER_TX 0x60
 
-char rxBuf[RX_MAX_SIZE];
-char *txBuf;
+struct receive {
+	char buf[LEN_MAX_METER_RX];
+	char status;
+	int index;
+};
+
+struct receive meterRx;
 
 /* union converter { */
 /* 	unsigned long hex; */
@@ -50,12 +56,30 @@ static uint8_t calc_checksum(uint8_t *from, int size)
 	return checksum;
 }
 
+void req_read_meter(void)
+{
+	elecMeterReq_t *rx = (elecMeterReq_t *)meterRx.buf;
+
+	if (rx->etx != TERMINAL_ETX) {
+		print("Invalid ETX\n");
+		return;
+	}
+
+	if (rx->checkSum !=
+	    calc_checksum((uint8_t *)&rx, sizeof(elecMeterReq_t))) {
+		print("Invalid checkSum\n");
+		return;
+	}
+
+	resp_read_meter();
+}
+
 void resp_read_meter(void)
 {
 	int len = sizeof(elecMeterResp_t);
 	elecMeterResp_t data;
-
 	memset(&data, 0, len);
+
 	data.stx = METER_STX;
 	data.msgType = RESP_READ_METER;
 	memcpy(&data.results, &gEmSWResult.phaseResults[EM_PH_A_IDX],
@@ -66,11 +90,15 @@ void resp_read_meter(void)
 
 	uint8_t *txBuf = &data.stx;
 
+	for (int i = 0; i < len; i++) {
+		EUSCI_A_UART_transmitData(METER_PORT, *(txBuf + i));
+	}
+
+#ifdef __TEST__
 	print(RED_FONT "RESP_READ_METER \n\r");
 	print(WHITE_FONT);
 
 	for (int i = 0; i < len; i++) {
-		EUSCI_A_UART_transmitData(METER_PORT, *(txBuf + i));
 		print("0x%02x ", *(txBuf + i));
 		if ((i + 1) % 10 == 0) {
 			print("\n");
@@ -139,6 +167,7 @@ void resp_read_meter(void)
 	txBuf = (uint8_t *)&data.results.phaseID;
 	print("phaseID : %d ", data.results.phaseID);
 	print("Hex : 0x%d\n", *((int *)txBuf));
+#endif
 }
 
 //******************************************************************************
@@ -151,9 +180,8 @@ __interrupt void USCI_A1_ISR(void)
 {
 	switch (__even_in_range(UCA0IV, USCI_UART_UCTXIFG)) {
 	case USCI_UART_UCRXIFG: {
-		volatile uint8_t rxData = 0;
-
-		rxData = EUSCI_A_UART_receiveData(EUSCI_A0_BASE);
+		meterRx.buf[meterRx.index++] =
+			EUSCI_A_UART_receiveData(EUSCI_A0_BASE);
 		break;
 	}
 

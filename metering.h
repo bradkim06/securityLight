@@ -18,6 +18,14 @@
 #define SET_RTC_TIME 0xA3
 #define SET_CALIB_FACTOR 0xA4
 
+typedef struct {
+	uint8_t stx;
+	uint8_t msgType;
+	uint8_t reserved[2];
+	uint8_t checkSum;
+	uint8_t etx;
+} elecMeterReq_t;
+
 /* Meter -> Terminal */
 #define METER_STX 0x5B
 #define METER_ETX 0x8D
@@ -37,6 +45,9 @@ typedef struct {
 	uint8_t etx;
 } elecMeterResp_t;
 
+extern struct receive meterRx;
+
+void req_read_meter(void);
 void resp_read_meter(void);
 
 #endif

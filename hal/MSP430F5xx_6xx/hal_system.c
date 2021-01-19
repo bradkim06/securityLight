@@ -52,19 +52,19 @@ void initSystem(void)
 static void hal_system_ClockInit(uint32_t mclkFreq)
 {
 	// Initialize LFXT1
-	UCSCTL6 &= ~(XT1OFF); // Enable XT1
-	UCSCTL6 |= XCAP_3; // Internal load cap
-	UCSCTL6 &= XT1DRIVE_0;
-	UCSCTL6 &= XT1DRIVE_1;
+	/* UCSCTL6 &= ~(XT1OFF); // Enable XT1 */
+	/* UCSCTL6 |= XCAP_3; // Internal load cap */
+	/* UCSCTL6 &= XT1DRIVE_0; */
+	/* UCSCTL6 &= XT1DRIVE_1; */
 
-	UCSCTL4 |= SELA__XT1CLK; // Set ACLK = REFO
-	UCS_setExternalClockSource(32768, 0);
+	/* UCSCTL4 |= SELA__XT1CLK; // Set ACLK = REFO */
+	/* UCS_setExternalClockSource(32768, 0); */
 
 	PMM_setVCore(PMM_CORE_LEVEL_3);
 
 	// Setup UCS
 	UCSCTL3 |= SELREF_2; // Set DCO FLL reference = REFO
-	// UCSCTL4 |= SELA_2;    // Set ACLK = REFO
+	UCSCTL4 |= SELA_2; // Set ACLK = REFO
 
 	__bis_SR_register(SCG0); // Disable the FLL control loop
 	UCSCTL0 = 0x0000; // Set lowest possible DCOx, MODx

@@ -18,6 +18,7 @@
 #include "wdt_a.h"
 #include "uart.h"
 #include "metering.h"
+#include "timer.h"
 
 #ifdef __TEST__
 #include "test_clock.h"
@@ -34,14 +35,12 @@ static void initialize(void)
 {
 	initSystem();
 	initUart();
-
-	/* /1* turn on global interrupts *1/ */
-	/* __enable_interrupt(); */
-
 	initShell();
 	initLCD();
 	initRTC();
+	startTimer(TIMER_METER_RX);
 	readFlash();
+
 #ifdef __TEST__
 	test_clock();
 #endif
@@ -62,11 +61,13 @@ int main(void)
 
 #ifdef __TEST__
 		if (gemResultStatus) {
-			/* print_EMResult(); */
+			/* Timer_A_startCounter(TIMER_A1_BASE, */
+			/* 		     TIMER_A_CONTINUOUS_MODE); */
+			print_EMResult();
 			/* LCD_SelectMode(++currentLCDMode); */
 			/* print("second = %d, minute = %d\n", */
 			/*       HWREG8(RTC_C_BASE + OFS_RTCTIM0_L), RTCMIN); */
-			resp_read_meter();
+			/* resp_read_meter(); */
 		}
 		/* rtcData = RTC_C_getCalendarTime(RTC_C_BASE); */
 		// lcd_updateAll();

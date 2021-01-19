@@ -284,17 +284,19 @@ void EM_foregroundProc(uint8_t *resultStatus)
 {
 	*resultStatus = HAL_ADC_PHASE_NO_DATA_READY;
 
-	// Check if the background data is ready to process
-	while (phaseDataReady != HAL_ADC_PHASE_NO_DATA_READY) {
-		// Check if Phase A is ready
-		if (phaseDataReady & HAL_ADC_PHASE_A_DATA_READY) {
-			EM_processForegroundData(EM_PH_A_IDX);
-			// Phase Results Available
-			*resultStatus |= HAL_ADC_PHASE_A_DATA_READY;
-			// Clear Phase Data Ready Flag
-			phaseDataReady &= ~(HAL_ADC_PHASE_A_DATA_READY);
-		}
+	/* // Check if the background data is ready to process */
+	/* while (phaseDataReady != HAL_ADC_PHASE_NO_DATA_READY) { */
+	// Check if Phase A is ready
+	if (phaseDataReady & HAL_ADC_PHASE_A_DATA_READY) {
+		EM_processForegroundData(EM_PH_A_IDX);
+		// Phase Results Available
+		*resultStatus |= HAL_ADC_PHASE_A_DATA_READY;
+		// Clear Phase Data Ready Flag
+		phaseDataReady &= ~(HAL_ADC_PHASE_A_DATA_READY);
+
+		HAL_ADC_stopConversion(&halAdcConfig);
 	}
+	/* } */
 }
 
 void EM_genPulseIndPhase(EM_System_Configuration *config,
