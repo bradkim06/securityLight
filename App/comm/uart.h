@@ -85,6 +85,6 @@ void initUart(void);
  * @Returns EUSCI_A_UART_initParam config
  */
 /* ==========================================================================*/
-EUSCI_A_UART_initParam Get_BaudrateConfig(uint32_t baudrate);
+EUSCI_A_UART_initParam Get_BaudrateConfig(uint32_t smclk, uint32_t baudrate);
 
 #endif

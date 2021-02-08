@@ -36,8 +36,8 @@
 // defines
 //*****************************************************************************
 
-//#define EM_SMCLK_FREQ_IN_HZ (25165824)
-#define EM_SMCLK_FREQ_IN_HZ (16777216)
+#define EM_SMCLK_FREQ_IN_HZ (25165824)
+/* #define EM_SMCLK_FREQ_IN_HZ (16777216) */
 //#define EM_SMCLK_FREQ_IN_HZ (8388608)
 
 #define CLK_25MHZ 25165824

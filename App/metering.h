@@ -36,6 +36,12 @@ typedef struct {
 #define RESP_RTC_TIME 0xB3
 #define RESP_CALIB_FACTOR 0xB4
 
+//**************************************
+// Electric Meter Comm Data
+//**************************************
+#define LEN_MAX_METER_RX 0x40
+#define LEN_MAX_METER_TX 0x60
+
 typedef struct {
 	uint8_t stx;
 	uint8_t msgType;
@@ -44,6 +50,12 @@ typedef struct {
 	uint8_t checkSum;
 	uint8_t etx;
 } elecMeterResp_t;
+
+struct receive {
+	char buf[LEN_MAX_METER_RX];
+	char status;
+	int index;
+};
 
 extern struct receive meterRx;
 

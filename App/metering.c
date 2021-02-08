@@ -2,18 +2,10 @@
 #include "meter.h"
 #include "driverlib.h"
 #include "uart.h"
+#include "timer.h"
 #include "shell.h"
 #include "EM_userConfig.h"
 #include <string.h>
-
-#define LEN_MAX_METER_RX 0x40
-#define LEN_MAX_METER_TX 0x60
-
-struct receive {
-	char buf[LEN_MAX_METER_RX];
-	char status;
-	int index;
-};
 
 struct receive meterRx;
 
@@ -178,10 +170,14 @@ void resp_read_meter(void)
 #pragma vector = USCI_A1_VECTOR
 __interrupt void USCI_A1_ISR(void)
 {
-	switch (__even_in_range(UCA0IV, USCI_UART_UCTXIFG)) {
+	switch (__even_in_range(UCA1IV, USCI_UART_UCTXIFG)) {
 	case USCI_UART_UCRXIFG: {
-		meterRx.buf[meterRx.index++] =
-			EUSCI_A_UART_receiveData(EUSCI_A0_BASE);
+		meterRx.buf[meterRx.index] =
+			EUSCI_A_UART_receiveData(EUSCI_A1_BASE);
+
+		if (meterRx.buf[meterRx.index++] == TERMINAL_STX) {
+			/* startTimer(TIMER_METER_RX); */
+		}
 		break;
 	}
 

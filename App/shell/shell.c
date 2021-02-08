@@ -17,6 +17,7 @@
 #include "gpio.h"
 #include "microrl.h"
 #include "uart.h"
+#include "rtc.h"
 
 #include "EM_userConfig.h"
 
@@ -73,15 +74,14 @@ static char *ver_keyworld[] = { _SCMD_MRL, _SCMD_DEMO };
 #define _SCMD_PHASE "phase"
 
 // calibration subcommands
-static char *calib_keyworld[] = { _SCMD_VOLT, _SCMD_CURRENT, _SCMD_ACTIVE,
-				  _SCMD_REACTIVE, _SCMD_PHASE };
+static char *calib_keyworld[] = { _SCMD_VOLT, _SCMD_CURRENT, _SCMD_ACTIVE, _SCMD_REACTIVE,
+				  _SCMD_PHASE };
 
 #define _NUM_OF_CALIB_SCMD 5
 
 // available  commands
-static char *keyworld[] = { _CMD_HELP1,	 _CMD_HELP2,	   _CMD_VER,
-			    _CMD_LIST,	 _CMD_CLEAR,	   _CMD_EXIT,
-			    _CMD_RESULT, _CMD_CALIBRATION, _CMD_PARAMETER };
+static char *keyworld[] = { _CMD_HELP1, _CMD_HELP2,  _CMD_VER,	       _CMD_LIST,     _CMD_CLEAR,
+			    _CMD_EXIT,	_CMD_RESULT, _CMD_CALIBRATION, _CMD_PARAMETER };
 
 // array for comletion
 static char *compl_world[_NUM_OF_CMD + 1];
@@ -128,33 +128,31 @@ void print(const char *__restrict format, ...)
 	}
 }
 
-void print_EMResult(void)
+extern void print_EMResult(void)
 {
 	print(RED_FONT "EM Result print\n\r");
 	print(WHITE_FONT "VRMS : %.3fV\n\r",
 	      ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].VRMS) / 1000);
-	print("IRMS : %.3fmA\n\r",
-	      ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].IRMS / 1000));
-	print("vPeak : %.3fV\n\r",
-	      ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].vPeak / 1000));
-	print("iPeak : %.3fmA\n\r",
-	      ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].iPeak / 1000));
-	print("powerFactor : %ld\n\r",
-	      gEmSWResult.phaseResults[EM_PH_A_IDX].powerFactor);
+	print("IRMS : %.3fmA\n\r", ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].IRMS / 1000));
+	print("vPeak : %.3fV\n\r", ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].vPeak / 1000));
+	print("iPeak : %.3fmA\n\r", ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].iPeak / 1000));
+	print("powerFactor : %ld\n\r", gEmSWResult.phaseResults[EM_PH_A_IDX].powerFactor);
 	print("frequency : %.2fHz\n\r",
 	      ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].frequency) / 100);
-	print("activePower : %llduW\n\r",
-	      gEmSWResult.phaseResults[EM_PH_A_IDX].activePower);
-	print("reactivePower : %llduVAr\n\r",
-	      gEmSWResult.phaseResults[EM_PH_A_IDX].reactivePower);
-	print("apparentPower : %llduVA\n\r",
-	      gEmSWResult.phaseResults[EM_PH_A_IDX].apparentPower);
-	print("activeEnergy : %lluuWh\n\r",
-	      gEmSWResult.phaseResults[EM_PH_A_IDX].activeEnergy);
+	print("activePower : %llduW\n\r", gEmSWResult.phaseResults[EM_PH_A_IDX].activePower);
+	print("reactivePower : %llduVAr\n\r", gEmSWResult.phaseResults[EM_PH_A_IDX].reactivePower);
+	print("apparentPower : %llduVA\n\r", gEmSWResult.phaseResults[EM_PH_A_IDX].apparentPower);
+	print("activeEnergy : %lluuWh\n\r", gEmSWResult.phaseResults[EM_PH_A_IDX].activeEnergy);
 	print("reactiveEnergy : %lluuVArh\n\r",
 	      gEmSWResult.phaseResults[EM_PH_A_IDX].reactiveEnergy);
 	print("apparentEnergy : %lluuVAh\n\r",
 	      gEmSWResult.phaseResults[EM_PH_A_IDX].apparentEnergy);
+}
+
+void print_rtc(void)
+{
+	print("Date %u-%u-%u, Time %u:%u:%u\n", rtcData.Year, rtcData.Month + 1, rtcData.DayOfMonth,
+	      rtcData.Hours, rtcData.Minutes, rtcData.Seconds);
 }
 
 static void print_Parameters(void)
@@ -162,10 +160,8 @@ static void print_Parameters(void)
 	print("voltageSF = %lu\n\r", g_emPhaseCalibration[0].voltageSF);
 	print("currentSF = %lu\n\r", g_emPhaseCalibration[0].currentSF);
 	print("activePowerSF = %lu\n\r", g_emPhaseCalibration[0].activePowerSF);
-	print("reactivePowerSF = %lu\n\r",
-	      g_emPhaseCalibration[0].reactivePowerSF);
-	print("phaseCorrection = %d\n\r",
-	      g_emPhaseCalibration[0].phaseCorrection);
+	print("reactivePowerSF = %lu\n\r", g_emPhaseCalibration[0].reactivePowerSF);
+	print("phaseCorrection = %d\n\r", g_emPhaseCalibration[0].phaseCorrection);
 }
 
 void calibrateFactor(const char *const *argv)
@@ -180,28 +176,22 @@ void calibrateFactor(const char *const *argv)
 	float calibRate;
 
 	if (strcmp(argv[1], "voltage") == 0) {
-		calibRate = (atof(argv[2]) * 1000) /
-			    gEmSWResult.phaseResults[EM_PH_A_IDX].VRMS;
-		calibRate =
-			(float)g_emPhaseCalibration[0].voltageSF * calibRate;
+		calibRate = (atof(argv[2]) * 1000) / gEmSWResult.phaseResults[EM_PH_A_IDX].VRMS;
+		calibRate = (float)g_emPhaseCalibration[0].voltageSF * calibRate;
 		g_emPhaseCalibration[0].voltageSF = (uint32_t)calibRate;
 	} else if (strcmp(argv[1], "current") == 0) {
-		calibRate = (atof(argv[2]) * 1000) /
-			    gEmSWResult.phaseResults[EM_PH_A_IDX].IRMS;
-		calibRate =
-			(float)g_emPhaseCalibration[0].currentSF * calibRate;
+		calibRate = (atof(argv[2]) * 1000) / gEmSWResult.phaseResults[EM_PH_A_IDX].IRMS;
+		calibRate = (float)g_emPhaseCalibration[0].currentSF * calibRate;
 		g_emPhaseCalibration[0].currentSF = (uint32_t)calibRate;
 	} else if (strcmp(argv[1], "active") == 0) {
 		calibRate = (atof(argv[2]) * 1000000) /
 			    gEmSWResult.phaseResults[EM_PH_A_IDX].activePower;
-		calibRate = (float)g_emPhaseCalibration[0].activePowerSF *
-			    calibRate;
+		calibRate = (float)g_emPhaseCalibration[0].activePowerSF * calibRate;
 		g_emPhaseCalibration[0].activePowerSF = (uint32_t)calibRate;
 	} else if (strcmp(argv[1], "reactive") == 0) {
 		calibRate = (atof(argv[2]) * 1000000) /
 			    gEmSWResult.phaseResults[EM_PH_A_IDX].reactivePower;
-		calibRate = (float)g_emPhaseCalibration[0].reactivePowerSF *
-			    calibRate;
+		calibRate = (float)g_emPhaseCalibration[0].reactivePowerSF * calibRate;
 		g_emPhaseCalibration[0].reactivePowerSF = (uint32_t)calibRate;
 	} else if (strcmp(argv[1], "phase") == 0) {
 		print("phase corretion not working yet\n\r");
@@ -211,8 +201,7 @@ void calibrateFactor(const char *const *argv)
 		return;
 	}
 
-	memcpy(&flash.calib, &g_emPhaseCalibration,
-	       sizeof(EM_Phase_Calibration));
+	memcpy(&flash.calib, &g_emPhaseCalibration, sizeof(EM_Phase_Calibration));
 	writeFlashCalib();
 }
 
@@ -306,15 +295,13 @@ char **complet(int argc, const char *const *argv)
 	} else if ((argc > 1) && (strcmp(argv[0], _CMD_VER) == 0)) {
 		// iterate through subcommand for command _CMD_VER array
 		for (int i = 0; i < _NUM_OF_VER_SCMD; i++) {
-			if (strstr(ver_keyworld[i], argv[argc - 1]) ==
-			    ver_keyworld[i]) {
+			if (strstr(ver_keyworld[i], argv[argc - 1]) == ver_keyworld[i]) {
 				compl_world[j++] = ver_keyworld[i];
 			}
 		}
 	} else if ((argc > 1) && (strcmp(argv[0], _CMD_CALIBRATION) == 0)) {
 		for (int i = 0; i < _NUM_OF_CALIB_SCMD; i++) {
-			if (strstr(calib_keyworld[i], argv[argc - 1]) ==
-			    calib_keyworld[i]) {
+			if (strstr(calib_keyworld[i], argv[argc - 1]) == calib_keyworld[i]) {
 				compl_world[j++] = calib_keyworld[i];
 			}
 		}

@@ -1,7 +1,10 @@
 #include "timer.h"
 #include "shell.h"
+#include "metering.h"
+#include "gpio.h"
 
-#define TIMER_A_PERIOD 32768
+#define CHECK_RXEND_PERIOD 64
+#define TEST_PERIOD 32768
 
 static uint8_t timerMode = 0;
 
@@ -11,7 +14,10 @@ void startTimer(uint8_t mode)
 
 	switch (mode) {
 	case TIMER_METER_RX:
-		period = 32768;
+		period = CHECK_RXEND_PERIOD;
+		break;
+	case TIMER_TEST:
+		period = TEST_PERIOD;
 		break;
 	default:
 		print("Invalid Timer Mode\n");
@@ -42,12 +48,25 @@ void startTimer(uint8_t mode)
 #pragma vector = TIMER0_A0_VECTOR
 __interrupt void Timer0_A0(void)
 {
+	volatile static int prevData = 0;
+
 	switch (timerMode) {
-	case TIMER_METER_RX:
-		/* print("TIMER_METER_RX!\n"); */
+	case TIMER_METER_RX: {
+		if (prevData == meterRx.index) {
+			Timer_A_stop(TIMER_A0_BASE);
+		} else {
+			prevData = meterRx.index;
+		}
 		break;
-	default:
+	}
+	case TIMER_TEST: {
+		print("timer test\n");
+		break;
+	}
+
+	default: {
 		Timer_A_stop(TIMER_A0_BASE);
 		break;
+	}
 	}
 }

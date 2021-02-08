@@ -32,16 +32,17 @@ void initUart(void)
 						   GPIO_PIN2 | GPIO_PIN3);
 
 	EUSCI_A_UART_initParam params;
-	params = Get_BaudrateConfig(EM_SMCLK_FREQ_IN_HZ);
+	params = Get_BaudrateConfig(EM_SMCLK_FREQ_IN_HZ, 115200);
 	Init_UartDev(SHELL_PORT, &params);
 
 	// Meter
 	GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P1,
 						   GPIO_PIN4 | GPIO_PIN5);
+	params = Get_BaudrateConfig(EM_SMCLK_FREQ_IN_HZ, 115200);
 	Init_UartDev(METER_PORT, &params);
 }
 
-EUSCI_A_UART_initParam Get_BaudrateConfig(uint32_t smclk)
+EUSCI_A_UART_initParam Get_BaudrateConfig(uint32_t smclk, uint32_t baudrate)
 {
 	EUSCI_A_UART_initParam config;
 
@@ -52,34 +53,55 @@ EUSCI_A_UART_initParam Get_BaudrateConfig(uint32_t smclk)
 	config.uartMode = EUSCI_A_UART_MODE;
 
 	switch (smclk) {
-	// 115200 Baud Rate @ 25MHz
+	// smclk 25MHz
 	case CLK_25MHZ:
-		config.clockPrescalar = 13;
-		config.firstModReg = 10;
-		config.secondModReg = 0;
-		config.overSampling =
-			EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION;
+		switch (baudrate) {
+		case 115200:
+			config.clockPrescalar = 13;
+			config.firstModReg = 10;
+			config.secondModReg = 0;
+			config.overSampling =
+				EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION;
+			break;
+		default:
+			print("Baudrate Setting Error Out of acceptable range\n\r");
+			break;
+		}
 		break;
-	// 115200 Baud Rate @ 16MHz
+	// smclk 16MHz
 	case CLK_16MHZ:
-		config.clockPrescalar = 9;
-		config.firstModReg = 2;
-		config.secondModReg = 0;
-		config.overSampling =
-			EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION;
+		switch (baudrate) {
+		case 115200:
+			config.clockPrescalar = 9;
+			config.firstModReg = 2;
+			config.secondModReg = 0;
+			config.overSampling =
+				EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION;
+			break;
+		default:
+			print("Baudrate Setting Error Out of acceptable range\n\r");
+			break;
+		}
 		break;
 
-	// 115200 Baud Rate @ 16MHz
+	// smclk 8MHz
 	case CLK_8MHZ:
-		config.clockPrescalar = 4;
-		config.firstModReg = 7;
-		config.secondModReg = 4;
-		config.overSampling =
-			EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION;
+		switch (baudrate) {
+		case 115200:
+			config.clockPrescalar = 4;
+			config.firstModReg = 7;
+			config.secondModReg = 4;
+			config.overSampling =
+				EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION;
+			break;
+		default:
+			print("Baudrate Setting Error Out of acceptable range\n\r");
+			break;
+		}
 		break;
 
 	default:
-		print("Baudrate Setting Error Out of acceptable clock range\n\r");
+		print("Clock Setting Error Out of acceptable range\n\r");
 		break;
 	}
 

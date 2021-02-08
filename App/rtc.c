@@ -1,63 +1,73 @@
 #include "rtc.h"
 #include "shell.h"
+#include <stdio.h>
+#include <string.h>
+#include <time.h>
 
-Calendar rtcData = {
-	.Year = 2011,
-	.Month = 12,
-	.DayOfMonth = 05,
-	.DayOfWeek = 03,
-	.Hours = 24,
-	.Minutes = 59,
-	.Seconds = 55,
-};
+Calendar rtcData = { 0 };
+
+static uint16_t dayofweek(uint16_t d, uint16_t m, uint16_t y)
+{
+	static int t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
+	y -= m < 3;
+	return (y + y / 4 - y / 100 + y / 400 + t[m - 1] + d) % 7;
+}
+
+static void cvt_TIME(char const *date, char const *time, Calendar *rtc)
+{
+	char s_month[5];
+	uint16_t month, day, year;
+	static const char month_names[] = "JanFebMarAprMayJunJulAugSepOctNovDec";
+
+	sscanf(date, "%s %u %u", s_month, &day, &year);
+
+	month = (strstr(month_names, s_month) - month_names) / 3;
+	uint16_t weekday = dayofweek(day, month + 1, year);
+
+	rtc->Month = month;
+	rtc->DayOfMonth = day;
+	rtc->DayOfWeek = weekday;
+	rtc->Year = year;
+
+	uint16_t hour, minute, second;
+
+	sscanf(time, "%2u %*c %2u %*c %2u", &hour, &minute, &second);
+
+	rtc->Hours = hour;
+	rtc->Minutes = minute;
+	rtc->Seconds = second;
+}
 
 void initRTC(void)
 {
-	// Initialize alarm struct
-	// RTC_C_configureCalendarAlarmParam alarmParam;
-	// alarmParam.minutesAlarm    = 0x00;
-	// alarmParam.hoursAlarm      = 0x17;
-	// alarmParam.dayOfWeekAlarm  = RTC_C_ALARMCONDITION_OFF;
-	// alarmParam.dayOfMonthAlarm = 0x05;
+	//Initialize calendar struct
+	Calendar currentTime;
+	cvt_TIME(__DATE__, __TIME__, &currentTime);
 
-	// Initialize Calendar Mode of RTC C
-	// RTC_C_initCalendar(RTC_C_BASE, &rtcData, RTC_C_FORMAT_BINARY);
-	// RTC_C_configureCalendarAlarm(RTC_C_BASE, &alarmParam);
-	// RTC_C_setCalendarEvent(RTC_C_BASE, RTC_C_CALENDAREVENT_MINUTECHANGE);
-	// RTC_C_enableInterrupt(RTC_C_BASE, RTC_C_CLOCK_READ_READY_INTERRUPT +
-	//                                       RTC_C_TIME_EVENT_INTERRUPT +
-	//                                       RTC_C_CLOCK_ALARM_INTERRUPT);
-	// RTC_C_startClock(RTC_C_BASE);
-
-	// Loop until XT1, XT2 & DCO fault flag is cleared
-	do {
-		UCSCTL7 &= ~(XT2OFFG | XT1LFOFFG | DCOFFG);
-		// Clear XT2,XT1,DCO fault flags
-		SFRIFG1 &= ~OFIFG; // Clear fault flags
-	} while (SFRIFG1 & OFIFG); // Test oscillator fault flag
-
-	// Configure RTC_C
-	RTCCTL0_H = RTCKEY_H; // Unlock RTC_C module
-	RTCCTL0_L |=
-		RTCTEVIE | RTCAIE | RTCRDYIE; // Enable RTC time event, alarm
-	// event, read ready interrupt
-	RTCCTL1 |= RTCBCD | RTCHOLD; // RTC enable BCD mode, RTC hold
-
-	RTCYEAR = 0x2011; // Year = 0x2011 = 2011
-	RTCMON = 0x12; // Month = 0x12 = December
-	RTCDAY = 0x05; // Day = 0x05 = 5th
-	RTCDOW = 0x03; // Day of week = 0x03 = Wednesday
-	RTCHOUR = 0x24; // Hour = 0x12
-	RTCMIN = 0x59; // Minute = 0x57
-	RTCSEC = 0x55; // Seconds = 0x36
-
-	RTCADOWDAY = 0x3; // RTC Day of week alarm = 0x2
-	RTCADAY = 0x22; // RTC Day Alarm = 0x22
-	RTCAHOUR = 0x23; // RTC Hour Alarm
-	RTCAMIN = 0x45; // RTC Minute Alarm
-
-	RTCCTL1 &= ~(RTCHOLD); // Start RTC calendar mode
-	RTCCTL0_H = 0; // Lock RTC_C module
+	//Initialize alarm struct
+	RTC_C_configureCalendarAlarmParam alarmParam;
+	alarmParam.minutesAlarm = 27;
+	alarmParam.hoursAlarm = currentTime.Hours;
+	alarmParam.dayOfWeekAlarm = currentTime.DayOfWeek;
+	alarmParam.dayOfMonthAlarm = currentTime.DayOfMonth;
+	//Initialize Calendar Mode of RTC C
+	/*
+    * Base Address of the RTC C A
+    * Pass in current time, initialized above
+    * Use BCD as Calendar Register Format
+    */
+	RTC_C_initCalendar(RTC_C_BASE, &currentTime, RTC_C_FORMAT_BINARY);
+	RTC_C_configureCalendarAlarm(RTC_C_BASE, &alarmParam);
+	//Specify an interrupt to assert every minute
+	RTC_C_setCalendarEvent(RTC_C_BASE, RTC_C_CALENDAREVENT_HOURCHANGE);
+	//Enable interrupt for RTC C Ready Status, which asserts when the RTC C
+	//Calendar registers are ready to read.
+	//Also, enable interrupts for the Calendar alarm and Calendar event.
+	RTC_C_enableInterrupt(RTC_C_BASE, RTC_C_CLOCK_READ_READY_INTERRUPT +
+						  RTC_C_TIME_EVENT_INTERRUPT +
+						  RTC_C_CLOCK_ALARM_INTERRUPT);
+	//Start RTC C Clock
+	RTC_C_startClock(RTC_C_BASE);
 }
 
 // RTC Interrupt Service Routine
@@ -75,17 +85,15 @@ void __attribute__((interrupt(RTC_VECTOR))) rtc_isr(void)
 		break;
 	case RTCIV_RTCOFIFG: // RTCOFIFG
 		break;
-	case RTCIV_RTCRDYIFG: // RTCRDYIFG
-		__no_operation(); // Interrupts every minute
-		print("second\n");
+	case RTCIV_RTCRDYIFG: // RTCRDYIFG second event
+		/* rtcData = RTC_C_getCalendarTime(RTC_C_BASE); */
+		/* print_rtc(); */
 		break;
-	case RTCIV_RTCTEVIFG: // RTCEVIFG
-		__no_operation(); // Interrupts every minute
-		print("minute\n");
+	case RTCIV_RTCTEVIFG: // RTCEVIFG hour event
+		/* print("hour event!\n"); */
 		break;
-	case RTCIV_RTCAIFG: // RTCAIFG
-		__no_operation(); // Interrupts every alarm event
-		print("alarm\n");
+	case RTCIV_RTCAIFG: // RTCAIFG alarm event
+		/* print("alarm event!\n"); */
 		break;
 	case RTCIV_RT0PSIFG: // RT0PSIFG
 		break;

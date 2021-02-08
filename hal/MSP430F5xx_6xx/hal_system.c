@@ -28,6 +28,7 @@
 // Local function prototypes
 //
 static void hal_system_ClockInit(uint32_t mclkFreq);
+static void test_clockinit(void);
 
 //
 // Function declarations
@@ -35,6 +36,7 @@ static void hal_system_ClockInit(uint32_t mclkFreq);
 void initSystem(void)
 {
 	hal_system_ClockInit(EM_SMCLK_FREQ_IN_HZ);
+	/* test_clockinit(); */
 }
 
 //
@@ -49,55 +51,33 @@ void initSystem(void)
 //! \return none
 //
 // *****************************************************************************
-static void hal_system_ClockInit(uint32_t mclkFreq)
+static void test_clockinit(void)
 {
-	// Initialize LFXT1
-	/* UCSCTL6 &= ~(XT1OFF); // Enable XT1 */
-	/* UCSCTL6 |= XCAP_3; // Internal load cap */
-	/* UCSCTL6 &= XT1DRIVE_0; */
-	/* UCSCTL6 &= XT1DRIVE_1; */
+	// Setup LFXT1
+	UCSCTL6 &= ~(XT1OFF); // XT1 On
+	UCSCTL6 |= XCAP_3; // Internal load cap
 
-	/* UCSCTL4 |= SELA__XT1CLK; // Set ACLK = REFO */
-	/* UCS_setExternalClockSource(32768, 0); */
+	// Loop until XT1 fault flag is cleared
+	do {
+		UCSCTL7 &= ~XT1LFOFFG; // Clear XT1 fault flags
+	} while (UCSCTL7 & XT1LFOFFG); // Test XT1 fault flag
 
-	PMM_setVCore(PMM_CORE_LEVEL_3);
+	// Set external clock frequency to 32.768 KHz
+	UCS_setExternalClockSource(32768, 0);
+
+	PMM_setVCore(PMM_CORE_LEVEL_2);
 
 	// Setup UCS
-	UCSCTL3 |= SELREF_2; // Set DCO FLL reference = REFO
-	UCSCTL4 |= SELA_2; // Set ACLK = REFO
+	UCSCTL3 |= SELREF_0; // Set DCO FLL reference = REFO
+	UCSCTL4 |= SELA_0; // Set ACLK = REFO
 
 	__bis_SR_register(SCG0); // Disable the FLL control loop
 	UCSCTL0 = 0x0000; // Set lowest possible DCOx, MODx
 	UCSCTL1 = DCORSEL_5; // Select DCO range 16MHz operation
 
-	// Worst-case settling time for the DCO when the DCO range bits have been
-	// changed is n x 32 x 32 x f_MCLK / f_FLL_reference. See UCS chapter in 5xx
-	// UG for optimization.
-	// 32 x 32 x 8 MHz / 32,768 Hz = 250000 = MCLK cycles for DCO to settle
-	//
-	// (N + 1) * FLLRef = Fdco
-	// (243 + 1) * 32768 = 8MHz
-	// Set FLL Div = fDCOCLK/2
-	switch (mclkFreq) {
-	/** Clock 25Mhz Not Working */
-	case CLK_25MHZ:
-		UCSCTL2 = FLLD_1 | 767; // Set DCO Multiplier for 25165824Hz
-		__bic_SR_register(SCG0); // Enable the FLL control loop
-		__delay_cycles(786432);
-		break;
-	case CLK_16MHZ:
-		UCSCTL2 = FLLD_1 | 511; // Set DCO Multiplier for 16777216Hz
-		__bic_SR_register(SCG0); // Enable the FLL control loop
-		__delay_cycles(524288);
-		break;
-	case CLK_8MHZ:
-		UCSCTL2 = FLLD_1 | 255; // Set DCO Multiplier for 8388608Hz
-		__bic_SR_register(SCG0); // Enable the FLL control loop
-		__delay_cycles(262144);
-		break;
-	default:
-		break;
-	}
+	UCSCTL2 = FLLD_1 | 511; // Set DCO Multiplier for 16777216Hz
+	__bic_SR_register(SCG0); // Enable the FLL control loop
+	__delay_cycles(524300);
 
 	// Loop until XT1, XT2 & DCO fault flag is cleared
 	do {
@@ -105,4 +85,18 @@ static void hal_system_ClockInit(uint32_t mclkFreq)
 		// Clear XT2,XT1,DCO fault flags
 		SFRIFG1 &= ~OFIFG; // Clear fault flags
 	} while (SFRIFG1 & OFIFG); // Test oscillator fault flag
+}
+
+static void hal_system_ClockInit(uint32_t mclkFreq)
+{
+	PMM_setVCore(PMM_CORE_LEVEL_3);
+
+	UCS_turnOnLFXT1(UCS_XT1_DRIVE_3, UCS_XCAP_3);
+	UCS_setExternalClockSource(32768, 0);
+
+	UCS_initClockSignal(UCS_FLLREF, UCS_XT1CLK_SELECT, UCS_CLOCK_DIVIDER_1);
+
+	UCS_initClockSignal(UCS_ACLK, UCS_XT1CLK_SELECT, UCS_CLOCK_DIVIDER_1);
+
+	UCS_initFLLSettle(mclkFreq / 1000, mclkFreq / 32768);
 }

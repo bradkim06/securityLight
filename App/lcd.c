@@ -3,6 +3,7 @@
 #include <string.h>
 #include "lcd_c.h"
 #include "shell.h"
+#include "rtc.h"
 
 uint8_t currentLCDMode = LCD_CURRENT_DATE;
 uint8_t lightMode = 0;
@@ -17,10 +18,9 @@ typedef struct {
 } lcd_pattern_t;
 
 const lcd_pattern_t lcdPattern[] = {
-	{ '0', 0, 0xAF }, { '1', 1, 0x06 }, { '2', 2, 0xCB }, { '3', 3, 0x4F },
-	{ '4', 4, 0x66 }, { '5', 5, 0x6D }, { '6', 6, 0xEC }, { '7', 7, 0x07 },
-	{ '8', 8, 0xEF }, { '9', 9, 0x67 }, { '-', 0, 0x40 }, { ' ', 0, 0x00 },
-	{ 'O', 0, 0xAF }, { 'F', 0, 0xE8 },
+	{ '0', 0, 0xAF }, { '1', 1, 0x06 }, { '2', 2, 0xCB }, { '3', 3, 0x4F }, { '4', 4, 0x66 },
+	{ '5', 5, 0x6D }, { '6', 6, 0xEC }, { '7', 7, 0x07 }, { '8', 8, 0xEF }, { '9', 9, 0x67 },
+	{ '-', 0, 0x40 }, { ' ', 0, 0x00 }, { 'O', 0, 0xAF }, { 'F', 0, 0xE8 },
 };
 
 static uint8_t lcd_getCharPattern(char c)
@@ -51,8 +51,7 @@ void hal_lcd_updatememory(uint8_t baseposition, uint8_t num_segments)
 	uint8_t i;
 
 	for (i = 0; i < num_segments; i++) {
-		LCD_C_setMemory(LCD_C_BASE, baseposition + i,
-				LCDMemMap[baseposition + i]);
+		LCD_C_setMemory(LCD_C_BASE, baseposition + i, LCDMemMap[baseposition + i]);
 	}
 }
 
@@ -76,6 +75,11 @@ void DisplayDay(void)
 {
 	memset(LCDMemMap, 0, 16);
 	char Array[4] = "";
+
+	rtcData = RTC_C_getCalendarTime(RTC_C_BASE);
+	lcdData.date.year = rtcData.Year;
+	lcdData.date.month = rtcData.Month;
+	lcdData.date.day = rtcData.DayOfMonth;
 
 	// year
 	sprintf(Array, "%04lu", (unsigned long)lcdData.date.year);
@@ -310,22 +314,7 @@ void initLCD(void)
 {
 	LCD_C_init(LCD_C_BASE, (LCD_C_initParam *)&LCD_C_INIT_PARAM);
 
-	LCD_C_setPinAsLCDFunctionEx(LCD_C_BASE, LCD_C_SEGMENT_LINE_0,
-				    LCD_C_SEGMENT_LINE_18);
-
-	/* LCD_C_selectBias(LCD_C_BASE, LCD_C_BIAS_1_3); */
-	/*  */
-	/* LCD_C_setVLCDSource(LCD_C_BASE, LCD_C_VLCD_GENERATED_INTERNALLY, */
-	/*                     LCD_C_V2V3V4_GENERATED_INTERNALLY_NOT_SWITCHED_TO_PINS,
-   */
-	/*                     LCD_C_V5_SOURCED_FROM_R03); */
-	/*  */
-	/* LCD_C_setVLCDVoltage(LCD_C_BASE, LCD_C_CHARGEPUMP_DISABLED); */
-	/* LCD_C_disableChargePump(LCD_C_BASE); */
-	/*  */
-	/* LCD_C_configChargePump(LCD_C_BASE, LCD_C_SYNCHRONIZATION_ENABLED, 0); */
-
-	// Clear LCD memory
+	LCD_C_setPinAsLCDFunctionEx(LCD_C_BASE, LCD_C_SEGMENT_LINE_0, LCD_C_SEGMENT_LINE_18);
 	LCD_C_clearMemory(LCD_C_BASE);
 
 	// Turn LCD on
