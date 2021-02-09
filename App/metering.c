@@ -42,9 +42,11 @@ struct receive meterRx;
 
 static uint8_t calcEVchecksum(uint8_t *from, int size)
 {
-	uint8_t checksum = 0;
 	// size - 2 -> Not Calculate ETX, Checksum
-	for (int i = 0; i < size - 2; i++) {
+	size = size - 2;
+	uint8_t checksum = 0;
+
+	for (int i = 0; i < size; i++) {
 		checksum += *(from + i);
 	}
 
