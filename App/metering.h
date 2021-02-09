@@ -44,7 +44,11 @@ typedef struct {
 typedef struct {
 	uint8_t stx;
 	uint8_t msgType;
-	EM_Phase_Results results;
+	uint32_t VRMS;
+	uint32_t IRMS;
+	uint32_t shortIRMS;
+	int32_t power;
+	int32_t cumPower;
 	uint8_t checkSum;
 	uint8_t etx;
 } elecMeterResp_t;

@@ -86,12 +86,21 @@ void resp_read_meter(void)
 
 	data.stx = METER_STX;
 	data.msgType = RESP_READ_METER;
-	memcpy(&data.results, &gEmSWResult.phaseResults[EM_PH_A_IDX], sizeof(EM_Phase_Results));
-	data.results = gEmSWResult.phaseResults[EM_PH_A_IDX];
+
+	// metering data
+	data.VRMS = gEmSWResult.phaseResults[EM_PH_A_IDX].VRMS;
+	data.IRMS = gEmSWResult.phaseResults[EM_PH_A_IDX].IRMS / 1000;
+	data.shortIRMS = 0; //TODO
+	data.power = (int32_t)(gEmSWResult.phaseResults[EM_PH_A_IDX].activePower / 1000);
+	data.cumPower = 0; //TODO
+
 	data.checkSum = calcEVchecksum((uint8_t *)&data.stx, len);
 	data.etx = METER_ETX;
 
 	uint8_t *txBuf = &data.stx;
+
+#ifdef __TEST__
+	print_EMResult();
 
 	for (int i = 0; i < len; i++) {
 		EUSCI_A_UART_transmitData(METER_PORT, *(txBuf + i));
@@ -118,57 +127,26 @@ void resp_read_meter(void)
 	txBuf = &data.msgType;
 	print("MSG Type : 0x%02X\n", *txBuf);
 
-	txBuf = (uint8_t *)&data.results.VRMS;
-	print("VRMS : %lumV ", data.results.VRMS);
+	txBuf = (uint8_t *)&data.VRMS;
+	print("VRMS : %lumV ", data.VRMS);
 	print("Hex : 0x%lX\n", *((uint32_t *)txBuf));
 
-	txBuf = (uint8_t *)&data.results.IRMS;
-	print("IRMS : %luuA ", data.results.IRMS);
+	txBuf = (uint8_t *)&data.IRMS;
+	print("IRMS : %lumA ", data.IRMS);
 	print("Hex : 0x%lX\n", *((uint32_t *)txBuf));
 
-	txBuf = (uint8_t *)&data.results.vPeak;
-	print("vPeak : %lumV ", data.results.vPeak);
+	txBuf = (uint8_t *)&data.shortIRMS;
+	print("shortIRMS : %lumA ", data.shortIRMS);
 	print("Hex : 0x%lX\n", *((uint32_t *)txBuf));
 
-	txBuf = (uint8_t *)&data.results.iPeak;
-	print("iPeak : %luuA ", data.results.iPeak);
+	txBuf = (uint8_t *)&data.power;
+	print("Active Power : %lumW ", data.power);
 	print("Hex : 0x%lX\n", *((uint32_t *)txBuf));
 
-	txBuf = (uint8_t *)&data.results.powerFactor;
-	print("powerFactor : %lu ", data.results.powerFactor);
-	print("Hex : 0x%lX\n", *((int32_t *)txBuf));
-
-	txBuf = (uint8_t *)&data.results.frequency;
-	print("Frequency : %uHz ", data.results.frequency);
-	print("Hex : 0x%lX\n", *((uint16_t *)txBuf));
-
-	txBuf = (uint8_t *)&data.results.activePower;
-	print("activePower : %llduW ", data.results.activePower);
-	print("Hex : 0x%llX\n", *((int64_t *)txBuf));
-
-	txBuf = (uint8_t *)&data.results.reactivePower;
-	print("reactivePower : %llduVAr ", data.results.reactivePower);
-	print("Hex : 0x%llX\n", *((int64_t *)txBuf));
-
-	txBuf = (uint8_t *)&data.results.apparentPower;
-	print("apparentPower : %llduVA ", data.results.apparentPower);
-	print("Hex : 0x%llX\n", *((int64_t *)txBuf));
-
-	txBuf = (uint8_t *)&data.results.activeEnergy;
-	print("activeEnergy : %lluuWh ", data.results.activeEnergy);
-	print("Hex : 0x%llX\n", *((uint64_t *)txBuf));
-
-	txBuf = (uint8_t *)&data.results.reactiveEnergy;
-	print("reactiveEnergy : %lluuVArh ", data.results.reactiveEnergy);
-	print("Hex : 0x%llX\n", *((uint64_t *)txBuf));
-
-	txBuf = (uint8_t *)&data.results.apparentEnergy;
-	print("apparentEnergy : %lluuVAh ", data.results.apparentEnergy);
-	print("Hex : 0x%llX\n", *((uint64_t *)txBuf));
-
-	txBuf = (uint8_t *)&data.results.phaseID;
-	print("phaseID : %d ", data.results.phaseID);
-	print("Hex : 0x%d\n", *((int *)txBuf));
+	txBuf = (uint8_t *)&data.cumPower;
+	print("Cumulative Active Power : %lumW ", data.cumPower);
+	print("Hex : 0x%lX\n", *((uint32_t *)txBuf));
+#endif
 }
 
 void checkMessage(void)
