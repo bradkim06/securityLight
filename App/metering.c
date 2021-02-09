@@ -7,6 +7,8 @@
 #include "EM_userConfig.h"
 #include <string.h>
 
+extern uint8_t gemResultStatus;
+
 struct receive meterRx;
 
 /* union converter { */
@@ -52,16 +54,23 @@ void req_read_meter(void)
 {
 	elecMeterReq_t *rx = (elecMeterReq_t *)meterRx.buf;
 
+	if (rx->stx != TERMINAL_STX) {
+		print("Invalid STX\n");
+		return;
+	}
+
 	if (rx->etx != TERMINAL_ETX) {
 		print("Invalid ETX\n");
 		return;
 	}
 
-	if (rx->checkSum !=
-	    calc_checksum((uint8_t *)&rx, sizeof(elecMeterReq_t))) {
+	if (rx->checkSum != calc_checksum((uint8_t *)&rx->stx, sizeof(elecMeterReq_t) - 2)) {
 		print("Invalid checkSum\n");
 		return;
 	}
+
+	HAL_ADC_startConversion(&halAdcConfig);
+	EM_foregroundProc(&gemResultStatus);
 
 	resp_read_meter();
 }
@@ -74,10 +83,9 @@ void resp_read_meter(void)
 
 	data.stx = METER_STX;
 	data.msgType = RESP_READ_METER;
-	memcpy(&data.results, &gEmSWResult.phaseResults[EM_PH_A_IDX],
-	       sizeof(EM_Phase_Results));
+	memcpy(&data.results, &gEmSWResult.phaseResults[EM_PH_A_IDX], sizeof(EM_Phase_Results));
 	data.results = gEmSWResult.phaseResults[EM_PH_A_IDX];
-	data.checkSum = calc_checksum((uint8_t *)&data.stx, len - 1);
+	data.checkSum = calc_checksum((uint8_t *)&data.stx, len - 2);
 	data.etx = METER_ETX;
 
 	uint8_t *txBuf = &data.stx;
@@ -86,7 +94,6 @@ void resp_read_meter(void)
 		EUSCI_A_UART_transmitData(METER_PORT, *(txBuf + i));
 	}
 
-#ifdef __TEST__
 	print(RED_FONT "RESP_READ_METER \n\r");
 	print(WHITE_FONT);
 
@@ -159,7 +166,24 @@ void resp_read_meter(void)
 	txBuf = (uint8_t *)&data.results.phaseID;
 	print("phaseID : %d ", data.results.phaseID);
 	print("Hex : 0x%d\n", *((int *)txBuf));
-#endif
+}
+
+void checkMessage(void)
+{
+	print("checkMsg\n");
+
+	for (int i = 0; i < meterRx.index; i++) {
+		print("meterRx.buf[%d] = %x\n", i, meterRx.buf[i]);
+	}
+
+	switch (meterRx.buf[1]) {
+	case REQ_READ_METER:
+		print("req read meter\n");
+		req_read_meter();
+		break;
+	}
+
+	memset(&meterRx, 0, sizeof(meterRx));
 }
 
 //******************************************************************************
@@ -172,11 +196,18 @@ __interrupt void USCI_A1_ISR(void)
 {
 	switch (__even_in_range(UCA1IV, USCI_UART_UCTXIFG)) {
 	case USCI_UART_UCRXIFG: {
-		meterRx.buf[meterRx.index] =
-			EUSCI_A_UART_receiveData(EUSCI_A1_BASE);
+		meterRx.buf[meterRx.index] = EUSCI_A_UART_receiveData(EUSCI_A1_BASE);
 
-		if (meterRx.buf[meterRx.index++] == TERMINAL_STX) {
-			/* startTimer(TIMER_METER_RX); */
+		if (meterRx.buf[0] == TERMINAL_STX) {
+			if (meterRx.index == 0) {
+				meterRx.index++;
+				startTimer(TIMER_METER_RX);
+			} else if (meterRx.index >= LEN_MAX_METER_RX) {
+				Timer_A_stop(TIMER_A0_BASE);
+				memset(&meterRx, 0, sizeof(meterRx));
+			} else {
+				meterRx.index++;
+			}
 		}
 		break;
 	}

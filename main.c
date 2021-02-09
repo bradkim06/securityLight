@@ -47,8 +47,7 @@ static void initialize(void)
 
 int main(void)
 {
-	WDT_A_initWatchdogTimer(WDT_A_BASE, WDT_A_CLOCKSOURCE_VLOCLK,
-				WDT_A_CLOCKDIVIDER_8192K);
+	WDT_A_initWatchdogTimer(WDT_A_BASE, WDT_A_CLOCKSOURCE_VLOCLK, WDT_A_CLOCKDIVIDER_8192K);
 	WDT_A_start(WDT_A_BASE);
 
 	initialize();
@@ -60,16 +59,9 @@ int main(void)
 
 #ifdef __TEST__
 		if (gemResultStatus) {
-			/* Timer_A_startCounter(TIMER_A1_BASE, */
-			/* 		     TIMER_A_CONTINUOUS_MODE); */
 			/* print_EMResult(); */
-			/* LCD_SelectMode(++currentLCDMode); */
-			/* print("second = %d, minute = %d\n", */
-			/*       HWREG8(RTC_C_BASE + OFS_RTCTIM0_L), RTCMIN); */
 			/* resp_read_meter(); */
 		}
-		/* rtcData = RTC_C_getCalendarTime(RTC_C_BASE); */
-		// lcd_updateAll();
 		LCD_SelectMode(currentLCDMode);
 #endif
 	}

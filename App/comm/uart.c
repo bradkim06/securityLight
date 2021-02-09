@@ -17,10 +17,8 @@ static bool Init_UartDev(uint16_t baseAddress, EUSCI_A_UART_initParam *params)
 	EUSCI_A_UART_disable(baseAddress);
 	retVal = EUSCI_A_UART_init(baseAddress, params);
 	EUSCI_A_UART_enable(baseAddress);
-	EUSCI_A_UART_clearInterrupt(baseAddress,
-				    EUSCI_A_UART_RECEIVE_INTERRUPT_FLAG);
-	EUSCI_A_UART_enableInterrupt(baseAddress,
-				     EUSCI_A_UART_RECEIVE_INTERRUPT);
+	EUSCI_A_UART_clearInterrupt(baseAddress, EUSCI_A_UART_RECEIVE_INTERRUPT_FLAG);
+	EUSCI_A_UART_enableInterrupt(baseAddress, EUSCI_A_UART_RECEIVE_INTERRUPT);
 
 	return retVal;
 }
@@ -28,17 +26,15 @@ static bool Init_UartDev(uint16_t baseAddress, EUSCI_A_UART_initParam *params)
 void initUart(void)
 {
 	// Shell Uart
-	GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P1,
-						   GPIO_PIN2 | GPIO_PIN3);
+	GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P1, GPIO_PIN2 | GPIO_PIN3);
 
 	EUSCI_A_UART_initParam params;
-	params = Get_BaudrateConfig(EM_SMCLK_FREQ_IN_HZ, 115200);
+	params = Get_BaudrateConfig(EM_SMCLK_FREQ_IN_HZ, SHELL_BAUDRATE);
 	Init_UartDev(SHELL_PORT, &params);
 
 	// Meter
-	GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P1,
-						   GPIO_PIN4 | GPIO_PIN5);
-	params = Get_BaudrateConfig(EM_SMCLK_FREQ_IN_HZ, 115200);
+	GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P1, GPIO_PIN4 | GPIO_PIN5);
+	params = Get_BaudrateConfig(EM_SMCLK_FREQ_IN_HZ, METER_BAUDRATE);
 	Init_UartDev(METER_PORT, &params);
 }
 
@@ -53,15 +49,20 @@ EUSCI_A_UART_initParam Get_BaudrateConfig(uint32_t smclk, uint32_t baudrate)
 	config.uartMode = EUSCI_A_UART_MODE;
 
 	switch (smclk) {
-	// smclk 25MHz
+	// smclk 25165824Hz
 	case CLK_25MHZ:
 		switch (baudrate) {
 		case 115200:
 			config.clockPrescalar = 13;
 			config.firstModReg = 10;
 			config.secondModReg = 0;
-			config.overSampling =
-				EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION;
+			config.overSampling = EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION;
+			break;
+		case 9600:
+			config.clockPrescalar = 163;
+			config.firstModReg = 13;
+			config.secondModReg = 0;
+			config.overSampling = EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION;
 			break;
 		default:
 			print("Baudrate Setting Error Out of acceptable range\n\r");
@@ -75,8 +76,7 @@ EUSCI_A_UART_initParam Get_BaudrateConfig(uint32_t smclk, uint32_t baudrate)
 			config.clockPrescalar = 9;
 			config.firstModReg = 2;
 			config.secondModReg = 0;
-			config.overSampling =
-				EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION;
+			config.overSampling = EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION;
 			break;
 		default:
 			print("Baudrate Setting Error Out of acceptable range\n\r");
@@ -91,8 +91,7 @@ EUSCI_A_UART_initParam Get_BaudrateConfig(uint32_t smclk, uint32_t baudrate)
 			config.clockPrescalar = 4;
 			config.firstModReg = 7;
 			config.secondModReg = 4;
-			config.overSampling =
-				EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION;
+			config.overSampling = EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION;
 			break;
 		default:
 			print("Baudrate Setting Error Out of acceptable range\n\r");

@@ -2,8 +2,9 @@
 #include "shell.h"
 #include "metering.h"
 #include "gpio.h"
+#include "uart.h"
 
-#define CHECK_RXEND_PERIOD 64
+#define CHECK_RXEND_PERIOD (32768 / (METER_BAUDRATE / 100))
 #define TEST_PERIOD 32768
 
 static uint8_t timerMode = 0;
@@ -31,8 +32,7 @@ void startTimer(uint8_t mode)
 	initUpModeParam.clockSource = TIMER_A_CLOCKSOURCE_ACLK;
 	initUpModeParam.clockSourceDivider = TIMER_A_CLOCKSOURCE_DIVIDER_1;
 	initUpModeParam.timerPeriod = period;
-	initUpModeParam.timerInterruptEnable_TAIE =
-		TIMER_A_TAIE_INTERRUPT_DISABLE;
+	initUpModeParam.timerInterruptEnable_TAIE = TIMER_A_TAIE_INTERRUPT_DISABLE;
 	initUpModeParam.captureCompareInterruptEnable_CCR0_CCIE =
 		TIMER_A_CCIE_CCR0_INTERRUPT_ENABLE;
 	initUpModeParam.timerClear = TIMER_A_DO_CLEAR;
@@ -54,6 +54,7 @@ __interrupt void Timer0_A0(void)
 	case TIMER_METER_RX: {
 		if (prevData == meterRx.index) {
 			Timer_A_stop(TIMER_A0_BASE);
+			checkMessage();
 		} else {
 			prevData = meterRx.index;
 		}

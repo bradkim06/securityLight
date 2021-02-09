@@ -21,7 +21,6 @@
 typedef struct {
 	uint8_t stx;
 	uint8_t msgType;
-	uint8_t reserved[2];
 	uint8_t checkSum;
 	uint8_t etx;
 } elecMeterReq_t;
@@ -45,7 +44,6 @@ typedef struct {
 typedef struct {
 	uint8_t stx;
 	uint8_t msgType;
-	uint8_t reserved[8];
 	EM_Phase_Results results;
 	uint8_t checkSum;
 	uint8_t etx;
@@ -61,5 +59,6 @@ extern struct receive meterRx;
 
 void req_read_meter(void);
 void resp_read_meter(void);
+void checkMessage(void);
 
 #endif
