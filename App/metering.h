@@ -44,6 +44,7 @@ typedef struct {
 typedef struct {
 	uint8_t stx;
 	uint8_t msgType;
+	uint8_t status;
 	uint32_t VRMS;
 	uint32_t IRMS;
 	uint32_t shortIRMS;

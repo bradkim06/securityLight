@@ -88,6 +88,7 @@ void resp_read_meter(void)
 	data.msgType = RESP_READ_METER;
 
 	// metering data
+	data.status = 0; //TODO
 	data.VRMS = gEmSWResult.phaseResults[EM_PH_A_IDX].VRMS;
 	data.IRMS = gEmSWResult.phaseResults[EM_PH_A_IDX].IRMS / 1000;
 	data.shortIRMS = 0; //TODO
