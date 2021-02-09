@@ -40,10 +40,11 @@ struct receive meterRx;
 /* 	return My.hex; */
 /* } */
 
-static uint8_t calc_checksum(uint8_t *from, int size)
+static uint8_t calcEVchecksum(uint8_t *from, int size)
 {
 	uint8_t checksum = 0;
-	for (int i = 0; i < size; i++) {
+	// size - 2 -> Not Calculate ETX, Checksum
+	for (int i = 0; i < size - 2; i++) {
 		checksum += *(from + i);
 	}
 
@@ -64,7 +65,7 @@ void req_read_meter(void)
 		return;
 	}
 
-	if (rx->checkSum != calc_checksum((uint8_t *)&rx->stx, sizeof(elecMeterReq_t) - 2)) {
+	if (rx->checkSum != calcEVchecksum((uint8_t *)&rx->stx, sizeof(elecMeterReq_t))) {
 		print("Invalid checkSum\n");
 		return;
 	}
@@ -85,7 +86,7 @@ void resp_read_meter(void)
 	data.msgType = RESP_READ_METER;
 	memcpy(&data.results, &gEmSWResult.phaseResults[EM_PH_A_IDX], sizeof(EM_Phase_Results));
 	data.results = gEmSWResult.phaseResults[EM_PH_A_IDX];
-	data.checkSum = calc_checksum((uint8_t *)&data.stx, len - 2);
+	data.checkSum = calcEVchecksum((uint8_t *)&data.stx, len);
 	data.etx = METER_ETX;
 
 	uint8_t *txBuf = &data.stx;
