@@ -11,35 +11,6 @@ extern uint8_t gemResultStatus;
 
 struct receive meterRx;
 
-/* union converter { */
-/* 	unsigned long hex; */
-/* 	float var; */
-/* }; */
-
-/* static float convertHex2Float(unsigned long input) */
-/* { */
-/* 	union converter My; */
-/* 	My.hex = input; */
-/* 	return My.var; */
-/* } */
-
-/* static float convertuint32tohex(unsigned long input) */
-/* { */
-/* 	union converter My; */
-/* 	My.var = input; */
-/* 	uint8_t *test; */
-
-/* 	test = (uint8_t *)&My.hex; */
-/* 	print("%ld\n", input); */
-/* 	print("0x%lX\n", My.hex); */
-
-/* 	for (int i = 0; i < 4; i++) { */
-/* 		print("0x%02X ", *(test + i)); */
-/* 	} */
-
-/* 	return My.hex; */
-/* } */
-
 static uint8_t calcEVchecksum(uint8_t *from, int size)
 {
 	// size - 2 -> Not Calculate ETX, Checksum
@@ -142,7 +113,7 @@ void resp_read_meter(void)
 
 	txBuf = (uint8_t *)&data.power;
 	print("Active Power : %lumW ", data.power);
-	print("Hex : 0x%lX\n", *((uint32_t *)txBuf));
+	print("Hex : 0x%lX\n", *((int32_t *)txBuf));
 
 	txBuf = (uint8_t *)&data.cumPower;
 	print("Cumulative Active Power : %lumW ", data.cumPower);
