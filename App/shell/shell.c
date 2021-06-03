@@ -130,23 +130,33 @@ void print(const char *__restrict format, ...)
 
 extern void print_EMResult(void)
 {
-	print(RED_FONT "EM Result print\n\r");
-	print(WHITE_FONT "VRMS : %.3fV\n\r",
+	printf("=============================================================\n");
+	print(RED_FONT);
+	print("EM Result print\n\r");
+	print(WHITE_FONT);
+	print("[ VRMS           ] : %.3fV\n\r",
 	      ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].VRMS) / 1000);
-	print("IRMS : %.3fmA\n\r", ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].IRMS / 1000));
-	print("vPeak : %.3fV\n\r", ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].vPeak / 1000));
-	print("iPeak : %.3fmA\n\r", ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].iPeak / 1000));
-	print("powerFactor : %ld\n\r", gEmSWResult.phaseResults[EM_PH_A_IDX].powerFactor);
-	print("frequency : %.2fHz\n\r",
+	print("[ IRMS           ] : %.3fmA\n\r",
+	      ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].IRMS / 1000));
+	print("[ vPeak          ] : %.3fV\n\r",
+	      ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].vPeak / 1000));
+	print("[ iPeak          ] : %.3fmA\n\r",
+	      ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].iPeak / 1000));
+	print("[ powerFactor    ] : %ld\n\r", gEmSWResult.phaseResults[EM_PH_A_IDX].powerFactor);
+	print("[ frequency      ] : %.2fHz\n\r",
 	      ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].frequency) / 100);
-	print("activePower : %llduW\n\r", gEmSWResult.phaseResults[EM_PH_A_IDX].activePower);
-	print("reactivePower : %llduVAr\n\r", gEmSWResult.phaseResults[EM_PH_A_IDX].reactivePower);
-	print("apparentPower : %llduVA\n\r", gEmSWResult.phaseResults[EM_PH_A_IDX].apparentPower);
-	print("activeEnergy : %lluuWh\n\r", gEmSWResult.phaseResults[EM_PH_A_IDX].activeEnergy);
-	print("reactiveEnergy : %lluuVArh\n\r",
+	print("[ activePower    ] : %llduW\n\r", gEmSWResult.phaseResults[EM_PH_A_IDX].activePower);
+	print("[ reactivePower  ] : %llduVAr\n\r",
+	      gEmSWResult.phaseResults[EM_PH_A_IDX].reactivePower);
+	print("[ apparentPower  ] : %llduVA\n\r",
+	      gEmSWResult.phaseResults[EM_PH_A_IDX].apparentPower);
+	print("[ activeEnergy   ] : %lluuWh\n\r",
+	      gEmSWResult.phaseResults[EM_PH_A_IDX].activeEnergy);
+	print("[ reactiveEnergy ] : %lluuVArh\n\r",
 	      gEmSWResult.phaseResults[EM_PH_A_IDX].reactiveEnergy);
-	print("apparentEnergy : %lluuVAh\n\r",
+	print("[ apparentEnergy ] : %lluuVAh\n\r",
 	      gEmSWResult.phaseResults[EM_PH_A_IDX].apparentEnergy);
+	printf("=============================================================\n");
 }
 
 void print_rtc(void)

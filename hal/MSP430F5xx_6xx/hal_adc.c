@@ -82,16 +82,14 @@ void HAL_ADC_initPreload(HAL_ADC_SD24_B_Configuration *config)
 {
 	config->adcChannelPtr[0].preload = (config->overSampleRatio + 1) >> 1;
 	config->adcChannelPtr[1].preload = HAL_ADC_getPreload(
-		gEmSWConfig.meterConfig->phaseConfigPtr[EM_PH_A_IDX]
-			.phaseCalibPtr->phaseCorrection,
+		gEmSWConfig.meterConfig->phaseConfigPtr[EM_PH_A_IDX].phaseCalibPtr->phaseCorrection,
 		config->overSampleRatio);
 }
 
 void HAL_ADC_initWholeSampleAlignment(HAL_ADC_SD24_B_Configuration *config)
 {
 	phASA = HAL_ADC_getWholeSample(
-		gEmSWConfig.meterConfig->phaseConfigPtr[EM_PH_A_IDX]
-			.phaseCalibPtr->phaseCorrection);
+		gEmSWConfig.meterConfig->phaseConfigPtr[EM_PH_A_IDX].phaseCalibPtr->phaseCorrection);
 }
 
 void HAL_ADC_clearVariables(uint8_t phase)
@@ -119,8 +117,7 @@ void HAL_ADC_initializeGroup(HAL_ADC_SD24_B_Configuration *config)
 		// Create a param structure
 		SD24_B_initConverterAdvancedParam param = { 0 };
 
-		SD24_B_setConversionDelay(SD24_BASE, converter,
-					  config->adcChannelPtr[i].preload);
+		SD24_B_setConversionDelay(SD24_BASE, converter, config->adcChannelPtr[i].preload);
 		param.gain = config->adcChannelPtr[i].gain;
 		param.converter = converter;
 		param.alignment = config->adcChannelPtr[i].alignment;
@@ -132,21 +129,18 @@ void HAL_ADC_initializeGroup(HAL_ADC_SD24_B_Configuration *config)
 
 		SD24_B_initConverterAdvanced(SD24_BASE, &param);
 		// Enable the interrupt for each channel
-		SD24_B_enableInterrupt(SD24_BASE, converter,
-				       SD24_B_CONVERTER_INTERRUPT);
+		SD24_B_enableInterrupt(SD24_BASE, converter, SD24_B_CONVERTER_INTERRUPT);
 	}
 }
 
-HAL_ADC_message_code
-HAL_ADC_setClockDividers(HAL_ADC_SD24_B_Configuration *config)
+HAL_ADC_message_code HAL_ADC_setClockDividers(HAL_ADC_SD24_B_Configuration *config)
 {
 	uint32_t modFreq;
 	uint32_t tempDiv;
 	HAL_ADC_message_code code = HAL_ADC_message_code_no_error;
 
 	// Calculate the modulation frequency
-	modFreq = (uint32_t)config->sampleFreq *
-		  (uint32_t)(config->overSampleRatio + 1);
+	modFreq = (uint32_t)config->sampleFreq * (uint32_t)(config->overSampleRatio + 1);
 
 	// Calculate SMCLK / (OSR * sampleFreq)
 	tempDiv = config->SMCLKFrequency / modFreq;
@@ -210,8 +204,7 @@ HAL_ADC_message_code HAL_ADC_checkModFreq(HAL_ADC_SD24_B_Configuration *config)
 	uint32_t modFreq;
 	HAL_ADC_message_code code;
 
-	modFreq = (uint32_t)config->sampleFreq *
-		  (uint32_t)(config->overSampleRatio + 1);
+	modFreq = (uint32_t)config->sampleFreq * (uint32_t)(config->overSampleRatio + 1);
 
 	if (modFreq > HAL_ADC_MAX_MOD_FREQ) {
 		code = HAL_ADC_message_code_invalid_mod_freq_error;
@@ -275,8 +268,7 @@ void HAL_ADC_enableInterrupts(HAL_ADC_SD24_B_Configuration *config)
 		// Find the convIndex of the current converter
 		converter = config->adcChannelPtr[i].converter;
 
-		SD24_B_enableInterrupt(SD24_BASE, converter,
-				       SD24_B_CONVERTER_INTERRUPT);
+		SD24_B_enableInterrupt(SD24_BASE, converter, SD24_B_CONVERTER_INTERRUPT);
 	}
 }
 
@@ -289,8 +281,7 @@ void HAL_ADC_disableInterrupts(HAL_ADC_SD24_B_Configuration *config)
 		// Find the convIndex of the current converter
 		converter = config->adcChannelPtr[i].converter;
 
-		SD24_B_disableInterrupt(SD24_BASE, converter,
-					SD24_B_CONVERTER_INTERRUPT);
+		SD24_B_disableInterrupt(SD24_BASE, converter, SD24_B_CONVERTER_INTERRUPT);
 	}
 }
 
@@ -310,13 +301,12 @@ void __attribute__((interrupt(SD24_VECTOR))) SD24_ISR(void)
 		chReadStatus |= HAL_ADC_CH0_READ;
 
 		// Store Voltage Results
-		phAVSamples[phAWriteVIdx] = SD24_B_getHighWordResults(
-			SD24_BASE, SD24_B_CONVERTER_0);
+		phAVSamples[phAWriteVIdx] =
+			SD24_B_getHighWordResults(SD24_BASE, SD24_B_CONVERTER_0);
 
 		// Apply Voltage DC Filter
-		tempV = EM_voltageDCFilter(
-			&gEmSWResult.phaseBGResults[EM_PH_A_IDX].vDCEstimate,
-			phAVSamples[phAWriteVIdx]);
+		tempV = EM_voltageDCFilter(&gEmSWResult.phaseBGResults[EM_PH_A_IDX].vDCEstimate,
+					   phAVSamples[phAWriteVIdx]);
 		phAVSamples[phAWriteVIdx] = tempV;
 
 		// Increase Index and Mask
@@ -326,15 +316,13 @@ void __attribute__((interrupt(SD24_VECTOR))) SD24_ISR(void)
 		chReadStatus |= HAL_ADC_CH1_READ;
 
 		// Store Current Results
-		phAISamples[phAWriteIIdx] =
-			SD24_B_getResults(SD24_BASE, SD24_B_CONVERTER_1);
+		phAISamples[phAWriteIIdx] = SD24_B_getResults(SD24_BASE, SD24_B_CONVERTER_1);
 		tempI = phAISamples[phAWriteIIdx] >> 1;
 		phAISamples[phAWriteIIdx] = tempI;
 
 		// Apply Current DC Filter
-		tempI = EM_currentDCFilter(
-			gEmSWResult.phaseBGResults[EM_PH_A_IDX].iDCEstimate,
-			phAISamples[phAWriteIIdx]);
+		tempI = EM_currentDCFilter(gEmSWResult.phaseBGResults[EM_PH_A_IDX].iDCEstimate,
+					   phAISamples[phAWriteIIdx]);
 		phAISamples[phAWriteIIdx] = tempI;
 
 		// Increase Index and Mask
@@ -365,41 +353,31 @@ void __attribute__((interrupt(SD24_VECTOR))) SD24_ISR(void)
 			}
 
 			// Set the Ptrs to voltage and current
-			emPhaseConfiguration[EM_PH_A_IDX].voltageSamplePtr =
-				&phAVSamples[phAVIdx];
-			emPhaseConfiguration[EM_PH_A_IDX].currentSamplePtr =
-				&phAISamples[phAIIdx];
+			emPhaseConfiguration[EM_PH_A_IDX].voltageSamplePtr = &phAVSamples[phAVIdx];
+			emPhaseConfiguration[EM_PH_A_IDX].currentSamplePtr = &phAISamples[phAIIdx];
 
 			// Process the samples
-			EM_perSampleProc(
-				gEmSWResult.phaseMetrologyPing[EM_PH_A_IDX],
-				&gEmSWConfig.meterConfig
-					 ->phaseConfigPtr[EM_PH_A_IDX],
-				&gEmSWResult.phaseBGResults[EM_PH_A_IDX]);
+			EM_perSampleProc(gEmSWResult.phaseMetrologyPing[EM_PH_A_IDX],
+					 &gEmSWConfig.meterConfig->phaseConfigPtr[EM_PH_A_IDX],
+					 &gEmSWResult.phaseBGResults[EM_PH_A_IDX]);
 
 			// Check Energy and Generate Pulses
-			EM_genPulseIndPhase(
-				gEmSWConfig.systemConfig,
-				&gEmSWConfig.systemConfig
-					 ->pulseArray[EM_PH_A_IDX],
-				&gEmSWResult.phaseResults[EM_PH_A_IDX]);
+			EM_genPulseIndPhase(gEmSWConfig.systemConfig,
+					    &gEmSWConfig.systemConfig->pulseArray[EM_PH_A_IDX],
+					    &gEmSWResult.phaseResults[EM_PH_A_IDX]);
 
-			if (gEmSWResult.phaseMetrologyPing[EM_PH_A_IDX]
-				    ->cycleCount ==
+			if (gEmSWResult.phaseMetrologyPing[EM_PH_A_IDX]->cycleCount ==
 			    gEmSWConfig.algorithmConfig->mainNomFreq) {
 				phaseDataReady |= HAL_ADC_PHASE_A_DATA_READY;
-				EM_perDataChunk(
-					&gEmSWConfig,
-					(EM_SW_Lib_Result_Handle *)&gEmSWResult,
-					EM_PH_A_IDX);
-			} else if (gEmSWResult.phaseMetrologyPing[EM_PH_A_IDX]
-					   ->sampleCount >
+				EM_perDataChunk(&gEmSWConfig,
+						(EM_SW_Lib_Result_Handle *)&gEmSWResult,
+						EM_PH_A_IDX);
+			} else if (gEmSWResult.phaseMetrologyPing[EM_PH_A_IDX]->sampleCount >
 				   (2 * EM_SAMPLING_FREQ_HZ)) {
 				phaseDataReady |= HAL_ADC_PHASE_A_DATA_READY;
-				EM_perDataChunk(
-					&gEmSWConfig,
-					(EM_SW_Lib_Result_Handle *)&gEmSWResult,
-					EM_PH_A_IDX);
+				EM_perDataChunk(&gEmSWConfig,
+						(EM_SW_Lib_Result_Handle *)&gEmSWResult,
+						EM_PH_A_IDX);
 			}
 		} else if (phASA > 0) {
 			// Voltage leading Current

@@ -64,7 +64,7 @@ void resp_read_meter(void)
 	data.IRMS = gEmSWResult.phaseResults[EM_PH_A_IDX].IRMS / 1000;
 	data.shortIRMS = 0; //TODO
 	data.power = (int32_t)(gEmSWResult.phaseResults[EM_PH_A_IDX].activePower / 1000);
-	data.cumPower = 0; //TODO
+	data.cumPower = (uint32_t)(gEmSWResult.phaseResults[EM_PH_A_IDX].activeEnergy / 1000);
 
 	data.checkSum = calcEVchecksum((uint8_t *)&data.stx, len);
 	data.etx = METER_ETX;
@@ -94,30 +94,30 @@ void resp_read_meter(void)
 	print(WHITE_FONT);
 
 	txBuf = &data.stx;
-	print("STX : 0x%02X\n", *txBuf);
+	print("[ STX              ] : 0x%02X\n", *txBuf);
 
 	txBuf = &data.msgType;
-	print("MSG Type : 0x%02X\n", *txBuf);
+	print("[ MSG Type         ] : 0x%02X\n", *txBuf);
 
 	txBuf = (uint8_t *)&data.VRMS;
-	print("VRMS : %lumV ", data.VRMS);
-	print("Hex : 0x%lX\n", *((uint32_t *)txBuf));
+	print("[ VRMS             ] : %lumV ", data.VRMS);
+	print("[ Hex ] : 0x%lX\n", *((uint32_t *)txBuf));
 
 	txBuf = (uint8_t *)&data.IRMS;
-	print("IRMS : %lumA ", data.IRMS);
-	print("Hex : 0x%lX\n", *((uint32_t *)txBuf));
+	print("[ IRMS             ] : %lumA ", data.IRMS);
+	print("[ Hex ] : 0x%lX\n", *((uint32_t *)txBuf));
 
 	txBuf = (uint8_t *)&data.shortIRMS;
-	print("shortIRMS : %lumA ", data.shortIRMS);
-	print("Hex : 0x%lX\n", *((uint32_t *)txBuf));
+	print("[ shortIRMS        ] : %lumA ", data.shortIRMS);
+	print("[ Hex ] : 0x%lX\n", *((uint32_t *)txBuf));
 
 	txBuf = (uint8_t *)&data.power;
-	print("Active Power : %lumW ", data.power);
-	print("Hex : 0x%lX\n", *((int32_t *)txBuf));
+	print("[ Active Power     ] : %lumW ", data.power);
+	print("[ Hex ] : 0x%lX\n", *((int32_t *)txBuf));
 
 	txBuf = (uint8_t *)&data.cumPower;
-	print("Cumulative Active Power : %lumW ", data.cumPower);
-	print("Hex : 0x%lX\n", *((uint32_t *)txBuf));
+	print("[ Cumulative Power ] : %lumW ", data.cumPower);
+	print("[ Hex ] : 0x%lX\n", *((uint32_t *)txBuf));
 #endif
 }
 
