@@ -53,12 +53,12 @@
 									<listOptionValue builtIn="false" value="${CCS_BASE_ROOT}/msp430/include"/>
 									<listOptionValue builtIn="false" value="${PROJECT_ROOT}"/>
 									<listOptionValue builtIn="false" value="${PROJECT_ROOT}/include"/>
+									<listOptionValue builtIn="false" value="${PROJECT_ROOT}/lib/EM/include"/>
+									<listOptionValue builtIn="false" value="${PROJECT_ROOT}/lib/mathlib/include"/>
 									<listOptionValue builtIn="false" value="${PROJECT_ROOT}/driverlib/MSP430F5xx_6xx"/>
 									<listOptionValue builtIn="false" value="${PROJECT_ROOT}/emSWLib"/>
 									<listOptionValue builtIn="false" value="${PROJECT_ROOT}/EM_Config"/>
 									<listOptionValue builtIn="false" value="${PROJECT_ROOT}/hal/MSP430F5xx_6xx"/>
-									<listOptionValue builtIn="false" value="C:/ti/msp/EnergyMeasurementDesignCenter_1.40.00.03/EnergyMeasurementDesignCenter/example_projects/EnergyMeasurementDesignCenterWorkspace/EVM430-F6736_CT_1V_1C_60Hz/src/lib/EM/include"/>
-									<listOptionValue builtIn="false" value="C:/ti/msp/EnergyMeasurementDesignCenter_1.40.00.03/EnergyMeasurementDesignCenter/example_projects/EnergyMeasurementDesignCenterWorkspace/EVM430-F6736_CT_1V_1C_60Hz/src/lib/mathlib/include"/>
 									<listOptionValue builtIn="false" value="${CG_TOOL_ROOT}/include"/>
 								</option>
 								<option id="com.ti.ccstudio.buildDefinitions.MSP430_18.12.compilerID.DEBUGGING_MODEL.249529100" name="Debugging model" superClass="com.ti.ccstudio.buildDefinitions.MSP430_18.12.compilerID.DEBUGGING_MODEL" value="com.ti.ccstudio.buildDefinitions.MSP430_18.12.compilerID.DEBUGGING_MODEL.SYMDEBUG__DWARF" valueType="enumerated"/>
