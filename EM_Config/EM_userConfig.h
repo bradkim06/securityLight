@@ -68,10 +68,8 @@
 //******************************************************************************
 // DO NOT MODIFY THESE DEFINES
 //******************************************************************************
-#define EM_PHASE_CONSTANT                                                      \
-	(3600 * 1e9 * EM_SAMPLING_FREQ_HZ / EM_PHASE_IMP_PER_KWHR)
-#define EM_TOTAL_PHASE_CONSTANT                                                \
-	(3600 * 1e9 * EM_SAMPLING_FREQ_HZ / EM_TOTAL_PHASE_IMP_PER_KWHR)
+#define EM_PHASE_CONSTANT (3600 * 1e9 * EM_SAMPLING_FREQ_HZ / EM_PHASE_IMP_PER_KWHR)
+#define EM_TOTAL_PHASE_CONSTANT (3600 * 1e9 * EM_SAMPLING_FREQ_HZ / EM_TOTAL_PHASE_IMP_PER_KWHR)
 #define EM_MAX_FREQ_COUNT (EM_SAMPLING_FREQ_HZ * 256L / 40)
 #define EM_MIN_FREQ_COUNT (EM_SAMPLING_FREQ_HZ * 256L / 70)
 

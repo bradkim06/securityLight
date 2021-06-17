@@ -259,8 +259,7 @@ struct s_Peripheral_Memory_Data {
 //! \return None
 //
 //*****************************************************************************
-extern void TLV_getInfo(uint8_t tag, uint8_t instance, uint8_t *length,
-			uint16_t **data_address);
+extern void TLV_getInfo(uint8_t tag, uint8_t instance, uint8_t *length, uint16_t **data_address);
 
 //*****************************************************************************
 //

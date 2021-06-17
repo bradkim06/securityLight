@@ -89,8 +89,7 @@ bool USCI_A_UART_init(uint16_t baseAddress, USCI_A_UART_initParam *param)
 	// Modulation Control Registers
 	HWREG16(baseAddress + OFS_UCAxBRW) = param->clockPrescalar;
 	HWREG8(baseAddress + OFS_UCAxMCTL) =
-		((param->firstModReg << 4) + (param->secondModReg << 1) +
-		 param->overSampling);
+		((param->firstModReg << 4) + (param->secondModReg << 1) + param->overSampling);
 
 	// Asynchronous mode & 8 bit character select & clear mode
 	HWREG8(baseAddress + OFS_UCAxCTL0) &= ~(UCSYNC + UC7BIT + UCMODE_3);
@@ -99,8 +98,7 @@ bool USCI_A_UART_init(uint16_t baseAddress, USCI_A_UART_initParam *param)
 	HWREG8(baseAddress + OFS_UCAxCTL0) |= param->uartMode;
 
 	// Reset UCRXIE, UCBRKIE, UCDORM, UCTXADDR, UCTXBRK
-	HWREG8(baseAddress + OFS_UCAxCTL1) &=
-		~(UCRXEIE + UCBRKIE + UCDORM + UCTXADDR + UCTXBRK);
+	HWREG8(baseAddress + OFS_UCAxCTL1) &= ~(UCRXEIE + UCBRKIE + UCDORM + UCTXADDR + UCTXBRK);
 	return (retVal);
 }
 
@@ -134,12 +132,11 @@ void USCI_A_UART_enableInterrupt(uint16_t baseAddress, uint8_t mask)
 {
 	uint8_t locMask;
 
-	locMask = (mask & (USCI_A_UART_RECEIVE_INTERRUPT |
-			   USCI_A_UART_TRANSMIT_INTERRUPT));
+	locMask = (mask & (USCI_A_UART_RECEIVE_INTERRUPT | USCI_A_UART_TRANSMIT_INTERRUPT));
 	HWREG8(baseAddress + OFS_UCAxIE) |= locMask;
 
-	locMask = (mask & (USCI_A_UART_RECEIVE_ERRONEOUSCHAR_INTERRUPT |
-			   USCI_A_UART_BREAKCHAR_INTERRUPT));
+	locMask = (mask &
+		   (USCI_A_UART_RECEIVE_ERRONEOUSCHAR_INTERRUPT | USCI_A_UART_BREAKCHAR_INTERRUPT));
 	HWREG8(baseAddress + OFS_UCAxCTL1) |= locMask;
 }
 
@@ -147,8 +144,7 @@ void USCI_A_UART_disableInterrupt(uint16_t baseAddress, uint8_t mask)
 {
 	uint8_t locMask;
 
-	if (locMask = (mask & (USCI_A_UART_RECEIVE_INTERRUPT |
-			       USCI_A_UART_TRANSMIT_INTERRUPT))) {
+	if (locMask = (mask & (USCI_A_UART_RECEIVE_INTERRUPT | USCI_A_UART_TRANSMIT_INTERRUPT))) {
 		HWREG8(baseAddress + OFS_UCAxIE) &= ~locMask;
 	}
 
@@ -212,10 +208,8 @@ void USCI_A_UART_transmitBreak(uint16_t baseAddress)
 
 	// If current mode is automatic baud-rate detection
 	if (USCI_A_UART_AUTOMATIC_BAUDRATE_DETECTION_MODE ==
-	    (HWREG8(baseAddress + OFS_UCAxCTL0) &
-	     USCI_A_UART_AUTOMATIC_BAUDRATE_DETECTION_MODE)) {
-		HWREG8(baseAddress + OFS_UCAxTXBUF) =
-			USCI_A_UART_AUTOMATICBAUDRATE_SYNC;
+	    (HWREG8(baseAddress + OFS_UCAxCTL0) & USCI_A_UART_AUTOMATIC_BAUDRATE_DETECTION_MODE)) {
+		HWREG8(baseAddress + OFS_UCAxTXBUF) = USCI_A_UART_AUTOMATICBAUDRATE_SYNC;
 	} else {
 		HWREG8(baseAddress + OFS_UCAxTXBUF) = DEFAULT_SYNC;
 	}

@@ -306,8 +306,7 @@ extern bool DAC12_A_init(uint16_t baseAddress, DAC12_A_initParam *param);
 //! \return None
 //
 //*****************************************************************************
-extern void DAC12_A_setAmplifierSetting(uint16_t baseAddress,
-					uint8_t submoduleSelect,
+extern void DAC12_A_setAmplifierSetting(uint16_t baseAddress, uint8_t submoduleSelect,
 					uint8_t amplifierSetting);
 
 //*****************************************************************************
@@ -385,8 +384,7 @@ extern void DAC12_A_disableGrouping(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void DAC12_A_enableInterrupt(uint16_t baseAddress,
-				    uint8_t submoduleSelect);
+extern void DAC12_A_enableInterrupt(uint16_t baseAddress, uint8_t submoduleSelect);
 
 //*****************************************************************************
 //
@@ -405,8 +403,7 @@ extern void DAC12_A_enableInterrupt(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void DAC12_A_disableInterrupt(uint16_t baseAddress,
-				     uint8_t submoduleSelect);
+extern void DAC12_A_disableInterrupt(uint16_t baseAddress, uint8_t submoduleSelect);
 
 //*****************************************************************************
 //
@@ -428,8 +425,7 @@ extern void DAC12_A_disableInterrupt(uint16_t baseAddress,
 //!         \n indicating the status for the selected DAC12_A module
 //
 //*****************************************************************************
-extern uint16_t DAC12_A_getInterruptStatus(uint16_t baseAddress,
-					   uint8_t submoduleSelect);
+extern uint16_t DAC12_A_getInterruptStatus(uint16_t baseAddress, uint8_t submoduleSelect);
 
 //*****************************************************************************
 //
@@ -450,8 +446,7 @@ extern uint16_t DAC12_A_getInterruptStatus(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void DAC12_A_clearInterrupt(uint16_t baseAddress,
-				   uint8_t submoduleSelect);
+extern void DAC12_A_clearInterrupt(uint16_t baseAddress, uint8_t submoduleSelect);
 
 //*****************************************************************************
 //
@@ -474,8 +469,7 @@ extern void DAC12_A_clearInterrupt(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void DAC12_A_calibrateOutput(uint16_t baseAddress,
-				    uint8_t submoduleSelect);
+extern void DAC12_A_calibrateOutput(uint16_t baseAddress, uint8_t submoduleSelect);
 
 //*****************************************************************************
 //
@@ -496,8 +490,7 @@ extern void DAC12_A_calibrateOutput(uint16_t baseAddress,
 //! \return The calibrated offset of the output buffer.
 //
 //*****************************************************************************
-extern uint16_t DAC12_A_getCalibrationData(uint16_t baseAddress,
-					   uint8_t submoduleSelect);
+extern uint16_t DAC12_A_getCalibrationData(uint16_t baseAddress, uint8_t submoduleSelect);
 
 //*****************************************************************************
 //
@@ -521,8 +514,7 @@ extern uint16_t DAC12_A_getCalibrationData(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void DAC12_A_setCalibrationOffset(uint16_t baseAddress,
-					 uint8_t submoduleSelect,
+extern void DAC12_A_setCalibrationOffset(uint16_t baseAddress, uint8_t submoduleSelect,
 					 uint16_t calibrationOffsetValue);
 
 //*****************************************************************************
@@ -545,8 +537,7 @@ extern void DAC12_A_setCalibrationOffset(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void DAC12_A_enableConversions(uint16_t baseAddress,
-				      uint8_t submoduleSelect);
+extern void DAC12_A_enableConversions(uint16_t baseAddress, uint8_t submoduleSelect);
 
 //*****************************************************************************
 //
@@ -577,8 +568,7 @@ extern void DAC12_A_enableConversions(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void DAC12_A_setData(uint16_t baseAddress, uint8_t submoduleSelect,
-			    uint16_t data);
+extern void DAC12_A_setData(uint16_t baseAddress, uint8_t submoduleSelect, uint16_t data);
 
 //*****************************************************************************
 //
@@ -599,8 +589,7 @@ extern void DAC12_A_setData(uint16_t baseAddress, uint8_t submoduleSelect,
 //! \return None
 //
 //*****************************************************************************
-extern void DAC12_A_disableConversions(uint16_t baseAddress,
-				       uint8_t submoduleSelect);
+extern void DAC12_A_disableConversions(uint16_t baseAddress, uint8_t submoduleSelect);
 
 //*****************************************************************************
 //
@@ -652,10 +641,8 @@ extern void DAC12_A_setResolution(uint16_t baseAddress, uint8_t submoduleSelect,
 //! \return None
 //
 //*****************************************************************************
-extern void DAC12_A_setInputDataFormat(uint16_t baseAddress,
-				       uint8_t submoduleSelect,
-				       uint8_t inputJustification,
-				       uint8_t inputSign);
+extern void DAC12_A_setInputDataFormat(uint16_t baseAddress, uint8_t submoduleSelect,
+				       uint8_t inputJustification, uint8_t inputSign);
 
 //*****************************************************************************
 //
@@ -674,9 +661,8 @@ extern void DAC12_A_setInputDataFormat(uint16_t baseAddress,
 //! \return The address of the specified memory buffer
 //
 //*****************************************************************************
-extern uint32_t
-DAC12_A_getDataBufferMemoryAddressForDMA(uint16_t baseAddress,
-					 uint8_t submoduleSelect);
+extern uint32_t DAC12_A_getDataBufferMemoryAddressForDMA(uint16_t baseAddress,
+							 uint8_t submoduleSelect);
 
 //*****************************************************************************
 //

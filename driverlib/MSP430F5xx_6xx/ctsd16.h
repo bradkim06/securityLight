@@ -381,8 +381,8 @@ extern void CTSD16_init(uint16_t baseAddress, uint16_t chargePumpBurstRequest,
 //! \return None
 //
 //*****************************************************************************
-extern void CTSD16_initConverter(uint16_t baseAddress, uint8_t converter,
-				 uint16_t conversionMode, uint8_t inputChannel);
+extern void CTSD16_initConverter(uint16_t baseAddress, uint8_t converter, uint16_t conversionMode,
+				 uint8_t inputChannel);
 
 //*****************************************************************************
 //
@@ -398,9 +398,8 @@ extern void CTSD16_initConverter(uint16_t baseAddress, uint8_t converter,
 //! \return None
 //
 //*****************************************************************************
-extern void
-CTSD16_initConverterAdvanced(uint16_t baseAddress,
-			     CTSD16_initConverterAdvancedParam *param);
+extern void CTSD16_initConverterAdvanced(uint16_t baseAddress,
+					 CTSD16_initConverterAdvancedParam *param);
 
 //*****************************************************************************
 //
@@ -423,8 +422,7 @@ CTSD16_initConverterAdvanced(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void CTSD16_startConverterConversion(uint16_t baseAddress,
-					    uint8_t converter);
+extern void CTSD16_startConverterConversion(uint16_t baseAddress, uint8_t converter);
 
 //*****************************************************************************
 //
@@ -447,8 +445,7 @@ extern void CTSD16_startConverterConversion(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void CTSD16_stopConverterConversion(uint16_t baseAddress,
-					   uint8_t converter);
+extern void CTSD16_stopConverterConversion(uint16_t baseAddress, uint8_t converter);
 
 //*****************************************************************************
 //
@@ -477,8 +474,7 @@ extern void CTSD16_stopConverterConversion(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void CTSD16_setConverterDataFormat(uint16_t baseAddress,
-					  uint8_t converter,
+extern void CTSD16_setConverterDataFormat(uint16_t baseAddress, uint8_t converter,
 					  uint8_t dataFormat);
 
 //*****************************************************************************
@@ -524,8 +520,7 @@ extern void CTSD16_setConverterDataFormat(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void CTSD16_setInputChannel(uint16_t baseAddress, uint8_t converter,
-				   uint8_t inputChannel);
+extern void CTSD16_setInputChannel(uint16_t baseAddress, uint8_t converter, uint8_t inputChannel);
 
 //*****************************************************************************
 //
@@ -644,8 +639,7 @@ extern void CTSD16_setOversampling(uint16_t baseAddress, uint8_t converter,
 //! \return None
 //
 //*****************************************************************************
-extern void CTSD16_setGain(uint16_t baseAddress, uint8_t converter,
-			   uint8_t gain);
+extern void CTSD16_setGain(uint16_t baseAddress, uint8_t converter, uint8_t gain);
 
 //*****************************************************************************
 //
@@ -692,8 +686,7 @@ extern uint32_t CTSD16_getResults(uint16_t baseAddress, uint8_t converter);
 //! \return High word result of conversion
 //
 //*****************************************************************************
-extern uint16_t CTSD16_getHighWordResults(uint16_t baseAddress,
-					  uint8_t converter);
+extern uint16_t CTSD16_getHighWordResults(uint16_t baseAddress, uint8_t converter);
 
 //*****************************************************************************
 //
@@ -739,8 +732,7 @@ extern uint16_t CTSD16_isRailToRailInputReady(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void CTSD16_enableInterrupt(uint16_t baseAddress, uint8_t converter,
-				   uint16_t mask);
+extern void CTSD16_enableInterrupt(uint16_t baseAddress, uint8_t converter, uint16_t mask);
 
 //*****************************************************************************
 //
@@ -770,8 +762,7 @@ extern void CTSD16_enableInterrupt(uint16_t baseAddress, uint8_t converter,
 //! \return None
 //
 //*****************************************************************************
-extern void CTSD16_disableInterrupt(uint16_t baseAddress, uint8_t converter,
-				    uint16_t mask);
+extern void CTSD16_disableInterrupt(uint16_t baseAddress, uint8_t converter, uint16_t mask);
 
 //*****************************************************************************
 //
@@ -798,8 +789,7 @@ extern void CTSD16_disableInterrupt(uint16_t baseAddress, uint8_t converter,
 //! \return None
 //
 //*****************************************************************************
-extern void CTSD16_clearInterrupt(uint16_t baseAddress, uint8_t converter,
-				  uint16_t mask);
+extern void CTSD16_clearInterrupt(uint16_t baseAddress, uint8_t converter, uint16_t mask);
 
 //*****************************************************************************
 //
@@ -828,8 +818,7 @@ extern void CTSD16_clearInterrupt(uint16_t baseAddress, uint8_t converter,
 //!         \n indicating the status of the masked interrupts
 //
 //*****************************************************************************
-extern uint16_t CTSD16_getInterruptStatus(uint16_t baseAddress,
-					  uint8_t converter, uint16_t mask);
+extern uint16_t CTSD16_getInterruptStatus(uint16_t baseAddress, uint8_t converter, uint16_t mask);
 
 //*****************************************************************************
 //

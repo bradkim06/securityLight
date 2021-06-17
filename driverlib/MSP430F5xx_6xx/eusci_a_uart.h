@@ -256,8 +256,7 @@ typedef struct EUSCI_A_UART_initParam {
 //! \return STATUS_SUCCESS or STATUS_FAIL of the initialization process
 //
 //*****************************************************************************
-extern bool EUSCI_A_UART_init(uint16_t baseAddress,
-			      EUSCI_A_UART_initParam *param);
+extern bool EUSCI_A_UART_init(uint16_t baseAddress, EUSCI_A_UART_initParam *param);
 
 //*****************************************************************************
 //
@@ -277,8 +276,7 @@ extern bool EUSCI_A_UART_init(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_A_UART_transmitData(uint16_t baseAddress,
-				      uint8_t transmitData);
+extern void EUSCI_A_UART_transmitData(uint16_t baseAddress, uint8_t transmitData);
 
 //*****************************************************************************
 //
@@ -380,8 +378,7 @@ extern void EUSCI_A_UART_disableInterrupt(uint16_t baseAddress, uint8_t mask);
 //!         \n indicating the status of the masked flags
 //
 //*****************************************************************************
-extern uint8_t EUSCI_A_UART_getInterruptStatus(uint16_t baseAddress,
-					       uint8_t mask);
+extern uint8_t EUSCI_A_UART_getInterruptStatus(uint16_t baseAddress, uint8_t mask);
 
 //*****************************************************************************
 //
@@ -470,8 +467,7 @@ extern void EUSCI_A_UART_disable(uint16_t baseAddress);
 //!         \n indicating the status of the masked interrupt flags
 //
 //*****************************************************************************
-extern uint8_t EUSCI_A_UART_queryStatusFlags(uint16_t baseAddress,
-					     uint8_t mask);
+extern uint8_t EUSCI_A_UART_queryStatusFlags(uint16_t baseAddress, uint8_t mask);
 
 //*****************************************************************************
 //
@@ -518,8 +514,7 @@ extern void EUSCI_A_UART_resetDormant(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_A_UART_transmitAddress(uint16_t baseAddress,
-					 uint8_t transmitAddress);
+extern void EUSCI_A_UART_transmitAddress(uint16_t baseAddress, uint8_t transmitAddress);
 
 //*****************************************************************************
 //
@@ -584,8 +579,7 @@ extern uint32_t EUSCI_A_UART_getTransmitBufferAddress(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void EUSCI_A_UART_selectDeglitchTime(uint16_t baseAddress,
-					    uint16_t deglitchTime);
+extern void EUSCI_A_UART_selectDeglitchTime(uint16_t baseAddress, uint16_t deglitchTime);
 
 //*****************************************************************************
 //

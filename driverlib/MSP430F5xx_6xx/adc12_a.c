@@ -60,10 +60,8 @@ bool ADC12_A_init(uint16_t baseAddress, uint16_t sampleHoldSignalSourceSelect,
 	// Turn OFF ADC12_A Module & Clear Interrupt Registers
 	HWREG16(baseAddress + OFS_ADC12CTL0) &=
 		~(ADC12ON + ADC12OVIE + ADC12TOVIE + ADC12ENC + ADC12SC);
-	HWREG16(baseAddress + OFS_ADC12IE) &=
-		0x0000; // Reset ALL interrupt enables
-	HWREG16(baseAddress + OFS_ADC12IFG) &=
-		0x0000; // Reset ALL interrupt flags
+	HWREG16(baseAddress + OFS_ADC12IE) &= 0x0000; // Reset ALL interrupt enables
+	HWREG16(baseAddress + OFS_ADC12IFG) &= 0x0000; // Reset ALL interrupt flags
 
 	// Set ADC12_A Control 1
 	HWREG16(baseAddress + OFS_ADC12CTL1) =
@@ -91,21 +89,19 @@ void ADC12_A_disable(uint16_t baseAddress)
 	HWREG8(baseAddress + OFS_ADC12CTL0_L) &= ~ADC12ON;
 }
 
-void ADC12_A_setupSamplingTimer(uint16_t baseAddress,
-				uint16_t clockCycleHoldCountLowMem,
+void ADC12_A_setupSamplingTimer(uint16_t baseAddress, uint16_t clockCycleHoldCountLowMem,
 				uint16_t clockCycleHoldCountHighMem,
 				uint16_t multipleSamplesEnabled)
 {
 	HWREG16(baseAddress + OFS_ADC12CTL1) |= ADC12SHP;
 
 	// Reset clock cycle hold counts and msc bit before setting them
-	HWREG16(baseAddress + OFS_ADC12CTL0) &=
-		~(ADC12SHT0_15 + ADC12SHT1_15 + ADC12MSC);
+	HWREG16(baseAddress + OFS_ADC12CTL0) &= ~(ADC12SHT0_15 + ADC12SHT1_15 + ADC12MSC);
 
 	// Set clock cycle hold counts and msc bit
-	HWREG16(baseAddress + OFS_ADC12CTL0) |=
-		clockCycleHoldCountLowMem + (clockCycleHoldCountHighMem << 4) +
-		multipleSamplesEnabled;
+	HWREG16(baseAddress + OFS_ADC12CTL0) |= clockCycleHoldCountLowMem +
+						(clockCycleHoldCountHighMem << 4) +
+						multipleSamplesEnabled;
 }
 
 void ADC12_A_disableSamplingTimer(uint16_t baseAddress)
@@ -113,8 +109,7 @@ void ADC12_A_disableSamplingTimer(uint16_t baseAddress)
 	HWREG16(baseAddress + OFS_ADC12CTL1) &= ~(ADC12SHP);
 }
 
-void ADC12_A_configureMemory(uint16_t baseAddress,
-			     ADC12_A_configureMemoryParam *param)
+void ADC12_A_configureMemory(uint16_t baseAddress, ADC12_A_configureMemoryParam *param)
 {
 	// Make sure the ENC bit is cleared before configuring a Memory Buffer Control
 	assert(!(HWREG16(baseAddress + OFS_ADC12CTL0) & ADC12ENC));
@@ -161,31 +156,26 @@ void ADC12_A_disableInterrupt(uint16_t baseAddress, uint32_t interruptMask)
 	HWREG16(baseAddress + OFS_ADC12IE) &= ~(interruptMask);
 }
 
-void ADC12_A_clearInterrupt(uint16_t baseAddress,
-			    uint16_t memoryInterruptFlagMask)
+void ADC12_A_clearInterrupt(uint16_t baseAddress, uint16_t memoryInterruptFlagMask)
 {
 	HWREG16(baseAddress + OFS_ADC12IFG) &= ~(memoryInterruptFlagMask);
 }
 
-uint8_t ADC12_A_getInterruptStatus(uint16_t baseAddress,
-				   uint16_t memoryInterruptFlagMask)
+uint8_t ADC12_A_getInterruptStatus(uint16_t baseAddress, uint16_t memoryInterruptFlagMask)
 {
 	return (HWREG16(baseAddress + OFS_ADC12IFG) & memoryInterruptFlagMask);
 }
 
-void ADC12_A_startConversion(uint16_t baseAddress,
-			     uint16_t startingMemoryBufferIndex,
+void ADC12_A_startConversion(uint16_t baseAddress, uint16_t startingMemoryBufferIndex,
 			     uint8_t conversionSequenceModeSelect)
 {
 	// Reset the ENC bit to set the starting memory address and conversion mode
 	// sequence
 	HWREG8(baseAddress + OFS_ADC12CTL0_L) &= ~(ADC12ENC);
 	// Reset the bits about to be set
-	HWREG16(baseAddress + OFS_ADC12CTL1) &=
-		~(ADC12CSTARTADD_15 + ADC12CONSEQ_3);
+	HWREG16(baseAddress + OFS_ADC12CTL1) &= ~(ADC12CSTARTADD_15 + ADC12CONSEQ_3);
 
-	HWREG8(baseAddress + OFS_ADC12CTL1_H) |=
-		(startingMemoryBufferIndex << 4);
+	HWREG8(baseAddress + OFS_ADC12CTL1_H) |= (startingMemoryBufferIndex << 4);
 	HWREG8(baseAddress + OFS_ADC12CTL1_L) |= conversionSequenceModeSelect;
 	HWREG8(baseAddress + OFS_ADC12CTL0_L) |= ADC12ENC + ADC12SC;
 }
@@ -218,8 +208,7 @@ void ADC12_A_setResolution(uint16_t baseAddress, uint8_t resolutionSelect)
 	HWREG8(baseAddress + OFS_ADC12CTL2_L) |= resolutionSelect;
 }
 
-void ADC12_A_setSampleHoldSignalInversion(uint16_t baseAddress,
-					  uint16_t invertedSignal)
+void ADC12_A_setSampleHoldSignalInversion(uint16_t baseAddress, uint16_t invertedSignal)
 {
 	HWREG16(baseAddress + OFS_ADC12CTL1) &= ~(ADC12ISSH);
 	HWREG16(baseAddress + OFS_ADC12CTL1) |= invertedSignal;
@@ -241,15 +230,13 @@ void ADC12_A_disableReferenceBurst(uint16_t baseAddress)
 	HWREG8(baseAddress + OFS_ADC12CTL2_L) &= ~(ADC12REFBURST);
 }
 
-void ADC12_A_setReferenceBufferSamplingRate(uint16_t baseAddress,
-					    uint8_t samplingRateSelect)
+void ADC12_A_setReferenceBufferSamplingRate(uint16_t baseAddress, uint8_t samplingRateSelect)
 {
 	HWREG8(baseAddress + OFS_ADC12CTL2_L) &= ~(ADC12SR);
 	HWREG8(baseAddress + OFS_ADC12CTL2_L) |= samplingRateSelect;
 }
 
-uint32_t ADC12_A_getMemoryAddressForDMA(uint16_t baseAddress,
-					uint8_t memoryIndex)
+uint32_t ADC12_A_getMemoryAddressForDMA(uint16_t baseAddress, uint8_t memoryIndex)
 {
 	return (baseAddress + (0x20 + (memoryIndex * 2)));
 }

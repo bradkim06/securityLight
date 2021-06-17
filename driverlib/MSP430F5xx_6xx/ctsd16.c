@@ -49,27 +49,22 @@
 
 #include "ctsd16.h"
 
-void CTSD16_init(uint16_t baseAddress, uint16_t chargePumpBurstRequest,
-		 uint8_t referenceSelect)
+void CTSD16_init(uint16_t baseAddress, uint16_t chargePumpBurstRequest, uint8_t referenceSelect)
 {
 	// Reset all interrupts and flags
-	HWREG16(baseAddress + OFS_CTSD16IE) &=
-		0x0000; // Reset ALL interrupt enables
-	HWREG16(baseAddress + OFS_CTSD16IFG) &=
-		0x0000; // Reset ALL interrupt flags
+	HWREG16(baseAddress + OFS_CTSD16IE) &= 0x0000; // Reset ALL interrupt enables
+	HWREG16(baseAddress + OFS_CTSD16IFG) &= 0x0000; // Reset ALL interrupt flags
 
 	// Configure CTSD16
-	HWREG16(baseAddress + OFS_CTSD16CTL) &=
-		~(CTSD16RRIBURST | CTSD16OFFG | CTSD16REFS);
+	HWREG16(baseAddress + OFS_CTSD16CTL) &= ~(CTSD16RRIBURST | CTSD16OFFG | CTSD16REFS);
 
-	HWREG16(baseAddress + OFS_CTSD16CTL) |=
-		chargePumpBurstRequest | referenceSelect;
+	HWREG16(baseAddress + OFS_CTSD16CTL) |= chargePumpBurstRequest | referenceSelect;
 
 	return;
 }
 
-void CTSD16_initConverter(uint16_t baseAddress, uint8_t converter,
-			  uint16_t conversionMode, uint8_t inputChannel)
+void CTSD16_initConverter(uint16_t baseAddress, uint8_t converter, uint16_t conversionMode,
+			  uint8_t inputChannel)
 {
 	uint16_t address;
 	address = baseAddress + (OFS_CTSD16CCTL0 + (converter * 0x06));
@@ -81,14 +76,12 @@ void CTSD16_initConverter(uint16_t baseAddress, uint8_t converter,
 
 	address += 0x2;
 
-	HWREG16(address) &= ~(CTSD16INCH4 | CTSD16INCH3 | CTSD16INCH2 |
-			      CTSD16INCH1 | CTSD16INCH0);
+	HWREG16(address) &= ~(CTSD16INCH4 | CTSD16INCH3 | CTSD16INCH2 | CTSD16INCH1 | CTSD16INCH0);
 
 	HWREG16(address) |= inputChannel;
 }
 
-void CTSD16_initConverterAdvanced(uint16_t baseAddress,
-				  CTSD16_initConverterAdvancedParam *param)
+void CTSD16_initConverterAdvanced(uint16_t baseAddress, CTSD16_initConverterAdvancedParam *param)
 {
 	uint16_t address;
 
@@ -96,22 +89,19 @@ void CTSD16_initConverterAdvanced(uint16_t baseAddress,
 	address = baseAddress + (OFS_CTSD16CCTL0 + (param->converter * 0x06));
 
 	// Clearing previous settings for configuration
-	HWREG16(address) &=
-		~(CTSD16SC | CTSD16SNGL | CTSD16GRP | CTSD16OSR__32 | CTSD16DF);
+	HWREG16(address) &= ~(CTSD16SC | CTSD16SNGL | CTSD16GRP | CTSD16OSR__32 | CTSD16DF);
 
-	HWREG16(address) |= (param->groupEnable | param->conversionMode |
-			     param->oversampleRatio | param->dataFormat);
+	HWREG16(address) |= (param->groupEnable | param->conversionMode | param->oversampleRatio |
+			     param->dataFormat);
 
 	// Getting correct CTSD16INCTLx register
 	address += 0x2;
 
-	HWREG16(address) &=
-		~(CTSD16RRI | CTSD16INTDLY | CTSD16GAIN2 | CTSD16GAIN1 |
-		  CTSD16GAIN0 | CTSD16INCH4 | CTSD16INCH3 | CTSD16INCH2 |
-		  CTSD16INCH1 | CTSD16INCH0);
+	HWREG16(address) &= ~(CTSD16RRI | CTSD16INTDLY | CTSD16GAIN2 | CTSD16GAIN1 | CTSD16GAIN0 |
+			      CTSD16INCH4 | CTSD16INCH3 | CTSD16INCH2 | CTSD16INCH1 | CTSD16INCH0);
 
-	HWREG16(address) |= (param->railToRailInput | param->interruptDelay |
-			     param->gain | param->inputChannel);
+	HWREG16(address) |= (param->railToRailInput | param->interruptDelay | param->gain |
+			     param->inputChannel);
 }
 
 void CTSD16_startConverterConversion(uint16_t baseAddress, uint8_t converter)
@@ -134,8 +124,7 @@ void CTSD16_stopConverterConversion(uint16_t baseAddress, uint8_t converter)
 	HWREG16(address) &= ~(CTSD16SC);
 }
 
-void CTSD16_setConverterDataFormat(uint16_t baseAddress, uint8_t converter,
-				   uint8_t dataFormat)
+void CTSD16_setConverterDataFormat(uint16_t baseAddress, uint8_t converter, uint8_t dataFormat)
 {
 	uint16_t address;
 
@@ -147,22 +136,19 @@ void CTSD16_setConverterDataFormat(uint16_t baseAddress, uint8_t converter,
 	HWREG8(address) |= dataFormat;
 }
 
-void CTSD16_setInputChannel(uint16_t baseAddress, uint8_t converter,
-			    uint8_t inputChannel)
+void CTSD16_setInputChannel(uint16_t baseAddress, uint8_t converter, uint8_t inputChannel)
 {
 	uint16_t address;
 
 	address = baseAddress + (OFS_CTSD16INCTL0 + (converter * 0x06));
 
 	// Clear previous settings
-	HWREG16(address) &= ~(CTSD16INCH4 | CTSD16INCH3 | CTSD16INCH2 |
-			      CTSD16INCH1 | CTSD16INCH0);
+	HWREG16(address) &= ~(CTSD16INCH4 | CTSD16INCH3 | CTSD16INCH2 | CTSD16INCH1 | CTSD16INCH0);
 
 	HWREG16(address) |= inputChannel;
 }
 
-void CTSD16_setRailToRailInput(uint16_t baseAddress, uint8_t converter,
-			       uint16_t railToRailInput)
+void CTSD16_setRailToRailInput(uint16_t baseAddress, uint8_t converter, uint16_t railToRailInput)
 {
 	uint16_t address;
 
@@ -174,8 +160,7 @@ void CTSD16_setRailToRailInput(uint16_t baseAddress, uint8_t converter,
 	HWREG16(address) |= railToRailInput;
 }
 
-void CTSD16_setInterruptDelay(uint16_t baseAddress, uint8_t converter,
-			      uint16_t interruptDelay)
+void CTSD16_setInterruptDelay(uint16_t baseAddress, uint8_t converter, uint16_t interruptDelay)
 {
 	uint16_t address;
 
@@ -187,8 +172,7 @@ void CTSD16_setInterruptDelay(uint16_t baseAddress, uint8_t converter,
 	HWREG16(address) |= interruptDelay;
 }
 
-void CTSD16_setOversampling(uint16_t baseAddress, uint8_t converter,
-			    uint16_t oversampleRatio)
+void CTSD16_setOversampling(uint16_t baseAddress, uint8_t converter, uint16_t oversampleRatio)
 {
 	uint16_t address;
 
@@ -217,16 +201,13 @@ uint32_t CTSD16_getResults(uint16_t baseAddress, uint8_t converter)
 	uint16_t address = baseAddress + (OFS_CTSD16MEM0 + (converter * 0x02));
 
 	// Get high word result
-	HWREG16(baseAddress + (OFS_CTSD16CCTL0 + (converter * 0x02))) &=
-		~(CTSD16LSBACC);
+	HWREG16(baseAddress + (OFS_CTSD16CCTL0 + (converter * 0x02))) &= ~(CTSD16LSBACC);
 	uint32_t highResult = (uint32_t)HWREG16(address);
 
 	// Get low word result
-	HWREG16(baseAddress + (OFS_CTSD16CCTL0 + (converter * 0x02))) |=
-		CTSD16LSBACC;
+	HWREG16(baseAddress + (OFS_CTSD16CCTL0 + (converter * 0x02))) |= CTSD16LSBACC;
 	uint16_t lowResult = HWREG16(address);
-	HWREG16(baseAddress + (OFS_CTSD16CCTL0 + (converter * 0x02))) &=
-		~(CTSD16LSBACC);
+	HWREG16(baseAddress + (OFS_CTSD16CCTL0 + (converter * 0x02))) &= ~(CTSD16LSBACC);
 
 	// Determine the OSR and combine the high and low result words as appropriate
 	OSR = HWREG16(baseAddress + (OFS_CTSD16CCTL0 + (converter * 0x02))) &
@@ -250,8 +231,7 @@ uint16_t CTSD16_getHighWordResults(uint16_t baseAddress, uint8_t converter)
 	uint16_t address = baseAddress + (OFS_CTSD16MEM0 + (converter * 0x02));
 
 	// Get high word result
-	HWREG16(baseAddress + (OFS_CTSD16CCTL0 + (converter * 0x02))) &=
-		~(CTSD16LSBACC);
+	HWREG16(baseAddress + (OFS_CTSD16CCTL0 + (converter * 0x02))) &= ~(CTSD16LSBACC);
 	uint16_t highResult = HWREG16(address);
 
 	return (highResult);
@@ -262,28 +242,24 @@ uint16_t CTSD16_isRailToRailInputReady(uint16_t baseAddress)
 	return (HWREG16(baseAddress + OFS_CTSD16CTL) & CTSD16RRIRDY);
 }
 
-void CTSD16_enableInterrupt(uint16_t baseAddress, uint8_t converter,
-			    uint16_t mask)
+void CTSD16_enableInterrupt(uint16_t baseAddress, uint8_t converter, uint16_t mask)
 {
 	// Enable Interrupt
 	HWREG16(baseAddress + OFS_CTSD16IE) |= (mask << converter);
 }
 
-void CTSD16_disableInterrupt(uint16_t baseAddress, uint8_t converter,
-			     uint16_t mask)
+void CTSD16_disableInterrupt(uint16_t baseAddress, uint8_t converter, uint16_t mask)
 {
 	// Enable Interrupt
 	HWREG16(baseAddress + OFS_CTSD16IE) &= ~(mask << converter);
 }
 
-void CTSD16_clearInterrupt(uint16_t baseAddress, uint8_t converter,
-			   uint16_t mask)
+void CTSD16_clearInterrupt(uint16_t baseAddress, uint8_t converter, uint16_t mask)
 {
 	HWREG16(baseAddress + OFS_CTSD16IFG) &= ~(mask << converter);
 }
 
-uint16_t CTSD16_getInterruptStatus(uint16_t baseAddress, uint8_t converter,
-				   uint16_t mask)
+uint16_t CTSD16_getInterruptStatus(uint16_t baseAddress, uint8_t converter, uint16_t mask)
 {
 	return (HWREG16(baseAddress + OFS_CTSD16IFG) & (mask << converter));
 }

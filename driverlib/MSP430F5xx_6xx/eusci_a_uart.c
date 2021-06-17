@@ -90,8 +90,7 @@ bool EUSCI_A_UART_init(uint16_t baseAddress, EUSCI_A_UART_initParam *param)
 	HWREG16(baseAddress + OFS_UCAxBRW) = param->clockPrescalar;
 	// Modulation Control Register
 	HWREG16(baseAddress + OFS_UCAxMCTLW) =
-		((param->secondModReg << 8) + (param->firstModReg << 4) +
-		 param->overSampling);
+		((param->secondModReg << 8) + (param->firstModReg << 4) + param->overSampling);
 
 	// Asynchronous mode & 8 bit character select & clear mode
 	HWREG16(baseAddress + OFS_UCAxCTLW0) &= ~(UCSYNC + UC7BIT + UCMODE_3);
@@ -100,8 +99,7 @@ bool EUSCI_A_UART_init(uint16_t baseAddress, EUSCI_A_UART_initParam *param)
 	HWREG16(baseAddress + OFS_UCAxCTLW0) |= param->uartMode;
 
 	// Reset UCRXIE, UCBRKIE, UCDORM, UCTXADDR, UCTXBRK
-	HWREG16(baseAddress + OFS_UCAxCTLW0) &=
-		~(UCRXEIE + UCBRKIE + UCDORM + UCTXADDR + UCTXBRK);
+	HWREG16(baseAddress + OFS_UCAxCTLW0) &= ~(UCRXEIE + UCBRKIE + UCDORM + UCTXADDR + UCTXBRK);
 	return (retVal);
 }
 
@@ -135,10 +133,9 @@ void EUSCI_A_UART_enableInterrupt(uint16_t baseAddress, uint8_t mask)
 {
 	uint8_t locMask;
 
-	locMask = (mask & (EUSCI_A_UART_RECEIVE_INTERRUPT |
-			   EUSCI_A_UART_TRANSMIT_INTERRUPT |
-			   EUSCI_A_UART_STARTBIT_INTERRUPT |
-			   EUSCI_A_UART_TRANSMIT_COMPLETE_INTERRUPT));
+	locMask = (mask &
+		   (EUSCI_A_UART_RECEIVE_INTERRUPT | EUSCI_A_UART_TRANSMIT_INTERRUPT |
+		    EUSCI_A_UART_STARTBIT_INTERRUPT | EUSCI_A_UART_TRANSMIT_COMPLETE_INTERRUPT));
 
 	HWREG16(baseAddress + OFS_UCAxIE) |= locMask;
 
@@ -151,10 +148,9 @@ void EUSCI_A_UART_disableInterrupt(uint16_t baseAddress, uint8_t mask)
 {
 	uint8_t locMask;
 
-	locMask = (mask & (EUSCI_A_UART_RECEIVE_INTERRUPT |
-			   EUSCI_A_UART_TRANSMIT_INTERRUPT |
-			   EUSCI_A_UART_STARTBIT_INTERRUPT |
-			   EUSCI_A_UART_TRANSMIT_COMPLETE_INTERRUPT));
+	locMask = (mask &
+		   (EUSCI_A_UART_RECEIVE_INTERRUPT | EUSCI_A_UART_TRANSMIT_INTERRUPT |
+		    EUSCI_A_UART_STARTBIT_INTERRUPT | EUSCI_A_UART_TRANSMIT_COMPLETE_INTERRUPT));
 	HWREG16(baseAddress + OFS_UCAxIE) &= ~locMask;
 
 	locMask = (mask & (EUSCI_A_UART_RECEIVE_ERRONEOUSCHAR_INTERRUPT |
@@ -218,8 +214,7 @@ void EUSCI_A_UART_transmitBreak(uint16_t baseAddress)
 	if (EUSCI_A_UART_AUTOMATIC_BAUDRATE_DETECTION_MODE ==
 	    (HWREG16(baseAddress + OFS_UCAxCTLW0) &
 	     EUSCI_A_UART_AUTOMATIC_BAUDRATE_DETECTION_MODE)) {
-		HWREG16(baseAddress + OFS_UCAxTXBUF) =
-			EUSCI_A_UART_AUTOMATICBAUDRATE_SYNC;
+		HWREG16(baseAddress + OFS_UCAxTXBUF) = EUSCI_A_UART_AUTOMATICBAUDRATE_SYNC;
 	} else {
 		HWREG16(baseAddress + OFS_UCAxTXBUF) = DEFAULT_SYNC;
 	}
@@ -243,8 +238,7 @@ uint32_t EUSCI_A_UART_getTransmitBufferAddress(uint16_t baseAddress)
 	return (baseAddress + OFS_UCAxTXBUF);
 }
 
-void EUSCI_A_UART_selectDeglitchTime(uint16_t baseAddress,
-				     uint16_t deglitchTime)
+void EUSCI_A_UART_selectDeglitchTime(uint16_t baseAddress, uint16_t deglitchTime)
 {
 	HWREG16(baseAddress + OFS_UCAxCTLW1) &= ~(UCGLIT1 + UCGLIT0);
 

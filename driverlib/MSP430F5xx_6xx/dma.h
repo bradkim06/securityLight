@@ -379,8 +379,7 @@ extern uint16_t DMA_getTransferSize(uint8_t channelSelect);
 //! \return None
 //
 //*****************************************************************************
-extern void DMA_setSrcAddress(uint8_t channelSelect, uint32_t srcAddress,
-			      uint16_t directionSelect);
+extern void DMA_setSrcAddress(uint8_t channelSelect, uint32_t srcAddress, uint16_t directionSelect);
 
 //*****************************************************************************
 //
@@ -415,8 +414,7 @@ extern void DMA_setSrcAddress(uint8_t channelSelect, uint32_t srcAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void DMA_setDstAddress(uint8_t channelSelect, uint32_t dstAddress,
-			      uint16_t directionSelect);
+extern void DMA_setDstAddress(uint8_t channelSelect, uint32_t dstAddress, uint16_t directionSelect);
 
 //*****************************************************************************
 //

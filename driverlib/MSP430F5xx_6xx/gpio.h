@@ -376,8 +376,7 @@ extern void GPIO_setAsPeripheralModuleFunctionOutputPin(uint8_t selectedPort,
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_setAsPeripheralModuleFunctionInputPin(uint8_t selectedPort,
-						       uint16_t selectedPins);
+extern void GPIO_setAsPeripheralModuleFunctionInputPin(uint8_t selectedPort, uint16_t selectedPins);
 
 //*****************************************************************************
 //
@@ -431,8 +430,7 @@ extern void GPIO_setAsPeripheralModuleFunctionInputPin(uint8_t selectedPort,
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_setOutputHighOnPin(uint8_t selectedPort,
-				    uint16_t selectedPins);
+extern void GPIO_setOutputHighOnPin(uint8_t selectedPort, uint16_t selectedPins);
 
 //*****************************************************************************
 //
@@ -596,8 +594,7 @@ extern void GPIO_toggleOutputOnPin(uint8_t selectedPort, uint16_t selectedPins);
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_setAsInputPinWithPullDownResistor(uint8_t selectedPort,
-						   uint16_t selectedPins);
+extern void GPIO_setAsInputPinWithPullDownResistor(uint8_t selectedPort, uint16_t selectedPins);
 
 //*****************************************************************************
 //
@@ -653,8 +650,7 @@ extern void GPIO_setAsInputPinWithPullDownResistor(uint8_t selectedPort,
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_setAsInputPinWithPullUpResistor(uint8_t selectedPort,
-						 uint16_t selectedPins);
+extern void GPIO_setAsInputPinWithPullUpResistor(uint8_t selectedPort, uint16_t selectedPins);
 
 //*****************************************************************************
 //
@@ -709,8 +705,7 @@ extern void GPIO_setAsInputPinWithPullUpResistor(uint8_t selectedPort,
 //!         \n indicating the status of the pin
 //
 //*****************************************************************************
-extern uint8_t GPIO_getInputPinValue(uint8_t selectedPort,
-				     uint16_t selectedPins);
+extern uint8_t GPIO_getInputPinValue(uint8_t selectedPort, uint16_t selectedPins);
 
 //*****************************************************************************
 //
@@ -893,8 +888,7 @@ extern void GPIO_disableInterrupt(uint8_t selectedPort, uint16_t selectedPins);
 //!         0]
 //
 //*****************************************************************************
-extern uint16_t GPIO_getInterruptStatus(uint8_t selectedPort,
-					uint16_t selectedPins);
+extern uint16_t GPIO_getInterruptStatus(uint8_t selectedPort, uint16_t selectedPins);
 
 //*****************************************************************************
 //
@@ -1011,8 +1005,8 @@ extern void GPIO_clearInterrupt(uint8_t selectedPort, uint16_t selectedPins);
 //! \return None
 //
 //*****************************************************************************
-extern void GPIO_selectInterruptEdge(uint8_t selectedPort,
-				     uint16_t selectedPins, uint8_t edgeSelect);
+extern void GPIO_selectInterruptEdge(uint8_t selectedPort, uint16_t selectedPins,
+				     uint8_t edgeSelect);
 
 //*****************************************************************************
 //

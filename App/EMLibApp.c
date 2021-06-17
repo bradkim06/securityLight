@@ -8,8 +8,7 @@ void initEMLibGUIApp(void)
 	/* turn off global interrupts */
 	__disable_interrupt();
 	// Initialize the Energy Measurement Library
-	code = EM_configureEnergyMeasurement(
-		&gEmSWConfig, (EM_SW_Lib_Result_Handle *)&gEmSWResult);
+	code = EM_configureEnergyMeasurement(&gEmSWConfig, (EM_SW_Lib_Result_Handle *)&gEmSWResult);
 
 	if (code != EM_message_code_no_error) {
 		// Error occurred

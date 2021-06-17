@@ -49,8 +49,7 @@
 
 #include "tlv.h"
 
-void TLV_getInfo(uint8_t tag, uint8_t instance, uint8_t *length,
-		 uint16_t **data_address)
+void TLV_getInfo(uint8_t tag, uint8_t instance, uint8_t *length, uint16_t **data_address)
 {
 	// TLV Structure Start Address
 	char *TLV_address = (char *)TLV_START;

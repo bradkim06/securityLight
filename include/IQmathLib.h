@@ -420,8 +420,7 @@ extern float _IQ1toF(_iq1 A);
 // Saturates an IQ number in a given range.
 //
 //*****************************************************************************
-#define _IQsat(A, Pos, Neg)                                                    \
-	(((A) > (Pos)) ? (Pos) : (((A) < (Neg)) ? (Neg) : (A)))
+#define _IQsat(A, Pos, Neg) (((A) > (Pos)) ? (Pos) : (((A) < (Neg)) ? (Neg) : (A)))
 
 //*****************************************************************************
 //

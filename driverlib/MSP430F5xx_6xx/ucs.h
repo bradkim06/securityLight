@@ -193,8 +193,7 @@ extern "C" {
 //! \return None
 //
 //*****************************************************************************
-extern void UCS_setExternalClockSource(uint32_t XT1CLK_frequency,
-				       uint32_t XT2CLK_frequency);
+extern void UCS_setExternalClockSource(uint32_t XT1CLK_frequency, uint32_t XT2CLK_frequency);
 
 //*****************************************************************************
 //
@@ -237,8 +236,7 @@ extern void UCS_setExternalClockSource(uint32_t XT1CLK_frequency,
 //! \return None
 //
 //*****************************************************************************
-extern void UCS_initClockSignal(uint8_t selectedClockSignal,
-				uint16_t clockSource,
+extern void UCS_initClockSignal(uint8_t selectedClockSignal, uint16_t clockSource,
 				uint16_t clockSourceDivider);
 
 //*****************************************************************************
@@ -360,8 +358,7 @@ extern void UCS_bypassXT1(uint8_t highOrLowFrequency);
 //! \return STATUS_SUCCESS or STATUS_FAIL
 //
 //*****************************************************************************
-extern bool UCS_turnOnLFXT1WithTimeout(uint16_t xt1drive, uint8_t xcap,
-				       uint16_t timeout);
+extern bool UCS_turnOnLFXT1WithTimeout(uint16_t xt1drive, uint8_t xcap, uint16_t timeout);
 
 //*****************************************************************************
 //
@@ -413,8 +410,7 @@ extern bool UCS_turnOnHFXT1WithTimeout(uint16_t xt1drive, uint16_t timeout);
 //! \return STATUS_SUCCESS or STATUS_FAIL
 //
 //*****************************************************************************
-extern bool UCS_bypassXT1WithTimeout(uint8_t highOrLowFrequency,
-				     uint16_t timeout);
+extern bool UCS_bypassXT1WithTimeout(uint8_t highOrLowFrequency, uint16_t timeout);
 
 //*****************************************************************************
 //

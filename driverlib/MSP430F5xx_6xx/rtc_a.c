@@ -59,32 +59,27 @@ void RTC_A_holdClock(uint16_t baseAddress)
 	HWREG8(baseAddress + OFS_RTCCTL01_H) |= RTCHOLD_H;
 }
 
-void RTC_A_setCalibrationFrequency(uint16_t baseAddress,
-				   uint16_t frequencySelect)
+void RTC_A_setCalibrationFrequency(uint16_t baseAddress, uint16_t frequencySelect)
 {
 	HWREG16(baseAddress + OFS_RTCCTL23) &= ~(RTCCALF_3);
 	HWREG16(baseAddress + OFS_RTCCTL23) |= frequencySelect;
 }
 
-void RTC_A_setCalibrationData(uint16_t baseAddress, uint8_t offsetDirection,
-			      uint8_t offsetValue)
+void RTC_A_setCalibrationData(uint16_t baseAddress, uint8_t offsetDirection, uint8_t offsetValue)
 {
 	HWREG8(baseAddress + OFS_RTCCTL23_L) = offsetValue + offsetDirection;
 }
 
-void RTC_A_initCounter(uint16_t baseAddress, uint16_t clockSelect,
-		       uint16_t counterSizeSelect)
+void RTC_A_initCounter(uint16_t baseAddress, uint16_t clockSelect, uint16_t counterSizeSelect)
 {
 	HWREG8(baseAddress + OFS_RTCCTL01_H) |= RTCHOLD_H;
 	HWREG8(baseAddress + OFS_RTCCTL01_H) &= ~(RTCMODE_H);
 
-	HWREG16(baseAddress + OFS_RTCCTL01) &=
-		0xF0FF; //~(RTCSSEL_3 + RTCTEV_3);
+	HWREG16(baseAddress + OFS_RTCCTL01) &= 0xF0FF; //~(RTCSSEL_3 + RTCTEV_3);
 	HWREG16(baseAddress + OFS_RTCCTL01) |= clockSelect + counterSizeSelect;
 }
 
-void RTC_A_initCalendar(uint16_t baseAddress, Calendar *CalendarTime,
-			uint16_t formatSelect)
+void RTC_A_initCalendar(uint16_t baseAddress, Calendar *CalendarTime, uint16_t formatSelect)
 {
 	HWREG8(baseAddress + OFS_RTCCTL01_H) |= RTCMODE_H + RTCHOLD_H;
 
@@ -119,16 +114,14 @@ Calendar RTC_A_getCalendarTime(uint16_t baseAddress)
 	return (tempCal);
 }
 
-void RTC_A_configureCalendarAlarm(uint16_t baseAddress,
-				  RTC_A_configureCalendarAlarmParam *param)
+void RTC_A_configureCalendarAlarm(uint16_t baseAddress, RTC_A_configureCalendarAlarmParam *param)
 {
 	// Each of these is XORed with 0x80 to turn on if an integer is passed,
 	// or turn OFF if RTC_A_ALARM_OFF (0x80) is passed.
 	HWREG8(baseAddress + OFS_RTCAMINHR_L) = (param->minutesAlarm ^ 0x80);
 	HWREG8(baseAddress + OFS_RTCAMINHR_H) = (param->hoursAlarm ^ 0x80);
 	HWREG8(baseAddress + OFS_RTCADOWDAY_L) = (param->dayOfWeekAlarm ^ 0x80);
-	HWREG8(baseAddress + OFS_RTCADOWDAY_H) =
-		(param->dayOfMonthAlarm ^ 0x80);
+	HWREG8(baseAddress + OFS_RTCADOWDAY_H) = (param->dayOfMonthAlarm ^ 0x80);
 }
 
 void RTC_A_setCalendarEvent(uint16_t baseAddress, uint16_t eventSelect)
@@ -156,8 +149,7 @@ void RTC_A_setCounterValue(uint16_t baseAddress, uint32_t counterValue)
 }
 
 void RTC_A_initCounterPrescale(uint16_t baseAddress, uint8_t prescaleSelect,
-			       uint16_t prescaleClockSelect,
-			       uint16_t prescaleDivider)
+			       uint16_t prescaleClockSelect, uint16_t prescaleDivider)
 {
 	// Reset bits and set clock select
 	HWREG16(baseAddress + OFS_RTCPS0CTL + prescaleSelect) =
@@ -171,22 +163,19 @@ void RTC_A_holdCounterPrescale(uint16_t baseAddress, uint8_t prescaleSelect)
 
 void RTC_A_startCounterPrescale(uint16_t baseAddress, uint8_t prescaleSelect)
 {
-	HWREG8(baseAddress + OFS_RTCPS0CTL_H + prescaleSelect) &=
-		~(RT0PSHOLD_H);
+	HWREG8(baseAddress + OFS_RTCPS0CTL_H + prescaleSelect) &= ~(RT0PSHOLD_H);
 }
 
 void RTC_A_definePrescaleEvent(uint16_t baseAddress, uint8_t prescaleSelect,
 			       uint8_t prescaleEventDivider)
 {
 	HWREG8(baseAddress + OFS_RTCPS0CTL_L + prescaleSelect) &= ~(RT0IP_7);
-	HWREG8(baseAddress + OFS_RTCPS0CTL_L + prescaleSelect) |=
-		prescaleEventDivider;
+	HWREG8(baseAddress + OFS_RTCPS0CTL_L + prescaleSelect) |= prescaleEventDivider;
 }
 
 uint8_t RTC_A_getPrescaleValue(uint16_t baseAddress, uint8_t prescaleSelect)
 {
-	if (HWREG8(baseAddress + OFS_RTCPS0CTL_H + prescaleSelect) &
-	    RT0PSHOLD_H) {
+	if (HWREG8(baseAddress + OFS_RTCPS0CTL_H + prescaleSelect) & RT0PSHOLD_H) {
 		return (0);
 	}
 
@@ -241,28 +230,24 @@ void RTC_A_disableInterrupt(uint16_t baseAddress, uint8_t interruptMask)
 	}
 }
 
-uint8_t RTC_A_getInterruptStatus(uint16_t baseAddress,
-				 uint8_t interruptFlagMask)
+uint8_t RTC_A_getInterruptStatus(uint16_t baseAddress, uint8_t interruptFlagMask)
 {
 	uint8_t tempInterruptFlagMask = 0x0000;
 
 	tempInterruptFlagMask |= (HWREG8(baseAddress + OFS_RTCCTL01_L) &
-				  ((interruptFlagMask >> 4) &
-				   (RTCTEVIFG + RTCAIFG + RTCRDYIFG)));
+				  ((interruptFlagMask >> 4) & (RTCTEVIFG + RTCAIFG + RTCRDYIFG)));
 
 	tempInterruptFlagMask = tempInterruptFlagMask << 4;
 
 	if (interruptFlagMask & RTC_A_PRESCALE_TIMER0_INTERRUPT) {
 		if (HWREG8(baseAddress + OFS_RTCPS0CTL) & RT0PSIFG) {
-			tempInterruptFlagMask |=
-				RTC_A_PRESCALE_TIMER0_INTERRUPT;
+			tempInterruptFlagMask |= RTC_A_PRESCALE_TIMER0_INTERRUPT;
 		}
 	}
 
 	if (interruptFlagMask & RTC_A_PRESCALE_TIMER1_INTERRUPT) {
 		if (HWREG8(baseAddress + OFS_RTCPS1CTL) & RT1PSIFG) {
-			tempInterruptFlagMask |=
-				RTC_A_PRESCALE_TIMER1_INTERRUPT;
+			tempInterruptFlagMask |= RTC_A_PRESCALE_TIMER1_INTERRUPT;
 		}
 	}
 
@@ -271,12 +256,10 @@ uint8_t RTC_A_getInterruptStatus(uint16_t baseAddress,
 
 void RTC_A_clearInterrupt(uint16_t baseAddress, uint8_t interruptFlagMask)
 {
-	if (interruptFlagMask &
-	    (RTC_A_TIME_EVENT_INTERRUPT + RTC_A_CLOCK_ALARM_INTERRUPT +
-	     RTC_A_CLOCK_READ_READY_INTERRUPT)) {
+	if (interruptFlagMask & (RTC_A_TIME_EVENT_INTERRUPT + RTC_A_CLOCK_ALARM_INTERRUPT +
+				 RTC_A_CLOCK_READ_READY_INTERRUPT)) {
 		HWREG8(baseAddress + OFS_RTCCTL01_L) &=
-			~((interruptFlagMask >> 4) &
-			  (RTCTEVIFG + RTCAIFG + RTCRDYIFG));
+			~((interruptFlagMask >> 4) & (RTCTEVIFG + RTCAIFG + RTCRDYIFG));
 	}
 
 	if (interruptFlagMask & RTC_A_PRESCALE_TIMER0_INTERRUPT) {

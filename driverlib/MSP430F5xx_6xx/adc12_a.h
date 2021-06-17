@@ -456,10 +456,8 @@ typedef struct ADC12_A_configureMemoryParam {
 //! \return STATUS_SUCCESS or STATUS_FAILURE of the initialization process.
 //
 //*****************************************************************************
-extern bool ADC12_A_init(uint16_t baseAddress,
-			 uint16_t sampleHoldSignalSourceSelect,
-			 uint8_t clockSourceSelect,
-			 uint16_t clockSourceDivider);
+extern bool ADC12_A_init(uint16_t baseAddress, uint16_t sampleHoldSignalSourceSelect,
+			 uint8_t clockSourceSelect, uint16_t clockSourceDivider);
 
 //*****************************************************************************
 //
@@ -552,8 +550,7 @@ extern void ADC12_A_disable(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void ADC12_A_setupSamplingTimer(uint16_t baseAddress,
-				       uint16_t clockCycleHoldCountLowMem,
+extern void ADC12_A_setupSamplingTimer(uint16_t baseAddress, uint16_t clockCycleHoldCountLowMem,
 				       uint16_t clockCycleHoldCountHighMem,
 				       uint16_t multipleSamplesEnabled);
 
@@ -593,8 +590,7 @@ extern void ADC12_A_disableSamplingTimer(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void ADC12_A_configureMemory(uint16_t baseAddress,
-				    ADC12_A_configureMemoryParam *param);
+extern void ADC12_A_configureMemory(uint16_t baseAddress, ADC12_A_configureMemoryParam *param);
 
 //*****************************************************************************
 //
@@ -631,8 +627,7 @@ extern void ADC12_A_configureMemory(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void ADC12_A_enableInterrupt(uint16_t baseAddress,
-				    uint32_t interruptMask);
+extern void ADC12_A_enableInterrupt(uint16_t baseAddress, uint32_t interruptMask);
 
 //*****************************************************************************
 //
@@ -669,8 +664,7 @@ extern void ADC12_A_enableInterrupt(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void ADC12_A_disableInterrupt(uint16_t baseAddress,
-				     uint32_t interruptMask);
+extern void ADC12_A_disableInterrupt(uint16_t baseAddress, uint32_t interruptMask);
 
 //*****************************************************************************
 //
@@ -708,8 +702,7 @@ extern void ADC12_A_disableInterrupt(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void ADC12_A_clearInterrupt(uint16_t baseAddress,
-				   uint16_t memoryInterruptFlagMask);
+extern void ADC12_A_clearInterrupt(uint16_t baseAddress, uint16_t memoryInterruptFlagMask);
 
 //*****************************************************************************
 //
@@ -743,8 +736,7 @@ extern void ADC12_A_clearInterrupt(uint16_t baseAddress,
 //! \return The current interrupt flag status for the corresponding mask.
 //
 //*****************************************************************************
-extern uint8_t ADC12_A_getInterruptStatus(uint16_t baseAddress,
-					  uint16_t memoryInterruptFlagMask);
+extern uint8_t ADC12_A_getInterruptStatus(uint16_t baseAddress, uint16_t memoryInterruptFlagMask);
 
 //*****************************************************************************
 //
@@ -807,8 +799,7 @@ extern uint8_t ADC12_A_getInterruptStatus(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void ADC12_A_startConversion(uint16_t baseAddress,
-				    uint16_t startingMemoryBufferIndex,
+extern void ADC12_A_startConversion(uint16_t baseAddress, uint16_t startingMemoryBufferIndex,
 				    uint8_t conversionSequenceModeSelect);
 
 //*****************************************************************************
@@ -877,8 +868,7 @@ extern void ADC12_A_disableConversions(uint16_t baseAddress, bool preempt);
 //! \return A signed integer of the contents of the specified memory buffer
 //
 //*****************************************************************************
-extern uint16_t ADC12_A_getResults(uint16_t baseAddress,
-				   uint8_t memoryBufferIndex);
+extern uint16_t ADC12_A_getResults(uint16_t baseAddress, uint8_t memoryBufferIndex);
 
 //*****************************************************************************
 //
@@ -898,8 +888,7 @@ extern uint16_t ADC12_A_getResults(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void ADC12_A_setResolution(uint16_t baseAddress,
-				  uint8_t resolutionSelect);
+extern void ADC12_A_setResolution(uint16_t baseAddress, uint8_t resolutionSelect);
 
 //*****************************************************************************
 //
@@ -924,8 +913,7 @@ extern void ADC12_A_setResolution(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void ADC12_A_setSampleHoldSignalInversion(uint16_t baseAddress,
-						 uint16_t invertedSignal);
+extern void ADC12_A_setSampleHoldSignalInversion(uint16_t baseAddress, uint16_t invertedSignal);
 
 //*****************************************************************************
 //
@@ -949,8 +937,7 @@ extern void ADC12_A_setSampleHoldSignalInversion(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void ADC12_A_setDataReadBackFormat(uint16_t baseAddress,
-					  uint8_t readBackFormat);
+extern void ADC12_A_setDataReadBackFormat(uint16_t baseAddress, uint8_t readBackFormat);
 
 //*****************************************************************************
 //
@@ -1033,8 +1020,7 @@ extern void ADC12_A_setReferenceBufferSamplingRate(uint16_t baseAddress,
 //! \return address of the specified memory buffer
 //
 //*****************************************************************************
-extern uint32_t ADC12_A_getMemoryAddressForDMA(uint16_t baseAddress,
-					       uint8_t memoryIndex);
+extern uint32_t ADC12_A_getMemoryAddressForDMA(uint16_t baseAddress, uint8_t memoryIndex);
 
 //*****************************************************************************
 //

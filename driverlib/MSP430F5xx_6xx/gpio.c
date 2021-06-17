@@ -178,8 +178,7 @@ void GPIO_setAsInputPin(uint8_t selectedPort, uint16_t selectedPins)
 	HWREG16(baseAddress + OFS_PAREN) &= ~selectedPins;
 }
 
-void GPIO_setAsPeripheralModuleFunctionOutputPin(uint8_t selectedPort,
-						 uint16_t selectedPins)
+void GPIO_setAsPeripheralModuleFunctionOutputPin(uint8_t selectedPort, uint16_t selectedPins)
 {
 	uint16_t baseAddress = GPIO_PORT_TO_BASE[selectedPort];
 
@@ -198,8 +197,7 @@ void GPIO_setAsPeripheralModuleFunctionOutputPin(uint8_t selectedPort,
 	HWREG16(baseAddress + OFS_PASEL) |= selectedPins;
 }
 
-void GPIO_setAsPeripheralModuleFunctionInputPin(uint8_t selectedPort,
-						uint16_t selectedPins)
+void GPIO_setAsPeripheralModuleFunctionInputPin(uint8_t selectedPort, uint16_t selectedPins)
 {
 	uint16_t baseAddress = GPIO_PORT_TO_BASE[selectedPort];
 
@@ -272,8 +270,7 @@ void GPIO_toggleOutputOnPin(uint8_t selectedPort, uint16_t selectedPins)
 	HWREG16(baseAddress + OFS_PAOUT) ^= selectedPins;
 }
 
-void GPIO_setAsInputPinWithPullDownResistor(uint8_t selectedPort,
-					    uint16_t selectedPins)
+void GPIO_setAsInputPinWithPullDownResistor(uint8_t selectedPort, uint16_t selectedPins)
 {
 	uint16_t baseAddress = GPIO_PORT_TO_BASE[selectedPort];
 
@@ -295,8 +292,7 @@ void GPIO_setAsInputPinWithPullDownResistor(uint8_t selectedPort,
 	HWREG16(baseAddress + OFS_PAOUT) &= ~selectedPins;
 }
 
-void GPIO_setAsInputPinWithPullUpResistor(uint8_t selectedPort,
-					  uint16_t selectedPins)
+void GPIO_setAsInputPinWithPullUpResistor(uint8_t selectedPort, uint16_t selectedPins)
 {
 	uint16_t baseAddress = GPIO_PORT_TO_BASE[selectedPort];
 
@@ -332,8 +328,7 @@ uint8_t GPIO_getInputPinValue(uint8_t selectedPort, uint16_t selectedPins)
 		selectedPins <<= 8;
 	}
 
-	uint16_t inputPinValue =
-		HWREG16(baseAddress + OFS_PAIN) & (selectedPins);
+	uint16_t inputPinValue = HWREG16(baseAddress + OFS_PAIN) & (selectedPins);
 
 	if (inputPinValue > 0) {
 		return (GPIO_INPUT_PIN_HIGH);
@@ -413,8 +408,7 @@ void GPIO_clearInterrupt(uint8_t selectedPort, uint16_t selectedPins)
 	HWREG16(baseAddress + OFS_PAIFG) &= ~selectedPins;
 }
 
-void GPIO_selectInterruptEdge(uint8_t selectedPort, uint16_t selectedPins,
-			      uint8_t edgeSelect)
+void GPIO_selectInterruptEdge(uint8_t selectedPort, uint16_t selectedPins, uint8_t edgeSelect)
 {
 	uint16_t baseAddress = GPIO_PORT_TO_BASE[selectedPort];
 
@@ -436,8 +430,7 @@ void GPIO_selectInterruptEdge(uint8_t selectedPort, uint16_t selectedPins,
 	}
 }
 
-void GPIO_setDriveStrength(uint8_t selectedPort, uint16_t selectedPins,
-			   uint8_t driveStrength)
+void GPIO_setDriveStrength(uint8_t selectedPort, uint16_t selectedPins, uint8_t driveStrength)
 {
 	uint16_t baseAddress = GPIO_PORT_TO_BASE[selectedPort];
 

@@ -21,7 +21,7 @@
 #define KEY_SO 14 /**< ^N Shift Out, alternate character set */
 #define KEY_SI 15 /**< ^O Shift In, resume defaultn character set */
 #define KEY_DLE 16 /**< ^P Data link escape */
-#define KEY_DC1                                                                \
+#define KEY_DC1                                                                                    \
 	17 /**< ^Q XON, with XOFF to pause listings; "okay to send". \
                     */
 #define KEY_DC2 18 /**< ^R Device control 2, block-mode flow control */
@@ -80,9 +80,8 @@ typedef struct {
 	int cursor; // input cursor
 	int (*execute)(int argc,
 		       const char *const *argv); // ptr to 'execute' callback
-	char **(*get_completion)(
-		int argc,
-		const char *const *argv); // ptr to 'completion' callback
+	char **(*get_completion)(int argc,
+				 const char *const *argv); // ptr to 'completion' callback
 	void (*print)(const char *, ...); // ptr to 'print' callback
 #ifdef _USE_CTLR_C
 	void (*sigint)(void);
@@ -103,14 +102,13 @@ void microrl_set_echo(int);
 //   'Whitespace' If complite token found, it's must contain only one token to
 //   be complitted Empty string if complite not found, and multiple string if
 //   there are some token
-void microrl_set_complete_callback(
-	microrl_t *pThis, char **(*get_completion)(int, const char *const *));
+void microrl_set_complete_callback(microrl_t *pThis,
+				   char **(*get_completion)(int, const char *const *));
 
 // pointer to callback func, that called when user press 'Enter'
 // execute func param: argc - argument count, argv - pointer array to token
 // string
-void microrl_set_execute_callback(microrl_t *pThis,
-				  int (*execute)(int, const char *const *));
+void microrl_set_execute_callback(microrl_t *pThis, int (*execute)(int, const char *const *));
 
 // set callback for Ctrl+C terminal signal
 #ifdef _USE_CTLR_C

@@ -234,8 +234,7 @@ extern uint8_t MPY32_getFractionalMode(void);
 //! \return None
 //
 //*****************************************************************************
-extern void MPY32_setOperandOne8Bit(uint8_t multiplicationType,
-				    uint8_t operand);
+extern void MPY32_setOperandOne8Bit(uint8_t multiplicationType, uint8_t operand);
 
 //*****************************************************************************
 //
@@ -257,8 +256,7 @@ extern void MPY32_setOperandOne8Bit(uint8_t multiplicationType,
 //! \return None
 //
 //*****************************************************************************
-extern void MPY32_setOperandOne16Bit(uint8_t multiplicationType,
-				     uint16_t operand);
+extern void MPY32_setOperandOne16Bit(uint8_t multiplicationType, uint16_t operand);
 
 //*****************************************************************************
 //
@@ -280,8 +278,7 @@ extern void MPY32_setOperandOne16Bit(uint8_t multiplicationType,
 //! \return None
 //
 //*****************************************************************************
-extern void MPY32_setOperandOne24Bit(uint8_t multiplicationType,
-				     uint32_t operand);
+extern void MPY32_setOperandOne24Bit(uint8_t multiplicationType, uint32_t operand);
 
 //*****************************************************************************
 //
@@ -303,8 +300,7 @@ extern void MPY32_setOperandOne24Bit(uint8_t multiplicationType,
 //! \return None
 //
 //*****************************************************************************
-extern void MPY32_setOperandOne32Bit(uint8_t multiplicationType,
-				     uint32_t operand);
+extern void MPY32_setOperandOne32Bit(uint8_t multiplicationType, uint32_t operand);
 
 //*****************************************************************************
 //

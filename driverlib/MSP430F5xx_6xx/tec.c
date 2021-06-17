@@ -49,28 +49,23 @@
 
 #include "tec.h"
 
-void TEC_initExternalClearInput(uint16_t baseAddress, uint8_t signalType,
-				uint8_t signalHold, uint8_t polarityBit)
+void TEC_initExternalClearInput(uint16_t baseAddress, uint8_t signalType, uint8_t signalHold,
+				uint8_t polarityBit)
 {
 	HWREG8(baseAddress + OFS_TEC0XCTL2_L) &=
-		~(TEC_EXTERNAL_CLEAR_SIGNALTYPE_LEVEL_SENSITIVE +
-		  TEC_EXTERNAL_CLEAR_SIGNAL_HELD +
+		~(TEC_EXTERNAL_CLEAR_SIGNALTYPE_LEVEL_SENSITIVE + TEC_EXTERNAL_CLEAR_SIGNAL_HELD +
 		  TEC_EXTERNAL_CLEAR_POLARITY_RISING_EDGE_OR_HIGH_LEVEL);
 
-	HWREG8(baseAddress + OFS_TEC0XCTL2_L) |=
-		(signalType + signalHold + polarityBit);
+	HWREG8(baseAddress + OFS_TEC0XCTL2_L) |= (signalType + signalHold + polarityBit);
 }
 
-void TEC_initExternalFaultInput(uint16_t baseAddress,
-				TEC_initExternalFaultInputParam *param)
+void TEC_initExternalFaultInput(uint16_t baseAddress, TEC_initExternalFaultInputParam *param)
 {
 	HWREG8(baseAddress + OFS_TEC0XCTL2_L) &=
-		~((TEC_EXTERNAL_FAULT_SIGNALTYPE_LEVEL_SENSITIVE
-		   << param->selectedExternalFault) +
+		~((TEC_EXTERNAL_FAULT_SIGNALTYPE_LEVEL_SENSITIVE << param->selectedExternalFault) +
 		  (TEC_EXTERNAL_FAULT_POLARITY_RISING_EDGE_OR_HIGH_LEVEL
 		   << param->selectedExternalFault) +
-		  (TEC_EXTERNAL_FAULT_SIGNAL_HELD
-		   << param->selectedExternalFault));
+		  (TEC_EXTERNAL_FAULT_SIGNAL_HELD << param->selectedExternalFault));
 
 	HWREG8(baseAddress + OFS_TEC0XCTL2_L) |=
 		((param->signalType << param->selectedExternalFault) +
@@ -78,14 +73,12 @@ void TEC_initExternalFaultInput(uint16_t baseAddress,
 		 (param->signalHold << param->selectedExternalFault));
 }
 
-void TEC_enableExternalFaultInput(uint16_t baseAddress,
-				  uint8_t channelEventBlock)
+void TEC_enableExternalFaultInput(uint16_t baseAddress, uint8_t channelEventBlock)
 {
 	HWREG8(baseAddress + OFS_TEC0XCTL0_H) |= (1 << channelEventBlock);
 }
 
-void TEC_disableExternalFaultInput(uint16_t baseAddress,
-				   uint8_t channelEventBlock)
+void TEC_disableExternalFaultInput(uint16_t baseAddress, uint8_t channelEventBlock)
 {
 	HWREG8(baseAddress + OFS_TEC0XCTL0_H) &= ~(1 << channelEventBlock);
 }

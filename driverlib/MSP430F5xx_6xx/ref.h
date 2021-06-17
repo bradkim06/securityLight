@@ -117,8 +117,7 @@ extern "C" {
 //! \return None
 //
 //*****************************************************************************
-extern void Ref_setReferenceVoltage(uint16_t baseAddress,
-				    uint8_t referenceVoltageSelect);
+extern void Ref_setReferenceVoltage(uint16_t baseAddress, uint8_t referenceVoltageSelect);
 
 //*****************************************************************************
 //

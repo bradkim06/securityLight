@@ -49,16 +49,16 @@
 
 #include "oa.h"
 
-void OA_openSwitch(uint16_t baseAddress, uint8_t positiveInputMask,
-		   uint8_t negativeInputMask, uint8_t groundMask)
+void OA_openSwitch(uint16_t baseAddress, uint8_t positiveInputMask, uint8_t negativeInputMask,
+		   uint8_t groundMask)
 {
 	HWREG16(baseAddress + OFS_OA0PSW) &= ~positiveInputMask;
 	HWREG16(baseAddress + OFS_OA0NSW) &= ~negativeInputMask;
 	HWREG16(baseAddress + OFS_OA0GSW) &= ~groundMask;
 }
 
-void OA_closeSwitch(uint16_t baseAddress, uint8_t positiveInputMask,
-		    uint8_t negativeInputMask, uint8_t groundMask)
+void OA_closeSwitch(uint16_t baseAddress, uint8_t positiveInputMask, uint8_t negativeInputMask,
+		    uint8_t groundMask)
 {
 	HWREG16(baseAddress + OFS_OA0PSW) |= positiveInputMask;
 	HWREG16(baseAddress + OFS_OA0NSW) |= negativeInputMask;
@@ -71,16 +71,14 @@ uint8_t OA_getSwitchStatus(uint16_t baseAddress, uint8_t inputTerminal)
 
 	switch (inputTerminal) {
 	case OA_POSITIVE_INPUT_TERMINAL_SWITCHES:
-		returnValue = (HWREG16(baseAddress + OFS_OA0PSW) &
-			       (PSW3 | PSW2 | PSW1 | PSW0));
+		returnValue = (HWREG16(baseAddress + OFS_OA0PSW) & (PSW3 | PSW2 | PSW1 | PSW0));
 		break;
 	case OA_NEGATIVE_INPUT_TERMINAL_SWITCHES:
-		returnValue = (HWREG16(baseAddress + OFS_OA0NSW) &
-			       (NSW4 | NSW3 | NSW2 | NSW1 | NSW0));
+		returnValue =
+			(HWREG16(baseAddress + OFS_OA0NSW) & (NSW4 | NSW3 | NSW2 | NSW1 | NSW0));
 		break;
 	case OA_GROUND_SWITCHES:
-		returnValue =
-			(HWREG16(baseAddress + OFS_OA0GSW) & (GSW1 | GSW0));
+		returnValue = (HWREG16(baseAddress + OFS_OA0GSW) & (GSW1 | GSW0));
 		break;
 	}
 

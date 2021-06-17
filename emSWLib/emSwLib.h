@@ -37,19 +37,18 @@
 //
 //! \file   emSwLib.h
 //!
-//! \brief  Contains all Energy Measurement SW Library enums, structs, macros, 
+//! \brief  Contains all Energy Measurement SW Library enums, structs, macros,
 //!            function and global variables defintions
-//!         
+//!
 //
 //  Group:          MSP
-//  Target Device:  MSP430F677x1A, MSP430F673xA and MSP430i20xx 
+//  Target Device:  MSP430F677x1A, MSP430F673xA and MSP430i20xx
 //
 //  (C) Copyright 2017, Texas Instruments, Inc.
 //#############################################################################
-// TI Release: MSP430_ENERGY_MEASUREMENT 
+// TI Release: MSP430_ENERGY_MEASUREMENT
 // Release Date: 29Jul2020
 //#############################################################################
-
 
 //*****************************************************************************
 // includes
@@ -70,72 +69,72 @@ extern "C" {
 // defines
 //*****************************************************************************
 
- //! \brief This define can be used to mask the EM_Phase->phaseResultsSupported variable
- //! and determine if the VRMS is calculated by the EM_processSample().
- #define EM_PHASE_RESULT_CALC_VRMS                          BIT0
- //! \brief This define can be used to mask the EM_Phase->phaseResultsSupported variable
- //! and determine if the IRMS is calculated by the EM_processSample().
- #define EM_PHASE_RESULT_CALC_IRMS                          BIT1
- //! \brief This define can be used to mask the EM_Phase->phaseResultsSupported variable
- //! and determine if the V-PEAK is calculated by the EM_processSample().
- #define EM_PHASE_RESULT_CALC_V_PEAK                        BIT2
- //! \brief This define can be used to mask the EM_Phase->phaseResultsSupported variable
- //! and determine if the I-PEAK is calculated by the EM_processSample().
- #define EM_PHASE_RESULT_CALC_I_PEAK                        BIT3
- //! \brief This define can be used to mask the EM_Phase->phaseResultsSupported variable
- //! and determine if the POWER FACTOR is calculated by the EM_processSample().
- #define EM_PHASE_RESULT_CALC_POWER_FACTOR                  BIT4
- //! \brief This define can be used to mask the EM_Phase->phaseResultsSupported variable
- //! and determine if the Frequency is calculated by the EM_processSample().
- #define EM_PHASE_RESULT_CALC_FREQ                          BIT5
 //! \brief This define can be used to mask the EM_Phase->phaseResultsSupported variable
-//! and determine if the ACTIVE POWER is calculated by the EM_processSample(). 
-#define EM_PHASE_RESULT_CALC_ACTIVE_POWER					BIT6
+//! and determine if the VRMS is calculated by the EM_processSample().
+#define EM_PHASE_RESULT_CALC_VRMS BIT0
 //! \brief This define can be used to mask the EM_Phase->phaseResultsSupported variable
-//! and determine if the REACTIVE POWER is calculated by the EM_processSample(). 
-#define EM_PHASE_RESULT_CALC_REACTIVE_POWER					BIT7
+//! and determine if the IRMS is calculated by the EM_processSample().
+#define EM_PHASE_RESULT_CALC_IRMS BIT1
 //! \brief This define can be used to mask the EM_Phase->phaseResultsSupported variable
-//! and determine if the APPARENT POWER is calculated by the EM_processSample(). 
-#define EM_PHASE_RESULT_CALC_APPARENT_POWER					BIT8
+//! and determine if the V-PEAK is calculated by the EM_processSample().
+#define EM_PHASE_RESULT_CALC_V_PEAK BIT2
 //! \brief This define can be used to mask the EM_Phase->phaseResultsSupported variable
-//! and determine if the ACTIVE ENERGY is calculated by the EM_processSample(). 
-#define EM_PHASE_RESULT_CALC_ACTIVE_ENERGY					BIT9
+//! and determine if the I-PEAK is calculated by the EM_processSample().
+#define EM_PHASE_RESULT_CALC_I_PEAK BIT3
 //! \brief This define can be used to mask the EM_Phase->phaseResultsSupported variable
-//! and determine if the REACTIVE ENERGY is calculated by the EM_processSample(). 
-#define EM_PHASE_RESULT_CALC_REACTIVE_ENERGY				BIT10
+//! and determine if the POWER FACTOR is calculated by the EM_processSample().
+#define EM_PHASE_RESULT_CALC_POWER_FACTOR BIT4
 //! \brief This define can be used to mask the EM_Phase->phaseResultsSupported variable
-//! and determine if the APPARENT ENERGY is calculated by the EM_processSample(). 
-#define EM_PHASE_RESULT_CALC_APPARENT_ENERGY				BIT11
+//! and determine if the Frequency is calculated by the EM_processSample().
+#define EM_PHASE_RESULT_CALC_FREQ BIT5
+//! \brief This define can be used to mask the EM_Phase->phaseResultsSupported variable
+//! and determine if the ACTIVE POWER is calculated by the EM_processSample().
+#define EM_PHASE_RESULT_CALC_ACTIVE_POWER BIT6
+//! \brief This define can be used to mask the EM_Phase->phaseResultsSupported variable
+//! and determine if the REACTIVE POWER is calculated by the EM_processSample().
+#define EM_PHASE_RESULT_CALC_REACTIVE_POWER BIT7
+//! \brief This define can be used to mask the EM_Phase->phaseResultsSupported variable
+//! and determine if the APPARENT POWER is calculated by the EM_processSample().
+#define EM_PHASE_RESULT_CALC_APPARENT_POWER BIT8
+//! \brief This define can be used to mask the EM_Phase->phaseResultsSupported variable
+//! and determine if the ACTIVE ENERGY is calculated by the EM_processSample().
+#define EM_PHASE_RESULT_CALC_ACTIVE_ENERGY BIT9
+//! \brief This define can be used to mask the EM_Phase->phaseResultsSupported variable
+//! and determine if the REACTIVE ENERGY is calculated by the EM_processSample().
+#define EM_PHASE_RESULT_CALC_REACTIVE_ENERGY BIT10
+//! \brief This define can be used to mask the EM_Phase->phaseResultsSupported variable
+//! and determine if the APPARENT ENERGY is calculated by the EM_processSample().
+#define EM_PHASE_RESULT_CALC_APPARENT_ENERGY BIT11
 
- //! \brief This define can be used to mask the EM_System_Configuration->pulseGeneration
- //! variable . This is used by the EM_genPulseIndPhase() to generate pulses for Phase A
-#define EM_PULSE_GEN_PHASE_NONE                             (0x00)
- //! \brief This define can be used to mask the EM_System_Configuration->pulseGeneration
- //! variable . This is used by the EM_genPulseIndPhase() to generate pulses for Phase A
-#define EM_PULSE_GEN_PHASE_A                                (0x01)
- //! \brief This define can be used to mask the EM_System_Configuration->pulseGeneration
- //! variable . This is used by the EM_genPulseIndPhase() to generate pulses for Phase B
-#define EM_PULSE_GEN_PHASE_B                                (0x02)
- //! \brief This define can be used to mask the EM_System_Configuration->pulseGeneration
- //! variable . This is used by the EM_genPulseIndPhase() to generate pulses for Phase C
-#define EM_PULSE_GEN_PHASE_C                                (0x04)
- //! \brief This define can be used to mask the EM_System_Configuration->pulseGeneration
- //! variable . This is used by the EM_genPulseIndPhase() to generate pulses for Phase D
-#define EM_PULSE_GEN_PHASE_D                                (0x08)
- //! \brief This define can be used to mask the EM_System_Configuration->pulseGeneration
- //! variable . This is used by the EM_genPulseIndPhase() to generate pulses for Phase E
-#define EM_PULSE_GEN_PHASE_E                                (0x10)
- //! \brief This define can be used to mask the EM_System_Configuration->pulseGeneration
- //! variable . This is used by the EM_genPulseIndPhase() to generate pulses for Phase F
-#define EM_PULSE_GEN_PHASE_F                                (0x20)
- //! \brief This define can be used to mask the EM_System_Configuration->pulseGeneration
- //! variable . This is used by the EM_genPulseIndPhase() to generate pulses for Phase
- //! neutral.
-#define EM_PULSE_GEN_PHASE_NEUTRAL                          (0x40)
- //! \brief This define can be used to mask the EM_System_Configuration->pulseGeneration
- //! variable . This is used by the EM_genPulseTotalPhases() to generate pulses for the
- //! aggregate total.
-#define EM_PULSE_GEN_PHASE_AGGREGATE                        (0x80)
+//! \brief This define can be used to mask the EM_System_Configuration->pulseGeneration
+//! variable . This is used by the EM_genPulseIndPhase() to generate pulses for Phase A
+#define EM_PULSE_GEN_PHASE_NONE (0x00)
+//! \brief This define can be used to mask the EM_System_Configuration->pulseGeneration
+//! variable . This is used by the EM_genPulseIndPhase() to generate pulses for Phase A
+#define EM_PULSE_GEN_PHASE_A (0x01)
+//! \brief This define can be used to mask the EM_System_Configuration->pulseGeneration
+//! variable . This is used by the EM_genPulseIndPhase() to generate pulses for Phase B
+#define EM_PULSE_GEN_PHASE_B (0x02)
+//! \brief This define can be used to mask the EM_System_Configuration->pulseGeneration
+//! variable . This is used by the EM_genPulseIndPhase() to generate pulses for Phase C
+#define EM_PULSE_GEN_PHASE_C (0x04)
+//! \brief This define can be used to mask the EM_System_Configuration->pulseGeneration
+//! variable . This is used by the EM_genPulseIndPhase() to generate pulses for Phase D
+#define EM_PULSE_GEN_PHASE_D (0x08)
+//! \brief This define can be used to mask the EM_System_Configuration->pulseGeneration
+//! variable . This is used by the EM_genPulseIndPhase() to generate pulses for Phase E
+#define EM_PULSE_GEN_PHASE_E (0x10)
+//! \brief This define can be used to mask the EM_System_Configuration->pulseGeneration
+//! variable . This is used by the EM_genPulseIndPhase() to generate pulses for Phase F
+#define EM_PULSE_GEN_PHASE_F (0x20)
+//! \brief This define can be used to mask the EM_System_Configuration->pulseGeneration
+//! variable . This is used by the EM_genPulseIndPhase() to generate pulses for Phase
+//! neutral.
+#define EM_PULSE_GEN_PHASE_NEUTRAL (0x40)
+//! \brief This define can be used to mask the EM_System_Configuration->pulseGeneration
+//! variable . This is used by the EM_genPulseTotalPhases() to generate pulses for the
+//! aggregate total.
+#define EM_PULSE_GEN_PHASE_AGGREGATE (0x80)
 
 //*****************************************************************************
 // typedefs
@@ -144,68 +143,66 @@ extern "C" {
 //! \brief The following enumeration contain all possible EM SW Library return
 //!         message codes.
 //!
-typedef enum _EM_message_code_
-{
+typedef enum _EM_message_code_ {
 
-	EM_message_code_no_error=0,
-	//!< This message code is returned when no error was detected while 
+	EM_message_code_no_error = 0,
+	//!< This message code is returned when no error was detected while
 	//!< invoking the API.
 
 	// 1-20 reserved for system configuration messages
-    EM_message_code_pulseArray_error=1,
-    //!< This error is returned if pulseArrayLength is greater than 0
-    //!< and pulseArray is 0
-	EM_message_code_indPhaseMeter_error=2,
-    //!< This error is returned if pulseArrayLength is greater than 0
+	EM_message_code_pulseArray_error = 1,
+	//!< This error is returned if pulseArrayLength is greater than 0
+	//!< and pulseArray is 0
+	EM_message_code_indPhaseMeter_error = 2,
+	//!< This error is returned if pulseArrayLength is greater than 0
 	//!< and indPhaseMeterConstant is 0
-	EM_message_code_indPhasePulseDuration_error=3,
-    //!< This error is returned if pulseArrayLength is greater than 0
-    //!< and indPhasePulseDuration is 0
-    EM_message_code_totalPhaseMeter_error=4,
-    //!< This error is returned if pulseArrayLength is greater than 0,
-    //!< totalPhaseMeterConstant is 0 and the pulseGeneration has
-    //!< the EM_PULSE_GEN_PHASE_AGGREGATE flag set
-    EM_message_code_totalPhasePulseDuration_error=5,
-    //!< This error is returned if pulseArrayLength is greater than 0
-    //!< and totalPhasePulseDuration is 0 and the pulseGeneration has
-    //!< the EM_PULSE_GEN_PHASE_AGGREGATE flag set
+	EM_message_code_indPhasePulseDuration_error = 3,
+	//!< This error is returned if pulseArrayLength is greater than 0
+	//!< and indPhasePulseDuration is 0
+	EM_message_code_totalPhaseMeter_error = 4,
+	//!< This error is returned if pulseArrayLength is greater than 0,
+	//!< totalPhaseMeterConstant is 0 and the pulseGeneration has
+	//!< the EM_PULSE_GEN_PHASE_AGGREGATE flag set
+	EM_message_code_totalPhasePulseDuration_error = 5,
+	//!< This error is returned if pulseArrayLength is greater than 0
+	//!< and totalPhasePulseDuration is 0 and the pulseGeneration has
+	//!< the EM_PULSE_GEN_PHASE_AGGREGATE flag set
 
 	// 21-40 reserved for algorithm configuration messages
-    EM_message_code_samplingFrequency_error=21,
-    //!< This error is returned if the sampling frequency is not greater than 0
-    EM_message_code_reactPowLength_error=22,
-    //!< This error is returned if the reactPowIIRTable ptr is null and
-    //!< the reactPowIIRLength variable is greater than 0
-    EM_message_code_reactPowIIRTable_error=23,
-    //!< This error is returned if the reactPowIIRLength is greater than 0
-    //!< and the reactPowIIRTable ptr is equal to 0
-	
+	EM_message_code_samplingFrequency_error = 21,
+	//!< This error is returned if the sampling frequency is not greater than 0
+	EM_message_code_reactPowLength_error = 22,
+	//!< This error is returned if the reactPowIIRTable ptr is null and
+	//!< the reactPowIIRLength variable is greater than 0
+	EM_message_code_reactPowIIRTable_error = 23,
+	//!< This error is returned if the reactPowIIRLength is greater than 0
+	//!< and the reactPowIIRTable ptr is equal to 0
+
 	// 41-59 reserved for meter configuration messages
-    EM_message_code_phaseLength_error=41,
-    //!< This error is returned if the phaseLength is equal to 0
-    EM_message_code_phaseConfig_error=41,
-    //!< This error is returned if the phaseConfigPtr is equal to 0
+	EM_message_code_phaseLength_error = 41,
+	//!< This error is returned if the phaseLength is equal to 0
+	EM_message_code_phaseConfig_error = 41,
+	//!< This error is returned if the phaseConfigPtr is equal to 0
 
 	// 60-249 reserved for calibration messages
-	EM_message_code_calibrate_invalidPhase_error=81,
+	EM_message_code_calibrate_invalidPhase_error = 81,
 	//!< This error is returned if the phase number is invalid
 
 	//240-255 error
-	EM_message_code_error_occurred=255
+	EM_message_code_error_occurred = 255
 	//!< This is a generic error this is error that is returned if an unhandled
 	//!< error occurs
 } EM_message_code;
 
 //! \brief Selects appropriate EM Sensor for the corresponding channel
 //!
-typedef enum _EM_Current_Sensor_
-{
-	EM_Phase_Sensor_CT=0,
-	//!< Current Transformer (CT) 
-	EM_Phase_Sensor_Shunt=1,
+typedef enum _EM_Current_Sensor_ {
+	EM_Phase_Sensor_CT = 0,
+	//!< Current Transformer (CT)
+	EM_Phase_Sensor_Shunt = 1,
 	//!< Shunt
-    EM_Phase_Sensor_RC=2,
-    //!< Rogowski Coil (RC)
+	EM_Phase_Sensor_RC = 2,
+	//!< Rogowski Coil (RC)
 } EM_Current_Sensor;
 
 //! \brief Type for Power variables
@@ -218,29 +215,26 @@ typedef uint64_t EM_Energy_t;
 
 //! \brief Selects appropiate phase to provide results for
 //!
-typedef enum _EM_Phase_
-{
-	EM_Phase_A=0x01,
+typedef enum _EM_Phase_ {
+	EM_Phase_A = 0x01,
 	//!< - Results requested for phase A
-	EM_Phase_B=0x02,
+	EM_Phase_B = 0x02,
 	//!< - Results requested for phase B
-	EM_Phase_C=0x04,
+	EM_Phase_C = 0x04,
 	//!< - Results requested for phase C
-	EM_Phase_D=0x08,
+	EM_Phase_D = 0x08,
 	//!< - Results requested for phase D
-	EM_Phase_E=0x10,
+	EM_Phase_E = 0x10,
 	//!< - Results requested for phase E
-	EM_Phase_F=0x20,
+	EM_Phase_F = 0x20,
 	//!< - Results requested for phase F
-	EM_Phase_Neutral=0x40
+	EM_Phase_Neutral = 0x40
 	//!< - Results requested for phase Neutral
 } EM_Phase;
 
-
 //! \brief Contains EM SW Lib Phase Calibration
 //!
-typedef struct _EM_Pulse_Settings_
-{
+typedef struct _EM_Pulse_Settings_ {
 	uint8_t activePulseGpioPort;
 	//!< Each phase uses a GPIO port used to generate a pulse used for calibration
 	//!< Possible options for each port:
@@ -287,27 +281,26 @@ typedef struct _EM_Pulse_Settings_
 	//!< - GPIO_PIN5
 	//!< - GPIO_PIN6
 	//!< - GPIO_PIN7
-    uint64_t activeEnergyCounter;
-    //!< Ongoing Active Energy Sum
-    uint16_t activeEnergyPulseRemaining;
-    //!< Counter used to keep track of remaining ADC samples to keep pulse high
+	uint64_t activeEnergyCounter;
+	//!< Ongoing Active Energy Sum
+	uint16_t activeEnergyPulseRemaining;
+	//!< Counter used to keep track of remaining ADC samples to keep pulse high
 	uint64_t reactiveEnergyCounter;
 	//!< Ongoing Reactive Energy Sum
-    uint16_t reactiveEnergyPulseRemaining;
-    //!< Counter used to keep track of remaining ADC samples to keep pulse high
+	uint16_t reactiveEnergyPulseRemaining;
+	//!< Counter used to keep track of remaining ADC samples to keep pulse high
 } EM_Pulse_Settings;
 
 //! \brief Contains EM SW Lib System Configuration
 //!
-typedef struct _EM_System_Configuration_
-{
+typedef struct _EM_System_Configuration_ {
 	EM_Pulse_Settings *pulseArray;
-	//!< Pointer to the location where the pulse configuration is stored 
+	//!< Pointer to the location where the pulse configuration is stored
 	//!< (one for each phase)
 	uint8_t pulseArrayLength;
 	//!< Length of the pulseArray configuration
 	uint64_t indPhaseMeterConstant;
-	//!< Number of pulses for each / kWH (active energy) or number of pulses 
+	//!< Number of pulses for each / kWH (active energy) or number of pulses
 	//!< for each / kVarh (reactive energy) for each phase
 	uint16_t indPhasePulseDuration;
 	//!< Pulse duration in ADC counts for each active / reactive energy
@@ -319,8 +312,8 @@ typedef struct _EM_System_Configuration_
 	//!< Pulse duration in ADC counts for the cumulative total of active
 	//!< / reactive energy
 	uint8_t pulseGeneration;
-    //!< Register used to enable / disable the phase pulse flag:
-    //!< - EM_PULSE_GEN_PHASE_A
+	//!< Register used to enable / disable the phase pulse flag:
+	//!< - EM_PULSE_GEN_PHASE_A
 	//!< - EM_PULSE_GEN_PHASE_B
 	//!< - EM_PULSE_GEN_PHASE_C
 	//!< - EM_PULSE_GEN_PHASE_D
@@ -330,11 +323,9 @@ typedef struct _EM_System_Configuration_
 	//!< - EM_PULSE_GEN_PHASE_AGGREGATE
 } EM_System_Configuration;
 
-
 //! \brief Contains EM SW Lib Phase Calibration
 //!
-typedef struct _EM_Phase_Calibration_
-{
+typedef struct _EM_Phase_Calibration_ {
 	uint32_t voltageSF;
 	//!< Voltage Scaling Factor - used to calculate VRMS
 	uint32_t currentSF;
@@ -350,8 +341,7 @@ typedef struct _EM_Phase_Calibration_
 
 //! \brief Contains EM SW Lib System Configuration
 //!
-typedef struct _EM_Phase_Configuration_
-{
+typedef struct _EM_Phase_Configuration_ {
 	int32_t *currentSamplePtr;
 	//!< Pointer to the current sample
 	int16_t *voltageSamplePtr;
@@ -360,14 +350,14 @@ typedef struct _EM_Phase_Configuration_
 	//!< Sensor connected to the current (I) channel
 	uint16_t phaseResultsSupported;
 	//!< Register used to read what results will be calculated for this phase
-	//!< Note: This is a Read-Only register. 
+	//!< Note: This is a Read-Only register.
 	//!< Possible mask values are:
-    //!< - EM_PHASE_RESULT_CALC_VRMS
-    //!< - EM_PHASE_RESULT_CALC_IRMS
-    //!< - EM_PHASE_RESULT_CALC_V_PEAK
-    //!< - EM_PHASE_RESULT_CALC_I_PEAK
-    //!< - EM_PHASE_RESULT_CALC_POWER_FACTOR
-    //!< - EM_PHASE_RESULT_CALC_FREQ
+	//!< - EM_PHASE_RESULT_CALC_VRMS
+	//!< - EM_PHASE_RESULT_CALC_IRMS
+	//!< - EM_PHASE_RESULT_CALC_V_PEAK
+	//!< - EM_PHASE_RESULT_CALC_I_PEAK
+	//!< - EM_PHASE_RESULT_CALC_POWER_FACTOR
+	//!< - EM_PHASE_RESULT_CALC_FREQ
 	//!< - EM_PHASE_RESULT_CALC_ACTIVE_POWER
 	//!< - EM_PHASE_RESULT_CALC_REACTIVE_POWER
 	//!< - EM_PHASE_RESULT_CALC_APPARENT_POWER
@@ -380,8 +370,7 @@ typedef struct _EM_Phase_Configuration_
 
 //! \brief Contains EM SW Lib Meter Configuration
 //!
-typedef struct _EM_Meter_Configuration_
-{
+typedef struct _EM_Meter_Configuration_ {
 	EM_Phase_Configuration *phaseConfigPtr;
 	//!< Pointer to the EM_Phase_Configuration struct buffer
 	uint8_t phaseLength;
@@ -396,35 +385,33 @@ typedef struct _EM_Meter_Configuration_
 
 //! \brief Contains EM SW Lib Algorithm Configuration
 //!
-typedef struct _EM_Algorithm_Configuration_
-{
-    EM_Power_t residualPowerCutoff;
-	//!< Residual Power Cutoff per each phase. This threshold is used as the minimum 
+typedef struct _EM_Algorithm_Configuration_ {
+	EM_Power_t residualPowerCutoff;
+	//!< Residual Power Cutoff per each phase. This threshold is used as the minimum
 	//!< value of power to store. Power values below this value will not be stored.
-    EM_Power_t totalResidualPowerCutoff;
-	//!< Residual Power Cutoff for the sum of all the phases. If the sum of all phase  
+	EM_Power_t totalResidualPowerCutoff;
+	//!< Residual Power Cutoff for the sum of all the phases. If the sum of all phase
 	//!< power values is below this value, the total power value will not be updated.
 	uint8_t mainNomFreq;
 	//!< Nominal Freq value for the system (Hz)
-    _iq29 sqrtTwoConst;
-    //!< Square of 2 constant used for Vpeak and Ipeak calculations
-    _iq30 energyCalcConst;
-    //!< One dividing by (3600 x sampling frequency)
-    uint16_t freqSampling;
-    //!< Sampling Frequency (Hz)
-    uint16_t reactPowIIRMinFreq;
-    //!< Min Frequency for the IIR coefficient table
-    uint8_t reactPowIIRShift;
-    //!< Number of shifts required to calculated index for IIR table
-    uint16_t reactPowIIRLength;
-    //!< Length of the IIR coefficient table
-    _iq30 *reactPowIIRTable;
+	_iq29 sqrtTwoConst;
+	//!< Square of 2 constant used for Vpeak and Ipeak calculations
+	_iq30 energyCalcConst;
+	//!< One dividing by (3600 x sampling frequency)
+	uint16_t freqSampling;
+	//!< Sampling Frequency (Hz)
+	uint16_t reactPowIIRMinFreq;
+	//!< Min Frequency for the IIR coefficient table
+	uint8_t reactPowIIRShift;
+	//!< Number of shifts required to calculated index for IIR table
+	uint16_t reactPowIIRLength;
+	//!< Length of the IIR coefficient table
+	_iq30 *reactPowIIRTable;
 } EM_Algorithm_Configuration;
 
 //! \brief Contains EM SW Lib Config Handle
 //!
-typedef struct _EM_SW_Lib_Config_Handle_
-{
+typedef struct _EM_SW_Lib_Config_Handle_ {
 	EM_System_Configuration *systemConfig;
 	//!< Pointer to EM_System_Configuration struct
 	EM_Algorithm_Configuration *algorithmConfig;
@@ -433,82 +420,79 @@ typedef struct _EM_SW_Lib_Config_Handle_
 	//!< Pointer to EM_Meter_Configuration struct
 } EM_SW_Lib_Config_Handle;
 
-typedef struct _EM_Metrology_
-{
-    int16_t sampleCount;
-    //!< Number of samples being accumulated in the block of processed
-    //!< signals being gathered used for the oneDivSC calculation.
-    int64_t actPowDotProd;
-    //!< Accumulated multiplication of the phase corrected current and voltage (I.V)
-    //!< used for the active power calculation.
-    int64_t reactPowDotProd;
-    //!< Accumulated multiplication of the phase corrected current and voltage 90 (I.V90)
-    //!< used for the reactive power calculation.
-    int16_t vDotProd[3];
-    //!< Accumulated squares of the phase corrected voltage (V.V). These are used to
-    //!< calculate the RMS voltage, and the power factor. We need separate accumulation
-    //!< for each current sensor, as we accumulate the phase corrected voltage which matches
-    //!< the current sensor's phase shift.
-    int64_t iDotProd;
-    //!< Accumulated squares of the phase corrected current (I.I). These are used to
-    //!< calculate the RMS current, and the power factor. We need separate accumulation
-    //!< for each current sensor, as we accumulate the phase corrected voltage which matches
-    //!< the current sensor's phase shift.
-    uint16_t cycleSampleCount;
-    //!< This is a count of the number of samples to date in the current mains cycle. This
-    //!< is used to calculate the mainPeriod.
-    _iq30 reactPowGConst;
-    //!< G Constant used for the IIR filter to calculate Reactive Power
-    uint32_t mainPeriod;
-    //!< This a running average of the length of a mains cycle. (samples/cycle * 256)
-    uint32_t prevMainPeriod;
-    //!< This a running average of the length of a mains cycle. (samples/cycle * 256)
-    _iq30 oneDivSC;
-    //!< Constant used to calculate the VRMS,IRMS, power and energy values (1/sample_count)
-    uint16_t prevSampleCount;
-    //!< Stores the prev sample count used to calculate oneDivSC. This is used to avoid
-    //!< calculating 1/SC each cycle.
-    uint8_t cycleCount;
-    //!< Number of zero crossings. Once this number has reached the # of nominal freq.
-    //!< For example for 50.2 Hz, once it reaches 50 cycles then the foreground is triggered.
+typedef struct _EM_Metrology_ {
+	int16_t sampleCount;
+	//!< Number of samples being accumulated in the block of processed
+	//!< signals being gathered used for the oneDivSC calculation.
+	int64_t actPowDotProd;
+	//!< Accumulated multiplication of the phase corrected current and voltage (I.V)
+	//!< used for the active power calculation.
+	int64_t reactPowDotProd;
+	//!< Accumulated multiplication of the phase corrected current and voltage 90 (I.V90)
+	//!< used for the reactive power calculation.
+	int16_t vDotProd[3];
+	//!< Accumulated squares of the phase corrected voltage (V.V). These are used to
+	//!< calculate the RMS voltage, and the power factor. We need separate accumulation
+	//!< for each current sensor, as we accumulate the phase corrected voltage which matches
+	//!< the current sensor's phase shift.
+	int64_t iDotProd;
+	//!< Accumulated squares of the phase corrected current (I.I). These are used to
+	//!< calculate the RMS current, and the power factor. We need separate accumulation
+	//!< for each current sensor, as we accumulate the phase corrected voltage which matches
+	//!< the current sensor's phase shift.
+	uint16_t cycleSampleCount;
+	//!< This is a count of the number of samples to date in the current mains cycle. This
+	//!< is used to calculate the mainPeriod.
+	_iq30 reactPowGConst;
+	//!< G Constant used for the IIR filter to calculate Reactive Power
+	uint32_t mainPeriod;
+	//!< This a running average of the length of a mains cycle. (samples/cycle * 256)
+	uint32_t prevMainPeriod;
+	//!< This a running average of the length of a mains cycle. (samples/cycle * 256)
+	_iq30 oneDivSC;
+	//!< Constant used to calculate the VRMS,IRMS, power and energy values (1/sample_count)
+	uint16_t prevSampleCount;
+	//!< Stores the prev sample count used to calculate oneDivSC. This is used to avoid
+	//!< calculating 1/SC each cycle.
+	uint8_t cycleCount;
+	//!< Number of zero crossings. Once this number has reached the # of nominal freq.
+	//!< For example for 50.2 Hz, once it reaches 50 cycles then the foreground is triggered.
 } EM_Metrology;
 
 //! \brief Contains EM Phase Background Results
 //!
-typedef struct _EM_Phase_BG_Results_
-{
-    int32_t vDCEstimate;
-    //!< DC Estimate for Voltage
-    int16_t iDCEstimate[3];
-    //!< DC Estimate for Current
-    int16_t reactPowPrevV90;
-    //!< Previous V90 voltage used for the IIR filter in the reactive power calculation.
-    int16_t vPrevSample;
-    //!< Previous Voltage sample used for the IIR filter in the reactive power calculation.
-    int32_t rogowskiPrevI90;
-    //!< Previous I90 current used for the IIR filter in the Rogowski ADC current calculation.
-    int32_t iPrevSample;
-    //!< Previous Current sample used for the IIR filter in the Rogowski ADC current calculation.
-}EM_Phase_BG_Results;
+typedef struct _EM_Phase_BG_Results_ {
+	int32_t vDCEstimate;
+	//!< DC Estimate for Voltage
+	int16_t iDCEstimate[3];
+	//!< DC Estimate for Current
+	int16_t reactPowPrevV90;
+	//!< Previous V90 voltage used for the IIR filter in the reactive power calculation.
+	int16_t vPrevSample;
+	//!< Previous Voltage sample used for the IIR filter in the reactive power calculation.
+	int32_t rogowskiPrevI90;
+	//!< Previous I90 current used for the IIR filter in the Rogowski ADC current calculation.
+	int32_t iPrevSample;
+	//!< Previous Current sample used for the IIR filter in the Rogowski ADC current calculation.
+} EM_Phase_BG_Results;
 
 //! \brief Contains EM Phase Result
 //!
-typedef struct _EM_Phase_Results_
-{
-    uint32_t VRMS;
-    //!< VRMS for previous frame (mV)
-    uint32_t IRMS;
-    //!< IRMS for previous frame (uA)
-    uint32_t vPeak;
-    //!< VPeak since system initialization (mV)
-    uint32_t iPeak;
-    //!< IPeak since system initialization (uA)
-    int32_t powerFactor;
-    //!< Power Factor calculated when the EM_powerFactor
-    uint16_t frequency;
-    //!< The Frequency is stored in 0.01Hz steps. A 16 bit unsigned number supports the range
-    //!< 0.01Hz to 655.35Hz, which is clearly more than we will ever need for the fundamental.
-    EM_Power_t activePower;
+typedef struct _EM_Phase_Results_ {
+	uint32_t VRMS;
+	//!< VRMS for previous frame (mV)
+	uint32_t IRMS;
+	//!< IRMS for previous frame (uA)
+	uint32_t vPeak;
+	//!< VPeak since system initialization (mV)
+	uint32_t iPeak;
+	//!< IPeak since system initialization (uA)
+	int32_t powerFactor;
+	//!< Power Factor calculated when the EM_powerFactor
+	uint16_t frequency;
+	//!< The Frequency is stored in 0.01Hz steps. A 16 bit unsigned number supports the range
+	//!< 0.01Hz to 655.35Hz, which is clearly more than we will ever need for the fundamental.
+	EM_Power_t activePower;
 	//!< Active Power for previous frame (uW)
 	EM_Power_t reactivePower;
 	//!< Reactive Power for previous frame (uVAr)
@@ -526,26 +510,24 @@ typedef struct _EM_Phase_Results_
 
 //! \brief Contains EM Total Results
 //!
-typedef struct _EM_Total_Results_
-{
+typedef struct _EM_Total_Results_ {
 	EM_Power_t activePower;
 	//!< Total Active Power since system initialization (uW)
 	EM_Power_t reactivePower;
 	//!< Total Reactive Power since system initialization (uVAr)
 	EM_Power_t apparentPower;
 	//!< Total Apparent Power since system initialization (uVA)
-    EM_Energy_t activeEnergy;
-    //!< Total Active Energy consumed since system initialization (uWh)
-    EM_Energy_t reactiveEnergy;
-    //!< Total Reactive Energy consumed since system initialization (uVArh)
-    EM_Energy_t apparentEnergy;
-    //!< Total Apparent Energy consumed since system initialization (UVAh)
+	EM_Energy_t activeEnergy;
+	//!< Total Active Energy consumed since system initialization (uWh)
+	EM_Energy_t reactiveEnergy;
+	//!< Total Reactive Energy consumed since system initialization (uVArh)
+	EM_Energy_t apparentEnergy;
+	//!< Total Apparent Energy consumed since system initialization (UVAh)
 } EM_Total_Results;
 
 //! \brief Contains EM SW Lib Result Handle
 //!
-typedef struct _EM_SW_Lib_Result_Handle_
-{
+typedef struct _EM_SW_Lib_Result_Handle_ {
 	EM_Total_Results *emTotalResult;
 	//!< Pointer to EM_Total_Results struct
 	EM_Phase_Results *phaseResults;
@@ -554,8 +536,8 @@ typedef struct _EM_SW_Lib_Result_Handle_
 	//!<  Pointer to the EM_Phase_BG_Results struct buffer
 	EM_Metrology **phaseMetrologyPing;
 	//!< Pointer to EM_Metrology struct Ping buffer
-    EM_Metrology **phaseMetrologyPong;
-    //!< Pointer to EM_Metrology struct Pong buffer
+	EM_Metrology **phaseMetrologyPong;
+	//!< Pointer to EM_Metrology struct Pong buffer
 	uint8_t phaseResultsSupportedLen;
 	//!< Length of the phaseResultsSupportedPtr buffer
 } EM_SW_Lib_Result_Handle;
@@ -564,10 +546,10 @@ typedef struct _EM_SW_Lib_Result_Handle_
 // globals
 //*****************************************************************************
 //! \brief The following variable is used as a maximum ADC count to detect frequency.
-extern uint16_t * EMSWLIB_EM_HAL_ADC_maxFreqCount;
+extern uint16_t *EMSWLIB_EM_HAL_ADC_maxFreqCount;
 
 //! \brief The following variable is used as a minimum ADC count to detect frequency.
-extern uint16_t * EMSWLIB_EM_HAL_ADC_minFreqCount;
+extern uint16_t *EMSWLIB_EM_HAL_ADC_minFreqCount;
 
 //*****************************************************************************
 // the function prototypes
@@ -592,9 +574,8 @@ extern uint16_t * EMSWLIB_EM_HAL_ADC_minFreqCount;
 //!
 //! \return EM_message_code
 //!
-extern EM_message_code EM_configureEnergyMeasurement(
-		EM_SW_Lib_Config_Handle *config,
-		EM_SW_Lib_Result_Handle *result);
+extern EM_message_code EM_configureEnergyMeasurement(EM_SW_Lib_Config_Handle *config,
+						     EM_SW_Lib_Result_Handle *result);
 
 //! \brief The following API initializes the voltage / current DC filters to 0.
 //!
@@ -603,9 +584,7 @@ extern EM_message_code EM_configureEnergyMeasurement(
 //!
 //! \return None
 //!
-extern void EM_initDCFilters(
-        EM_SW_Lib_Config_Handle *config,
-        EM_SW_Lib_Result_Handle *result);
+extern void EM_initDCFilters(EM_SW_Lib_Config_Handle *config, EM_SW_Lib_Result_Handle *result);
 
 //******************************************************************************
 //
@@ -634,9 +613,7 @@ extern void EM_initDCFilters(
 //!
 //! \return None
 //!
-extern void EM_initalizeCalibrationValues(
-        uint8_t *pWorkingCalibration,
-        uint8_t *pFlashCalibration);
+extern void EM_initalizeCalibrationValues(uint8_t *pWorkingCalibration, uint8_t *pFlashCalibration);
 
 //! \brief    The following API is used  store working (RAM) pWorkingCalibration
 //!           values to the pFlashCalibration structure stored in flash. When
@@ -648,9 +625,8 @@ extern void EM_initalizeCalibrationValues(
 //!
 //! \return None
 //!
-extern void EM_updateFlashCalibrationValues(
-        uint8_t *pWorkingCalibration,
-        uint8_t *pFlashCalibration);
+extern void EM_updateFlashCalibrationValues(uint8_t *pWorkingCalibration,
+					    uint8_t *pFlashCalibration);
 
 //******************************************************************************
 //
@@ -681,9 +657,7 @@ extern void EM_updateFlashCalibrationValues(
 //!
 //! \return None
 //!
-extern int16_t EM_voltageDCFilter(
-        int32_t *p,
-        int16_t x);
+extern int16_t EM_voltageDCFilter(int32_t *p, int16_t x);
 
 //! \brief The following API is intended for the removal of the DC content from
 //! 24 bit 50Hz/60Hz mains signals. All samples should be passed through the
@@ -698,9 +672,7 @@ extern int16_t EM_voltageDCFilter(
 //!
 //! \return None
 //!
-extern int32_t EM_currentDCFilter(
-        int16_t p[3],
-        int32_t x);
+extern int32_t EM_currentDCFilter(int16_t p[3], int32_t x);
 
 //! \brief    The following API is used update the previous voltage
 //! value for a phase and to increment the number of samples processed
@@ -713,10 +685,8 @@ extern int32_t EM_currentDCFilter(
 //!
 //! \return None
 //!
-extern void EM_perSample(
-        EM_Metrology *metro,
-        EM_Phase_Configuration *phase,
-        EM_Phase_BG_Results *bgData);
+extern void EM_perSample(EM_Metrology *metro, EM_Phase_Configuration *phase,
+			 EM_Phase_BG_Results *bgData);
 
 //! \brief    The following API is used to swap the metrology ping and pong
 //! pointers. This API must be executed after the Frequency Function
@@ -730,10 +700,8 @@ extern void EM_perSample(
 //!
 //! \return None
 //!
-extern void EM_perDataChunk(
-        EM_SW_Lib_Config_Handle *config,
-        EM_SW_Lib_Result_Handle *result,
-        uint16_t phaseIdx);
+extern void EM_perDataChunk(EM_SW_Lib_Config_Handle *config, EM_SW_Lib_Result_Handle *result,
+			    uint16_t phaseIdx);
 
 //! \brief    The following API is used to delay the current degree by 90 degrees.
 //! It uses an IIR filter with 1 pole to shift current: (all pass 90 degree filter
@@ -748,9 +716,8 @@ extern void EM_perDataChunk(
 //! \param[in] bgData  is a pointer to the EM SW BG Result structure
 //!
 //! \return None
-extern void EM_delayCurrent90Degrees(EM_Metrology *metro,
-                                     EM_Phase_Configuration *phase,
-                                     EM_Phase_BG_Results *bgData);
+extern void EM_delayCurrent90Degrees(EM_Metrology *metro, EM_Phase_Configuration *phase,
+				     EM_Phase_BG_Results *bgData);
 
 //! \brief    The following API is used to generate pulses for an individual
 //! phase. This API checks if the config->pulseGeneration has the result->
@@ -764,10 +731,8 @@ extern void EM_delayCurrent90Degrees(EM_Metrology *metro,
 //!
 //! \return None
 //!
-extern void EM_genPulseIndPhase(
-        EM_System_Configuration *config,
-        EM_Pulse_Settings *pulse,
-        EM_Phase_Results *result);
+extern void EM_genPulseIndPhase(EM_System_Configuration *config, EM_Pulse_Settings *pulse,
+				EM_Phase_Results *result);
 
 //! \brief    The following API is used to generate pulses for the total
 //! phase. This API checks if the config->pulseGeneration has EM_PULSE_GEN_PHASE_AGGREGATE
@@ -781,10 +746,8 @@ extern void EM_genPulseIndPhase(
 //!
 //! \return None
 //!
-extern void EM_genPulseTotalPhases(
-        EM_System_Configuration *config,
-        EM_Pulse_Settings *pulse,
-        EM_Total_Results *result);
+extern void EM_genPulseTotalPhases(EM_System_Configuration *config, EM_Pulse_Settings *pulse,
+				   EM_Total_Results *result);
 
 //! \brief    The following API is used to calculate the 1/sample_count constant.
 //! This function must be executed after EM_perDataChunk API for each phase inside
@@ -795,8 +758,7 @@ extern void EM_genPulseTotalPhases(
 //!
 //! \return None
 //!
-extern void EM_updateOneDivSC(
-        EM_Metrology *metro);
+extern void EM_updateOneDivSC(EM_Metrology *metro);
 
 //! \brief    The following API is used to clear the temporary variables inside
 //! the metro structure. This API must be called as the last API in the
@@ -806,8 +768,7 @@ extern void EM_updateOneDivSC(
 //!
 //! \return None
 //!
-extern void EM_clearMetrology(
-        EM_Metrology *metro);
+extern void EM_clearMetrology(EM_Metrology *metro);
 
 //! \brief    The following API is used to look up the IIR G constant used to
 //! calculate the Reactive Power using the current frequency value. The
@@ -821,20 +782,18 @@ extern void EM_clearMetrology(
 //!
 //! \return None
 //!
-extern void EM_updateReactPowConst(EM_Metrology *metro,
-                                   EM_Phase_Results *result,
-                                   EM_Algorithm_Configuration *algo);
+extern void EM_updateReactPowConst(EM_Metrology *metro, EM_Phase_Results *result,
+				   EM_Algorithm_Configuration *algo);
 
-//! \brief    The following API is used process the samples. It is used to 
-//! calculate intermediate dot product results that are fed into the foreground 
+//! \brief    The following API is used process the samples. It is used to
+//! calculate intermediate dot product results that are fed into the foreground
 //! process for the calculation of metrology readings.
 //!
 //! \param[in] config  is a pointer to the EM SW Library user configuration
 //!
 //! \return EM_message_code
 //!
-extern EM_message_code EM_processSample(
-		EM_SW_Lib_Config_Handle *config);
+extern EM_message_code EM_processSample(EM_SW_Lib_Config_Handle *config);
 
 //! \brief    The following API is used to calculate the dot product and
 //! accumulation of Voltage and Current. This API reads the current and voltage
@@ -847,9 +806,7 @@ extern EM_message_code EM_processSample(
 //!
 //! \return None
 //!
-extern void EM_calcActivePowerMultAcc(
-        EM_Metrology *metro,
-        EM_Phase_Configuration *phase);
+extern void EM_calcActivePowerMultAcc(EM_Metrology *metro, EM_Phase_Configuration *phase);
 
 //! \brief    The following API is used to calculate the active power in the
 //! foreground code and store activePower in the result structure. The formula used:
@@ -864,11 +821,8 @@ extern void EM_calcActivePowerMultAcc(
 //!
 //! \return None
 //!
-extern void EM_calcActivePowerDiv(
-        EM_Metrology *metro,
-        EM_Phase_Configuration *phase,
-        EM_Phase_Results *result,
-        EM_Algorithm_Configuration *algo);
+extern void EM_calcActivePowerDiv(EM_Metrology *metro, EM_Phase_Configuration *phase,
+				  EM_Phase_Results *result, EM_Algorithm_Configuration *algo);
 
 //! \brief    The following API is used to calculate the active energy result.
 //! The formula used to calculate activeEnergy (uWh):
@@ -882,10 +836,8 @@ extern void EM_calcActivePowerDiv(
 //!
 //! \return None
 //!
-extern void EM_calcActiveEnergy(
-        EM_Metrology *metro,
-        EM_Algorithm_Configuration *algo,
-        EM_Phase_Results *result);
+extern void EM_calcActiveEnergy(EM_Metrology *metro, EM_Algorithm_Configuration *algo,
+				EM_Phase_Results *result);
 
 //! \brief    The following API is used to calculate the dot product and
 //! accumulation of Voltage_90 and Current. This API reads the current and voltage
@@ -904,10 +856,8 @@ extern void EM_calcActiveEnergy(
 //!
 //! \return None
 //!
-extern void EM_calcReactivePowerMultAcc(
-        EM_Metrology *metro,
-        EM_Phase_Configuration *phase,
-        EM_Phase_BG_Results *bgData);
+extern void EM_calcReactivePowerMultAcc(EM_Metrology *metro, EM_Phase_Configuration *phase,
+					EM_Phase_BG_Results *bgData);
 
 //! \brief    The following API is used to calculate the reactive power in the
 //! foreground code and store reactivePower in the result structure. The formula used:
@@ -922,11 +872,8 @@ extern void EM_calcReactivePowerMultAcc(
 //!
 //! \return None
 //!
-extern void EM_calcReactivePowerDiv(
-        EM_Metrology *metro,
-        EM_Phase_Configuration *phase,
-        EM_Phase_Results *result,
-        EM_Algorithm_Configuration *algo);
+extern void EM_calcReactivePowerDiv(EM_Metrology *metro, EM_Phase_Configuration *phase,
+				    EM_Phase_Results *result, EM_Algorithm_Configuration *algo);
 
 //! \brief    The following API is used to calculate the reactive energy result.
 //! The formula used to calculate reactiveEnergy (uVArh):
@@ -940,10 +887,8 @@ extern void EM_calcReactivePowerDiv(
 //!
 //! \return None
 //!
-extern void EM_calcReactiveEnergy(
-        EM_Metrology *metro,
-        EM_Algorithm_Configuration *algo,
-        EM_Phase_Results *result);
+extern void EM_calcReactiveEnergy(EM_Metrology *metro, EM_Algorithm_Configuration *algo,
+				  EM_Phase_Results *result);
 
 //! \brief    The following API is used to calculate apparent power.
 //! The formula used to calculate apparentPower (uVA):
@@ -955,8 +900,7 @@ extern void EM_calcReactiveEnergy(
 //!
 //! \return None
 //!
-extern void EM_calcApparentPower(
-        EM_Phase_Results *result);
+extern void EM_calcApparentPower(EM_Phase_Results *result);
 
 //! \brief    The following API is used to calculate the apparent energy result.
 //! The formula used to calculate apparentEnergy (uVAh):
@@ -970,11 +914,9 @@ extern void EM_calcApparentPower(
 //!
 //! \return None
 //!
-extern void EM_calcApparentEnergy(
-        EM_Metrology *metro,
-        EM_Algorithm_Configuration *algo,
-        EM_Phase_Results *result);
-		
+extern void EM_calcApparentEnergy(EM_Metrology *metro, EM_Algorithm_Configuration *algo,
+				  EM_Phase_Results *result);
+
 //! \brief    The following API is used to calculate power factor. The formula
 //! used to calculate it:
 //! activePower / apparentPower
@@ -985,8 +927,7 @@ extern void EM_calcApparentEnergy(
 //!
 //! \return None
 //!
-extern void EM_calcPowerFactor(
-        EM_Phase_Results *result);
+extern void EM_calcPowerFactor(EM_Phase_Results *result);
 
 //! \brief    The following API is used to calculate the dot product and
 //! accumulation for VRMS. This API reads the voltage value from the voltage ptr
@@ -999,9 +940,7 @@ extern void EM_calcPowerFactor(
 //!
 //! \return None
 //!
-extern void EM_calcVRMSMultAcc(
-        EM_Metrology *metro,
-        EM_Phase_Configuration *phase);
+extern void EM_calcVRMSMultAcc(EM_Metrology *metro, EM_Phase_Configuration *phase);
 
 //! \brief    The following API is used to calculate the division and
 //! square root for VRMS. This API uses the dot product calculated by
@@ -1014,11 +953,9 @@ extern void EM_calcVRMSMultAcc(
 //!
 //! \return None
 //!
-extern void EM_calcVRMSDivSqrt(
-        EM_Metrology *metro,
-        EM_Phase_Configuration *phase,
-        EM_Phase_Results *result);
-		
+extern void EM_calcVRMSDivSqrt(EM_Metrology *metro, EM_Phase_Configuration *phase,
+			       EM_Phase_Results *result);
+
 //! \brief    The following API is used to calculate the dot product and
 //! accumulation for IRMS. This API reads the current value from the current ptr
 //! in the phase structure and updates the Metro Result structure; storing
@@ -1030,8 +967,7 @@ extern void EM_calcVRMSDivSqrt(
 //!
 //! \return None
 //!
-extern void EM_calcIRMSMultAcc(EM_Metrology *metro,
-                               EM_Phase_Configuration *phase);
+extern void EM_calcIRMSMultAcc(EM_Metrology *metro, EM_Phase_Configuration *phase);
 
 //! \brief    The following API is used to calculate the division and
 //! square root for IRMS. This API uses the dot product calculated by
@@ -1044,11 +980,9 @@ extern void EM_calcIRMSMultAcc(EM_Metrology *metro,
 //!
 //! \return None
 //!
-extern void EM_calcIRMSDivSqrt(
-        EM_Metrology *metro,
-        EM_Phase_Configuration *phase,
-        EM_Phase_Results *result);
-		
+extern void EM_calcIRMSDivSqrt(EM_Metrology *metro, EM_Phase_Configuration *phase,
+			       EM_Phase_Results *result);
+
 //! \brief    The following API is used to calculate I Peak. This API updates
 //! the global Phase Result structure. The formula used to calculate:
 //! result->IRMS x algo->sqrtTwoConst
@@ -1060,10 +994,8 @@ extern void EM_calcIRMSDivSqrt(
 //!
 //! \return None
 //!
-extern void EM_calcIPeak(
-        EM_Phase_Results *result,
-        EM_Algorithm_Configuration *algo);
-		
+extern void EM_calcIPeak(EM_Phase_Results *result, EM_Algorithm_Configuration *algo);
+
 //! \brief    The following API is used to calculate V Peak. This API updates
 //! the global Phase Result structure.  The formula used to calculate:
 //! result->VRMS x algo->sqrtTwoConst
@@ -1075,9 +1007,7 @@ extern void EM_calcIPeak(
 //!
 //! \return None
 //!
-extern void EM_calcVPeak(
-        EM_Phase_Results *result,
-        EM_Algorithm_Configuration *algo);
+extern void EM_calcVPeak(EM_Phase_Results *result, EM_Algorithm_Configuration *algo);
 
 //! \brief    The following API is used to calculate the period of the voltage
 //! signal. For systems with 2 voltages, this API must be used with only one
@@ -1108,10 +1038,8 @@ extern void EM_calcVPeak(
 //!
 //! \return None
 //!
-extern void EM_calcFreqPeriod(
-        EM_Metrology *metro,
-        EM_Phase_Configuration *phase,
-        EM_Phase_BG_Results *bgData);
+extern void EM_calcFreqPeriod(EM_Metrology *metro, EM_Phase_Configuration *phase,
+			      EM_Phase_BG_Results *bgData);
 
 //! \brief    The following API is used to calculate frequency. This API updates
 //! the global Phase Result structure.  The formula used to calculate:
@@ -1124,10 +1052,8 @@ extern void EM_calcFreqPeriod(
 //!
 //! \return None
 //!
-extern void EM_calcFreq(
-        EM_Metrology *metro,
-        EM_Phase_Results *result,
-        EM_Algorithm_Configuration *algo);
+extern void EM_calcFreq(EM_Metrology *metro, EM_Phase_Results *result,
+			EM_Algorithm_Configuration *algo);
 
 //! \brief    The following API is used to calculate total active power.
 //! This API will aggregate the total power of the result->phaseResults
@@ -1139,10 +1065,8 @@ extern void EM_calcFreq(
 //!
 //! \return None
 //!
-extern void EM_calcTotalActivePower(
-        uint8_t *phaseIdx,
-        uint8_t length,
-        EM_SW_Lib_Result_Handle *result);
+extern void EM_calcTotalActivePower(uint8_t *phaseIdx, uint8_t length,
+				    EM_SW_Lib_Result_Handle *result);
 
 //! \brief    The following API is used to calculate total reactive power.
 //! This API will aggregate the total power of the result->phaseResults
@@ -1154,10 +1078,8 @@ extern void EM_calcTotalActivePower(
 //!
 //! \return None
 //!
-extern void EM_calcTotalReactivePower(
-        uint8_t *phaseIdx,
-        uint8_t length,
-        EM_SW_Lib_Result_Handle *result);
+extern void EM_calcTotalReactivePower(uint8_t *phaseIdx, uint8_t length,
+				      EM_SW_Lib_Result_Handle *result);
 
 //! \brief    The following API is used to calculate total apparent power.
 //! This API will aggregate the total power of the result->phaseResults
@@ -1169,11 +1091,8 @@ extern void EM_calcTotalReactivePower(
 //!
 //! \return None
 //!
-extern void EM_calcTotalApparentPower(
-        uint8_t *phaseIdx,
-        uint8_t length,
-        EM_SW_Lib_Result_Handle *result);
-
+extern void EM_calcTotalApparentPower(uint8_t *phaseIdx, uint8_t length,
+				      EM_SW_Lib_Result_Handle *result);
 
 //! \brief    The following API is used to calculate total active energy.
 //! This API will aggregate the total energy of the result->phaseResults
@@ -1185,10 +1104,8 @@ extern void EM_calcTotalApparentPower(
 //!
 //! \return None
 //!
-extern void EM_calcTotalActiveEnergy(
-        uint8_t *phaseIdx,
-        uint8_t length,
-        EM_SW_Lib_Result_Handle *result);
+extern void EM_calcTotalActiveEnergy(uint8_t *phaseIdx, uint8_t length,
+				     EM_SW_Lib_Result_Handle *result);
 
 //! \brief    The following API is used to calculate total reactive energy.
 //! This API will aggregate the total energy of the result->phaseResults
@@ -1200,10 +1117,8 @@ extern void EM_calcTotalActiveEnergy(
 //!
 //! \return None
 //!
-extern void EM_calcTotalReactiveEnergy(
-        uint8_t *phaseIdx,
-        uint8_t length,
-        EM_SW_Lib_Result_Handle *result);
+extern void EM_calcTotalReactiveEnergy(uint8_t *phaseIdx, uint8_t length,
+				       EM_SW_Lib_Result_Handle *result);
 
 //! \brief    The following API is used to calculate total apparent energy.
 //! This API will aggregate the total energy of the result->phaseResults
@@ -1215,10 +1130,8 @@ extern void EM_calcTotalReactiveEnergy(
 //!
 //! \return None
 //!
-extern void EM_calcTotalApparentEnergy(
-        uint8_t *phaseIdx,
-        uint8_t length,
-        EM_SW_Lib_Result_Handle *result);
+extern void EM_calcTotalApparentEnergy(uint8_t *phaseIdx, uint8_t length,
+				       EM_SW_Lib_Result_Handle *result);
 
 //******************************************************************************
 //

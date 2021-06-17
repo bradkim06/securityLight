@@ -205,8 +205,7 @@ extern void BattBak_disable(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void BattBak_initAndEnableCharger(uint16_t baseAddress,
-					 uint8_t chargerEndVoltage,
+extern void BattBak_initAndEnableCharger(uint16_t baseAddress, uint8_t chargerEndVoltage,
 					 uint8_t chargeCurrent);
 
 //*****************************************************************************
@@ -243,8 +242,7 @@ extern void BattBak_disableCharger(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void BattBak_setBackupRAMData(uint16_t baseAddress,
-				     uint8_t backupRAMSelect, uint16_t data);
+extern void BattBak_setBackupRAMData(uint16_t baseAddress, uint8_t backupRAMSelect, uint16_t data);
 
 //*****************************************************************************
 //
@@ -264,8 +262,7 @@ extern void BattBak_setBackupRAMData(uint16_t baseAddress,
 //! \return Data residing in the selected backup RAM space.
 //
 //*****************************************************************************
-extern uint16_t BattBak_getBackupRAMData(uint16_t baseAddress,
-					 uint8_t backupRAMSelect);
+extern uint16_t BattBak_getBackupRAMData(uint16_t baseAddress, uint8_t backupRAMSelect);
 
 //*****************************************************************************
 //

@@ -60,23 +60,18 @@ void DMA_init(DMA_initParam *param)
 		+ param->triggerTypeSelect; // Set Trigger Type
 
 	// Set Transfer Size Amount
-	HWREG16(DMA_BASE + param->channelSelect + OFS_DMA0SZ) =
-		param->transferSize;
+	HWREG16(DMA_BASE + param->channelSelect + OFS_DMA0SZ) = param->transferSize;
 
 	if (triggerOffset & 0x01) // Odd Channel
 	{
-		HWREG16(DMA_BASE + (triggerOffset & 0x0E)) &=
-			0x00FF; // Reset Trigger
+		HWREG16(DMA_BASE + (triggerOffset & 0x0E)) &= 0x00FF; // Reset Trigger
 		// Select
-		HWREG16(DMA_BASE + (triggerOffset & 0x0E)) |=
-			(param->triggerSourceSelect << 8);
+		HWREG16(DMA_BASE + (triggerOffset & 0x0E)) |= (param->triggerSourceSelect << 8);
 	} else // Even Channel
 	{
-		HWREG16(DMA_BASE + (triggerOffset & 0x0E)) &=
-			0xFF00; // Reset Trigger
+		HWREG16(DMA_BASE + (triggerOffset & 0x0E)) &= 0xFF00; // Reset Trigger
 		// Select
-		HWREG16(DMA_BASE + (triggerOffset & 0x0E)) |=
-			param->triggerSourceSelect;
+		HWREG16(DMA_BASE + (triggerOffset & 0x0E)) |= param->triggerSourceSelect;
 	}
 }
 
@@ -92,31 +87,24 @@ uint16_t DMA_getTransferSize(uint8_t channelSelect)
 	return (HWREG16(DMA_BASE + channelSelect + OFS_DMA0SZ));
 }
 
-void DMA_setSrcAddress(uint8_t channelSelect, uint32_t srcAddress,
-		       uint16_t directionSelect)
+void DMA_setSrcAddress(uint8_t channelSelect, uint32_t srcAddress, uint16_t directionSelect)
 {
 	// Set the Source Address
-	__data16_write_addr(
-		(unsigned short)(DMA_BASE + channelSelect + OFS_DMA0SA),
-		srcAddress);
+	__data16_write_addr((unsigned short)(DMA_BASE + channelSelect + OFS_DMA0SA), srcAddress);
 
 	// Reset bits before setting them
 	HWREG16(DMA_BASE + channelSelect + OFS_DMA0CTL) &= ~(DMASRCINCR_3);
 	HWREG16(DMA_BASE + channelSelect + OFS_DMA0CTL) |= directionSelect;
 }
 
-void DMA_setDstAddress(uint8_t channelSelect, uint32_t dstAddress,
-		       uint16_t directionSelect)
+void DMA_setDstAddress(uint8_t channelSelect, uint32_t dstAddress, uint16_t directionSelect)
 {
 	// Set the Destination Address
-	__data16_write_addr(
-		(unsigned short)(DMA_BASE + channelSelect + OFS_DMA0DA),
-		dstAddress);
+	__data16_write_addr((unsigned short)(DMA_BASE + channelSelect + OFS_DMA0DA), dstAddress);
 
 	// Reset bits before setting them
 	HWREG16(DMA_BASE + channelSelect + OFS_DMA0CTL) &= ~(DMADSTINCR_3);
-	HWREG16(DMA_BASE + channelSelect + OFS_DMA0CTL) |=
-		(directionSelect << 2);
+	HWREG16(DMA_BASE + channelSelect + OFS_DMA0CTL) |= (directionSelect << 2);
 }
 
 void DMA_enableTransfers(uint8_t channelSelect)

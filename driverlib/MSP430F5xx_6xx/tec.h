@@ -222,8 +222,8 @@ typedef struct TEC_initExternalFaultInputParam {
 //! \return None
 //
 //*****************************************************************************
-extern void TEC_initExternalClearInput(uint16_t baseAddress, uint8_t signalType,
-				       uint8_t signalHold, uint8_t polarityBit);
+extern void TEC_initExternalClearInput(uint16_t baseAddress, uint8_t signalType, uint8_t signalHold,
+				       uint8_t polarityBit);
 
 //*****************************************************************************
 //
@@ -261,8 +261,7 @@ extern void TEC_initExternalFaultInput(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void TEC_enableExternalFaultInput(uint16_t baseAddress,
-					 uint8_t channelEventBlock);
+extern void TEC_enableExternalFaultInput(uint16_t baseAddress, uint8_t channelEventBlock);
 
 //*****************************************************************************
 //
@@ -284,8 +283,7 @@ extern void TEC_enableExternalFaultInput(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void TEC_disableExternalFaultInput(uint16_t baseAddress,
-					  uint8_t channelEventBlock);
+extern void TEC_disableExternalFaultInput(uint16_t baseAddress, uint8_t channelEventBlock);
 
 //*****************************************************************************
 //

@@ -110,13 +110,10 @@ void SysCtl_setBSLSize(uint8_t BSLSizeSelect)
 	HWREG8(SYS_BASE + OFS_SYSBSLC_L) |= BSLSizeSelect;
 }
 
-void SysCtl_initJTAGMailbox(uint8_t mailboxSizeSelect,
-			    uint8_t autoClearInboxFlagSelect)
+void SysCtl_initJTAGMailbox(uint8_t mailboxSizeSelect, uint8_t autoClearInboxFlagSelect)
 {
-	HWREG8(SYS_BASE + OFS_SYSJMBC_L) &=
-		~(JMBCLR1OFF + JMBCLR0OFF + JMBMODE);
-	HWREG8(SYS_BASE + OFS_SYSJMBC_L) |=
-		mailboxSizeSelect + autoClearInboxFlagSelect;
+	HWREG8(SYS_BASE + OFS_SYSJMBC_L) &= ~(JMBCLR1OFF + JMBCLR0OFF + JMBMODE);
+	HWREG8(SYS_BASE + OFS_SYSJMBC_L) |= mailboxSizeSelect + autoClearInboxFlagSelect;
 }
 
 uint8_t SysCtl_getJTAGMailboxFlagStatus(uint8_t mailboxFlagMask)
@@ -142,8 +139,7 @@ uint32_t SysCtl_getJTAGInboxMessage32Bit(void)
 	return ((JTAGInboxMessageHigh << 16) + JTAGInboxMessageLow);
 }
 
-void SysCtl_setJTAGOutgoingMessage16Bit(uint8_t outboxSelect,
-					uint16_t outgoingMessage)
+void SysCtl_setJTAGOutgoingMessage16Bit(uint8_t outboxSelect, uint16_t outgoingMessage)
 {
 	HWREG16(SYS_BASE + OFS_SYSJMBO0 + outboxSelect) = outgoingMessage;
 }

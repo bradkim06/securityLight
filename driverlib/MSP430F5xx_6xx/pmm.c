@@ -289,9 +289,8 @@ uint16_t PMM_setVCoreUp(uint8_t level)
 	// Disable dedicated Interrupts
 	// Backup all registers
 	PMMRIE_backup = HWREG16(PMM_BASE + OFS_PMMRIE);
-	HWREG16(PMM_BASE + OFS_PMMRIE) &=
-		~(SVMHVLRPE | SVSHPE | SVMLVLRPE | SVSLPE | SVMHVLRIE | SVMHIE |
-		  SVSMHDLYIE | SVMLVLRIE | SVMLIE | SVSMLDLYIE);
+	HWREG16(PMM_BASE + OFS_PMMRIE) &= ~(SVMHVLRPE | SVSHPE | SVMLVLRPE | SVSLPE | SVMHVLRIE |
+					    SVMHIE | SVSMHDLYIE | SVMLVLRIE | SVMLIE | SVSMLDLYIE);
 	SVSMHCTL_backup = HWREG16(PMM_BASE + OFS_SVSMHCTL);
 	SVSMLCTL_backup = HWREG16(PMM_BASE + OFS_SVSMLCTL);
 
@@ -323,8 +322,7 @@ uint16_t PMM_setVCoreUp(uint8_t level)
 
 		// Clear all Flags
 		HWREG16(PMM_BASE + OFS_PMMIFG) &=
-			~(SVMHVLRIFG | SVMHIFG | SVSMHDLYIFG | SVMLVLRIFG |
-			  SVMLIFG | SVSMLDLYIFG);
+			~(SVMHVLRIFG | SVMHIFG | SVSMHDLYIFG | SVMLVLRIFG | SVMLIFG | SVSMLDLYIFG);
 
 		// Restore PMM interrupt enable register
 		HWREG16(PMM_BASE + OFS_PMMRIE) = PMMRIE_backup;
@@ -350,8 +348,7 @@ uint16_t PMM_setVCoreUp(uint8_t level)
 	HWREG8(PMM_BASE + OFS_PMMCTL0_L) = PMMCOREV0 * level;
 
 	// Set SVM, SVS low side to new level
-	HWREG16(PMM_BASE + OFS_SVSMLCTL) =
-		SVMLE | (SVSMLRRL0 * level) | SVSLE | (SVSLRVL0 * level);
+	HWREG16(PMM_BASE + OFS_SVSMLCTL) = SVMLE | (SVSMLRRL0 * level) | SVSLE | (SVSLRVL0 * level);
 
 	// Wait until SVM, SVS low side is settled
 	while ((HWREG16(PMM_BASE + OFS_PMMIFG) & SVSMLDLYIFG) == 0) {
@@ -368,8 +365,7 @@ uint16_t PMM_setVCoreUp(uint8_t level)
 		(SVSLRVL0 + SVSLRVL1 + SVSMLRRL0 + SVSMLRRL1 + SVSMLRRL2);
 
 	// Clear level settings in the backup register,keep all other bits
-	SVSMLCTL_backup &=
-		~(SVSLRVL0 + SVSLRVL1 + SVSMLRRL0 + SVSMLRRL1 + SVSMLRRL2);
+	SVSMLCTL_backup &= ~(SVSLRVL0 + SVSLRVL1 + SVSMLRRL0 + SVSMLRRL1 + SVSMLRRL2);
 
 	// Restore low-side SVS monitor settings
 	HWREG16(PMM_BASE + OFS_SVSMLCTL) |= SVSMLCTL_backup;
@@ -380,8 +376,7 @@ uint16_t PMM_setVCoreUp(uint8_t level)
 		(SVSHRVL0 + SVSHRVL1 + SVSMHRRL0 + SVSMHRRL1 + SVSMHRRL2);
 
 	// Clear level settings in the backup register,keep all other bits
-	SVSMHCTL_backup &=
-		~(SVSHRVL0 + SVSHRVL1 + SVSMHRRL0 + SVSMHRRL1 + SVSMHRRL2);
+	SVSMHCTL_backup &= ~(SVSHRVL0 + SVSHRVL1 + SVSMHRRL0 + SVSMHRRL1 + SVSMHRRL2);
 
 	// Restore backup
 	HWREG16(PMM_BASE + OFS_SVSMHCTL) |= SVSMHCTL_backup;
@@ -393,8 +388,8 @@ uint16_t PMM_setVCoreUp(uint8_t level)
 	}
 
 	// Clear all Flags
-	HWREG16(PMM_BASE + OFS_PMMIFG) &= ~(SVMHVLRIFG | SVMHIFG | SVSMHDLYIFG |
-					    SVMLVLRIFG | SVMLIFG | SVSMLDLYIFG);
+	HWREG16(PMM_BASE + OFS_PMMIFG) &=
+		~(SVMHVLRIFG | SVMHIFG | SVSMHDLYIFG | SVMLVLRIFG | SVMLIFG | SVSMLDLYIFG);
 
 	// Restore PMM interrupt enable register
 	HWREG16(PMM_BASE + OFS_PMMRIE) = PMMRIE_backup;
@@ -420,21 +415,17 @@ uint16_t PMM_setVCoreDown(uint8_t level)
 	// Disable dedicated Interrupts
 	// Backup all registers
 	PMMRIE_backup = HWREG16(PMM_BASE + OFS_PMMRIE);
-	HWREG16(PMM_BASE + OFS_PMMRIE) &=
-		~(SVMHVLRPE | SVSHPE | SVMLVLRPE | SVSLPE | SVMHVLRIE | SVMHIE |
-		  SVSMHDLYIE | SVMLVLRIE | SVMLIE | SVSMLDLYIE);
+	HWREG16(PMM_BASE + OFS_PMMRIE) &= ~(SVMHVLRPE | SVSHPE | SVMLVLRPE | SVSLPE | SVMHVLRIE |
+					    SVMHIE | SVSMHDLYIE | SVMLVLRIE | SVMLIE | SVSMLDLYIE);
 	SVSMHCTL_backup = HWREG16(PMM_BASE + OFS_SVSMHCTL);
 	SVSMLCTL_backup = HWREG16(PMM_BASE + OFS_SVSMLCTL);
 
 	// Clear flags
-	HWREG16(PMM_BASE + OFS_PMMIFG) &=
-		~(SVMHIFG | SVSMHDLYIFG | SVMLIFG | SVSMLDLYIFG);
+	HWREG16(PMM_BASE + OFS_PMMIFG) &= ~(SVMHIFG | SVSMHDLYIFG | SVMLIFG | SVSMLDLYIFG);
 
 	// Set SVM, SVS high & low side to new settings in normal mode
-	HWREG16(PMM_BASE + OFS_SVSMHCTL) =
-		SVMHE | (SVSMHRRL0 * level) | SVSHE | (SVSHRVL0 * level);
-	HWREG16(PMM_BASE + OFS_SVSMLCTL) =
-		SVMLE | (SVSMLRRL0 * level) | SVSLE | (SVSLRVL0 * level);
+	HWREG16(PMM_BASE + OFS_SVSMHCTL) = SVMHE | (SVSMHRRL0 * level) | SVSHE | (SVSHRVL0 * level);
+	HWREG16(PMM_BASE + OFS_SVSMLCTL) = SVMLE | (SVSMLRRL0 * level) | SVSLE | (SVSLRVL0 * level);
 
 	// Wait until SVM high side and SVM low side is settled
 	while ((HWREG16(PMM_BASE + OFS_PMMIFG) & SVSMHDLYIFG) == 0 ||
@@ -455,8 +446,7 @@ uint16_t PMM_setVCoreDown(uint8_t level)
 		(SVSLRVL0 + SVSLRVL1 + SVSMLRRL0 + SVSMLRRL1 + SVSMLRRL2);
 
 	// Clear level settings in the backup register,keep all other bits
-	SVSMLCTL_backup &=
-		~(SVSLRVL0 + SVSLRVL1 + SVSMLRRL0 + SVSMLRRL1 + SVSMLRRL2);
+	SVSMLCTL_backup &= ~(SVSLRVL0 + SVSLRVL1 + SVSMLRRL0 + SVSMLRRL1 + SVSMLRRL2);
 
 	// Restore low-side SVS monitor settings
 	HWREG16(PMM_BASE + OFS_SVSMLCTL) |= SVSMLCTL_backup;
@@ -467,8 +457,7 @@ uint16_t PMM_setVCoreDown(uint8_t level)
 		(SVSHRVL0 + SVSHRVL1 + SVSMHRRL0 + SVSMHRRL1 + SVSMHRRL2);
 
 	// Clear level settings in the backup register, keep all other bits
-	SVSMHCTL_backup &=
-		~(SVSHRVL0 + SVSHRVL1 + SVSMHRRL0 + SVSMHRRL1 + SVSMHRRL2);
+	SVSMHCTL_backup &= ~(SVSHRVL0 + SVSHRVL1 + SVSMHRRL0 + SVSMHRRL1 + SVSMHRRL2);
 
 	// Restore backup
 	HWREG16(PMM_BASE + OFS_SVSMHCTL) |= SVSMHCTL_backup;
@@ -480,8 +469,8 @@ uint16_t PMM_setVCoreDown(uint8_t level)
 	}
 
 	// Clear all Flags
-	HWREG16(PMM_BASE + OFS_PMMIFG) &= ~(SVMHVLRIFG | SVMHIFG | SVSMHDLYIFG |
-					    SVMLVLRIFG | SVMLIFG | SVSMLDLYIFG);
+	HWREG16(PMM_BASE + OFS_PMMIFG) &=
+		~(SVMHVLRIFG | SVMHIFG | SVSMHDLYIFG | SVMLVLRIFG | SVMLIFG | SVSMLDLYIFG);
 
 	// Restore PMM interrupt enable register
 	HWREG16(PMM_BASE + OFS_PMMRIE) = PMMRIE_backup;

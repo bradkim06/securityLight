@@ -49,8 +49,7 @@
 
 #include "usci_b_i2c.h"
 
-void USCI_B_I2C_initMaster(uint16_t baseAddress,
-			   USCI_B_I2C_initMasterParam *param)
+void USCI_B_I2C_initMaster(uint16_t baseAddress, USCI_B_I2C_initMasterParam *param)
 {
 	uint16_t preScalarValue;
 
@@ -66,8 +65,7 @@ void USCI_B_I2C_initMaster(uint16_t baseAddress,
 	HWREG8(baseAddress + OFS_UCBxCTL0) = UCMST + UCMODE_3 + UCSYNC;
 
 	// Configure I2C clock source
-	HWREG8(baseAddress + OFS_UCBxCTL1) =
-		(param->selectClockSource + UCSWRST);
+	HWREG8(baseAddress + OFS_UCBxCTL1) = (param->selectClockSource + UCSWRST);
 
 	/*
    * Compute the clock divider that achieves the fastest speed less than or
@@ -221,8 +219,7 @@ void USCI_B_I2C_masterSendSingleByte(uint16_t baseAddress, uint8_t txData)
 	HWREG8(baseAddress + OFS_UCBxIE) |= txieStatus;
 }
 
-bool USCI_B_I2C_masterSendSingleByteWithTimeout(uint16_t baseAddress,
-						uint8_t txData,
+bool USCI_B_I2C_masterSendSingleByteWithTimeout(uint16_t baseAddress, uint8_t txData,
 						uint32_t timeout)
 {
 	// Creating variable for second timeout scenario
@@ -295,8 +292,7 @@ void USCI_B_I2C_masterSendMultiByteStart(uint16_t baseAddress, uint8_t txData)
 	HWREG8(baseAddress + OFS_UCBxIE) |= txieStatus;
 }
 
-bool USCI_B_I2C_masterSendMultiByteStartWithTimeout(uint16_t baseAddress,
-						    uint8_t txData,
+bool USCI_B_I2C_masterSendMultiByteStartWithTimeout(uint16_t baseAddress, uint8_t txData,
 						    uint32_t timeout)
 {
 	// Store current transmit interrupt enable
@@ -341,15 +337,13 @@ void USCI_B_I2C_masterSendMultiByteNext(uint16_t baseAddress, uint8_t txData)
 	HWREG8(baseAddress + OFS_UCBxTXBUF) = txData;
 }
 
-bool USCI_B_I2C_masterSendMultiByteNextWithTimeout(uint16_t baseAddress,
-						   uint8_t txData,
+bool USCI_B_I2C_masterSendMultiByteNextWithTimeout(uint16_t baseAddress, uint8_t txData,
 						   uint32_t timeout)
 {
 	// If interrupts are not used, poll for flags
 	if (!(HWREG8(baseAddress + OFS_UCBxIE) & UCTXIE)) {
 		// Poll for transmit interrupt flag.
-		while ((!(HWREG8(baseAddress + OFS_UCBxIFG) & UCTXIFG)) &&
-		       --timeout) {
+		while ((!(HWREG8(baseAddress + OFS_UCBxIFG) & UCTXIFG)) && --timeout) {
 			;
 		}
 
@@ -387,8 +381,7 @@ void USCI_B_I2C_masterSendMultiByteFinish(uint16_t baseAddress, uint8_t txData)
 	HWREG8(baseAddress + OFS_UCBxCTL1) |= UCTXSTP;
 }
 
-bool USCI_B_I2C_masterSendMultiByteFinishWithTimeout(uint16_t baseAddress,
-						     uint8_t txData,
+bool USCI_B_I2C_masterSendMultiByteFinishWithTimeout(uint16_t baseAddress, uint8_t txData,
 						     uint32_t timeout)
 {
 	uint32_t timeout2 = timeout;
@@ -396,8 +389,7 @@ bool USCI_B_I2C_masterSendMultiByteFinishWithTimeout(uint16_t baseAddress,
 	// If interrupts are not used, poll for flags
 	if (!(HWREG8(baseAddress + OFS_UCBxIE) & UCTXIE)) {
 		// Poll for transmit interrupt flag.
-		while ((!(HWREG8(baseAddress + OFS_UCBxIFG) & UCTXIFG)) &&
-		       --timeout) {
+		while ((!(HWREG8(baseAddress + OFS_UCBxIFG) & UCTXIFG)) && --timeout) {
 			;
 		}
 
@@ -440,14 +432,12 @@ void USCI_B_I2C_masterSendMultiByteStop(uint16_t baseAddress)
 	HWREG8(baseAddress + OFS_UCBxCTL1) |= UCTXSTP;
 }
 
-bool USCI_B_I2C_masterSendMultiByteStopWithTimeout(uint16_t baseAddress,
-						   uint32_t timeout)
+bool USCI_B_I2C_masterSendMultiByteStopWithTimeout(uint16_t baseAddress, uint32_t timeout)
 {
 	// If interrupts are not used, poll for flags
 	if (!(HWREG8(baseAddress + OFS_UCBxIE) & UCTXIE)) {
 		// Poll for transmit interrupt flag.
-		while ((!(HWREG8(baseAddress + OFS_UCBxIFG) & UCTXIFG)) &&
-		       --timeout) {
+		while ((!(HWREG8(baseAddress + OFS_UCBxIFG) & UCTXIFG)) && --timeout) {
 			;
 		}
 
@@ -500,8 +490,7 @@ uint8_t USCI_B_I2C_masterReceiveMultiByteFinish(uint16_t baseAddress)
 	return (receiveData);
 }
 
-bool USCI_B_I2C_masterReceiveMultiByteFinishWithTimeout(uint16_t baseAddress,
-							uint8_t *rxData,
+bool USCI_B_I2C_masterReceiveMultiByteFinishWithTimeout(uint16_t baseAddress, uint8_t *rxData,
 							uint32_t timeout)
 {
 	uint32_t timeout2 = timeout;
@@ -571,8 +560,7 @@ void USCI_B_I2C_masterReceiveSingleStart(uint16_t baseAddress)
 	__bis_SR_register(gieStatus);
 }
 
-bool USCI_B_I2C_masterReceiveSingleStartWithTimeout(uint16_t baseAddress,
-						    uint32_t timeout)
+bool USCI_B_I2C_masterReceiveSingleStartWithTimeout(uint16_t baseAddress, uint32_t timeout)
 {
 	// local variable to store GIE status
 	uint16_t gieStatus;

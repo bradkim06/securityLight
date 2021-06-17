@@ -49,8 +49,7 @@
 
 #include "eusci_b_spi.h"
 
-void EUSCI_B_SPI_initMaster(uint16_t baseAddress,
-			    EUSCI_B_SPI_initMasterParam *param)
+void EUSCI_B_SPI_initMaster(uint16_t baseAddress, EUSCI_B_SPI_initMasterParam *param)
 {
 	// Disable the USCI Module
 	HWREG16(baseAddress + OFS_UCBxCTLW0) |= UCSWRST;
@@ -65,8 +64,8 @@ void EUSCI_B_SPI_initMaster(uint16_t baseAddress,
 	// Select Clock
 	HWREG16(baseAddress + OFS_UCBxCTLW0) |= param->selectClockSource;
 
-	HWREG16(baseAddress + OFS_UCBxBRW) = (uint16_t)(
-		param->clockSourceFrequency / param->desiredSpiClock);
+	HWREG16(baseAddress + OFS_UCBxBRW) =
+		(uint16_t)(param->clockSourceFrequency / param->desiredSpiClock);
 
 	/*
    * Configure as SPI master mode.
@@ -76,32 +75,29 @@ void EUSCI_B_SPI_initMaster(uint16_t baseAddress,
    * UCMODE_0 = 3-pin SPI
    */
 	HWREG16(baseAddress + OFS_UCBxCTLW0) |=
-		(param->msbFirst + param->clockPhase + param->clockPolarity +
-		 UCMST + UCSYNC + param->spiMode);
+		(param->msbFirst + param->clockPhase + param->clockPolarity + UCMST + UCSYNC +
+		 param->spiMode);
 }
 
-void EUSCI_B_SPI_select4PinFunctionality(uint16_t baseAddress,
-					 uint8_t select4PinFunctionality)
+void EUSCI_B_SPI_select4PinFunctionality(uint16_t baseAddress, uint8_t select4PinFunctionality)
 {
 	HWREG16(baseAddress + OFS_UCBxCTLW0) &= ~UCSTEM;
 	HWREG16(baseAddress + OFS_UCBxCTLW0) |= select4PinFunctionality;
 }
 
-void EUSCI_B_SPI_changeMasterClock(uint16_t baseAddress,
-				   EUSCI_B_SPI_changeMasterClockParam *param)
+void EUSCI_B_SPI_changeMasterClock(uint16_t baseAddress, EUSCI_B_SPI_changeMasterClockParam *param)
 {
 	// Disable the USCI Module
 	HWREG16(baseAddress + OFS_UCBxCTLW0) |= UCSWRST;
 
-	HWREG16(baseAddress + OFS_UCBxBRW) = (uint16_t)(
-		param->clockSourceFrequency / param->desiredSpiClock);
+	HWREG16(baseAddress + OFS_UCBxBRW) =
+		(uint16_t)(param->clockSourceFrequency / param->desiredSpiClock);
 
 	// Reset the UCSWRST bit to enable the USCI Module
 	HWREG16(baseAddress + OFS_UCBxCTLW0) &= ~(UCSWRST);
 }
 
-void EUSCI_B_SPI_initSlave(uint16_t baseAddress,
-			   EUSCI_B_SPI_initSlaveParam *param)
+void EUSCI_B_SPI_initSlave(uint16_t baseAddress, EUSCI_B_SPI_initSlaveParam *param)
 {
 	// Disable USCI Module
 	HWREG16(baseAddress + OFS_UCBxCTLW0) |= UCSWRST;
@@ -111,13 +107,11 @@ void EUSCI_B_SPI_initSlave(uint16_t baseAddress,
 		~(UCMSB + UC7BIT + UCMST + UCCKPL + UCCKPH + UCMODE_3);
 
 	// Clock polarity, phase select, msbFirst, SYNC, Mode0
-	HWREG16(baseAddress + OFS_UCBxCTLW0) |=
-		(param->clockPhase + param->clockPolarity + param->msbFirst +
-		 UCSYNC + param->spiMode);
+	HWREG16(baseAddress + OFS_UCBxCTLW0) |= (param->clockPhase + param->clockPolarity +
+						 param->msbFirst + UCSYNC + param->spiMode);
 }
 
-void EUSCI_B_SPI_changeClockPhasePolarity(uint16_t baseAddress,
-					  uint16_t clockPhase,
+void EUSCI_B_SPI_changeClockPhasePolarity(uint16_t baseAddress, uint16_t clockPhase,
 					  uint16_t clockPolarity)
 {
 	// Disable the USCI Module

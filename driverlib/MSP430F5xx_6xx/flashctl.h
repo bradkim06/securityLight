@@ -130,8 +130,7 @@ extern void FlashCtl_performMassErase(uint8_t *flash_ptr);
 //! \return STATUS_SUCCESS or STATUS_FAIL
 //
 //*****************************************************************************
-extern bool FlashCtl_performEraseCheck(uint8_t *flash_ptr,
-				       uint16_t numberOfBytes);
+extern bool FlashCtl_performEraseCheck(uint8_t *flash_ptr, uint16_t numberOfBytes);
 
 //*****************************************************************************
 //
@@ -148,8 +147,7 @@ extern bool FlashCtl_performEraseCheck(uint8_t *flash_ptr,
 //! \return None
 //
 //*****************************************************************************
-extern void FlashCtl_write8(uint8_t *data_ptr, uint8_t *flash_ptr,
-			    uint16_t count);
+extern void FlashCtl_write8(uint8_t *data_ptr, uint8_t *flash_ptr, uint16_t count);
 
 //*****************************************************************************
 //
@@ -167,8 +165,7 @@ extern void FlashCtl_write8(uint8_t *data_ptr, uint8_t *flash_ptr,
 //! \return None
 //
 //*****************************************************************************
-extern void FlashCtl_write16(uint16_t *data_ptr, uint16_t *flash_ptr,
-			     uint16_t count);
+extern void FlashCtl_write16(uint16_t *data_ptr, uint16_t *flash_ptr, uint16_t count);
 
 //*****************************************************************************
 //
@@ -186,8 +183,7 @@ extern void FlashCtl_write16(uint16_t *data_ptr, uint16_t *flash_ptr,
 //! \return None
 //
 //*****************************************************************************
-extern void FlashCtl_write32(uint32_t *data_ptr, uint32_t *flash_ptr,
-			     uint16_t count);
+extern void FlashCtl_write32(uint32_t *data_ptr, uint32_t *flash_ptr, uint16_t count);
 
 //*****************************************************************************
 //
@@ -205,8 +201,7 @@ extern void FlashCtl_write32(uint32_t *data_ptr, uint32_t *flash_ptr,
 //! \return None
 //
 //*****************************************************************************
-extern void FlashCtl_fillMemory32(uint32_t value, uint32_t *flash_ptr,
-				  uint16_t count);
+extern void FlashCtl_fillMemory32(uint32_t value, uint32_t *flash_ptr, uint16_t count);
 
 //*****************************************************************************
 //

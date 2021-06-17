@@ -50,35 +50,31 @@
 #include "ucs.h"
 
 #ifdef __GNUC__
-#define __delay_cycles(x)                                                      \
-	({                                                                     \
-		volatile unsigned int j;                                       \
-		for (j = 0; j < x; j++) {                                      \
-			__no_operation();                                      \
-		}                                                              \
+#define __delay_cycles(x)                                                                          \
+	({                                                                                         \
+		volatile unsigned int j;                                                           \
+		for (j = 0; j < x; j++) {                                                          \
+			__no_operation();                                                          \
+		}                                                                                  \
 	})
 
 #endif
 
-#define CC430_DEVICE                                                           \
-	(defined(__CC430F5133__) || defined(__CC430F5135__) ||                 \
-	 defined(__CC430F5137__) || defined(__CC430F6125__) ||                 \
-	 defined(__CC430F6126__) || defined(__CC430F6127__) ||                 \
-	 defined(__CC430F6135__) || defined(__CC430F6137__) ||                 \
-	 defined(__CC430F5123__) || defined(__CC430F5125__) ||                 \
-	 defined(__CC430F5143__) || defined(__CC430F5145__) ||                 \
-	 defined(__CC430F5147__) || defined(__CC430F6143__) ||                 \
-	 defined(__CC430F6145__) || defined(__CC430F6147__))
+#define CC430_DEVICE                                                                               \
+	(defined(__CC430F5133__) || defined(__CC430F5135__) || defined(__CC430F5137__) ||          \
+	 defined(__CC430F6125__) || defined(__CC430F6126__) || defined(__CC430F6127__) ||          \
+	 defined(__CC430F6135__) || defined(__CC430F6137__) || defined(__CC430F5123__) ||          \
+	 defined(__CC430F5125__) || defined(__CC430F5143__) || defined(__CC430F5145__) ||          \
+	 defined(__CC430F5147__) || defined(__CC430F6143__) || defined(__CC430F6145__) ||          \
+	 defined(__CC430F6147__))
 
-#define NOT_CC430_DEVICE                                                       \
-	(!defined(__CC430F5133__) && !defined(__CC430F5135__) &&               \
-	 !defined(__CC430F5137__) && !defined(__CC430F6125__) &&               \
-	 !defined(__CC430F6126__) && !defined(__CC430F6127__) &&               \
-	 !defined(__CC430F6135__) && !defined(__CC430F6137__) &&               \
-	 !defined(__CC430F5123__) && !defined(__CC430F5125__) &&               \
-	 !defined(__CC430F5143__) && !defined(__CC430F5145__) &&               \
-	 !defined(__CC430F5147__) && !defined(__CC430F6143__) &&               \
-	 !defined(__CC430F6145__) && !defined(__CC430F6147__))
+#define NOT_CC430_DEVICE                                                                           \
+	(!defined(__CC430F5133__) && !defined(__CC430F5135__) && !defined(__CC430F5137__) &&       \
+	 !defined(__CC430F6125__) && !defined(__CC430F6126__) && !defined(__CC430F6127__) &&       \
+	 !defined(__CC430F6135__) && !defined(__CC430F6137__) && !defined(__CC430F5123__) &&       \
+	 !defined(__CC430F5125__) && !defined(__CC430F5143__) && !defined(__CC430F5145__) &&       \
+	 !defined(__CC430F5147__) && !defined(__CC430F6143__) && !defined(__CC430F6145__) &&       \
+	 !defined(__CC430F6147__))
 //******************************************************************************
 //
 // The XT1 crystal frequency. Should be set with
@@ -99,8 +95,7 @@ static uint32_t privateXT2ClockFrequency = 0;
 
 static uint32_t privateUCSSourceClockFromDCO(uint16_t FLLRefCLKSource)
 {
-	assert((SELM__DCOCLKDIV == FLLRefCLKSource) ||
-	       (SELM__DCOCLK == FLLRefCLKSource));
+	assert((SELM__DCOCLKDIV == FLLRefCLKSource) || (SELM__DCOCLK == FLLRefCLKSource));
 	uint16_t D_value = 1;
 	uint16_t N_value;
 	uint16_t n_value = 1;
@@ -128,8 +123,7 @@ static uint32_t privateUCSSourceClockFromDCO(uint16_t FLLRefCLKSource)
 				// Clear OFIFG fault flag
 				HWREG8(SFR_BASE + OFS_SFRIFG1) &= ~OFIFG;
 
-				if (HWREG8(UCS_BASE + OFS_UCSCTL7) &
-				    XT1LFOFFG) {
+				if (HWREG8(UCS_BASE + OFS_UCSCTL7) & XT1LFOFFG) {
 					Fref_value = UCS_REFOCLK_FREQUENCY;
 				}
 			}
@@ -139,8 +133,7 @@ static uint32_t privateUCSSourceClockFromDCO(uint16_t FLLRefCLKSource)
 				// Clear OFIFG fault flag
 				HWREG8(SFR_BASE + OFS_SFRIFG1) &= ~OFIFG;
 
-				if (HWREG8(UCS_BASE + OFS_UCSCTL7) &
-				    XT1HFOFFG) {
+				if (HWREG8(UCS_BASE + OFS_UCSCTL7) & XT1HFOFFG) {
 					Fref_value = UCS_REFOCLK_FREQUENCY;
 				}
 			}
@@ -184,8 +177,7 @@ static uint32_t privateUCSSourceClockFromDCO(uint16_t FLLRefCLKSource)
 	return (CLKFrequency);
 }
 
-static uint32_t privateUCSComputeCLKFrequency(uint16_t CLKSource,
-					      uint16_t CLKSourceDivider)
+static uint32_t privateUCSComputeCLKFrequency(uint16_t CLKSource, uint16_t CLKSourceDivider)
 {
 	uint32_t CLKFrequency;
 	uint8_t CLKSourceFrequencyDivider = 1;
@@ -197,8 +189,7 @@ static uint32_t privateUCSComputeCLKFrequency(uint16_t CLKSource,
 
 	switch (CLKSource) {
 	case SELM__XT1CLK:
-		CLKFrequency =
-			(privateXT1ClockFrequency / CLKSourceFrequencyDivider);
+		CLKFrequency = (privateXT1ClockFrequency / CLKSourceFrequencyDivider);
 
 		if (XTS != (HWREG16(UCS_BASE + OFS_UCSCTL6) & XTS)) {
 			if (HWREG8(UCS_BASE + OFS_UCSCTL7) & XT1LFOFFG) {
@@ -206,8 +197,7 @@ static uint32_t privateUCSComputeCLKFrequency(uint16_t CLKSource,
 				// Clear OFIFG fault flag
 				HWREG8(SFR_BASE + OFS_SFRIFG1) &= ~OFIFG;
 
-				if (HWREG8(UCS_BASE + OFS_UCSCTL7) &
-				    XT1LFOFFG) {
+				if (HWREG8(UCS_BASE + OFS_UCSCTL7) & XT1LFOFFG) {
 					CLKFrequency = UCS_REFOCLK_FREQUENCY;
 				}
 			}
@@ -217,8 +207,7 @@ static uint32_t privateUCSComputeCLKFrequency(uint16_t CLKSource,
 				// Clear OFIFG fault flag
 				HWREG8(SFR_BASE + OFS_SFRIFG1) &= ~OFIFG;
 
-				if (HWREG8(UCS_BASE + OFS_UCSCTL7) &
-				    XT1HFOFFG) {
+				if (HWREG8(UCS_BASE + OFS_UCSCTL7) & XT1HFOFFG) {
 					CLKFrequency = UCS_REFOCLK_FREQUENCY;
 				}
 			}
@@ -226,16 +215,13 @@ static uint32_t privateUCSComputeCLKFrequency(uint16_t CLKSource,
 		break;
 
 	case SELM__VLOCLK:
-		CLKFrequency =
-			(UCS_VLOCLK_FREQUENCY / CLKSourceFrequencyDivider);
+		CLKFrequency = (UCS_VLOCLK_FREQUENCY / CLKSourceFrequencyDivider);
 		break;
 	case SELM__REFOCLK:
-		CLKFrequency =
-			(UCS_REFOCLK_FREQUENCY / CLKSourceFrequencyDivider);
+		CLKFrequency = (UCS_REFOCLK_FREQUENCY / CLKSourceFrequencyDivider);
 		break;
 	case SELM__XT2CLK:
-		CLKFrequency =
-			(privateXT2ClockFrequency / CLKSourceFrequencyDivider);
+		CLKFrequency = (privateXT2ClockFrequency / CLKSourceFrequencyDivider);
 
 		if (HWREG8(UCS_BASE + OFS_UCSCTL7) & XT2OFFG) {
 			HWREG8(UCS_BASE + OFS_UCSCTL7) &= ~XT2OFFG;
@@ -244,22 +230,19 @@ static uint32_t privateUCSComputeCLKFrequency(uint16_t CLKSource,
 		}
 
 		if (HWREG8(UCS_BASE + OFS_UCSCTL7) & XT2OFFG) {
-			CLKFrequency =
-				privateUCSSourceClockFromDCO(SELM__DCOCLKDIV);
+			CLKFrequency = privateUCSSourceClockFromDCO(SELM__DCOCLKDIV);
 		}
 		break;
 	case SELM__DCOCLK:
 	case SELM__DCOCLKDIV:
-		CLKFrequency = privateUCSSourceClockFromDCO(CLKSource) /
-			       CLKSourceFrequencyDivider;
+		CLKFrequency = privateUCSSourceClockFromDCO(CLKSource) / CLKSourceFrequencyDivider;
 		break;
 	}
 
 	return (CLKFrequency);
 }
 
-void UCS_setExternalClockSource(uint32_t XT1CLK_frequency,
-				uint32_t XT2CLK_frequency)
+void UCS_setExternalClockSource(uint32_t XT1CLK_frequency, uint32_t XT2CLK_frequency)
 {
 	privateXT1ClockFrequency = XT1CLK_frequency;
 	privateXT2ClockFrequency = XT2CLK_frequency;
@@ -268,12 +251,9 @@ void UCS_setExternalClockSource(uint32_t XT1CLK_frequency,
 void UCS_initClockSignal(uint8_t selectedClockSignal, uint16_t clockSource,
 			 uint16_t clockSourceDivider)
 {
-	assert((UCS_XT1CLK_SELECT == clockSource) ||
-	       (UCS_VLOCLK_SELECT == clockSource) ||
-	       (UCS_REFOCLK_SELECT == clockSource) ||
-	       (UCS_DCOCLK_SELECT == clockSource) ||
-	       (UCS_DCOCLKDIV_SELECT == clockSource) ||
-	       (UCS_XT2CLK_SELECT == clockSource));
+	assert((UCS_XT1CLK_SELECT == clockSource) || (UCS_VLOCLK_SELECT == clockSource) ||
+	       (UCS_REFOCLK_SELECT == clockSource) || (UCS_DCOCLK_SELECT == clockSource) ||
+	       (UCS_DCOCLKDIV_SELECT == clockSource) || (UCS_XT2CLK_SELECT == clockSource));
 
 	assert((UCS_CLOCK_DIVIDER_1 == clockSourceDivider) ||
 	       (UCS_CLOCK_DIVIDER_2 == clockSourceDivider) ||
@@ -290,8 +270,7 @@ void UCS_initClockSignal(uint8_t selectedClockSignal, uint16_t clockSource,
 		HWREG16(UCS_BASE + OFS_UCSCTL4) |= (clockSource);
 
 		clockSourceDivider = clockSourceDivider << 8;
-		HWREG16(UCS_BASE + OFS_UCSCTL5) =
-			temp & ~(DIVA_7) | clockSourceDivider;
+		HWREG16(UCS_BASE + OFS_UCSCTL5) = temp & ~(DIVA_7) | clockSourceDivider;
 		break;
 	case UCS_SMCLK:
 		HWREG16(UCS_BASE + OFS_UCSCTL4) &= ~(SELS_7);
@@ -299,15 +278,13 @@ void UCS_initClockSignal(uint8_t selectedClockSignal, uint16_t clockSource,
 		HWREG16(UCS_BASE + OFS_UCSCTL4) |= (clockSource);
 
 		clockSourceDivider = clockSourceDivider << 4;
-		HWREG16(UCS_BASE + OFS_UCSCTL5) =
-			temp & ~(DIVS_7) | clockSourceDivider;
+		HWREG16(UCS_BASE + OFS_UCSCTL5) = temp & ~(DIVS_7) | clockSourceDivider;
 		break;
 	case UCS_MCLK:
 		HWREG16(UCS_BASE + OFS_UCSCTL4) &= ~(SELM_7);
 		HWREG16(UCS_BASE + OFS_UCSCTL4) |= (clockSource);
 
-		HWREG16(UCS_BASE + OFS_UCSCTL5) =
-			temp & ~(DIVM_7) | clockSourceDivider;
+		HWREG16(UCS_BASE + OFS_UCSCTL5) = temp & ~(DIVM_7) | clockSourceDivider;
 		break;
 	case UCS_FLLREF:
 		assert(clockSource <= SELA_5);
@@ -321,16 +298,13 @@ void UCS_initClockSignal(uint8_t selectedClockSignal, uint16_t clockSource,
 		// Hence handled differently from other CLK signals
 		switch (clockSourceDivider) {
 		case UCS_CLOCK_DIVIDER_12:
-			HWREG8(UCS_BASE + OFS_UCSCTL3) =
-				temp & ~(FLLREFDIV_7) | FLLREFDIV__12;
+			HWREG8(UCS_BASE + OFS_UCSCTL3) = temp & ~(FLLREFDIV_7) | FLLREFDIV__12;
 			break;
 		case UCS_CLOCK_DIVIDER_16:
-			HWREG8(UCS_BASE + OFS_UCSCTL3) =
-				temp & ~(FLLREFDIV_7) | FLLREFDIV__16;
+			HWREG8(UCS_BASE + OFS_UCSCTL3) = temp & ~(FLLREFDIV_7) | FLLREFDIV__16;
 			break;
 		default:
-			HWREG8(UCS_BASE + OFS_UCSCTL3) =
-				temp & ~(FLLREFDIV_7) | clockSourceDivider;
+			HWREG8(UCS_BASE + OFS_UCSCTL3) = temp & ~(FLLREFDIV_7) | clockSourceDivider;
 			break;
 		}
 
@@ -340,8 +314,8 @@ void UCS_initClockSignal(uint8_t selectedClockSignal, uint16_t clockSource,
 
 void UCS_turnOnLFXT1(uint16_t xt1drive, uint8_t xcap)
 {
-	assert((xcap == UCS_XCAP_0) || (xcap == UCS_XCAP_1) ||
-	       (xcap == UCS_XCAP_2) || (xcap == UCS_XCAP_3));
+	assert((xcap == UCS_XCAP_0) || (xcap == UCS_XCAP_1) || (xcap == UCS_XCAP_2) ||
+	       (xcap == UCS_XCAP_3));
 
 	assert((xt1drive == UCS_XT1_DRIVE_0) || (xt1drive == UCS_XT1_DRIVE_1) ||
 	       (xt1drive == UCS_XT1_DRIVE_2) || (xt1drive == UCS_XT1_DRIVE_3));
@@ -433,11 +407,10 @@ void UCS_bypassXT1(uint8_t highOrLowFrequency)
 	}
 }
 
-bool UCS_turnOnLFXT1WithTimeout(uint16_t xt1drive, uint8_t xcap,
-				uint16_t timeout)
+bool UCS_turnOnLFXT1WithTimeout(uint16_t xt1drive, uint8_t xcap, uint16_t timeout)
 {
-	assert((xcap == UCS_XCAP_0) || (xcap == UCS_XCAP_1) ||
-	       (xcap == UCS_XCAP_2) || (xcap == UCS_XCAP_3));
+	assert((xcap == UCS_XCAP_0) || (xcap == UCS_XCAP_1) || (xcap == UCS_XCAP_2) ||
+	       (xcap == UCS_XCAP_3));
 
 	assert((xt1drive == UCS_XT1_DRIVE_0) || (xt1drive == UCS_XT1_DRIVE_1) ||
 	       (xt1drive == UCS_XT1_DRIVE_2) || (xt1drive == UCS_XT1_DRIVE_3));
@@ -464,8 +437,7 @@ bool UCS_turnOnLFXT1WithTimeout(uint16_t xt1drive, uint8_t xcap,
 	if (timeout) {
 		// set requested Drive mode
 		HWREG16(UCS_BASE + OFS_UCSCTL6) =
-			(HWREG16(UCS_BASE + OFS_UCSCTL6) & ~(XT1DRIVE_3)) |
-			(xt1drive);
+			(HWREG16(UCS_BASE + OFS_UCSCTL6) & ~(XT1DRIVE_3)) | (xt1drive);
 
 		return (STATUS_SUCCESS);
 	} else {
@@ -535,8 +507,7 @@ bool UCS_bypassXT1WithTimeout(uint8_t highOrLowFrequency, uint16_t timeout)
 			// flag to get set this will clear the global error condition. If any
 			// error condition persists, global flag will get again.
 			HWREG8(SFR_BASE + OFS_SFRIFG1) &= ~OFIFG;
-		} while ((HWREG8(UCS_BASE + OFS_UCSCTL7) & (XT1LFOFFG)) &&
-			 --timeout);
+		} while ((HWREG8(UCS_BASE + OFS_UCSCTL7) & (XT1LFOFFG)) && --timeout);
 	} else {
 		do {
 			// Clear OSC flaut Flags fault flags
@@ -546,8 +517,7 @@ bool UCS_bypassXT1WithTimeout(uint8_t highOrLowFrequency, uint16_t timeout)
 			// flag to get set this will clear the global error condition. If any
 			// error condition persists, global flag will get again.
 			HWREG8(SFR_BASE + OFS_SFRIFG1) &= ~OFIFG;
-		} while ((HWREG8(UCS_BASE + OFS_UCSCTL7) & (XT1HFOFFG)) &&
-			 --timeout);
+		} while ((HWREG8(UCS_BASE + OFS_UCSCTL7) & (XT1HFOFFG)) && --timeout);
 	}
 
 	if (timeout) {
@@ -800,8 +770,7 @@ void UCS_initFLL(uint16_t fsystem, uint16_t ratio)
 	} else {
 		// Select DCODIVCLK
 		HWREG16(UCS_BASE + OFS_UCSCTL4) &= ~(SELM_7 + SELS_7);
-		HWREG16(UCS_BASE + OFS_UCSCTL4) |=
-			SELM__DCOCLKDIV + SELS__DCOCLKDIV;
+		HWREG16(UCS_BASE + OFS_UCSCTL4) |= SELM__DCOCLKDIV + SELS__DCOCLKDIV;
 	}
 }
 
@@ -878,8 +847,7 @@ uint16_t UCS_clearAllOscFlagsWithTimeout(uint16_t timeout)
 
 	do {
 		// Clear all osc fault flags
-		HWREG8(UCS_BASE + OFS_UCSCTL7) &=
-			~(DCOFFG + XT1LFOFFG + XT1HFOFFG + XT2OFFG);
+		HWREG8(UCS_BASE + OFS_UCSCTL7) &= ~(DCOFFG + XT1LFOFFG + XT1HFOFFG + XT2OFFG);
 
 #if CC430_DEVICE
 		// CC430 uses a different fault mechanism. It requires 3 VLO clock
@@ -894,8 +862,7 @@ uint16_t UCS_clearAllOscFlagsWithTimeout(uint16_t timeout)
 		// Check XT1 fault flags
 	} while ((HWREG8(SFR_BASE + OFS_SFRIFG1) & OFIFG) && --timeout);
 
-	return (HWREG8(UCS_BASE + OFS_UCSCTL7) &
-		(DCOFFG + XT1LFOFFG + XT1HFOFFG + XT2OFFG));
+	return (HWREG8(UCS_BASE + OFS_UCSCTL7) & (DCOFFG + XT1LFOFFG + XT1HFOFFG + XT2OFFG));
 }
 
 #endif

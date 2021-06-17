@@ -335,8 +335,7 @@ extern void SysCtl_setBSLSize(uint8_t BSLSizeSelect);
 //! \return None
 //
 //*****************************************************************************
-extern void SysCtl_initJTAGMailbox(uint8_t mailboxSizeSelect,
-				   uint8_t autoClearInboxFlagSelect);
+extern void SysCtl_initJTAGMailbox(uint8_t mailboxSizeSelect, uint8_t autoClearInboxFlagSelect);
 
 //*****************************************************************************
 //
@@ -431,8 +430,7 @@ extern uint32_t SysCtl_getJTAGInboxMessage32Bit(void);
 //! \return None
 //
 //*****************************************************************************
-extern void SysCtl_setJTAGOutgoingMessage16Bit(uint8_t outboxSelect,
-					       uint16_t outgoingMessage);
+extern void SysCtl_setJTAGOutgoingMessage16Bit(uint8_t outboxSelect, uint16_t outgoingMessage);
 
 //*****************************************************************************
 //

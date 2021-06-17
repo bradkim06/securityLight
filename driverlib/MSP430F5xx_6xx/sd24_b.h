@@ -312,8 +312,7 @@ typedef struct SD24_B_initConverterAdvancedParam {
 #define SD24_B_CLOCKDIVIDER_29 (SD24DIV4 | SD24DIV3 | SD24DIV2)
 #define SD24_B_CLOCKDIVIDER_30 (SD24DIV4 | SD24DIV3 | SD24DIV2 | SD24DIV0)
 #define SD24_B_CLOCKDIVIDER_31 (SD24DIV4 | SD24DIV3 | SD24DIV2 | SD24DIV1)
-#define SD24_B_CLOCKDIVIDER_32                                                 \
-	(SD24DIV4 | SD24DIV3 | SD24DIV2 | SD24DIV1 | SD24DIV0)
+#define SD24_B_CLOCKDIVIDER_32 (SD24DIV4 | SD24DIV3 | SD24DIV2 | SD24DIV1 | SD24DIV0)
 
 //*****************************************************************************
 //
@@ -503,8 +502,7 @@ extern void SD24_B_init(uint16_t baseAddress, SD24_B_initParam *param);
 //! \return None
 //
 //*****************************************************************************
-extern void SD24_B_initConverter(uint16_t baseAddress,
-				 SD24_B_initConverterParam *param);
+extern void SD24_B_initConverter(uint16_t baseAddress, SD24_B_initConverterParam *param);
 
 //*****************************************************************************
 //
@@ -521,9 +519,8 @@ extern void SD24_B_initConverter(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void
-SD24_B_initConverterAdvanced(uint16_t baseAddress,
-			     SD24_B_initConverterAdvancedParam *param);
+extern void SD24_B_initConverterAdvanced(uint16_t baseAddress,
+					 SD24_B_initConverterAdvancedParam *param);
 
 //*****************************************************************************
 //
@@ -553,8 +550,7 @@ SD24_B_initConverterAdvanced(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void SD24_B_setConverterDataFormat(uint16_t baseAddress,
-					  uint8_t converter,
+extern void SD24_B_setConverterDataFormat(uint16_t baseAddress, uint8_t converter,
 					  uint8_t dataFormat);
 
 //*****************************************************************************
@@ -621,8 +617,7 @@ extern void SD24_B_stopGroupConversion(uint16_t baseAddress, uint8_t group);
 //! \return None
 //
 //*****************************************************************************
-extern void SD24_B_startConverterConversion(uint16_t baseAddress,
-					    uint8_t converter);
+extern void SD24_B_startConverterConversion(uint16_t baseAddress, uint8_t converter);
 
 //*****************************************************************************
 //
@@ -646,8 +641,7 @@ extern void SD24_B_startConverterConversion(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void SD24_B_stopConverterConversion(uint16_t baseAddress,
-					   uint8_t converter);
+extern void SD24_B_stopConverterConversion(uint16_t baseAddress, uint8_t converter);
 
 //*****************************************************************************
 //
@@ -673,8 +667,7 @@ extern void SD24_B_stopConverterConversion(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void SD24_B_configureDMATrigger(uint16_t baseAddress,
-				       uint16_t interruptFlag);
+extern void SD24_B_configureDMATrigger(uint16_t baseAddress, uint16_t interruptFlag);
 
 //*****************************************************************************
 //
@@ -707,8 +700,7 @@ extern void SD24_B_configureDMATrigger(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void SD24_B_setInterruptDelay(uint16_t baseAddress, uint8_t converter,
-				     uint8_t sampleDelay);
+extern void SD24_B_setInterruptDelay(uint16_t baseAddress, uint8_t converter, uint8_t sampleDelay);
 
 //*****************************************************************************
 //
@@ -737,8 +729,7 @@ extern void SD24_B_setInterruptDelay(uint16_t baseAddress, uint8_t converter,
 //! \return None
 //
 //*****************************************************************************
-extern void SD24_B_setConversionDelay(uint16_t baseAddress, uint8_t converter,
-				      uint16_t cycleDelay);
+extern void SD24_B_setConversionDelay(uint16_t baseAddress, uint8_t converter, uint16_t cycleDelay);
 
 //*****************************************************************************
 //
@@ -805,8 +796,7 @@ extern void SD24_B_setOversampling(uint16_t baseAddress, uint8_t converter,
 //! \return None
 //
 //*****************************************************************************
-extern void SD24_B_setGain(uint16_t baseAddress, uint8_t converter,
-			   uint8_t gain);
+extern void SD24_B_setGain(uint16_t baseAddress, uint8_t converter, uint8_t gain);
 
 //*****************************************************************************
 //
@@ -854,8 +844,7 @@ extern uint32_t SD24_B_getResults(uint16_t baseAddress, uint8_t converter);
 //! \return Result of conversion
 //
 //*****************************************************************************
-extern uint16_t SD24_B_getHighWordResults(uint16_t baseAddress,
-					  uint8_t converter);
+extern uint16_t SD24_B_getHighWordResults(uint16_t baseAddress, uint8_t converter);
 
 //*****************************************************************************
 //
@@ -885,8 +874,7 @@ extern uint16_t SD24_B_getHighWordResults(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void SD24_B_enableInterrupt(uint16_t baseAddress, uint8_t converter,
-				   uint16_t mask);
+extern void SD24_B_enableInterrupt(uint16_t baseAddress, uint8_t converter, uint16_t mask);
 
 //*****************************************************************************
 //
@@ -917,8 +905,7 @@ extern void SD24_B_enableInterrupt(uint16_t baseAddress, uint8_t converter,
 //! \return None
 //
 //*****************************************************************************
-extern void SD24_B_disableInterrupt(uint16_t baseAddress, uint8_t converter,
-				    uint16_t mask);
+extern void SD24_B_disableInterrupt(uint16_t baseAddress, uint8_t converter, uint16_t mask);
 
 //*****************************************************************************
 //
@@ -946,8 +933,7 @@ extern void SD24_B_disableInterrupt(uint16_t baseAddress, uint8_t converter,
 //! \return None
 //
 //*****************************************************************************
-extern void SD24_B_clearInterrupt(uint16_t baseAddress, uint8_t converter,
-				  uint16_t mask);
+extern void SD24_B_clearInterrupt(uint16_t baseAddress, uint8_t converter, uint16_t mask);
 
 //*****************************************************************************
 //
@@ -977,8 +963,7 @@ extern void SD24_B_clearInterrupt(uint16_t baseAddress, uint8_t converter,
 //!         \n indicating the status of the masked interrupts
 //
 //*****************************************************************************
-extern uint16_t SD24_B_getInterruptStatus(uint16_t baseAddress,
-					  uint8_t converter, uint16_t mask);
+extern uint16_t SD24_B_getInterruptStatus(uint16_t baseAddress, uint8_t converter, uint16_t mask);
 
 //*****************************************************************************
 //

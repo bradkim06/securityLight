@@ -66,47 +66,39 @@ bool Comp_B_init(uint16_t baseAddress, Comp_B_initParam *param)
 	// Set the Positive Terminal
 	if (COMP_B_VREF != param->positiveTerminalInput) {
 		// Enable Positive Terminal Input Mux and Set it to the appropriate input
-		HWREG16(baseAddress + OFS_CBCTL0) |=
-			CBIPEN + param->positiveTerminalInput;
+		HWREG16(baseAddress + OFS_CBCTL0) |= CBIPEN + param->positiveTerminalInput;
 
 		// Disable the input buffer
-		HWREG16(baseAddress + OFS_CBCTL3) |=
-			(1 << param->positiveTerminalInput);
+		HWREG16(baseAddress + OFS_CBCTL3) |= (1 << param->positiveTerminalInput);
 	} else {
 		// Reset and Set COMPB Control 2 Register
-		HWREG16(baseAddress + OFS_CBCTL2) &=
-			~(CBRSEL); // Set Vref to go to (+)terminal
+		HWREG16(baseAddress + OFS_CBCTL2) &= ~(CBRSEL); // Set Vref to go to (+)terminal
 	}
 
 	// Set the Negative Terminal
 	if (COMP_B_VREF != param->negativeTerminalInput) {
 		// Enable Negative Terminal Input Mux and Set it to the appropriate input
-		HWREG16(baseAddress + OFS_CBCTL0) |=
-			CBIMEN + (param->negativeTerminalInput << 8);
+		HWREG16(baseAddress + OFS_CBCTL0) |= CBIMEN + (param->negativeTerminalInput << 8);
 
 		// Disable the input buffer
-		HWREG16(baseAddress + OFS_CBCTL3) |=
-			(1 << param->negativeTerminalInput);
+		HWREG16(baseAddress + OFS_CBCTL3) |= (1 << param->negativeTerminalInput);
 	} else {
 		// Reset and Set COMPB Control 2 Register
-		HWREG16(baseAddress + OFS_CBCTL2) |=
-			CBRSEL; // Set Vref to go to (-) terminal
+		HWREG16(baseAddress + OFS_CBCTL2) |= CBRSEL; // Set Vref to go to (-) terminal
 	}
 
 	// Reset and Set COMPB Control 1 Register
 	HWREG16(baseAddress + OFS_CBCTL1) =
 		param->powerModeSelect // Set the power mode
-		+
-		param->outputFilterEnableAndDelayLevel // Set the filter enable bit and
+		+ param->outputFilterEnableAndDelayLevel // Set the filter enable bit and
 		// delay
-		+
-		param->invertedOutputPolarity; // Set the polarity of the output
+		+ param->invertedOutputPolarity; // Set the polarity of the output
 
 	return (retVal);
 }
 
-void Comp_B_configureReferenceVoltage(
-	uint16_t baseAddress, Comp_B_configureReferenceVoltageParam *param)
+void Comp_B_configureReferenceVoltage(uint16_t baseAddress,
+				      Comp_B_configureReferenceVoltageParam *param)
 {
 	HWREG16(baseAddress + OFS_CBCTL1) &= ~(CBMRVS); // Set to VREF0
 
@@ -115,25 +107,21 @@ void Comp_B_configureReferenceVoltage(
 
 	// Set Voltage Source (Vcc | Vref, resistor ladder or not)
 	if (COMP_B_VREFBASE_VCC == param->supplyVoltageReferenceBase) {
-		HWREG16(baseAddress + OFS_CBCTL2) |=
-			CBRS_1; // Vcc with resistor ladder
+		HWREG16(baseAddress + OFS_CBCTL2) |= CBRS_1; // Vcc with resistor ladder
 	} else if (param->lowerLimitSupplyVoltageFractionOf32 == 32) {
 		// If the lower limit is 32, then the upper limit has to be 32 due to the
 		// assertion that upper must be >= to the lower limit. If the numerator is
 		// equal to 32, then the equation would be 32/32 == 1, therefore no resistor
 		// ladder is needed
-		HWREG16(baseAddress + OFS_CBCTL2) |=
-			CBRS_3; // Vref, no resistor ladder
+		HWREG16(baseAddress + OFS_CBCTL2) |= CBRS_3; // Vref, no resistor ladder
 	} else {
-		HWREG16(baseAddress + OFS_CBCTL2) |=
-			CBRS_2; // Vref with resistor ladder
+		HWREG16(baseAddress + OFS_CBCTL2) |= CBRS_2; // Vref with resistor ladder
 	}
 
 	// Set COMPD Control 2 Register
 	HWREG16(baseAddress + OFS_CBCTL2) |=
 		param->supplyVoltageReferenceBase // Set Supply Voltage Base
-		+ ((param->upperLimitSupplyVoltageFractionOf32 - 1)
-		   << 8) // Set Supply Voltage Num.
+		+ ((param->upperLimitSupplyVoltageFractionOf32 - 1) << 8) // Set Supply Voltage Num.
 		+ (param->lowerLimitSupplyVoltageFractionOf32 - 1);
 
 	HWREG16(baseAddress + OFS_CBCTL2) &= ~(CBREFACC);
@@ -156,14 +144,12 @@ void Comp_B_clearInterrupt(uint16_t baseAddress, uint16_t interruptFlagMask)
 	HWREG16(baseAddress + OFS_CBINT) &= ~(interruptFlagMask);
 }
 
-uint8_t Comp_B_getInterruptStatus(uint16_t baseAddress,
-				  uint16_t interruptFlagMask)
+uint8_t Comp_B_getInterruptStatus(uint16_t baseAddress, uint16_t interruptFlagMask)
 {
 	return (HWREG16(baseAddress + OFS_CBINT) & interruptFlagMask);
 }
 
-void Comp_B_setInterruptEdgeDirection(uint16_t baseAddress,
-				      uint16_t edgeDirection)
+void Comp_B_setInterruptEdgeDirection(uint16_t baseAddress, uint16_t edgeDirection)
 {
 	// Set the edge direction that will trigger an interrupt
 	if (COMP_B_RISINGEDGE == edgeDirection) {

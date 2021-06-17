@@ -171,8 +171,7 @@ typedef struct USCI_B_I2C_initMasterParam {
 //! \return None
 //
 //*****************************************************************************
-extern void USCI_B_I2C_initMaster(uint16_t baseAddress,
-				  USCI_B_I2C_initMasterParam *param);
+extern void USCI_B_I2C_initMaster(uint16_t baseAddress, USCI_B_I2C_initMasterParam *param);
 
 //*****************************************************************************
 //
@@ -240,8 +239,7 @@ extern void USCI_B_I2C_disable(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void USCI_B_I2C_setSlaveAddress(uint16_t baseAddress,
-				       uint8_t slaveAddress);
+extern void USCI_B_I2C_setSlaveAddress(uint16_t baseAddress, uint8_t slaveAddress);
 
 //*****************************************************************************
 //
@@ -491,8 +489,7 @@ extern void USCI_B_I2C_clearInterrupt(uint16_t baseAddress, uint8_t mask);
 //!         \n indicating the status of the masked interrupts
 //
 //*****************************************************************************
-extern uint8_t USCI_B_I2C_getInterruptStatus(uint16_t baseAddress,
-					     uint8_t mask);
+extern uint8_t USCI_B_I2C_getInterruptStatus(uint16_t baseAddress, uint8_t mask);
 
 //*****************************************************************************
 //
@@ -511,8 +508,7 @@ extern uint8_t USCI_B_I2C_getInterruptStatus(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void USCI_B_I2C_masterSendSingleByte(uint16_t baseAddress,
-					    uint8_t txData);
+extern void USCI_B_I2C_masterSendSingleByte(uint16_t baseAddress, uint8_t txData);
 
 //*****************************************************************************
 //
@@ -532,8 +528,7 @@ extern void USCI_B_I2C_masterSendSingleByte(uint16_t baseAddress,
 //! \return STATUS_SUCCESS or STATUS_FAILURE of the transmission process.
 //
 //*****************************************************************************
-extern bool USCI_B_I2C_masterSendSingleByteWithTimeout(uint16_t baseAddress,
-						       uint8_t txData,
+extern bool USCI_B_I2C_masterSendSingleByteWithTimeout(uint16_t baseAddress, uint8_t txData,
 						       uint32_t timeout);
 
 //*****************************************************************************
@@ -553,8 +548,7 @@ extern bool USCI_B_I2C_masterSendSingleByteWithTimeout(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void USCI_B_I2C_masterSendMultiByteStart(uint16_t baseAddress,
-						uint8_t txData);
+extern void USCI_B_I2C_masterSendMultiByteStart(uint16_t baseAddress, uint8_t txData);
 
 //*****************************************************************************
 //
@@ -571,8 +565,7 @@ extern void USCI_B_I2C_masterSendMultiByteStart(uint16_t baseAddress,
 //! \return STATUS_SUCCESS or STATUS_FAILURE of the transmission process.
 //
 //*****************************************************************************
-extern bool USCI_B_I2C_masterSendMultiByteStartWithTimeout(uint16_t baseAddress,
-							   uint8_t txData,
+extern bool USCI_B_I2C_masterSendMultiByteStartWithTimeout(uint16_t baseAddress, uint8_t txData,
 							   uint32_t timeout);
 
 //*****************************************************************************
@@ -591,8 +584,7 @@ extern bool USCI_B_I2C_masterSendMultiByteStartWithTimeout(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void USCI_B_I2C_masterSendMultiByteNext(uint16_t baseAddress,
-					       uint8_t txData);
+extern void USCI_B_I2C_masterSendMultiByteNext(uint16_t baseAddress, uint8_t txData);
 
 //*****************************************************************************
 //
@@ -611,8 +603,7 @@ extern void USCI_B_I2C_masterSendMultiByteNext(uint16_t baseAddress,
 //! \return STATUS_SUCCESS or STATUS_FAILURE of the transmission process.
 //
 //*****************************************************************************
-extern bool USCI_B_I2C_masterSendMultiByteNextWithTimeout(uint16_t baseAddress,
-							  uint8_t txData,
+extern bool USCI_B_I2C_masterSendMultiByteNextWithTimeout(uint16_t baseAddress, uint8_t txData,
 							  uint32_t timeout);
 
 //*****************************************************************************
@@ -632,8 +623,7 @@ extern bool USCI_B_I2C_masterSendMultiByteNextWithTimeout(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void USCI_B_I2C_masterSendMultiByteFinish(uint16_t baseAddress,
-						 uint8_t txData);
+extern void USCI_B_I2C_masterSendMultiByteFinish(uint16_t baseAddress, uint8_t txData);
 
 //*****************************************************************************
 //
@@ -653,8 +643,8 @@ extern void USCI_B_I2C_masterSendMultiByteFinish(uint16_t baseAddress,
 //! \return STATUS_SUCCESS or STATUS_FAILURE of the transmission process.
 //
 //*****************************************************************************
-extern bool USCI_B_I2C_masterSendMultiByteFinishWithTimeout(
-	uint16_t baseAddress, uint8_t txData, uint32_t timeout);
+extern bool USCI_B_I2C_masterSendMultiByteFinishWithTimeout(uint16_t baseAddress, uint8_t txData,
+							    uint32_t timeout);
 
 //*****************************************************************************
 //
@@ -691,8 +681,7 @@ extern void USCI_B_I2C_masterSendMultiByteStop(uint16_t baseAddress);
 //! \return STATUS_SUCCESS or STATUS_FAILURE of the transmission process.
 //
 //*****************************************************************************
-extern bool USCI_B_I2C_masterSendMultiByteStopWithTimeout(uint16_t baseAddress,
-							  uint32_t timeout);
+extern bool USCI_B_I2C_masterSendMultiByteStopWithTimeout(uint16_t baseAddress, uint32_t timeout);
 
 //*****************************************************************************
 //
@@ -759,8 +748,8 @@ extern uint8_t USCI_B_I2C_masterReceiveMultiByteFinish(uint16_t baseAddress);
 //! \return STATUS_SUCCESS or STATUS_FAILURE of the transmission process.
 //
 //*****************************************************************************
-extern bool USCI_B_I2C_masterReceiveMultiByteFinishWithTimeout(
-	uint16_t baseAddress, uint8_t *rxData, uint32_t timeout);
+extern bool USCI_B_I2C_masterReceiveMultiByteFinishWithTimeout(uint16_t baseAddress,
+							       uint8_t *rxData, uint32_t timeout);
 
 //*****************************************************************************
 //
@@ -811,8 +800,7 @@ extern void USCI_B_I2C_masterReceiveSingleStart(uint16_t baseAddress);
 //! \return STATUS_SUCCESS or STATUS_FAILURE of the transmission process.
 //
 //*****************************************************************************
-extern bool USCI_B_I2C_masterReceiveSingleStartWithTimeout(uint16_t baseAddress,
-							   uint32_t timeout);
+extern bool USCI_B_I2C_masterReceiveSingleStartWithTimeout(uint16_t baseAddress, uint32_t timeout);
 
 //*****************************************************************************
 //

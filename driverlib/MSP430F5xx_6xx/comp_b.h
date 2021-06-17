@@ -312,9 +312,8 @@ extern bool Comp_B_init(uint16_t baseAddress, Comp_B_initParam *param);
 //! \return None
 //
 //*****************************************************************************
-extern void
-Comp_B_configureReferenceVoltage(uint16_t baseAddress,
-				 Comp_B_configureReferenceVoltageParam *param);
+extern void Comp_B_configureReferenceVoltage(uint16_t baseAddress,
+					     Comp_B_configureReferenceVoltageParam *param);
 
 //*****************************************************************************
 //
@@ -335,8 +334,7 @@ Comp_B_configureReferenceVoltage(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Comp_B_enableInterrupt(uint16_t baseAddress,
-				   uint16_t interruptMask);
+extern void Comp_B_enableInterrupt(uint16_t baseAddress, uint16_t interruptMask);
 
 //*****************************************************************************
 //
@@ -357,8 +355,7 @@ extern void Comp_B_enableInterrupt(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Comp_B_disableInterrupt(uint16_t baseAddress,
-				    uint16_t interruptMask);
+extern void Comp_B_disableInterrupt(uint16_t baseAddress, uint16_t interruptMask);
 
 //*****************************************************************************
 //
@@ -379,8 +376,7 @@ extern void Comp_B_disableInterrupt(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Comp_B_clearInterrupt(uint16_t baseAddress,
-				  uint16_t interruptFlagMask);
+extern void Comp_B_clearInterrupt(uint16_t baseAddress, uint16_t interruptFlagMask);
 
 //*****************************************************************************
 //
@@ -402,8 +398,7 @@ extern void Comp_B_clearInterrupt(uint16_t baseAddress,
 //!         \n indicating the status of the masked interrupts
 //
 //*****************************************************************************
-extern uint8_t Comp_B_getInterruptStatus(uint16_t baseAddress,
-					 uint16_t interruptFlagMask);
+extern uint8_t Comp_B_getInterruptStatus(uint16_t baseAddress, uint16_t interruptFlagMask);
 
 //*****************************************************************************
 //
@@ -430,8 +425,7 @@ extern uint8_t Comp_B_getInterruptStatus(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Comp_B_setInterruptEdgeDirection(uint16_t baseAddress,
-					     uint16_t edgeDirection);
+extern void Comp_B_setInterruptEdgeDirection(uint16_t baseAddress, uint16_t edgeDirection);
 
 //*****************************************************************************
 //

@@ -49,8 +49,7 @@
 
 #include "eusci_b_i2c.h"
 
-void EUSCI_B_I2C_initMaster(uint16_t baseAddress,
-			    EUSCI_B_I2C_initMasterParam *param)
+void EUSCI_B_I2C_initMaster(uint16_t baseAddress, EUSCI_B_I2C_initMasterParam *param)
 {
 	uint16_t preScalarValue;
 
@@ -72,8 +71,7 @@ void EUSCI_B_I2C_initMaster(uint16_t baseAddress,
 	HWREG16(baseAddress + OFS_UCBxCTLW0) |= UCMST + UCMODE_3 + UCSYNC;
 
 	// Configure I2C clock source
-	HWREG16(baseAddress + OFS_UCBxCTLW0) |=
-		(param->selectClockSource + UCSWRST);
+	HWREG16(baseAddress + OFS_UCBxCTLW0) |= (param->selectClockSource + UCSWRST);
 
 	/*
    * Compute the clock divider that achieves the fastest speed less than or
@@ -85,8 +83,7 @@ void EUSCI_B_I2C_initMaster(uint16_t baseAddress,
 	HWREG16(baseAddress + OFS_UCBxBRW) = preScalarValue;
 }
 
-void EUSCI_B_I2C_initSlave(uint16_t baseAddress,
-			   EUSCI_B_I2C_initSlaveParam *param)
+void EUSCI_B_I2C_initSlave(uint16_t baseAddress, EUSCI_B_I2C_initSlaveParam *param)
 {
 	// Disable the USCI module
 	HWREG16(baseAddress + OFS_UCBxCTLW0) |= UCSWRST;
@@ -235,8 +232,7 @@ uint8_t EUSCI_B_I2C_masterReceiveSingleByte(uint16_t baseAddress)
 	return (HWREG16(baseAddress + OFS_UCBxRXBUF));
 }
 
-bool EUSCI_B_I2C_masterSendSingleByteWithTimeout(uint16_t baseAddress,
-						 uint8_t txData,
+bool EUSCI_B_I2C_masterSendSingleByteWithTimeout(uint16_t baseAddress, uint8_t txData,
 						 uint32_t timeout)
 {
 	// Creating variable for second timeout scenario
@@ -265,8 +261,7 @@ bool EUSCI_B_I2C_masterSendSingleByteWithTimeout(uint16_t baseAddress,
 	HWREG16(baseAddress + OFS_UCBxTXBUF) = txData;
 
 	// Poll for transmit interrupt flag.
-	while ((!(HWREG16(baseAddress + OFS_UCBxIFG) & UCTXIFG)) &&
-	       --timeout2) {
+	while ((!(HWREG16(baseAddress + OFS_UCBxIFG) & UCTXIFG)) && --timeout2) {
 		;
 	}
 
@@ -310,8 +305,7 @@ void EUSCI_B_I2C_masterSendMultiByteStart(uint16_t baseAddress, uint8_t txData)
 	HWREG16(baseAddress + OFS_UCBxIE) |= txieStatus;
 }
 
-bool EUSCI_B_I2C_masterSendMultiByteStartWithTimeout(uint16_t baseAddress,
-						     uint8_t txData,
+bool EUSCI_B_I2C_masterSendMultiByteStartWithTimeout(uint16_t baseAddress, uint8_t txData,
 						     uint32_t timeout)
 {
 	// Store current transmit interrupt enable
@@ -356,15 +350,13 @@ void EUSCI_B_I2C_masterSendMultiByteNext(uint16_t baseAddress, uint8_t txData)
 	HWREG16(baseAddress + OFS_UCBxTXBUF) = txData;
 }
 
-bool EUSCI_B_I2C_masterSendMultiByteNextWithTimeout(uint16_t baseAddress,
-						    uint8_t txData,
+bool EUSCI_B_I2C_masterSendMultiByteNextWithTimeout(uint16_t baseAddress, uint8_t txData,
 						    uint32_t timeout)
 {
 	// If interrupts are not used, poll for flags
 	if (!(HWREG16(baseAddress + OFS_UCBxIE) & UCTXIE)) {
 		// Poll for transmit interrupt flag.
-		while ((!(HWREG16(baseAddress + OFS_UCBxIFG) & UCTXIFG)) &&
-		       --timeout) {
+		while ((!(HWREG16(baseAddress + OFS_UCBxIFG) & UCTXIFG)) && --timeout) {
 			;
 		}
 
@@ -402,8 +394,7 @@ void EUSCI_B_I2C_masterSendMultiByteFinish(uint16_t baseAddress, uint8_t txData)
 	HWREG16(baseAddress + OFS_UCBxCTLW0) |= UCTXSTP;
 }
 
-bool EUSCI_B_I2C_masterSendMultiByteFinishWithTimeout(uint16_t baseAddress,
-						      uint8_t txData,
+bool EUSCI_B_I2C_masterSendMultiByteFinishWithTimeout(uint16_t baseAddress, uint8_t txData,
 						      uint32_t timeout)
 {
 	uint32_t timeout2 = timeout;
@@ -411,8 +402,7 @@ bool EUSCI_B_I2C_masterSendMultiByteFinishWithTimeout(uint16_t baseAddress,
 	// If interrupts are not used, poll for flags
 	if (!(HWREG16(baseAddress + OFS_UCBxIE) & UCTXIE)) {
 		// Poll for transmit interrupt flag.
-		while ((!(HWREG16(baseAddress + OFS_UCBxIFG) & UCTXIFG)) &&
-		       --timeout) {
+		while ((!(HWREG16(baseAddress + OFS_UCBxIFG) & UCTXIFG)) && --timeout) {
 			;
 		}
 
@@ -426,8 +416,7 @@ bool EUSCI_B_I2C_masterSendMultiByteFinishWithTimeout(uint16_t baseAddress,
 	HWREG16(baseAddress + OFS_UCBxTXBUF) = txData;
 
 	// Poll for transmit interrupt flag.
-	while ((!(HWREG16(baseAddress + OFS_UCBxIFG) & UCTXIFG)) &&
-	       --timeout2) {
+	while ((!(HWREG16(baseAddress + OFS_UCBxIFG) & UCTXIFG)) && --timeout2) {
 		;
 	}
 
@@ -461,14 +450,12 @@ void EUSCI_B_I2C_masterSendMultiByteStop(uint16_t baseAddress)
 	HWREG16(baseAddress + OFS_UCBxCTLW0) |= UCTXSTP;
 }
 
-bool EUSCI_B_I2C_masterSendMultiByteStopWithTimeout(uint16_t baseAddress,
-						    uint32_t timeout)
+bool EUSCI_B_I2C_masterSendMultiByteStopWithTimeout(uint16_t baseAddress, uint32_t timeout)
 {
 	// If interrupts are not used, poll for flags
 	if (!(HWREG16(baseAddress + OFS_UCBxIE) & UCTXIE)) {
 		// Poll for transmit interrupt flag.
-		while ((!(HWREG16(baseAddress + OFS_UCBxIFG) & UCTXIFG)) &&
-		       --timeout) {
+		while ((!(HWREG16(baseAddress + OFS_UCBxIFG) & UCTXIFG)) && --timeout) {
 			;
 		}
 
@@ -515,8 +502,7 @@ uint8_t EUSCI_B_I2C_masterReceiveMultiByteFinish(uint16_t baseAddress)
 	return (HWREG16(baseAddress + OFS_UCBxRXBUF));
 }
 
-bool EUSCI_B_I2C_masterReceiveMultiByteFinishWithTimeout(uint16_t baseAddress,
-							 uint8_t *txData,
+bool EUSCI_B_I2C_masterReceiveMultiByteFinishWithTimeout(uint16_t baseAddress, uint8_t *txData,
 							 uint32_t timeout)
 {
 	uint32_t timeout2 = timeout;
@@ -535,8 +521,7 @@ bool EUSCI_B_I2C_masterReceiveMultiByteFinishWithTimeout(uint16_t baseAddress,
 	}
 
 	// Wait for RX buffer
-	while ((!(HWREG16(baseAddress + OFS_UCBxIFG) & UCRXIFG)) &&
-	       --timeout2) {
+	while ((!(HWREG16(baseAddress + OFS_UCBxIFG) & UCRXIFG)) && --timeout2) {
 		;
 	}
 

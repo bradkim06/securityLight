@@ -275,8 +275,7 @@ extern const LCD_C_initParam LCD_C_INIT_PARAM;
 #define LCD_C_BLINK_FREQ_CLOCK_PRESCALAR_8162 (LCDBLKPRE2)
 #define LCD_C_BLINK_FREQ_CLOCK_PRESCALAR_16384 (LCDBLKPRE2 | LCDBLKPRE0)
 #define LCD_C_BLINK_FREQ_CLOCK_PRESCALAR_32768 (LCDBLKPRE2 | LCDBLKPRE1)
-#define LCD_C_BLINK_FREQ_CLOCK_PRESCALAR_65536                                 \
-	(LCDBLKPRE2 | LCDBLKPRE1 | LCDBLKPRE0)
+#define LCD_C_BLINK_FREQ_CLOCK_PRESCALAR_65536 (LCDBLKPRE2 | LCDBLKPRE1 | LCDBLKPRE0)
 
 //*****************************************************************************
 //
@@ -357,8 +356,7 @@ extern const LCD_C_initParam LCD_C_INIT_PARAM;
 #define LCD_C_CHARGEPUMP_VOLTAGE_3_26V_OR_2_72VREF (VLCD3 | VLCD2)
 #define LCD_C_CHARGEPUMP_VOLTAGE_3_32V_OR_2_77VREF (VLCD3 | VLCD2 | VLCD0)
 #define LCD_C_CHARGEPUMP_VOLTAGE_3_38V_OR_2_82VREF (VLCD3 | VLCD2 | VLCD1)
-#define LCD_C_CHARGEPUMP_VOLTAGE_3_44V_OR_2_87VREF                             \
-	(VLCD3 | VLCD2 | VLCD1 | VLCD0)
+#define LCD_C_CHARGEPUMP_VOLTAGE_3_44V_OR_2_87VREF (VLCD3 | VLCD2 | VLCD1 | VLCD0)
 
 //*****************************************************************************
 //
@@ -620,8 +618,7 @@ extern void LCD_C_clearBlinkingMemory(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void LCD_C_selectDisplayMemory(uint16_t baseAddress,
-				      uint16_t displayMemory);
+extern void LCD_C_selectDisplayMemory(uint16_t baseAddress, uint16_t displayMemory);
 
 //*****************************************************************************
 //
@@ -726,8 +723,7 @@ extern void LCD_C_selectBias(uint16_t baseAddress, uint16_t bias);
 //! \return None
 //
 //*****************************************************************************
-extern void LCD_C_selectChargePumpReference(uint16_t baseAddress,
-					    uint16_t reference);
+extern void LCD_C_selectChargePumpReference(uint16_t baseAddress, uint16_t reference);
 
 //*****************************************************************************
 //
@@ -761,8 +757,8 @@ extern void LCD_C_selectChargePumpReference(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void LCD_C_setVLCDSource(uint16_t baseAddress, uint16_t vlcdSource,
-				uint16_t v2v3v4Source, uint16_t v5Source);
+extern void LCD_C_setVLCDSource(uint16_t baseAddress, uint16_t vlcdSource, uint16_t v2v3v4Source,
+				uint16_t v5Source);
 
 //*****************************************************************************
 //
@@ -1105,8 +1101,7 @@ extern void LCD_C_setPinAsPortFunction(uint16_t baseAddress, uint8_t pin);
 //! \return None
 //
 //*****************************************************************************
-extern void LCD_C_setPinAsLCDFunctionEx(uint16_t baseAddress, uint8_t startPin,
-					uint8_t endPin);
+extern void LCD_C_setPinAsLCDFunctionEx(uint16_t baseAddress, uint8_t startPin, uint8_t endPin);
 
 //*****************************************************************************
 //
@@ -1209,8 +1204,7 @@ extern uint8_t LCD_C_getMemory(uint16_t baseAddress, uint8_t pin);
 //! \return None
 //
 //*****************************************************************************
-extern void LCD_C_setMemoryWithoutOverwrite(uint16_t baseAddress, uint8_t pin,
-					    uint8_t value);
+extern void LCD_C_setMemoryWithoutOverwrite(uint16_t baseAddress, uint8_t pin, uint8_t value);
 
 //*****************************************************************************
 //
@@ -1290,8 +1284,7 @@ extern void LCD_C_setMemoryWithoutOverwrite(uint16_t baseAddress, uint8_t pin,
 //! \return None
 //
 //*****************************************************************************
-extern void LCD_C_setBlinkingMemory(uint16_t baseAddress, uint8_t pin,
-				    uint8_t value);
+extern void LCD_C_setBlinkingMemory(uint16_t baseAddress, uint8_t pin, uint8_t value);
 
 //*****************************************************************************
 //
@@ -1314,8 +1307,8 @@ extern uint8_t LCD_C_getBlinkingMemory(uint16_t baseAddress, uint8_t pin);
 //! \return None
 //
 //*****************************************************************************
-extern void LCD_C_setBlinkingMemoryWithoutOverwrite(uint16_t baseAddress,
-						    uint8_t pin, uint8_t value);
+extern void LCD_C_setBlinkingMemoryWithoutOverwrite(uint16_t baseAddress, uint8_t pin,
+						    uint8_t value);
 
 //*****************************************************************************
 //

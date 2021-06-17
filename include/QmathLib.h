@@ -270,8 +270,7 @@ extern float _Q1toF(_q1 A);
 // Saturates an Q number in a given range.
 //
 //*****************************************************************************
-#define _Qsat(A, Pos, Neg)                                                     \
-	(((A) > (Pos)) ? (Pos) : (((A) < (Neg)) ? (Neg) : (A)))
+#define _Qsat(A, Pos, Neg) (((A) > (Pos)) ? (Pos) : (((A) < (Neg)) ? (Neg) : (A)))
 
 //*****************************************************************************
 //

@@ -342,10 +342,8 @@ extern "C" {
 //! \return STATUS_SUCCESS or STATUS_FAILURE of the initialization process.
 //
 //*****************************************************************************
-extern bool ADC10_A_init(uint16_t baseAddress,
-			 uint16_t sampleHoldSignalSourceSelect,
-			 uint8_t clockSourceSelect,
-			 uint16_t clockSourceDivider);
+extern bool ADC10_A_init(uint16_t baseAddress, uint16_t sampleHoldSignalSourceSelect,
+			 uint8_t clockSourceSelect, uint16_t clockSourceDivider);
 
 //*****************************************************************************
 //
@@ -420,8 +418,7 @@ extern void ADC10_A_disable(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void ADC10_A_setupSamplingTimer(uint16_t baseAddress,
-				       uint16_t clockCycleHoldCount,
+extern void ADC10_A_setupSamplingTimer(uint16_t baseAddress, uint16_t clockCycleHoldCount,
 				       uint16_t multipleSamplesEnabled);
 
 //*****************************************************************************
@@ -492,8 +489,7 @@ extern void ADC10_A_disableSamplingTimer(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void ADC10_A_configureMemory(uint16_t baseAddress,
-				    uint8_t inputSourceSelect,
+extern void ADC10_A_configureMemory(uint16_t baseAddress, uint8_t inputSourceSelect,
 				    uint8_t positiveRefVoltageSourceSelect,
 				    uint8_t negativeRefVoltageSourceSelect);
 
@@ -527,8 +523,7 @@ extern void ADC10_A_configureMemory(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void ADC10_A_enableInterrupt(uint16_t baseAddress,
-				    uint8_t interruptMask);
+extern void ADC10_A_enableInterrupt(uint16_t baseAddress, uint8_t interruptMask);
 
 //*****************************************************************************
 //
@@ -560,8 +555,7 @@ extern void ADC10_A_enableInterrupt(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void ADC10_A_disableInterrupt(uint16_t baseAddress,
-				     uint8_t interruptMask);
+extern void ADC10_A_disableInterrupt(uint16_t baseAddress, uint8_t interruptMask);
 
 //*****************************************************************************
 //
@@ -595,8 +589,7 @@ extern void ADC10_A_disableInterrupt(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void ADC10_A_clearInterrupt(uint16_t baseAddress,
-				   uint8_t interruptFlagMask);
+extern void ADC10_A_clearInterrupt(uint16_t baseAddress, uint8_t interruptFlagMask);
 
 //*****************************************************************************
 //
@@ -626,8 +619,7 @@ extern void ADC10_A_clearInterrupt(uint16_t baseAddress,
 //! \return The current interrupt flag status for the corresponding mask.
 //
 //*****************************************************************************
-extern uint16_t ADC10_A_getInterruptStatus(uint16_t baseAddress,
-					   uint8_t interruptFlagMask);
+extern uint16_t ADC10_A_getInterruptStatus(uint16_t baseAddress, uint8_t interruptFlagMask);
 
 //*****************************************************************************
 //
@@ -673,8 +665,7 @@ extern uint16_t ADC10_A_getInterruptStatus(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void ADC10_A_startConversion(uint16_t baseAddress,
-				    uint8_t conversionSequenceModeSelect);
+extern void ADC10_A_startConversion(uint16_t baseAddress, uint8_t conversionSequenceModeSelect);
 
 //*****************************************************************************
 //
@@ -744,8 +735,7 @@ extern int16_t ADC10_A_getResults(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void ADC10_A_setResolution(uint16_t baseAddress,
-				  uint8_t resolutionSelect);
+extern void ADC10_A_setResolution(uint16_t baseAddress, uint8_t resolutionSelect);
 
 //*****************************************************************************
 //
@@ -770,8 +760,7 @@ extern void ADC10_A_setResolution(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void ADC10_A_setSampleHoldSignalInversion(uint16_t baseAddress,
-						 uint16_t invertedSignal);
+extern void ADC10_A_setSampleHoldSignalInversion(uint16_t baseAddress, uint16_t invertedSignal);
 
 //*****************************************************************************
 //
@@ -795,8 +784,7 @@ extern void ADC10_A_setSampleHoldSignalInversion(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void ADC10_A_setDataReadBackFormat(uint16_t baseAddress,
-					  uint16_t readBackFormat);
+extern void ADC10_A_setDataReadBackFormat(uint16_t baseAddress, uint16_t readBackFormat);
 
 //*****************************************************************************
 //

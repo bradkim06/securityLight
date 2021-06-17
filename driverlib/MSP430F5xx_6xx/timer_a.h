@@ -655,8 +655,7 @@ extern void Timer_A_initContinuousMode(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_A_initUpMode(uint16_t baseAddress,
-			       Timer_A_initUpModeParam *param);
+extern void Timer_A_initUpMode(uint16_t baseAddress, Timer_A_initUpModeParam *param);
 
 //*****************************************************************************
 //
@@ -671,8 +670,7 @@ extern void Timer_A_initUpMode(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_A_initUpDownMode(uint16_t baseAddress,
-				   Timer_A_initUpDownModeParam *param);
+extern void Timer_A_initUpDownMode(uint16_t baseAddress, Timer_A_initUpDownModeParam *param);
 
 //*****************************************************************************
 //
@@ -686,8 +684,7 @@ extern void Timer_A_initUpDownMode(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_A_initCaptureMode(uint16_t baseAddress,
-				    Timer_A_initCaptureModeParam *param);
+extern void Timer_A_initCaptureMode(uint16_t baseAddress, Timer_A_initCaptureModeParam *param);
 
 //*****************************************************************************
 //
@@ -701,8 +698,7 @@ extern void Timer_A_initCaptureMode(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_A_initCompareMode(uint16_t baseAddress,
-				    Timer_A_initCompareModeParam *param);
+extern void Timer_A_initCompareMode(uint16_t baseAddress, Timer_A_initCompareModeParam *param);
 
 //*****************************************************************************
 //
@@ -768,9 +764,8 @@ extern uint32_t Timer_A_getInterruptStatus(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void
-Timer_A_enableCaptureCompareInterrupt(uint16_t baseAddress,
-				      uint16_t captureCompareRegister);
+extern void Timer_A_enableCaptureCompareInterrupt(uint16_t baseAddress,
+						  uint16_t captureCompareRegister);
 
 //*****************************************************************************
 //
@@ -792,9 +787,8 @@ Timer_A_enableCaptureCompareInterrupt(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void
-Timer_A_disableCaptureCompareInterrupt(uint16_t baseAddress,
-				       uint16_t captureCompareRegister);
+extern void Timer_A_disableCaptureCompareInterrupt(uint16_t baseAddress,
+						   uint16_t captureCompareRegister);
 
 //*****************************************************************************
 //
@@ -821,8 +815,9 @@ Timer_A_disableCaptureCompareInterrupt(uint16_t baseAddress,
 //!         \n indicating the status of the masked interrupts
 //
 //*****************************************************************************
-extern uint32_t Timer_A_getCaptureCompareInterruptStatus(
-	uint16_t baseAddress, uint16_t captureCompareRegister, uint16_t mask);
+extern uint32_t Timer_A_getCaptureCompareInterruptStatus(uint16_t baseAddress,
+							 uint16_t captureCompareRegister,
+							 uint16_t mask);
 
 //*****************************************************************************
 //
@@ -861,10 +856,9 @@ extern void Timer_A_clear(uint16_t baseAddress);
 //!         - \b Timer_A_CAPTURECOMPARE_INPUT_LOW
 //
 //*****************************************************************************
-extern uint8_t
-Timer_A_getSynchronizedCaptureCompareInput(uint16_t baseAddress,
-					   uint16_t captureCompareRegister,
-					   uint16_t synchronized);
+extern uint8_t Timer_A_getSynchronizedCaptureCompareInput(uint16_t baseAddress,
+							  uint16_t captureCompareRegister,
+							  uint16_t synchronized);
 
 //*****************************************************************************
 //
@@ -886,9 +880,8 @@ Timer_A_getSynchronizedCaptureCompareInput(uint16_t baseAddress,
 //!         - \b Timer_A_OUTPUTMODE_OUTBITVALUE_LOW
 //
 //*****************************************************************************
-extern uint8_t
-Timer_A_getOutputForOutputModeOutBitValue(uint16_t baseAddress,
-					  uint16_t captureCompareRegister);
+extern uint8_t Timer_A_getOutputForOutputModeOutBitValue(uint16_t baseAddress,
+							 uint16_t captureCompareRegister);
 
 //*****************************************************************************
 //
@@ -935,10 +928,9 @@ extern uint16_t Timer_A_getCaptureCompareCount(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void
-Timer_A_setOutputForOutputModeOutBitValue(uint16_t baseAddress,
-					  uint16_t captureCompareRegister,
-					  uint8_t outputModeOutBitValue);
+extern void Timer_A_setOutputForOutputModeOutBitValue(uint16_t baseAddress,
+						      uint16_t captureCompareRegister,
+						      uint8_t outputModeOutBitValue);
 
 //*****************************************************************************
 //
@@ -953,8 +945,7 @@ Timer_A_setOutputForOutputModeOutBitValue(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_A_outputPWM(uint16_t baseAddress,
-			      Timer_A_outputPWMParam *param);
+extern void Timer_A_outputPWM(uint16_t baseAddress, Timer_A_outputPWMParam *param);
 
 //*****************************************************************************
 //
@@ -992,8 +983,7 @@ extern void Timer_A_stop(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_A_setCompareValue(uint16_t baseAddress,
-				    uint16_t compareRegister,
+extern void Timer_A_setCompareValue(uint16_t baseAddress, uint16_t compareRegister,
 				    uint16_t compareValue);
 
 //*****************************************************************************
@@ -1028,8 +1018,7 @@ extern void Timer_A_setCompareValue(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void Timer_A_setOutputMode(uint16_t baseAddress,
-				  uint16_t compareRegister,
+extern void Timer_A_setOutputMode(uint16_t baseAddress, uint16_t compareRegister,
 				  uint16_t compareOutputMode);
 
 //*****************************************************************************
@@ -1066,9 +1055,8 @@ extern void Timer_A_clearTimerInterrupt(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void
-Timer_A_clearCaptureCompareInterrupt(uint16_t baseAddress,
-				     uint16_t captureCompareRegister);
+extern void Timer_A_clearCaptureCompareInterrupt(uint16_t baseAddress,
+						 uint16_t captureCompareRegister);
 
 //*****************************************************************************
 //

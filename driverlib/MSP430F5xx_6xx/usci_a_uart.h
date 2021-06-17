@@ -240,8 +240,7 @@ typedef struct USCI_A_UART_initParam {
 //! \return STATUS_SUCCESS or STATUS_FAIL of the initialization process
 //
 //*****************************************************************************
-extern bool USCI_A_UART_init(uint16_t baseAddress,
-			     USCI_A_UART_initParam *param);
+extern bool USCI_A_UART_init(uint16_t baseAddress, USCI_A_UART_initParam *param);
 
 //*****************************************************************************
 //
@@ -258,8 +257,7 @@ extern bool USCI_A_UART_init(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void USCI_A_UART_transmitData(uint16_t baseAddress,
-				     uint8_t transmitData);
+extern void USCI_A_UART_transmitData(uint16_t baseAddress, uint8_t transmitData);
 
 //*****************************************************************************
 //
@@ -349,8 +347,7 @@ extern void USCI_A_UART_disableInterrupt(uint16_t baseAddress, uint8_t mask);
 //!         \n indicating the status of the masked flags
 //
 //*****************************************************************************
-extern uint8_t USCI_A_UART_getInterruptStatus(uint16_t baseAddress,
-					      uint8_t mask);
+extern uint8_t USCI_A_UART_getInterruptStatus(uint16_t baseAddress, uint8_t mask);
 
 //*****************************************************************************
 //
@@ -484,8 +481,7 @@ extern void USCI_A_UART_resetDormant(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void USCI_A_UART_transmitAddress(uint16_t baseAddress,
-					uint8_t transmitAddress);
+extern void USCI_A_UART_transmitAddress(uint16_t baseAddress, uint8_t transmitAddress);
 
 //*****************************************************************************
 //
@@ -533,8 +529,7 @@ extern uint32_t USCI_A_UART_getReceiveBufferAddressForDMA(uint16_t baseAddress);
 //! \return Address of TX Buffer
 //
 //*****************************************************************************
-extern uint32_t
-USCI_A_UART_getTransmitBufferAddressForDMA(uint16_t baseAddress);
+extern uint32_t USCI_A_UART_getTransmitBufferAddressForDMA(uint16_t baseAddress);
 
 //*****************************************************************************
 //

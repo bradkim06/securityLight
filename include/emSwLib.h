@@ -606,9 +606,8 @@ extern uint16_t *EMSWLIB_EM_HAL_ADC_minFreqCount;
 //!
 //! \return EM_message_code
 //!
-extern EM_message_code
-EM_configureEnergyMeasurement(EM_SW_Lib_Config_Handle *config,
-			      EM_SW_Lib_Result_Handle *result);
+extern EM_message_code EM_configureEnergyMeasurement(EM_SW_Lib_Config_Handle *config,
+						     EM_SW_Lib_Result_Handle *result);
 
 //! \brief The following API initializes the voltage / current DC filters to 0.
 //!
@@ -617,8 +616,7 @@ EM_configureEnergyMeasurement(EM_SW_Lib_Config_Handle *config,
 //!
 //! \return None
 //!
-extern void EM_initDCFilters(EM_SW_Lib_Config_Handle *config,
-			     EM_SW_Lib_Result_Handle *result);
+extern void EM_initDCFilters(EM_SW_Lib_Config_Handle *config, EM_SW_Lib_Result_Handle *result);
 
 //******************************************************************************
 //
@@ -648,8 +646,7 @@ extern void EM_initDCFilters(EM_SW_Lib_Config_Handle *config,
 //!
 //! \return None
 //!
-extern void EM_initalizeCalibrationValues(uint8_t *pWorkingCalibration,
-					  uint8_t *pFlashCalibration);
+extern void EM_initalizeCalibrationValues(uint8_t *pWorkingCalibration, uint8_t *pFlashCalibration);
 
 //! \brief    The following API is used  store working (RAM) pWorkingCalibration
 //!           values to the pFlashCalibration structure stored in flash. When
@@ -738,8 +735,8 @@ extern void EM_perSample(EM_Metrology *metro, EM_Phase_Configuration *phase,
 //!
 //! \return None
 //!
-extern void EM_perDataChunk(EM_SW_Lib_Config_Handle *config,
-			    EM_SW_Lib_Result_Handle *result, uint16_t phaseIdx);
+extern void EM_perDataChunk(EM_SW_Lib_Config_Handle *config, EM_SW_Lib_Result_Handle *result,
+			    uint16_t phaseIdx);
 
 //! \brief    The following API is used to delay the current degree by 90
 //! degrees. It uses an IIR filter with 1 pole to shift current: (all pass 90
@@ -754,8 +751,7 @@ extern void EM_perDataChunk(EM_SW_Lib_Config_Handle *config,
 //! \param[in] bgData  is a pointer to the EM SW BG Result structure
 //!
 //! \return None
-extern void EM_delayCurrent90Degrees(EM_Metrology *metro,
-				     EM_Phase_Configuration *phase,
+extern void EM_delayCurrent90Degrees(EM_Metrology *metro, EM_Phase_Configuration *phase,
 				     EM_Phase_BG_Results *bgData);
 
 //! \brief    The following API is used to generate pulses for an individual
@@ -770,8 +766,7 @@ extern void EM_delayCurrent90Degrees(EM_Metrology *metro,
 //!
 //! \return None
 //!
-extern void EM_genPulseIndPhase(EM_System_Configuration *config,
-				EM_Pulse_Settings *pulse,
+extern void EM_genPulseIndPhase(EM_System_Configuration *config, EM_Pulse_Settings *pulse,
 				EM_Phase_Results *result);
 
 //! \brief    The following API is used to generate pulses for the total
@@ -787,8 +782,7 @@ extern void EM_genPulseIndPhase(EM_System_Configuration *config,
 //!
 //! \return None
 //!
-extern void EM_genPulseTotalPhases(EM_System_Configuration *config,
-				   EM_Pulse_Settings *pulse,
+extern void EM_genPulseTotalPhases(EM_System_Configuration *config, EM_Pulse_Settings *pulse,
 				   EM_Total_Results *result);
 
 //! \brief    The following API is used to calculate the 1/sample_count
@@ -824,8 +818,7 @@ extern void EM_clearMetrology(EM_Metrology *metro);
 //!
 //! \return None
 //!
-extern void EM_updateReactPowConst(EM_Metrology *metro,
-				   EM_Phase_Results *result,
+extern void EM_updateReactPowConst(EM_Metrology *metro, EM_Phase_Results *result,
 				   EM_Algorithm_Configuration *algo);
 
 //! \brief    The following API is used process the samples. It is used to
@@ -849,8 +842,7 @@ extern EM_message_code EM_processSample(EM_SW_Lib_Config_Handle *config);
 //!
 //! \return None
 //!
-extern void EM_calcActivePowerMultAcc(EM_Metrology *metro,
-				      EM_Phase_Configuration *phase);
+extern void EM_calcActivePowerMultAcc(EM_Metrology *metro, EM_Phase_Configuration *phase);
 
 //! \brief    The following API is used to calculate the active power in the
 //! foreground code and store activePower in the result structure. The formula
@@ -865,10 +857,8 @@ extern void EM_calcActivePowerMultAcc(EM_Metrology *metro,
 //!
 //! \return None
 //!
-extern void EM_calcActivePowerDiv(EM_Metrology *metro,
-				  EM_Phase_Configuration *phase,
-				  EM_Phase_Results *result,
-				  EM_Algorithm_Configuration *algo);
+extern void EM_calcActivePowerDiv(EM_Metrology *metro, EM_Phase_Configuration *phase,
+				  EM_Phase_Results *result, EM_Algorithm_Configuration *algo);
 
 //! \brief    The following API is used to calculate the active energy result.
 //! The formula used to calculate activeEnergy (uWh):
@@ -882,8 +872,7 @@ extern void EM_calcActivePowerDiv(EM_Metrology *metro,
 //!
 //! \return None
 //!
-extern void EM_calcActiveEnergy(EM_Metrology *metro,
-				EM_Algorithm_Configuration *algo,
+extern void EM_calcActiveEnergy(EM_Metrology *metro, EM_Algorithm_Configuration *algo,
 				EM_Phase_Results *result);
 
 //! \brief    The following API is used to calculate the dot product and
@@ -903,8 +892,7 @@ extern void EM_calcActiveEnergy(EM_Metrology *metro,
 //!
 //! \return None
 //!
-extern void EM_calcReactivePowerMultAcc(EM_Metrology *metro,
-					EM_Phase_Configuration *phase,
+extern void EM_calcReactivePowerMultAcc(EM_Metrology *metro, EM_Phase_Configuration *phase,
 					EM_Phase_BG_Results *bgData);
 
 //! \brief    The following API is used to calculate the reactive power in the
@@ -920,10 +908,8 @@ extern void EM_calcReactivePowerMultAcc(EM_Metrology *metro,
 //!
 //! \return None
 //!
-extern void EM_calcReactivePowerDiv(EM_Metrology *metro,
-				    EM_Phase_Configuration *phase,
-				    EM_Phase_Results *result,
-				    EM_Algorithm_Configuration *algo);
+extern void EM_calcReactivePowerDiv(EM_Metrology *metro, EM_Phase_Configuration *phase,
+				    EM_Phase_Results *result, EM_Algorithm_Configuration *algo);
 
 //! \brief    The following API is used to calculate the reactive energy result.
 //! The formula used to calculate reactiveEnergy (uVArh):
@@ -937,8 +923,7 @@ extern void EM_calcReactivePowerDiv(EM_Metrology *metro,
 //!
 //! \return None
 //!
-extern void EM_calcReactiveEnergy(EM_Metrology *metro,
-				  EM_Algorithm_Configuration *algo,
+extern void EM_calcReactiveEnergy(EM_Metrology *metro, EM_Algorithm_Configuration *algo,
 				  EM_Phase_Results *result);
 
 //! \brief    The following API is used to calculate apparent power.
@@ -965,8 +950,7 @@ extern void EM_calcApparentPower(EM_Phase_Results *result);
 //!
 //! \return None
 //!
-extern void EM_calcApparentEnergy(EM_Metrology *metro,
-				  EM_Algorithm_Configuration *algo,
+extern void EM_calcApparentEnergy(EM_Metrology *metro, EM_Algorithm_Configuration *algo,
 				  EM_Phase_Results *result);
 
 //! \brief    The following API is used to calculate power factor. The formula
@@ -992,8 +976,7 @@ extern void EM_calcPowerFactor(EM_Phase_Results *result);
 //!
 //! \return None
 //!
-extern void EM_calcVRMSMultAcc(EM_Metrology *metro,
-			       EM_Phase_Configuration *phase);
+extern void EM_calcVRMSMultAcc(EM_Metrology *metro, EM_Phase_Configuration *phase);
 
 //! \brief    The following API is used to calculate the division and
 //! square root for VRMS. This API uses the dot product calculated by
@@ -1006,8 +989,7 @@ extern void EM_calcVRMSMultAcc(EM_Metrology *metro,
 //!
 //! \return None
 //!
-extern void EM_calcVRMSDivSqrt(EM_Metrology *metro,
-			       EM_Phase_Configuration *phase,
+extern void EM_calcVRMSDivSqrt(EM_Metrology *metro, EM_Phase_Configuration *phase,
 			       EM_Phase_Results *result);
 
 //! \brief    The following API is used to calculate the dot product and
@@ -1021,8 +1003,7 @@ extern void EM_calcVRMSDivSqrt(EM_Metrology *metro,
 //!
 //! \return None
 //!
-extern void EM_calcIRMSMultAcc(EM_Metrology *metro,
-			       EM_Phase_Configuration *phase);
+extern void EM_calcIRMSMultAcc(EM_Metrology *metro, EM_Phase_Configuration *phase);
 
 //! \brief    The following API is used to calculate the division and
 //! square root for IRMS. This API uses the dot product calculated by
@@ -1035,8 +1016,7 @@ extern void EM_calcIRMSMultAcc(EM_Metrology *metro,
 //!
 //! \return None
 //!
-extern void EM_calcIRMSDivSqrt(EM_Metrology *metro,
-			       EM_Phase_Configuration *phase,
+extern void EM_calcIRMSDivSqrt(EM_Metrology *metro, EM_Phase_Configuration *phase,
 			       EM_Phase_Results *result);
 
 //! \brief    The following API is used to calculate I Peak. This API updates
@@ -1050,8 +1030,7 @@ extern void EM_calcIRMSDivSqrt(EM_Metrology *metro,
 //!
 //! \return None
 //!
-extern void EM_calcIPeak(EM_Phase_Results *result,
-			 EM_Algorithm_Configuration *algo);
+extern void EM_calcIPeak(EM_Phase_Results *result, EM_Algorithm_Configuration *algo);
 
 //! \brief    The following API is used to calculate V Peak. This API updates
 //! the global Phase Result structure.  The formula used to calculate:
@@ -1064,8 +1043,7 @@ extern void EM_calcIPeak(EM_Phase_Results *result,
 //!
 //! \return None
 //!
-extern void EM_calcVPeak(EM_Phase_Results *result,
-			 EM_Algorithm_Configuration *algo);
+extern void EM_calcVPeak(EM_Phase_Results *result, EM_Algorithm_Configuration *algo);
 
 //! \brief    The following API is used to calculate the period of the voltage
 //! signal. For systems with 2 voltages, this API must be used with only one
@@ -1094,8 +1072,7 @@ extern void EM_calcVPeak(EM_Phase_Results *result,
 //!
 //! \return None
 //!
-extern void EM_calcFreqPeriod(EM_Metrology *metro,
-			      EM_Phase_Configuration *phase,
+extern void EM_calcFreqPeriod(EM_Metrology *metro, EM_Phase_Configuration *phase,
 			      EM_Phase_BG_Results *bgData);
 
 //! \brief    The following API is used to calculate frequency. This API updates

@@ -32,8 +32,7 @@ void readFlash(void)
 {
 	if (confirmChecksum(FLASH_D_ADDR, sizeof(flash_t) - 1)) {
 		memcpy(&flash, FLASH_D_ADDR, sizeof(flash_t));
-		memcpy(&g_emPhaseCalibration, &flash.calib,
-		       sizeof(EM_Phase_Calibration));
+		memcpy(&g_emPhaseCalibration, &flash.calib, sizeof(EM_Phase_Calibration));
 #ifdef __TEST__
 		print("read flash!\n\r");
 #endif

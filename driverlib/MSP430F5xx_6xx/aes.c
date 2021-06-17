@@ -61,8 +61,7 @@ uint8_t AES_setCipherKey(uint16_t baseAddress, const uint8_t *CipherKey)
 
 	for (i = 0; i < 16; i = i + 2) {
 		tempVariable = (uint16_t)(CipherKey[i]);
-		tempVariable =
-			tempVariable | ((uint16_t)(CipherKey[i + 1]) << 8);
+		tempVariable = tempVariable | ((uint16_t)(CipherKey[i + 1]) << 8);
 		HWREG16(baseAddress + OFS_AESAKEY) = tempVariable;
 	}
 
@@ -74,8 +73,7 @@ uint8_t AES_setCipherKey(uint16_t baseAddress, const uint8_t *CipherKey)
 	return (STATUS_SUCCESS);
 }
 
-uint8_t AES_encryptData(uint16_t baseAddress, const uint8_t *Data,
-			uint8_t *encryptedData)
+uint8_t AES_encryptData(uint16_t baseAddress, const uint8_t *Data, uint8_t *encryptedData)
 {
 	uint8_t i;
 	uint16_t tempData = 0;
@@ -110,8 +108,7 @@ uint8_t AES_encryptData(uint16_t baseAddress, const uint8_t *Data,
 	return (STATUS_SUCCESS);
 }
 
-uint8_t AES_decryptData(uint16_t baseAddress, const uint8_t *Data,
-			uint8_t *decryptedData)
+uint8_t AES_decryptData(uint16_t baseAddress, const uint8_t *Data, uint8_t *decryptedData)
 {
 	uint8_t i;
 	uint16_t tempData = 0;
@@ -158,8 +155,7 @@ uint8_t AES_setDecipherKey(uint16_t baseAddress, const uint8_t *CipherKey)
 	// Write cipher key to key register
 	for (i = 0; i < 16; i = i + 2) {
 		tempVariable = (uint16_t)(CipherKey[i]);
-		tempVariable =
-			tempVariable | ((uint16_t)(CipherKey[i + 1]) << 8);
+		tempVariable = tempVariable | ((uint16_t)(CipherKey[i + 1]) << 8);
 		HWREG16(baseAddress + OFS_AESAKEY) = tempVariable;
 	}
 
@@ -196,8 +192,7 @@ void AES_reset(uint16_t baseAddress)
 	HWREG8(baseAddress + OFS_AESACTL0) |= AESSWRST;
 }
 
-uint8_t AES_startEncryptData(uint16_t baseAddress, const uint8_t *Data,
-			     uint8_t *encryptedData)
+uint8_t AES_startEncryptData(uint16_t baseAddress, const uint8_t *Data, uint8_t *encryptedData)
 {
 	uint8_t i;
 	uint16_t tempVariable = 0;
@@ -252,8 +247,7 @@ uint8_t AES_startSetDecipherKey(uint16_t baseAddress, const uint8_t *CipherKey)
 	// Write cipher key to key register
 	for (i = 0; i < 16; i = i + 2) {
 		tempVariable = (uint16_t)(CipherKey[i]);
-		tempVariable =
-			tempVariable | ((uint16_t)(CipherKey[i + 1]) << 8);
+		tempVariable = tempVariable | ((uint16_t)(CipherKey[i + 1]) << 8);
 		HWREG16(baseAddress + OFS_AESAKEY) = tempVariable;
 	}
 
@@ -295,8 +289,7 @@ uint32_t AES_getErrorFlagStatus(uint16_t baseAddress)
 	return (HWREG8(baseAddress + OFS_AESACTL0) & AESERRFG);
 }
 
-uint8_t AES_startDecryptDataUsingEncryptionKey(uint16_t baseAddress,
-					       const uint8_t *Data)
+uint8_t AES_startDecryptDataUsingEncryptionKey(uint16_t baseAddress, const uint8_t *Data)
 {
 	uint8_t i;
 	uint16_t tempVariable = 0;
@@ -319,8 +312,7 @@ uint8_t AES_startDecryptDataUsingEncryptionKey(uint16_t baseAddress,
 	return (STATUS_SUCCESS);
 }
 
-uint8_t AES_decryptDataUsingEncryptionKey(uint16_t baseAddress,
-					  const uint8_t *Data,
+uint8_t AES_decryptDataUsingEncryptionKey(uint16_t baseAddress, const uint8_t *Data,
 					  uint8_t *decryptedData)
 {
 	uint8_t i;

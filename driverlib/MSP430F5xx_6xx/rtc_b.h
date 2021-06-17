@@ -247,8 +247,7 @@ extern void RTC_B_holdClock(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_B_setCalibrationFrequency(uint16_t baseAddress,
-					  uint16_t frequencySelect);
+extern void RTC_B_setCalibrationFrequency(uint16_t baseAddress, uint16_t frequencySelect);
 
 //*****************************************************************************
 //
@@ -275,8 +274,7 @@ extern void RTC_B_setCalibrationFrequency(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_B_setCalibrationData(uint16_t baseAddress,
-				     uint8_t offsetDirection,
+extern void RTC_B_setCalibrationData(uint16_t baseAddress, uint8_t offsetDirection,
 				     uint8_t offsetValue);
 
 //*****************************************************************************
@@ -306,8 +304,7 @@ extern void RTC_B_setCalibrationData(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_B_initCalendar(uint16_t baseAddress, Calendar *CalendarTime,
-			       uint16_t formatSelect);
+extern void RTC_B_initCalendar(uint16_t baseAddress, Calendar *CalendarTime, uint16_t formatSelect);
 
 //*****************************************************************************
 //
@@ -342,9 +339,8 @@ extern Calendar RTC_B_getCalendarTime(uint16_t baseAddress);
 //! \return None
 //
 //*****************************************************************************
-extern void
-RTC_B_configureCalendarAlarm(uint16_t baseAddress,
-			     RTC_B_configureCalendarAlarmParam *param);
+extern void RTC_B_configureCalendarAlarm(uint16_t baseAddress,
+					 RTC_B_configureCalendarAlarmParam *param);
 
 //*****************************************************************************
 //
@@ -397,8 +393,7 @@ extern void RTC_B_setCalendarEvent(uint16_t baseAddress, uint16_t eventSelect);
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_B_definePrescaleEvent(uint16_t baseAddress,
-				      uint8_t prescaleSelect,
+extern void RTC_B_definePrescaleEvent(uint16_t baseAddress, uint8_t prescaleSelect,
 				      uint8_t prescaleEventDivider);
 
 //*****************************************************************************
@@ -418,8 +413,7 @@ extern void RTC_B_definePrescaleEvent(uint16_t baseAddress,
 //! \return The value of the specified prescaler count register
 //
 //*****************************************************************************
-extern uint8_t RTC_B_getPrescaleValue(uint16_t baseAddress,
-				      uint8_t prescaleSelect);
+extern uint8_t RTC_B_getPrescaleValue(uint16_t baseAddress, uint8_t prescaleSelect);
 
 //*****************************************************************************
 //
@@ -545,8 +539,7 @@ extern void RTC_B_disableInterrupt(uint16_t baseAddress, uint8_t interruptMask);
 //!         \n indicating the status of the masked interrupts
 //
 //*****************************************************************************
-extern uint8_t RTC_B_getInterruptStatus(uint16_t baseAddress,
-					uint8_t interruptFlagMask);
+extern uint8_t RTC_B_getInterruptStatus(uint16_t baseAddress, uint8_t interruptFlagMask);
 
 //*****************************************************************************
 //
@@ -576,8 +569,7 @@ extern uint8_t RTC_B_getInterruptStatus(uint16_t baseAddress,
 //! \return None
 //
 //*****************************************************************************
-extern void RTC_B_clearInterrupt(uint16_t baseAddress,
-				 uint8_t interruptFlagMask);
+extern void RTC_B_clearInterrupt(uint16_t baseAddress, uint8_t interruptFlagMask);
 
 //*****************************************************************************
 //
@@ -593,8 +585,7 @@ extern void RTC_B_clearInterrupt(uint16_t baseAddress,
 //! \return The binary version of the input parameter
 //
 //*****************************************************************************
-extern uint16_t RTC_B_convertBCDToBinary(uint16_t baseAddress,
-					 uint16_t valueToConvert);
+extern uint16_t RTC_B_convertBCDToBinary(uint16_t baseAddress, uint16_t valueToConvert);
 
 //*****************************************************************************
 //
@@ -610,8 +601,7 @@ extern uint16_t RTC_B_convertBCDToBinary(uint16_t baseAddress,
 //! \return The BCD version of the valueToConvert parameter
 //
 //*****************************************************************************
-extern uint16_t RTC_B_convertBinaryToBCD(uint16_t baseAddress,
-					 uint16_t valueToConvert);
+extern uint16_t RTC_B_convertBinaryToBCD(uint16_t baseAddress, uint16_t valueToConvert);
 
 //*****************************************************************************
 //
