@@ -313,30 +313,31 @@ void __attribute__((interrupt(SD24_VECTOR))) SD24_ISR(void)
 		phAWriteVIdx = (phAWriteVIdx + 1) & (HAL_ADC_V_MASK);
 		break;
 	case SD24BIV_SD24IFG1: // SD24MEM1 IFG
-		chReadStatus |= HAL_ADC_CH1_READ;
+      break;
+    case SD24BIV_SD24IFG2:  // SD24MEM2 IFG
+      chReadStatus |= HAL_ADC_CH2_READ;
 
 		// Store Current Results
-		phAISamples[phAWriteIIdx] = SD24_B_getResults(SD24_BASE, SD24_B_CONVERTER_1);
+      phAISamples[phAWriteIIdx] =
+          SD24_B_getResults(SD24_BASE, SD24_B_CONVERTER_2);
 		tempI = phAISamples[phAWriteIIdx] >> 1;
 		phAISamples[phAWriteIIdx] = tempI;
 
 		// Apply Current DC Filter
-		tempI = EM_currentDCFilter(gEmSWResult.phaseBGResults[EM_PH_A_IDX].iDCEstimate,
+      tempI = EM_currentDCFilter(
+          gEmSWResult.phaseBGResults[EM_PH_A_IDX].iDCEstimate,
 					   phAISamples[phAWriteIIdx]);
 		phAISamples[phAWriteIIdx] = tempI;
 
 		// Increase Index and Mask
 		phAWriteIIdx = (phAWriteIIdx + 1) & (HAL_ADC_I_MASK);
 		break;
-	case SD24BIV_SD24IFG2: // SD24MEM2 IFG
-		break;
-	default:
-		break;
+    default: break;
 	}
 
 	// Check if both channels were read for all phases
-	if ((chReadStatus & (HAL_ADC_CH0_READ + HAL_ADC_CH1_READ)) ==
-	    (HAL_ADC_CH0_READ + HAL_ADC_CH1_READ)) {
+  if ((chReadStatus & (HAL_ADC_CH0_READ + HAL_ADC_CH2_READ)) ==
+      (HAL_ADC_CH0_READ + HAL_ADC_CH2_READ)) {
 		chReadStatus = 0;
 
 		// Phase A Data Processing
@@ -353,8 +354,10 @@ void __attribute__((interrupt(SD24_VECTOR))) SD24_ISR(void)
 			}
 
 			// Set the Ptrs to voltage and current
-			emPhaseConfiguration[EM_PH_A_IDX].voltageSamplePtr = &phAVSamples[phAVIdx];
-			emPhaseConfiguration[EM_PH_A_IDX].currentSamplePtr = &phAISamples[phAIIdx];
+      emPhaseConfiguration[EM_PH_A_IDX].voltageSamplePtr =
+          &phAVSamples[phAVIdx];
+      emPhaseConfiguration[EM_PH_A_IDX].currentSamplePtr =
+          &phAISamples[phAIIdx];
 
 			// Process the samples
 			EM_perSampleProc(gEmSWResult.phaseMetrologyPing[EM_PH_A_IDX],
@@ -369,14 +372,12 @@ void __attribute__((interrupt(SD24_VECTOR))) SD24_ISR(void)
 			if (gEmSWResult.phaseMetrologyPing[EM_PH_A_IDX]->cycleCount ==
 			    gEmSWConfig.algorithmConfig->mainNomFreq) {
 				phaseDataReady |= HAL_ADC_PHASE_A_DATA_READY;
-				EM_perDataChunk(&gEmSWConfig,
-						(EM_SW_Lib_Result_Handle *)&gEmSWResult,
+        EM_perDataChunk(&gEmSWConfig, (EM_SW_Lib_Result_Handle*)&gEmSWResult,
 						EM_PH_A_IDX);
 			} else if (gEmSWResult.phaseMetrologyPing[EM_PH_A_IDX]->sampleCount >
 				   (2 * EM_SAMPLING_FREQ_HZ)) {
 				phaseDataReady |= HAL_ADC_PHASE_A_DATA_READY;
-				EM_perDataChunk(&gEmSWConfig,
-						(EM_SW_Lib_Result_Handle *)&gEmSWResult,
+        EM_perDataChunk(&gEmSWConfig, (EM_SW_Lib_Result_Handle*)&gEmSWResult,
 						EM_PH_A_IDX);
 			}
 		} else if (phASA > 0) {
