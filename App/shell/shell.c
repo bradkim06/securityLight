@@ -67,17 +67,25 @@ static microrl_t *prl = &rl;
 static char *ver_keyworld[] = { _SCMD_MRL, _SCMD_DEMO };
 
 // sub commands for calibration command
+#define _NUM_OF_CALIB_SCMD 5
+
 #define _SCMD_VOLT "voltage"
 #define _SCMD_CURRENT "current"
 #define _SCMD_ACTIVE "active"
 #define _SCMD_REACTIVE "reactive"
 #define _SCMD_PHASE "phase"
 
-// calibration subcommands
 static char *calib_keyworld[] = { _SCMD_VOLT, _SCMD_CURRENT, _SCMD_ACTIVE, _SCMD_REACTIVE,
 				  _SCMD_PHASE };
 
-#define _NUM_OF_CALIB_SCMD 5
+// third commands for calibration command
+#define VALUE_VOLT "(V)"
+#define VALUE_CURRENT "(mA)"
+#define VALUE_ACTIVE "(W)"
+#define VALUE_REACTIVE "(VAr)"
+#define VALUE_PHASE "(none)"
+static char *calib_value[] = { VALUE_VOLT, VALUE_CURRENT, VALUE_ACTIVE, VALUE_REACTIVE,
+			       VALUE_PHASE };
 
 // available  commands
 static char *keyworld[] = { _CMD_HELP1, _CMD_HELP2,  _CMD_VER,	       _CMD_LIST,     _CMD_CLEAR,
@@ -204,10 +212,12 @@ void calibrateFactor(const char *const *argv)
 		calibRate = (float)g_emPhaseCalibration[0].reactivePowerSF * calibRate;
 		g_emPhaseCalibration[0].reactivePowerSF = (uint32_t)calibRate;
 	} else if (strcmp(argv[1], "phase") == 0) {
-		print("phase corretion not working yet\n\r");
 		return;
 	} else {
 		print("argument is wrong\n\r");
+		print("calib\n\r");
+		print("[param1] (voltage,current,active,reactive,phase)\n\r");
+		print("[param2] value\n\r");
 		return;
 	}
 
@@ -242,16 +252,19 @@ int execute(int argc, const char *const *argv)
 				} else if (strcmp(argv[i], _SCMD_MRL) == 0) {
 					print("microrl v 1.2\n\r");
 				} else {
-					print((char *)argv[i]);
-					print(" wrong argument, see help\n\r");
+					print("argument is wrong\n\r");
+					print("version\n\r");
+					print("[param1] {micdrorl | demo}\n\r");
 				}
 			} else {
-				print("version needs 1 parametr, see help\n\r");
+				print("argument is wrong\n\r");
+				print("version\n\r");
+				print("[param1] {micdrorl | demo}\n\r");
 			}
 		} else if (strcmp(argv[i], _CMD_LIST) == 0) {
 			print("available command:\n"); // print all command per line
 			for (int i = 0; i < _NUM_OF_CMD; i++) {
-				print("\t");
+				print(" - ");
 				print(keyworld[i]);
 				print("\n\r");
 			}
@@ -304,22 +317,33 @@ char **complet(int argc, const char *const *argv)
 				compl_world[j++] = keyworld[i];
 			}
 		}
-	} else if ((argc > 1) && (strcmp(argv[0], _CMD_VER) == 0)) {
-		// iterate through subcommand for command _CMD_VER array
-		for (int i = 0; i < _NUM_OF_VER_SCMD; i++) {
-			if (strstr(ver_keyworld[i], argv[argc - 1]) == ver_keyworld[i]) {
-				compl_world[j++] = ver_keyworld[i];
+	} else if (argc == 2) {
+		if (strcmp(argv[0], _CMD_VER) == 0) {
+			// iterate through subcommand for command _CMD_VER array
+			for (int i = 0; i < _NUM_OF_VER_SCMD; i++) {
+				if (strstr(ver_keyworld[i], argv[argc - 1]) == ver_keyworld[i]) {
+					compl_world[j++] = ver_keyworld[i];
+				}
+			}
+		} else if (strcmp(argv[0], _CMD_CALIBRATION) == 0) {
+			for (int i = 0; i < _NUM_OF_CALIB_SCMD; i++) {
+				if (strstr(calib_keyworld[i], argv[argc - 1]) ==
+				    calib_keyworld[i]) {
+					compl_world[j++] = calib_keyworld[i];
+				}
 			}
 		}
-	} else if ((argc > 1) && (strcmp(argv[0], _CMD_CALIBRATION) == 0)) {
-		for (int i = 0; i < _NUM_OF_CALIB_SCMD; i++) {
-			if (strstr(calib_keyworld[i], argv[argc - 1]) == calib_keyworld[i]) {
-				compl_world[j++] = calib_keyworld[i];
+	} else if (argc == 3) { // if there is no token in cmdline, just print all available token
+		if (strcmp(argv[0], _CMD_CALIBRATION) == 0) {
+#define _CMD_CALIB_VALUE "input"
+			compl_world[j++] = _CMD_CALIB_VALUE;
+
+			for (int i = 0; i < _NUM_OF_CALIB_SCMD; i++) {
+				if (strcmp(argv[1], calib_keyworld[i]) == 0) {
+					compl_world[j++] = calib_keyworld[i];
+					compl_world[j++] = calib_value[i];
+				}
 			}
-		}
-	} else { // if there is no token in cmdline, just print all available token
-		for (; j < _NUM_OF_CMD; j++) {
-			compl_world[j] = keyworld[j];
 		}
 	}
 
@@ -334,17 +358,16 @@ EUSCI_A_UART_initParam shell_uartPort;
 //*****************************************************************************
 static void print_help(void)
 {
-	print("Use TAB key for completion\n\rCommand:\n\r");
-	print("\t?                   - help command\n\r");
-	print("\thelp                - help command\n\r");
-	print("\tversion {microrl | demo} - print version\n\r");
-	print("\tlist                - list all commands in tree\n\r");
-	print("\tclear               - clear screen\n\r");
-	print("\texit                - exit shell\n\r");
-	print("\tresult              - all measuring result\n\r");
-	print("\tcalib               - [calib] [param1](voltage,current... "
-	      "etc) [param2](value)\n\r");
-	print("\tparams              - parameter value\n\r");
+	print("Use TAB key for completion\n\rCommands\n\r");
+	print("?            - help command\n\r");
+	print("help         - help command\n\r");
+	print("version      - print version\n\r");
+	print("list         - list all commands in tree\n\r");
+	print("clear        - clear screen\n\r");
+	print("exit         - exit shell\n\r");
+	print("result       - all measuring result\n\r");
+	print("calib        - calibration meter parameter\n\r");
+	print("params       - meter parameter value\n\r");
 }
 
 //******************************************************************************
