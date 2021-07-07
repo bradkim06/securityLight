@@ -24,6 +24,12 @@ static uint8_t calcEVchecksum(uint8_t *from, int size)
 	return checksum;
 }
 
+void metering(void)
+{
+	HAL_ADC_startConversion(&halAdcConfig);
+	EM_foregroundProc(&gemResultStatus);
+}
+
 void req_read_meter(void)
 {
 	elecMeterReq_t *rx = (elecMeterReq_t *)meterRx.buf;
@@ -43,9 +49,7 @@ void req_read_meter(void)
 		return;
 	}
 
-	HAL_ADC_startConversion(&halAdcConfig);
-	EM_foregroundProc(&gemResultStatus);
-
+	metering();
 	resp_read_meter();
 }
 

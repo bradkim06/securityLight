@@ -18,6 +18,7 @@
 #include "microrl.h"
 #include "uart.h"
 #include "rtc.h"
+#include "metering.h"
 
 #include "EM_userConfig.h"
 
@@ -277,8 +278,7 @@ int execute(int argc, const char *const *argv)
 			print("If you want to use shell, Press Ctrl + C\n\r"); // Help
 			isShellActive = false;
 		} else if (strcmp(argv[i], _CMD_RESULT) == 0) {
-			HAL_ADC_startConversion(&halAdcConfig);
-			EM_foregroundProc(&gemResultStatus);
+			metering();
 			print_EMResult();
 		} else if (strcmp(argv[i], _CMD_CALIBRATION) == 0) {
 			calibrateFactor(argv);
