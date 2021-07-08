@@ -34,8 +34,7 @@
 //
 //! \file   hal.h
 //!
-//! \brief  Main hardware abstraction layer header file including other HAL
-//! files
+//! \brief  Main hardware abstraction layer header file including other HAL files
 //!
 //!  Group:          MSP Software Development
 //!  Target Device:  MSP430F6736
@@ -46,12 +45,12 @@
 #ifndef HAL_H_
 #define HAL_H_
 
-#include <driverlib.h>
-#include <stdbool.h>
 #include <stdint.h>
-
+#include <stdbool.h>
+#include <driverlib.h>
 #include "EM_userConfig.h"
-#include "hal_adc.h"
+
 #include "hal_system.h"
+#include "hal_adc.h"
 
 #endif /* HAL_H_ */

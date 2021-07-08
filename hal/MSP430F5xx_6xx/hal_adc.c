@@ -65,6 +65,20 @@ volatile uint8_t phAProc;
 volatile uint8_t phAWriteVIdx = 0;
 volatile uint8_t phAWriteIIdx = 0;
 
+/* Arrays to store SD24 conversion results */
+int16_t phNEUTRALVSamples[HAL_ADC_V_ARRAY_LENGTH];
+int32_t phNEUTRALISamples[HAL_ADC_I_ARRAY_LENGTH];
+
+// Phase NEUTRAL Sample Alignment variables
+volatile int8_t phNEUTRALSA;
+volatile uint8_t phNEUTRALVIdx;
+volatile uint8_t phNEUTRALIIdx;
+volatile uint8_t phNEUTRALProc;
+
+// Index variables to read SD24_B results
+volatile uint8_t phNEUTRALWriteVIdx = 0;
+volatile uint8_t phNEUTRALWriteIIdx = 0;
+
 //
 // Function declarations
 //
@@ -81,13 +95,20 @@ uint16_t HAL_ADC_getPreload(int16_t phaseCorrection, uint16_t osr)
 void HAL_ADC_initPreload(HAL_ADC_SD24_B_Configuration *config)
 {
 	config->adcChannelPtr[0].preload = (config->overSampleRatio + 1) >> 1;
-	config->adcChannelPtr[1].preload = HAL_ADC_getPreload(
+	config->adcChannelPtr[1].preload =
+		HAL_ADC_getPreload(gEmSWConfig.meterConfig->phaseConfigPtr[EM_PH_NEUTRAL_IDX]
+					   .phaseCalibPtr->phaseCorrection,
+				   config->overSampleRatio);
+	config->adcChannelPtr[2].preload = HAL_ADC_getPreload(
 		gEmSWConfig.meterConfig->phaseConfigPtr[EM_PH_A_IDX].phaseCalibPtr->phaseCorrection,
 		config->overSampleRatio);
 }
 
 void HAL_ADC_initWholeSampleAlignment(HAL_ADC_SD24_B_Configuration *config)
 {
+	phNEUTRALSA =
+		HAL_ADC_getWholeSample(gEmSWConfig.meterConfig->phaseConfigPtr[EM_PH_NEUTRAL_IDX]
+					       .phaseCalibPtr->phaseCorrection);
 	phASA = HAL_ADC_getWholeSample(
 		gEmSWConfig.meterConfig->phaseConfigPtr[EM_PH_A_IDX].phaseCalibPtr->phaseCorrection);
 }
@@ -102,6 +123,14 @@ void HAL_ADC_clearVariables(uint8_t phase)
 		phAProc = 0;
 		phAWriteVIdx = 0;
 		phAWriteIIdx = 0;
+		break;
+	case EM_PH_NEUTRAL_IDX:
+		phNEUTRALSA = 0;
+		phNEUTRALVIdx = 0;
+		phNEUTRALIIdx = 0;
+		phNEUTRALProc = 0;
+		phNEUTRALWriteVIdx = 0;
+		phNEUTRALWriteIIdx = 0;
 		break;
 	}
 	chReadStatus = 0;
@@ -223,6 +252,7 @@ HAL_ADC_message_code HAL_ADC_init(HAL_ADC_SD24_B_Configuration *config)
 	phaseDataReady = HAL_ADC_PHASE_NO_DATA_READY;
 	chReadStatus = 0;
 	HAL_ADC_clearVariables(EM_PH_A_IDX);
+	HAL_ADC_clearVariables(EM_PH_NEUTRAL_IDX);
 	HAL_ADC_initPreload(config);
 	HAL_ADC_initWholeSampleAlignment(config);
 
@@ -304,6 +334,7 @@ void __attribute__((interrupt(SD24_VECTOR))) SD24_ISR(void)
 		phAVSamples[phAWriteVIdx] =
 			SD24_B_getHighWordResults(SD24_BASE, SD24_B_CONVERTER_0);
 
+		phNEUTRALVSamples[phNEUTRALWriteVIdx] = phAVSamples[phAWriteVIdx];
 		// Apply Voltage DC Filter
 		tempV = EM_voltageDCFilter(&gEmSWResult.phaseBGResults[EM_PH_A_IDX].vDCEstimate,
 					   phAVSamples[phAWriteVIdx]);
@@ -311,35 +342,66 @@ void __attribute__((interrupt(SD24_VECTOR))) SD24_ISR(void)
 
 		// Increase Index and Mask
 		phAWriteVIdx = (phAWriteVIdx + 1) & (HAL_ADC_V_MASK);
+		// Apply Voltage DC Filter
+		tempV = EM_voltageDCFilter(
+			&gEmSWResult.phaseBGResults[EM_PH_NEUTRAL_IDX].vDCEstimate,
+			phNEUTRALVSamples[phNEUTRALWriteVIdx]);
+		phNEUTRALVSamples[phNEUTRALWriteVIdx] = tempV;
+
+		// Increase Index and Mask
+		phNEUTRALWriteVIdx = (phNEUTRALWriteVIdx + 1) & (HAL_ADC_V_MASK);
 		break;
 	case SD24BIV_SD24IFG1: // SD24MEM1 IFG
-      break;
-    case SD24BIV_SD24IFG2:  // SD24MEM2 IFG
-      chReadStatus |= HAL_ADC_CH2_READ;
+		chReadStatus |= HAL_ADC_CH1_READ;
 
 		// Store Current Results
-      phAISamples[phAWriteIIdx] =
-          SD24_B_getResults(SD24_BASE, SD24_B_CONVERTER_2);
+		phNEUTRALISamples[phNEUTRALWriteIIdx] =
+			SD24_B_getResults(SD24_BASE, SD24_B_CONVERTER_1);
+		tempI = phNEUTRALISamples[phNEUTRALWriteIIdx] >> 1;
+		phNEUTRALISamples[phNEUTRALWriteIIdx] = tempI;
+
+		// Apply Current DC Filter
+		tempI = EM_currentDCFilter(
+			gEmSWResult.phaseBGResults[EM_PH_NEUTRAL_IDX].iDCEstimate,
+			phNEUTRALISamples[phNEUTRALWriteIIdx]);
+		phNEUTRALISamples[phNEUTRALWriteIIdx] = tempI;
+
+		// Increase Index and Mask
+		phNEUTRALWriteIIdx = (phNEUTRALWriteIIdx + 1) & (HAL_ADC_I_MASK);
+		break;
+	case SD24BIV_SD24IFG2: // SD24MEM2 IFG
+		chReadStatus |= HAL_ADC_CH2_READ;
+
+		// Store Current Results
+		phAISamples[phAWriteIIdx] = SD24_B_getResults(SD24_BASE, SD24_B_CONVERTER_2);
 		tempI = phAISamples[phAWriteIIdx] >> 1;
 		phAISamples[phAWriteIIdx] = tempI;
 
 		// Apply Current DC Filter
-      tempI = EM_currentDCFilter(
-          gEmSWResult.phaseBGResults[EM_PH_A_IDX].iDCEstimate,
+		tempI = EM_currentDCFilter(gEmSWResult.phaseBGResults[EM_PH_A_IDX].iDCEstimate,
 					   phAISamples[phAWriteIIdx]);
 		phAISamples[phAWriteIIdx] = tempI;
 
 		// Increase Index and Mask
 		phAWriteIIdx = (phAWriteIIdx + 1) & (HAL_ADC_I_MASK);
 		break;
-    default: break;
+	default:
+		break;
 	}
 
 	// Check if both channels were read for all phases
-  if ((chReadStatus & (HAL_ADC_CH0_READ + HAL_ADC_CH2_READ)) ==
-      (HAL_ADC_CH0_READ + HAL_ADC_CH2_READ)) {
+	if ((chReadStatus & (HAL_ADC_CH0_READ + HAL_ADC_CH1_READ + HAL_ADC_CH2_READ)) ==
+	    (HAL_ADC_CH0_READ + HAL_ADC_CH1_READ + HAL_ADC_CH2_READ)) {
 		chReadStatus = 0;
 
+		// Pulse Generation for Total Energy
+		if (phASA == 0 || phNEUTRALSA == 0) {
+			// Check Energy and Generate Pulses
+			EM_genPulseTotalPhases(
+				gEmSWConfig.systemConfig,
+				&gEmSWConfig.systemConfig->pulseArray[EM_PH_TOTAL_IDX],
+				gEmSWResult.emTotalResult);
+		}
 		// Phase A Data Processing
 		if (phASA == 0) {
 			// Voltage aligned with Current
@@ -354,10 +416,8 @@ void __attribute__((interrupt(SD24_VECTOR))) SD24_ISR(void)
 			}
 
 			// Set the Ptrs to voltage and current
-      emPhaseConfiguration[EM_PH_A_IDX].voltageSamplePtr =
-          &phAVSamples[phAVIdx];
-      emPhaseConfiguration[EM_PH_A_IDX].currentSamplePtr =
-          &phAISamples[phAIIdx];
+			emPhaseConfiguration[EM_PH_A_IDX].voltageSamplePtr = &phAVSamples[phAVIdx];
+			emPhaseConfiguration[EM_PH_A_IDX].currentSamplePtr = &phAISamples[phAIIdx];
 
 			// Process the samples
 			EM_perSampleProc(gEmSWResult.phaseMetrologyPing[EM_PH_A_IDX],
@@ -372,12 +432,14 @@ void __attribute__((interrupt(SD24_VECTOR))) SD24_ISR(void)
 			if (gEmSWResult.phaseMetrologyPing[EM_PH_A_IDX]->cycleCount ==
 			    gEmSWConfig.algorithmConfig->mainNomFreq) {
 				phaseDataReady |= HAL_ADC_PHASE_A_DATA_READY;
-        EM_perDataChunk(&gEmSWConfig, (EM_SW_Lib_Result_Handle*)&gEmSWResult,
+				EM_perDataChunk(&gEmSWConfig,
+						(EM_SW_Lib_Result_Handle *)&gEmSWResult,
 						EM_PH_A_IDX);
 			} else if (gEmSWResult.phaseMetrologyPing[EM_PH_A_IDX]->sampleCount >
 				   (2 * EM_SAMPLING_FREQ_HZ)) {
 				phaseDataReady |= HAL_ADC_PHASE_A_DATA_READY;
-        EM_perDataChunk(&gEmSWConfig, (EM_SW_Lib_Result_Handle*)&gEmSWResult,
+				EM_perDataChunk(&gEmSWConfig,
+						(EM_SW_Lib_Result_Handle *)&gEmSWResult,
 						EM_PH_A_IDX);
 			}
 		} else if (phASA > 0) {
@@ -388,6 +450,59 @@ void __attribute__((interrupt(SD24_VECTOR))) SD24_ISR(void)
 			// Voltage lagging Current
 			phASA = phASA + 1;
 			phAVIdx = phAVIdx + 1;
+		}
+		// Phase NEUTRAL Data Processing
+		if (phNEUTRALSA == 0) {
+			// Voltage aligned with Current
+			if (phNEUTRALProc == 0) {
+				phNEUTRALProc = 1;
+			} else {
+				// Increase Current (I) Index and Mask
+				phNEUTRALIIdx = (phNEUTRALIIdx + 1) & HAL_ADC_I_MASK;
+
+				// Increase Voltage (V) Index and Mask
+				phNEUTRALVIdx = (phNEUTRALVIdx + 1) & HAL_ADC_V_MASK;
+			}
+
+			// Set the Ptrs to voltage and current
+			emPhaseConfiguration[EM_PH_NEUTRAL_IDX].voltageSamplePtr =
+				&phNEUTRALVSamples[phNEUTRALVIdx];
+			emPhaseConfiguration[EM_PH_NEUTRAL_IDX].currentSamplePtr =
+				&phNEUTRALISamples[phNEUTRALIIdx];
+
+			// Process the samples
+			EM_perSampleProc(
+				gEmSWResult.phaseMetrologyPing[EM_PH_NEUTRAL_IDX],
+				&gEmSWConfig.meterConfig->phaseConfigPtr[EM_PH_NEUTRAL_IDX],
+				&gEmSWResult.phaseBGResults[EM_PH_NEUTRAL_IDX]);
+
+			// Check Energy and Generate Pulses
+			EM_genPulseIndPhase(
+				gEmSWConfig.systemConfig,
+				&gEmSWConfig.systemConfig->pulseArray[EM_PH_NEUTRAL_IDX],
+				&gEmSWResult.phaseResults[EM_PH_NEUTRAL_IDX]);
+
+			if (gEmSWResult.phaseMetrologyPing[EM_PH_NEUTRAL_IDX]->cycleCount ==
+			    gEmSWConfig.algorithmConfig->mainNomFreq) {
+				phaseDataReady |= HAL_ADC_PHASE_NEUTRAL_DATA_READY;
+				EM_perDataChunk(&gEmSWConfig,
+						(EM_SW_Lib_Result_Handle *)&gEmSWResult,
+						EM_PH_NEUTRAL_IDX);
+			} else if (gEmSWResult.phaseMetrologyPing[EM_PH_NEUTRAL_IDX]->sampleCount >
+				   (2 * EM_SAMPLING_FREQ_HZ)) {
+				phaseDataReady |= HAL_ADC_PHASE_NEUTRAL_DATA_READY;
+				EM_perDataChunk(&gEmSWConfig,
+						(EM_SW_Lib_Result_Handle *)&gEmSWResult,
+						EM_PH_NEUTRAL_IDX);
+			}
+		} else if (phNEUTRALSA > 0) {
+			// Voltage leading Current
+			phNEUTRALSA = phNEUTRALSA - 1;
+			phNEUTRALIIdx = phNEUTRALIIdx + 1;
+		} else {
+			// Voltage lagging Current
+			phNEUTRALSA = phNEUTRALSA + 1;
+			phNEUTRALVIdx = phNEUTRALVIdx + 1;
 		}
 	}
 }

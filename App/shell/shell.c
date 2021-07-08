@@ -147,6 +147,8 @@ extern void print_EMResult(void)
 	      ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].VRMS) / 1000);
 	print("[ IRMS           ] : %.3fmA\n\r",
 	      ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].IRMS / 1000));
+	print("[ Short IRMS     ] : %.3fmA\n\r",
+	      ((float)gEmSWResult.phaseResults[EM_PH_NEUTRAL_IDX].IRMS / 1000));
 	print("[ vPeak          ] : %.3fV\n\r",
 	      ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].vPeak / 1000));
 	print("[ iPeak          ] : %.3fmA\n\r",
@@ -278,7 +280,6 @@ int execute(int argc, const char *const *argv)
 			print("If you want to use shell, Press Ctrl + C\n\r"); // Help
 			isShellActive = false;
 		} else if (strcmp(argv[i], _CMD_RESULT) == 0) {
-			metering();
 			print_EMResult();
 		} else if (strcmp(argv[i], _CMD_CALIBRATION) == 0) {
 			calibrateFactor(argv);

@@ -24,12 +24,6 @@ static uint8_t calcEVchecksum(uint8_t *from, int size)
 	return checksum;
 }
 
-void metering(void)
-{
-	HAL_ADC_startConversion(&halAdcConfig);
-	EM_foregroundProc(&gemResultStatus);
-}
-
 void req_read_meter(void)
 {
 	elecMeterReq_t *rx = (elecMeterReq_t *)meterRx.buf;
@@ -49,7 +43,6 @@ void req_read_meter(void)
 		return;
 	}
 
-	metering();
 	resp_read_meter();
 }
 
@@ -66,7 +59,7 @@ void resp_read_meter(void)
 	data.status = 0; //TODO
 	data.VRMS = gEmSWResult.phaseResults[EM_PH_A_IDX].VRMS;
 	data.IRMS = gEmSWResult.phaseResults[EM_PH_A_IDX].IRMS / 1000;
-	data.shortIRMS = 0; //TODO
+	data.shortIRMS = gEmSWResult.phaseResults[EM_PH_NEUTRAL_IDX].IRMS / 1000; //TODO
 	data.power = (int32_t)(gEmSWResult.phaseResults[EM_PH_A_IDX].activePower / 1000);
 	data.cumPower = (uint32_t)(gEmSWResult.phaseResults[EM_PH_A_IDX].activeEnergy / 1000);
 

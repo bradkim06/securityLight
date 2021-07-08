@@ -45,10 +45,9 @@
 #ifndef HAL_ADC_H_
 #define HAL_ADC_H_
 
-#include <stdbool.h>
-#include <stdint.h>
-
 #include "sd24_b.h"
+#include <stdint.h>
+#include <stdbool.h>
 
 //*****************************************************************************
 // defines
@@ -182,8 +181,8 @@ typedef enum _HAL_ADC_message_code_ {
 	//!< This message code is returned when no error was detected while
 	//!< invoking the API.
 	HAL_ADC_message_code_invalid_mod_freq_error = 1,
-	//!< This message code is returned when the modulation frequency
-	//!< (OSR*sampFreq) is greater than 2Mhz
+	//!< This message code is returned when the modulation frequency (OSR*sampFreq)
+	//!< is greater than 2Mhz
 	HAL_ADC_message_code_invalid_clock_divider_error = 2,
 	//!< This message code is returned when the clock divider multiplier
 	//!< (SMCLK / (OSR * sampleFreq) is not supported.
@@ -257,8 +256,8 @@ typedef struct _HAL_ADC_SD24_B_Configuration_ {
 //! @{
 //
 //******************************************************************************
-//! \brief The following API configures SD24_B module based on user
-//! configuration files "emSwLib_userConfig.c" and "emSwLib_userConfig.h".
+//! \brief The following API configures SD24_B module based on user configuration
+//! files "emSwLib_userConfig.c" and "emSwLib_userConfig.h".
 //!
 //! \param[in] config  is a pointer to the HAL ADC SD24_B configuration
 //!

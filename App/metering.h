@@ -65,5 +65,4 @@ extern struct receive meterRx;
 void req_read_meter(void);
 void resp_read_meter(void);
 void checkMessage(void);
-void metering(void);
 #endif
