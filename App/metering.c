@@ -59,7 +59,7 @@ void resp_read_meter(void)
 	data.status = 0; //TODO
 	data.VRMS = gEmSWResult.phaseResults[EM_PH_A_IDX].VRMS;
 	data.IRMS = gEmSWResult.phaseResults[EM_PH_A_IDX].IRMS / 1000;
-	data.shortIRMS = gEmSWResult.phaseResults[EM_PH_NEUTRAL_IDX].IRMS / 1000; //TODO
+	data.shortIRMS = gEmSWResult.phaseResults[EM_PH_NEUTRAL_IDX].IRMS / 1000;
 	data.power = (int32_t)(gEmSWResult.phaseResults[EM_PH_A_IDX].activePower / 1000);
 	data.cumPower = (uint32_t)(gEmSWResult.phaseResults[EM_PH_A_IDX].activeEnergy / 1000);
 
@@ -71,6 +71,7 @@ void resp_read_meter(void)
 #ifdef __TEST__
 	print_EMResult();
 
+	print("[ VRMStest       ] : %luV\n\r", (gEmSWResult.phaseResults[EM_PH_A_IDX].VRMS) / 1000);
 	for (int i = 0; i < len; i++) {
 		EUSCI_A_UART_transmitData(METER_PORT, *(txBuf + i));
 	}
@@ -90,31 +91,23 @@ void resp_read_meter(void)
 	print(RED_FONT "EM Result data print\n\r");
 	print(WHITE_FONT);
 
-	txBuf = &data.stx;
-	print("[ STX              ] : 0x%02X\n", *txBuf);
+	print("[ STX              ] : 0x%02X\n", data.stx);
+	print("[ MSG Type         ] : 0x%02X\n", data.msgType);
 
-	txBuf = &data.msgType;
-	print("[ MSG Type         ] : 0x%02X\n", *txBuf);
-
-	txBuf = (uint8_t *)&data.VRMS;
 	print("[ VRMS             ] : %lumV ", data.VRMS);
-	print("[ Hex ] : 0x%lX\n", *((uint32_t *)txBuf));
+	print("[ Hex ] : 0x%lX\n", data.VRMS);
 
-	txBuf = (uint8_t *)&data.IRMS;
 	print("[ IRMS             ] : %lumA ", data.IRMS);
-	print("[ Hex ] : 0x%lX\n", *((uint32_t *)txBuf));
+	print("[ Hex ] : 0x%lX\n", data.IRMS);
 
-	txBuf = (uint8_t *)&data.shortIRMS;
 	print("[ shortIRMS        ] : %lumA ", data.shortIRMS);
-	print("[ Hex ] : 0x%lX\n", *((uint32_t *)txBuf));
+	print("[ Hex ] : 0x%lX\n", data.shortIRMS);
 
-	txBuf = (uint8_t *)&data.power;
 	print("[ Active Power     ] : %lumW ", data.power);
-	print("[ Hex ] : 0x%lX\n", *((int32_t *)txBuf));
+	print("[ Hex ] : 0x%lX\n", data.power);
 
-	txBuf = (uint8_t *)&data.cumPower;
 	print("[ Cumulative Power ] : %lumW ", data.cumPower);
-	print("[ Hex ] : 0x%lX\n", *((uint32_t *)txBuf));
+	print("[ Hex ] : 0x%lX\n", data.cumPower);
 #endif
 }
 
