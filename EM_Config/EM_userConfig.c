@@ -283,6 +283,8 @@ void EM_foregroundProc(uint8_t *resultStatus)
 		// Check if Phase A is ready
 		if (phaseDataReady & HAL_ADC_PHASE_A_DATA_READY) {
 			EM_processForegroundData(EM_PH_A_IDX);
+			gEmSWResult.phaseResults[EM_PH_A_IDX].activePower *= -1;
+			gEmSWResult.phaseResults[EM_PH_A_IDX].reactivePower *= -1;
 			// Keep track which phases have been processed
 			totalCalcFlag |= HAL_ADC_PHASE_A_DATA_READY;
 			// Phase Results Available

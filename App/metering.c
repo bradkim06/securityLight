@@ -61,7 +61,7 @@ void resp_read_meter(void)
 	data.IRMS = gEmSWResult.phaseResults[EM_PH_A_IDX].IRMS / 1000;
 	data.shortIRMS = gEmSWResult.phaseResults[EM_PH_NEUTRAL_IDX].IRMS / 1000;
 	data.power = (int32_t)(gEmSWResult.phaseResults[EM_PH_A_IDX].activePower / 1000);
-	data.cumPower = (uint32_t)(gEmSWResult.phaseResults[EM_PH_A_IDX].activeEnergy / 1000);
+	data.cumPower = (uint32_t)(gEmSWResult.phaseResults[EM_PH_A_IDX].activeEnergy / 1000000);
 
 	data.checkSum = calcEVchecksum((uint8_t *)&data.stx, len);
 	data.etx = METER_ETX;

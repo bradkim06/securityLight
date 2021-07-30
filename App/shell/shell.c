@@ -139,6 +139,8 @@ void print(const char *__restrict format, ...)
 
 extern void print_EMResult(void)
 {
+	double activePower = (float)gEmSWResult.phaseResults[EM_PH_A_IDX].VRMS / 1000 *
+			     (float)gEmSWResult.phaseResults[EM_PH_A_IDX].IRMS / 1000000;
 	printf("=============================================================\n");
 	print(RED_FONT);
 	print("EM Result print\n\r");
@@ -157,6 +159,7 @@ extern void print_EMResult(void)
 	print("[ frequency      ] : %.2fHz\n\r",
 	      ((float)gEmSWResult.phaseResults[EM_PH_A_IDX].frequency) / 100);
 	print("[ activePower    ] : %llduW\n\r", gEmSWResult.phaseResults[EM_PH_A_IDX].activePower);
+	print("[ ideal actPower ] : %lfuW\n\r", activePower);
 	print("[ reactivePower  ] : %llduVAr\n\r",
 	      gEmSWResult.phaseResults[EM_PH_A_IDX].reactivePower);
 	print("[ apparentPower  ] : %llduVA\n\r",
@@ -194,27 +197,28 @@ void calibrateFactor(const char *const *argv)
 	//   return;
 	// }
 
-	float calibRate;
+	double calibRate;
 
 	if (strcmp(argv[1], "voltage") == 0) {
 		calibRate = (atof(argv[2]) * 1000) / gEmSWResult.phaseResults[EM_PH_A_IDX].VRMS;
-		calibRate = (float)g_emPhaseCalibration[0].voltageSF * calibRate;
+		calibRate = (double)g_emPhaseCalibration[0].voltageSF * calibRate;
 		g_emPhaseCalibration[0].voltageSF = (uint32_t)calibRate;
 	} else if (strcmp(argv[1], "current") == 0) {
 		calibRate = (atof(argv[2]) * 1000) / gEmSWResult.phaseResults[EM_PH_A_IDX].IRMS;
-		calibRate = (float)g_emPhaseCalibration[0].currentSF * calibRate;
+		calibRate = (double)g_emPhaseCalibration[0].currentSF * calibRate;
 		g_emPhaseCalibration[0].currentSF = (uint32_t)calibRate;
 	} else if (strcmp(argv[1], "active") == 0) {
-		calibRate = (atof(argv[2]) * 1000000) /
-			    gEmSWResult.phaseResults[EM_PH_A_IDX].activePower;
-		calibRate = (float)g_emPhaseCalibration[0].activePowerSF * calibRate;
+		calibRate =
+			(atof(argv[2]) * 1000) / gEmSWResult.phaseResults[EM_PH_A_IDX].activePower;
+		calibRate = (double)g_emPhaseCalibration[0].activePowerSF * calibRate;
 		g_emPhaseCalibration[0].activePowerSF = (uint32_t)calibRate;
 	} else if (strcmp(argv[1], "reactive") == 0) {
-		calibRate = (atof(argv[2]) * 1000000) /
+		calibRate = (atof(argv[2]) * 1000) /
 			    gEmSWResult.phaseResults[EM_PH_A_IDX].reactivePower;
-		calibRate = (float)g_emPhaseCalibration[0].reactivePowerSF * calibRate;
+		calibRate = (double)g_emPhaseCalibration[0].reactivePowerSF * calibRate;
 		g_emPhaseCalibration[0].reactivePowerSF = (uint32_t)calibRate;
 	} else if (strcmp(argv[1], "phase") == 0) {
+		g_emPhaseCalibration[0].phaseCorrection = atoi(argv[2]);
 		return;
 	} else {
 		print("argument is wrong\n\r");
@@ -224,7 +228,7 @@ void calibrateFactor(const char *const *argv)
 		return;
 	}
 
-	memcpy(&flash.calib, &g_emPhaseCalibration, sizeof(EM_Phase_Calibration));
+	memcpy(&flash.calib, &g_emPhaseCalibration, sizeof(EM_Phase_Calibration) * EM_PHASE_LENGTH);
 	writeFlashCalib();
 }
 

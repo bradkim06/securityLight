@@ -15,7 +15,7 @@
 #define FLASH_D_ADDR (uint8_t *)0x1800
 
 typedef struct {
-	EM_Phase_Calibration calib;
+	EM_Phase_Calibration calib[EM_PHASE_LENGTH];
 	uint8_t checksum;
 } flash_t;
 
