@@ -18,9 +18,40 @@
 #define SET_RTC_TIME 0xA3
 #define SET_CALIB_FACTOR 0xA4
 
+struct Time {
+	uint16_t year; // yearH, yearL
+	uint8_t mon;
+	uint8_t day;
+	uint8_t hour;
+	uint8_t min;
+	uint8_t sec;
+	uint8_t reserved;
+};
+
+typedef struct {
+	uint8_t mode;
+	uint8_t timeBase;
+	uint8_t region;
+	uint8_t onTime[2];
+	uint8_t offTime[2];
+	uint8_t setOnTime[2];
+	uint8_t setOffTime[2];
+	signed char onOfs;
+	signed char offOfs;
+	uint8_t psm;
+	uint8_t psmOnTime[2]; // Hour, Min
+	uint8_t psmOffTime[2]; // Hour, Min
+	uint8_t psmOnDay[2]; // Month, Day
+	uint8_t psmOffDay[2]; // Month, Day
+	uint8_t dimmingMode;
+	uint8_t dimmingLv;
+} light_t;
+
 typedef struct {
 	uint8_t stx;
 	uint8_t msgType;
+	struct Time time;
+	light_t light;
 	uint8_t checkSum;
 	uint8_t etx;
 } elecMeterReq_t;

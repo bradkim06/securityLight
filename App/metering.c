@@ -8,6 +8,7 @@
 #include <string.h>
 
 extern uint8_t gemResultStatus;
+light_t light;
 
 struct receive meterRx;
 
@@ -29,12 +30,12 @@ void req_read_meter(void)
 	elecMeterReq_t *rx = (elecMeterReq_t *)meterRx.buf;
 
 	if (rx->stx != TERMINAL_STX) {
-		print("Invalid STX\n");
+		print("Invalid STX 0x%02X\n", rx->stx);
 		return;
 	}
 
 	if (rx->etx != TERMINAL_ETX) {
-		print("Invalid ETX\n");
+		print("Invalid ETX 0x%02X\n", rx->etx);
 		return;
 	}
 
@@ -42,6 +43,21 @@ void req_read_meter(void)
 		print("Invalid checkSum\n");
 		return;
 	}
+
+	Calendar currentTime;
+
+	if (rx->time.year) {
+		currentTime.Year = rx->time.year;
+		currentTime.Month = rx->time.mon;
+		currentTime.DayOfMonth = rx->time.day;
+		currentTime.Hours = rx->time.hour;
+		currentTime.Minutes = rx->time.min;
+		currentTime.Seconds = rx->time.sec;
+
+		RTC_C_initCalendar(RTC_C_BASE, &currentTime, RTC_C_FORMAT_BINARY);
+	}
+
+	memcpy(&light, &rx->light, sizeof(light_t));
 
 	resp_read_meter();
 }

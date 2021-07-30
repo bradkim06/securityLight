@@ -4,11 +4,11 @@
 #include "lcd_c.h"
 #include "shell.h"
 #include "rtc.h"
+#include "metering.h"
 
 uint8_t currentLCDMode = LCD_CURRENT_DATE;
 uint8_t lightMode = 0;
-
-lcdData_t lcdData;
+extern light_t light;
 
 // Local variable
 typedef struct {
@@ -77,12 +77,9 @@ void DisplayDay(void)
 	char Array[4] = "";
 
 	rtcData = RTC_C_getCalendarTime(RTC_C_BASE);
-	lcdData.date.year = rtcData.Year;
-	lcdData.date.month = rtcData.Month;
-	lcdData.date.day = rtcData.DayOfMonth;
 
 	// year
-	sprintf(Array, "%04lu", (unsigned long)lcdData.date.year);
+	sprintf(Array, "%04lu", (unsigned long)rtcData.Year);
 	for (int i = 0; i < 4; i++) {
 		uint8_t value = lcd_getCharPattern(Array[i]);
 
@@ -92,7 +89,7 @@ void DisplayDay(void)
 	}
 
 	// month
-	sprintf(Array, "%02lu", (unsigned long)lcdData.date.month);
+	sprintf(Array, "%02lu", (unsigned long)rtcData.Month);
 	for (int i = 0; i < 2; i++) {
 		uint8_t value = lcd_getCharPattern(Array[i]);
 
@@ -102,7 +99,7 @@ void DisplayDay(void)
 	}
 
 	// day
-	sprintf(Array, "%02lu", (unsigned long)lcdData.date.day);
+	sprintf(Array, "%02lu", (unsigned long)rtcData.DayOfMonth);
 	for (int i = 0; i < 2; i++) {
 		uint8_t value = lcd_getCharPattern(Array[i]);
 
@@ -119,22 +116,24 @@ void DisplayTime(uint8_t mode)
 {
 	memset(LCDMemMap, 0, 16);
 	char Array[2] = "";
-	Time_t *time;
+	Time_t time;
 
 	switch (mode) {
 	case LCD_LIGHTON_TIME:
-		time = &lcdData.onTime;
+		memcpy(&time, &light.onTime, 2);
 		break;
 	case LCD_LIGHTOFF_TIME:
-		time = &lcdData.offTime;
+		memcpy(&time, &light.offTime, 2);
 		break;
 	case LCD_CURRENT_TIME:
-		time = &lcdData.currentTime;
+		rtcData = RTC_C_getCalendarTime(RTC_C_BASE);
+		time.hour = rtcData.Hours;
+		time.minute = rtcData.Minutes;
 		break;
 	}
 
 	// hour
-	sprintf(Array, "%02lu", (unsigned long)time->hour);
+	sprintf(Array, "%02lu", (unsigned long)time.hour);
 	for (int i = 0; i < 2; i++) {
 		uint8_t value = lcd_getCharPattern(Array[i]);
 
@@ -144,7 +143,7 @@ void DisplayTime(uint8_t mode)
 	}
 
 	// minute
-	sprintf(Array, "%02lu", (unsigned long)time->minute);
+	sprintf(Array, "%02lu", (unsigned long)time.minute);
 	for (int i = 0; i < 2; i++) {
 		uint8_t value = lcd_getCharPattern(Array[i]);
 
@@ -161,7 +160,7 @@ void DisplaySaveMode(void)
 	memset(LCDMemMap, 0, 16);
 	char Array[2] = "";
 
-	if (lcdData.saveMode.status == false) {
+	if (light.psm == false) {
 		// O
 		LCDMemMap[10] &= 1;
 		LCDMemMap[10] |= 0b1010;
@@ -180,10 +179,9 @@ void DisplaySaveMode(void)
 		return;
 	}
 
-	Time_t *onTime = &lcdData.saveMode.onTime;
-
 	// saveMode on Time
-	sprintf(Array, "%02lu", (unsigned long)onTime->hour);
+	// sprintf(Array, "%02lu", (unsigned long)onTime->hour);
+	sprintf(Array, "%02lu", (unsigned long)light.psmOnTime[0]);
 	for (int i = 0; i < 2; i++) {
 		uint8_t value = lcd_getCharPattern(Array[i]);
 
@@ -192,7 +190,8 @@ void DisplaySaveMode(void)
 		LCDMemMap[i * 2 + 1] = (value & 0x0F);
 	}
 
-	sprintf(Array, "%02lu", (unsigned long)onTime->minute);
+	// sprintf(Array, "%02lu", (unsigned long)onTime->minute);
+	sprintf(Array, "%02lu", (unsigned long)light.psmOnTime[1]);
 	for (int i = 0; i < 2; i++) {
 		uint8_t value = lcd_getCharPattern(Array[i]);
 
@@ -201,10 +200,9 @@ void DisplaySaveMode(void)
 		LCDMemMap[i * 2 + 4 + 1] = (value & 0x0F);
 	}
 
-	Time_t *offTime = &lcdData.saveMode.offTime;
-
 	// saveMode off Time
-	sprintf(Array, "%02lu", (unsigned long)offTime->hour);
+	// sprintf(Array, "%02lu", (unsigned long)offTime->hour);
+	sprintf(Array, "%02lu", (unsigned long)light.psmOffTime[0]);
 	for (int i = 0; i < 2; i++) {
 		uint8_t value = lcd_getCharPattern(Array[i]);
 
@@ -213,7 +211,8 @@ void DisplaySaveMode(void)
 		LCDMemMap[i * 2 + 8 + 1] = (value & 0x0F);
 	}
 
-	sprintf(Array, "%02lu", (unsigned long)offTime->minute);
+	// sprintf(Array, "%02lu", (unsigned long)offTime->minute);
+	sprintf(Array, "%02lu", (unsigned long)light.psmOffTime[0]);
 	for (int i = 0; i < 2; i++) {
 		uint8_t value = lcd_getCharPattern(Array[i]);
 
@@ -225,6 +224,21 @@ void DisplaySaveMode(void)
 	LCDMemMap[6] |= 1;
 	LCDMemMap[8] |= 1;
 	LCDMemMap[14] |= 1;
+}
+
+void DisplayArea(void)
+{
+	memset(LCDMemMap, 0, 16);
+	char Array[2] = "";
+
+	sprintf(Array, "%04lu", (unsigned long)light.region);
+	for (int i = 0; i < 2; i++) {
+		uint8_t value = lcd_getCharPattern(Array[i]);
+
+		LCDMemMap[i * 2 + 12 + 0] &= 1;
+		LCDMemMap[i * 2 + 12 + 0] |= ((value & 0xE0) >> 4);
+		LCDMemMap[i * 2 + 12 + 1] = (value & 0x0F);
+	}
 }
 
 void LCD_SelectMode(uint8_t mode)
@@ -252,6 +266,7 @@ void LCD_SelectMode(uint8_t mode)
 		break;
 	case LCD_AREA:
 		LCDMemMap[17] = 0b0010;
+		DisplayArea();
 		break;
 	case LCD_CURRENT_TIME:
 		LCDMemMap[17] = 0b0100;
@@ -260,15 +275,6 @@ void LCD_SelectMode(uint8_t mode)
 	case LCD_CURRENT_MODE:
 		LCDMemMap[17] = 0b1000;
 		break;
-	case LCD_AUTO:
-		LCDMemMap[16] = 0b1000;
-		break;
-	case LCD_SETTING:
-		LCDMemMap[16] = 0b0100;
-		break;
-	case LCD_DIMMING:
-		LCDMemMap[16] = 0b0011;
-		break;
 	default:
 		mode = 0;
 		LCDMemMap[18] |= 0b0100;
@@ -276,38 +282,20 @@ void LCD_SelectMode(uint8_t mode)
 		break;
 	}
 
+	switch (light.mode) {
+	case LCD_AUTO:
+		LCDMemMap[16] = 0b1000;
+		break;
+	case LCD_SETTING:
+		LCDMemMap[16] = 0b0100;
+		break;
+	default:
+		LCDMemMap[16] = 0b1000;
+		break;
+	}
+
 	currentLCDMode = mode;
 	lcd_updateAll();
-}
-
-void initLCDData(void)
-{
-	currentDate_t date = { .year = 2021, .month = 12, .day = 17 };
-	memcpy(&lcdData.date, &date, sizeof(currentDate_t));
-
-	Time_t onTime = { .hour = 17, .minute = 14 };
-	memcpy(&lcdData.onTime, &onTime, sizeof(Time_t));
-
-	Time_t offTime = { .hour = 7, .minute = 40 };
-	memcpy(&lcdData.offTime, &offTime, sizeof(Time_t));
-
-	Time_t currentTime = { .hour = 10, .minute = 57 };
-	memcpy(&lcdData.currentTime, &currentTime, sizeof(Time_t));
-
-	savingMode_t saveMode = {
-      .status = true,
-      .onTime =
-          {
-              .hour   = 2,
-              .minute = 34,
-          },
-      .offTime =
-          {
-              .hour   = 4,
-              .minute = 51,
-          },
-  };
-	memcpy(&lcdData.saveMode, &saveMode, sizeof(savingMode_t));
 }
 
 void initLCD(void)
@@ -320,6 +308,5 @@ void initLCD(void)
 	// Turn LCD on
 	LCD_C_on(LCD_C_BASE);
 
-	initLCDData();
 	LCD_SelectMode(currentLCDMode);
 }

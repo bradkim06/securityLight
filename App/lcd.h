@@ -13,9 +13,9 @@
 #define LCD_AREA 4
 #define LCD_CURRENT_TIME 5
 #define LCD_CURRENT_MODE 6
-#define LCD_AUTO 7
-#define LCD_SETTING 8
-#define LCD_DIMMING 9
+#define LCD_AUTO 1
+#define LCD_SETTING 2
+// #define LCD_DIMMING 3
 
 #define lcd_updateAll() hal_lcd_updatememory(0, HAL_LCD_MEMMAP_SIZE)
 #define lcd_update(from, num) hal_lcd_updatememory(from, num)
@@ -30,7 +30,6 @@ void LCD_testLCD(char num);
 void DisplayDay(void);
 void DisplayLightOn(void);
 void DisplaySaveMode(void);
-void initLCDData(void);
 
 void LCD_SelectMode(uint8_t mode);
 
