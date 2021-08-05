@@ -305,40 +305,40 @@ void EM_foregroundProc(uint8_t *resultStatus)
 		}
 
 		// The phases are added only when all phases are ready
-		// if (totalCalcFlag ==
-		//     (HAL_ADC_PHASE_A_DATA_READY + HAL_ADC_PHASE_NEUTRAL_DATA_READY)) {
-		// 	uint8_t phaseIdx[2] = { EM_PH_A_IDX, EM_PH_NEUTRAL_IDX };
+		if (totalCalcFlag ==
+		    (HAL_ADC_PHASE_A_DATA_READY + HAL_ADC_PHASE_NEUTRAL_DATA_READY)) {
+			uint8_t phaseIdx[2] = { EM_PH_A_IDX, EM_PH_NEUTRAL_IDX };
 
-		// 	// Clear total calc Flag
-		// 	totalCalcFlag = 0;
+			// Clear total calc Flag
+			totalCalcFlag = 0;
 
-		// 	// Calculate Total Active Power
-		// 	EM_calcTotalActivePower(phaseIdx, 2,
-		// 				(EM_SW_Lib_Result_Handle *)&gEmSWResult);
+			// Calculate Total Active Power
+			EM_calcTotalActivePower(phaseIdx, 2,
+						(EM_SW_Lib_Result_Handle *)&gEmSWResult);
 
-		// 	// Calculate Total Reactive Power
-		// 	EM_calcTotalReactivePower(phaseIdx, 2,
-		// 				  (EM_SW_Lib_Result_Handle *)&gEmSWResult);
+			// Calculate Total Reactive Power
+			EM_calcTotalReactivePower(phaseIdx, 2,
+						  (EM_SW_Lib_Result_Handle *)&gEmSWResult);
 
-		// 	// Calculate Total Apparent Power
-		// 	EM_calcTotalApparentPower(phaseIdx, 2,
-		// 				  (EM_SW_Lib_Result_Handle *)&gEmSWResult);
+			// Calculate Total Apparent Power
+			EM_calcTotalApparentPower(phaseIdx, 2,
+						  (EM_SW_Lib_Result_Handle *)&gEmSWResult);
 
-		// 	// Calculate Total Active Energy
-		// 	EM_calcTotalActiveEnergy(phaseIdx, 2,
-		// 				 (EM_SW_Lib_Result_Handle *)&gEmSWResult);
+			// Calculate Total Active Energy
+			EM_calcTotalActiveEnergy(phaseIdx, 2,
+						 (EM_SW_Lib_Result_Handle *)&gEmSWResult);
 
-		// 	// Calculate Total Reactive Energy
-		// 	EM_calcTotalReactiveEnergy(phaseIdx, 2,
-		// 				   (EM_SW_Lib_Result_Handle *)&gEmSWResult);
+			// Calculate Total Reactive Energy
+			EM_calcTotalReactiveEnergy(phaseIdx, 2,
+						   (EM_SW_Lib_Result_Handle *)&gEmSWResult);
 
-		// 	// Calculate Total Apparent Energy
-		// 	EM_calcTotalApparentEnergy(phaseIdx, 2,
-		// 				   (EM_SW_Lib_Result_Handle *)&gEmSWResult);
+			// Calculate Total Apparent Energy
+			EM_calcTotalApparentEnergy(phaseIdx, 2,
+						   (EM_SW_Lib_Result_Handle *)&gEmSWResult);
 
-		// 	// Total Phase Results Available
-		// 	*resultStatus |= HAL_ADC_PHASE_TOTAL_DATA_READY;
-		// }
+			// Total Phase Results Available
+			*resultStatus |= HAL_ADC_PHASE_TOTAL_DATA_READY;
+		}
 	}
 }
 

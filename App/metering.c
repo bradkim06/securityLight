@@ -131,10 +131,6 @@ void checkMessage(void)
 {
 	print("checkMsg\n");
 
-	for (int i = 0; i < meterRx.index; i++) {
-		print("meterRx.buf[%d] = %x\n", i, meterRx.buf[i]);
-	}
-
 	switch (meterRx.buf[1]) {
 	case REQ_READ_METER:
 		print("req read meter\n");

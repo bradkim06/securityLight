@@ -229,7 +229,7 @@ void calibrateFactor(const char *const *argv)
 	}
 
 	memcpy(&flash.calib, &g_emPhaseCalibration, sizeof(EM_Phase_Calibration) * EM_PHASE_LENGTH);
-	writeFlashCalib();
+	writeFlash();
 }
 
 //*****************************************************************************

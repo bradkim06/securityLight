@@ -16,6 +16,7 @@
 
 typedef struct {
 	EM_Phase_Calibration calib[EM_PHASE_LENGTH];
+	EM_Energy_t cumPower;
 	uint8_t checksum;
 } flash_t;
 
@@ -24,6 +25,6 @@ extern flash_t flash;
 uint8_t calcChecksum(uint8_t *p, uint8_t len);
 bool confirmChecksum(uint8_t *p, uint8_t len);
 void readFlash(void);
-void writeFlashCalib(void);
+void writeFlash(void);
 
 #endif

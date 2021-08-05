@@ -1,5 +1,6 @@
 #include "rtc.h"
 #include "shell.h"
+#include "flash.h"
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
@@ -45,11 +46,11 @@ void initRTC(void)
 	cvt_TIME(__DATE__, __TIME__, &currentTime);
 
 	//Initialize alarm struct
-	RTC_C_configureCalendarAlarmParam alarmParam;
-	alarmParam.minutesAlarm = 27;
-	alarmParam.hoursAlarm = currentTime.Hours;
-	alarmParam.dayOfWeekAlarm = currentTime.DayOfWeek;
-	alarmParam.dayOfMonthAlarm = currentTime.DayOfMonth;
+	// RTC_C_configureCalendarAlarmParam alarmParam;
+	// alarmParam.minutesAlarm = 27;
+	// alarmParam.hoursAlarm = currentTime.Hours;
+	// alarmParam.dayOfWeekAlarm = currentTime.DayOfWeek;
+	// alarmParam.dayOfMonthAlarm = currentTime.DayOfMonth;
 	//Initialize Calendar Mode of RTC C
 	/*
     * Base Address of the RTC C A
@@ -57,15 +58,16 @@ void initRTC(void)
     * Use BCD as Calendar Register Format
     */
 	RTC_C_initCalendar(RTC_C_BASE, &currentTime, RTC_C_FORMAT_BINARY);
-	RTC_C_configureCalendarAlarm(RTC_C_BASE, &alarmParam);
-	//Specify an interrupt to assert every minute
-	RTC_C_setCalendarEvent(RTC_C_BASE, RTC_C_CALENDAREVENT_HOURCHANGE);
+	// RTC_C_configureCalendarAlarm(RTC_C_BASE, &alarmParam);
+	//Specify an interrupt to assert every noon
+	RTC_C_setCalendarEvent(RTC_C_BASE, RTC_C_CALENDAREVENT_NOON);
 	//Enable interrupt for RTC C Ready Status, which asserts when the RTC C
 	//Calendar registers are ready to read.
 	//Also, enable interrupts for the Calendar alarm and Calendar event.
-	RTC_C_enableInterrupt(RTC_C_BASE, RTC_C_CLOCK_READ_READY_INTERRUPT +
-						  RTC_C_TIME_EVENT_INTERRUPT +
-						  RTC_C_CLOCK_ALARM_INTERRUPT);
+	// RTC_C_enableInterrupt(RTC_C_BASE, RTC_C_CLOCK_READ_READY_INTERRUPT +
+	// 					  RTC_C_TIME_EVENT_INTERRUPT +
+	// 					  RTC_C_CLOCK_ALARM_INTERRUPT);
+	RTC_C_enableInterrupt(RTC_C_BASE, RTC_C_TIME_EVENT_INTERRUPT);
 	//Start RTC C Clock
 	RTC_C_startClock(RTC_C_BASE);
 }
@@ -86,14 +88,14 @@ void __attribute__((interrupt(RTC_VECTOR))) rtc_isr(void)
 	case RTCIV_RTCOFIFG: // RTCOFIFG
 		break;
 	case RTCIV_RTCRDYIFG: // RTCRDYIFG second event
-		/* rtcData = RTC_C_getCalendarTime(RTC_C_BASE); */
-		/* print_rtc(); */
+		print("sec event!\n");
 		break;
 	case RTCIV_RTCTEVIFG: // RTCEVIFG hour event
-		/* print("hour event!\n"); */
+		print("noon event, flash write\n");
+		writeFlash();
 		break;
 	case RTCIV_RTCAIFG: // RTCAIFG alarm event
-		/* print("alarm event!\n"); */
+		print("alarm event!\n");
 		break;
 	case RTCIV_RT0PSIFG: // RT0PSIFG
 		break;

@@ -22,7 +22,6 @@ bool confirmChecksum(uint8_t *p, uint8_t len)
 	uint8_t checksum = 0;
 	for (int i = 0; i < len; i++) {
 		checksum += *p++;
-		print("0x%02X ", *p);
 	}
 
 	if (checksum == *FLASH_CHECKSUM)
@@ -36,7 +35,10 @@ void readFlash(void)
 		print("Read Flash Success!\n\r");
 
 		memcpy(&flash, FLASH_D_ADDR, sizeof(flash_t));
+
 		memcpy(&g_emPhaseCalibration, &flash.calib, sizeof(flash.calib));
+		memcpy(&gEmSWResult.phaseResults[EM_PH_A_IDX].activeEnergy, &flash.cumPower,
+		       sizeof(EM_Energy_t));
 	} else {
 		print("Flash Checksum Fail!\n\r");
 
@@ -52,13 +54,15 @@ void readFlash(void)
 		g_emPhaseCalibration[EM_PH_NEUTRAL_IDX].reactivePowerSF = 281671758;
 		g_emPhaseCalibration[EM_PH_NEUTRAL_IDX].phaseCorrection = 0x80;
 
-		writeFlashCalib();
+		writeFlash();
 	}
 };
 
-void writeFlashCalib(void)
+void writeFlash(void)
 {
 	memcpy(&flash.calib, &g_emPhaseCalibration, sizeof(flash.calib));
+	memcpy(&flash.cumPower, &gEmSWResult.phaseResults[EM_PH_A_IDX].activeEnergy,
+	       sizeof(EM_Energy_t));
 
 	uint8_t *ptr = (uint8_t *)&flash;
 	uint8_t len = sizeof(flash_t);
