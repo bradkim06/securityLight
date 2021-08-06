@@ -13,7 +13,7 @@
 
 #include "eusci_a_uart.h"
 
-#define METER_BAUDRATE 9600
+#define METER_BAUDRATE 38400
 #define SHELL_BAUDRATE 115200
 
 #define SHELL_PORT EUSCI_A0_BASE

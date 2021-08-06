@@ -58,6 +58,12 @@ EUSCI_A_UART_initParam Get_BaudrateConfig(uint32_t smclk, uint32_t baudrate)
 			config.secondModReg = 0;
 			config.overSampling = EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION;
 			break;
+		case 38400:
+			config.clockPrescalar = 40;
+			config.firstModReg = 15;
+			config.secondModReg = 0;
+			config.overSampling = EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION;
+			break;
 		case 9600:
 			config.clockPrescalar = 163;
 			config.firstModReg = 13;

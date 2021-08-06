@@ -69,7 +69,7 @@ typedef struct {
 //**************************************
 // Electric Meter Comm Data
 //**************************************
-#define LEN_MAX_METER_RX 0x40
+#define LEN_MAX_METER_RX 0x60
 #define LEN_MAX_METER_TX 0x60
 
 typedef struct {
