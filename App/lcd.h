@@ -8,6 +8,7 @@ typedef struct {
 	uint8_t dayMode;
 } lcdStat_t;
 
+extern char currentLCDMode;
 extern lcdStat_t lcdStat;
 
 #define HAL_LCD_MEMMAP_SIZE 19
@@ -32,8 +33,6 @@ extern lcdStat_t lcdStat;
 #define lcd_update(from, num) hal_lcd_updatememory(from, num)
 #define lcd_blinkAll() hal_lcd_blinkmemory(0, HAL_LCD_MEMMAP_SIZE)
 #define lcd_blink(from, num) hal_lcd_blinkmemory(from, num)
-
-extern char currentLCDMode;
 
 void hal_lcd_updatememory(uint8_t baseposition, uint8_t num_segments);
 void hal_lcd_blinkmemory(uint8_t baseposition, uint8_t num_segments);

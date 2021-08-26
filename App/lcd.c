@@ -13,12 +13,12 @@
 #define BUTTON_DOWN 7
 
 lcdStat_t lcdStat;
-
-uint8_t buttonStatus = BUTTON_NONE;
-uint8_t lcdStatus = LCD_STATUS_NORMAR;
 char currentLCDMode = LCD_CURRENT_DATE;
-uint8_t lightMode = 0;
 extern light_t light;
+
+static bool ChgLightConfig = 0;
+static uint8_t buttonStatus = BUTTON_NONE;
+static uint8_t lcdStatus = LCD_STATUS_NORMAR;
 
 // Local variable
 typedef struct {
@@ -100,21 +100,19 @@ void LCD_fullLCD(void)
 	lcd_updateAll();
 }
 
-void DisplayDay(void)
+static void fixLcdData()
 {
 #define YEAR 1
 #define MONTH 2
 #define DAY 3
 
+#define HOUR 1
+#define MINUTE 2
 	static char blinkState = 0;
-
-	memset(LCDMemMap, 0, 16);
-	char Array[4] = "";
-
-	rtcData = RTC_C_getCalendarTime(RTC_C_BASE);
 
 	if (lcdStatus == LCD_STATUS_BLINK) {
 		signed char offset = 0;
+		uint8_t *hour, *min;
 
 		if (buttonStatus == BUTTON_ENTER) {
 			blinkState++;
@@ -122,45 +120,112 @@ void DisplayDay(void)
 
 		if (buttonStatus == BUTTON_UP) {
 			offset++;
-			lcdStat.dayMode = LCD_SETTING;
 		} else if (buttonStatus == BUTTON_DOWN) {
 			offset--;
-			lcdStat.dayMode = LCD_SETTING;
 		}
 
-		switch (blinkState) {
-		case YEAR:
-			lcd_blink(0, 4);
-			rtcData.Year += offset;
-			break;
-		case MONTH:
-			lcd_blink(4, 6);
-			rtcData.Month += offset;
-			if (rtcData.Month < 1 || rtcData.Month > 12) {
-				rtcData.Month -= offset;
+		switch (currentLCDMode) {
+		case LCD_CURRENT_DATE: {
+			switch (blinkState) {
+			case YEAR:
+				lcd_blink(0, 4);
+				rtcData.Year += offset;
+				break;
+			case MONTH:
+				lcd_blink(4, 6);
+				rtcData.Month += offset;
+				if (rtcData.Month < 1 || rtcData.Month > 12) {
+					rtcData.Month -= offset;
+				}
+				break;
+			case DAY:
+				lcd_blink(6, 8);
+				rtcData.DayOfMonth += offset;
+				if (rtcData.DayOfMonth < 1 || rtcData.DayOfMonth > 31) {
+					rtcData.DayOfMonth -= offset;
+				}
+				break;
+			default:
+				blinkState = YEAR;
+				lcd_blink(0, 4);
+				break;
 			}
+
+		} break;
+
+		case LCD_CURRENT_TIME: {
+			hour = &rtcData.Hours;
+			min = &rtcData.Minutes;
+		} break;
+		case LCD_LIGHTON_TIME: {
+			hour = &light.onTime[0];
+			min = &light.onTime[1];
+		} break;
+		case LCD_LIGHTOFF_TIME: {
+			hour = &light.offTime[0];
+			min = &light.offTime[1];
+		} break;
+		default:
 			break;
-		case DAY:
-			lcd_blink(6, 8);
-			rtcData.DayOfMonth += offset;
-			if (rtcData.DayOfMonth < 1 || rtcData.DayOfMonth > 31) {
-				rtcData.DayOfMonth -= offset;
+		}
+
+		switch (currentLCDMode) {
+		case LCD_CURRENT_TIME:
+		case LCD_LIGHTON_TIME:
+		case LCD_LIGHTOFF_TIME:
+			switch (blinkState) {
+			case HOUR: {
+				lcd_blink(4, 6);
+				*hour += offset;
+				if (*hour > 23) {
+					*hour -= offset;
+				}
+			} break;
+			case MINUTE: {
+				lcd_blink(6, 8);
+				*min += offset;
+				if (*min > 59) {
+					*min -= offset;
+				}
+			} break;
+			default: {
+				blinkState = HOUR;
+				lcd_blink(4, 6);
+			} break;
 			}
 			break;
 		default:
-			blinkState = YEAR;
-			lcd_blink(0, 4);
-			rtcData.Year += offset;
 			break;
 		}
 
-		RTC_C_initCalendar(RTC_C_BASE, &rtcData, RTC_C_FORMAT_BINARY);
-		RTC_C_setCalendarEvent(RTC_C_BASE, RTC_C_CALENDAREVENT_NOON);
-		RTC_C_enableInterrupt(RTC_C_BASE, RTC_C_TIME_EVENT_INTERRUPT);
-		RTC_C_startClock(RTC_C_BASE);
+		if (offset) {
+			switch (currentLCDMode) {
+			case LCD_CURRENT_DATE:
+			case LCD_CURRENT_TIME:
+				RTC_C_initCalendar(RTC_C_BASE, &rtcData, RTC_C_FORMAT_BINARY);
+				RTC_C_setCalendarEvent(RTC_C_BASE, RTC_C_CALENDAREVENT_NOON);
+				RTC_C_enableInterrupt(RTC_C_BASE, RTC_C_TIME_EVENT_INTERRUPT);
+				RTC_C_startClock(RTC_C_BASE);
+				break;
+
+			case LCD_LIGHTON_TIME:
+			case LCD_LIGHTOFF_TIME:
+				ChgLightConfig = 1;
+				break;
+			}
+		}
 	} else {
 		blinkState = 0;
 	}
+}
+
+void DisplayDay(void)
+{
+	memset(LCDMemMap, 0, 16);
+	char Array[4] = "";
+
+	rtcData = RTC_C_getCalendarTime(RTC_C_BASE);
+	fixLcdData();
 
 	// year
 	sprintf(Array, "%04lu", (unsigned long)rtcData.Year);
@@ -204,13 +269,16 @@ void DisplayTime(uint8_t mode)
 
 	switch (mode) {
 	case LCD_LIGHTON_TIME:
+		fixLcdData();
 		memcpy(&time, &light.onTime, 2);
 		break;
 	case LCD_LIGHTOFF_TIME:
+		fixLcdData();
 		memcpy(&time, &light.offTime, 2);
 		break;
 	case LCD_CURRENT_TIME:
 		rtcData = RTC_C_getCalendarTime(RTC_C_BASE);
+		fixLcdData();
 		time.hour = rtcData.Hours;
 		time.minute = rtcData.Minutes;
 		break;
@@ -403,8 +471,21 @@ void runLcdCmd(unsigned char lcdCmd)
 
 	if (lcdStatus == LCD_STATUS_NORMAR) {
 		if (lcdCmd == BUTTON_ENTER) {
-			lcdStatus = LCD_STATUS_BLINK;
-			LCD_SelectMode(currentLCDMode);
+			switch (currentLCDMode) {
+			case LCD_CURRENT_MODE:
+				break;
+			case LCD_NIGHT_MODE:
+				break;
+			case LCD_AREA:
+				break;
+			case LCD_CURRENT_DATE:
+			case LCD_LIGHTON_TIME:
+			case LCD_LIGHTOFF_TIME:
+			case LCD_CURRENT_TIME:
+				lcdStatus = LCD_STATUS_BLINK;
+				LCD_SelectMode(currentLCDMode);
+				break;
+			}
 		} else if (lcdCmd == BUTTON_STOP) {
 		} else if (lcdCmd == BUTTON_UP) {
 			LCD_SelectMode(++currentLCDMode);
@@ -418,6 +499,10 @@ void runLcdCmd(unsigned char lcdCmd)
 			lcdStatus = LCD_STATUS_NORMAR;
 			LCD_C_clearBlinkingMemory(LCD_C_BASE);
 			LCD_SelectMode(currentLCDMode);
+			if (ChgLightConfig) {
+				req_lightFix();
+				ChgLightConfig = 0;
+			}
 		} else if (lcdCmd == BUTTON_UP) {
 			LCD_SelectMode(currentLCDMode);
 		} else if (lcdCmd == BUTTON_DOWN) {

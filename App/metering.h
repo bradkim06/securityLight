@@ -29,6 +29,10 @@ struct Time {
 	uint8_t reserved;
 };
 
+// Light Termianl Mode
+#define LMODE_INTERNAL 1
+#define LMODE_SETTING 2
+
 typedef struct {
 	uint8_t mode;
 	uint8_t timeBase;
@@ -56,6 +60,14 @@ typedef struct {
 	uint8_t checkSum;
 	uint8_t etx;
 } elecMeterReq_t;
+
+typedef struct {
+	uint8_t stx;
+	uint8_t msgType;
+	light_t light;
+	uint8_t checkSum;
+	uint8_t etx;
+} lightfixReq_t;
 
 typedef struct {
 	uint8_t stx;
@@ -102,6 +114,7 @@ struct receive {
 
 extern struct receive meterRx;
 
+void req_lightFix(void);
 void req_read_meter(void);
 void resp_read_meter(void);
 void checkMessage(void);

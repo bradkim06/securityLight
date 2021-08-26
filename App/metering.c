@@ -51,7 +51,7 @@ void req_read_meter(void)
 
 	Calendar currentTime;
 
-	if (rx->time.year && (lcdStat.dayMode == LCD_AUTO)) {
+	if (rx->time.year) {
 		currentTime.Year = rx->time.year;
 		currentTime.Month = rx->time.mon;
 		currentTime.DayOfMonth = rx->time.day;
@@ -89,6 +89,27 @@ static void req_lcd(void)
 	}
 
 	runLcdCmd(rx->lcdCmd);
+}
+
+void req_lightFix(void)
+{
+	int len = sizeof(lightfixReq_t);
+	lightfixReq_t data;
+	memset(&data, 0, len);
+
+	data.stx = METER_STX;
+	data.msgType = RESP_METER_CONFIG;
+
+	// light status
+	memcpy(&data.light, &light, sizeof(light_t));
+
+	data.checkSum = calcEVchecksum((uint8_t *)&data.stx, len);
+	data.etx = METER_ETX;
+
+	uint8_t *txBuf = &data.stx;
+	for (int i = 0; i < len; i++) {
+		EUSCI_A_UART_transmitData(METER_PORT, *(txBuf + i));
+	}
 }
 
 void resp_read_meter(void)
