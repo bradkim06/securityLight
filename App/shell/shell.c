@@ -22,7 +22,7 @@
 
 #include "EM_userConfig.h"
 
-#define PRINT_BUF_SIZE 150
+#define PRINT_BUF_SIZE 0x200
 
 #define TX_STATE_IDLE 0
 #define TX_STATE_BUSY 1

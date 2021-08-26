@@ -4,6 +4,12 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+typedef struct {
+	uint8_t dayMode;
+} lcdStat_t;
+
+extern lcdStat_t lcdStat;
+
 #define HAL_LCD_MEMMAP_SIZE 19
 
 // LCD Status

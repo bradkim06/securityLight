@@ -12,6 +12,8 @@
 #define BUTTON_UP 6
 #define BUTTON_DOWN 7
 
+lcdStat_t lcdStat;
+
 uint8_t buttonStatus = BUTTON_NONE;
 uint8_t lcdStatus = LCD_STATUS_NORMAR;
 char currentLCDMode = LCD_CURRENT_DATE;
@@ -120,8 +122,10 @@ void DisplayDay(void)
 
 		if (buttonStatus == BUTTON_UP) {
 			offset++;
+			lcdStat.dayMode = LCD_SETTING;
 		} else if (buttonStatus == BUTTON_DOWN) {
 			offset--;
+			lcdStat.dayMode = LCD_SETTING;
 		}
 
 		switch (blinkState) {
@@ -426,6 +430,8 @@ void runLcdCmd(unsigned char lcdCmd)
 
 void initLCD(void)
 {
+	lcdStat.dayMode = LCD_AUTO;
+
 	LCD_C_init(LCD_C_BASE, (LCD_C_initParam *)&LCD_C_INIT_PARAM);
 
 	LCD_C_setPinAsLCDFunctionEx(LCD_C_BASE, LCD_C_SEGMENT_LINE_0, LCD_C_SEGMENT_LINE_18);

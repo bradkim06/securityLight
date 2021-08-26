@@ -51,7 +51,7 @@ void req_read_meter(void)
 
 	Calendar currentTime;
 
-	if (rx->time.year) {
+	if (rx->time.year && (lcdStat.dayMode == LCD_AUTO)) {
 		currentTime.Year = rx->time.year;
 		currentTime.Month = rx->time.mon;
 		currentTime.DayOfMonth = rx->time.day;
@@ -65,6 +65,8 @@ void req_read_meter(void)
 							  RTC_C_TIME_EVENT_INTERRUPT);
 		RTC_C_startClock(RTC_C_BASE);
 	}
+
+	LCD_SelectMode(currentLCDMode);
 }
 
 static void req_lcd(void)
