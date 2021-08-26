@@ -6,6 +6,11 @@
 
 #define HAL_LCD_MEMMAP_SIZE 19
 
+// LCD Status
+#define LCD_STATUS_NORMAR 0
+#define LCD_STATUS_BLINK 1
+
+// LCD MODE
 #define LCD_CURRENT_DATE 0
 #define LCD_LIGHTON_TIME 1
 #define LCD_LIGHTOFF_TIME 2
@@ -19,10 +24,13 @@
 
 #define lcd_updateAll() hal_lcd_updatememory(0, HAL_LCD_MEMMAP_SIZE)
 #define lcd_update(from, num) hal_lcd_updatememory(from, num)
+#define lcd_blinkAll() hal_lcd_blinkmemory(0, HAL_LCD_MEMMAP_SIZE)
+#define lcd_blink(from, num) hal_lcd_blinkmemory(from, num)
 
-extern uint8_t currentLCDMode;
+extern char currentLCDMode;
 
 void hal_lcd_updatememory(uint8_t baseposition, uint8_t num_segments);
+void hal_lcd_blinkmemory(uint8_t baseposition, uint8_t num_segments);
 void initLCD(void);
 void LCD_clearLCD(void);
 void LCD_fullLCD(void);
@@ -31,7 +39,8 @@ void DisplayDay(void);
 void DisplayLightOn(void);
 void DisplaySaveMode(void);
 
-void LCD_SelectMode(uint8_t mode);
+void LCD_SelectMode(char mode);
+void runLcdCmd(unsigned char lcdCmd);
 
 typedef struct {
 	uint16_t year;

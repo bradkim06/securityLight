@@ -5,6 +5,7 @@
 #include "timer.h"
 #include "shell.h"
 #include "EM_userConfig.h"
+#include "lcd.h"
 #include <string.h>
 
 extern uint8_t gemResultStatus;
@@ -64,6 +65,28 @@ void req_read_meter(void)
 							  RTC_C_TIME_EVENT_INTERRUPT);
 		RTC_C_startClock(RTC_C_BASE);
 	}
+}
+
+static void req_lcd(void)
+{
+	lcdReq_t *rx = (lcdReq_t *)meterRx.buf;
+
+	if (rx->stx != TERMINAL_STX) {
+		print("Invalid STX 0x%02X\n", rx->stx);
+		return;
+	}
+
+	if (rx->etx != TERMINAL_ETX) {
+		print("Invalid ETX 0x%02X\n", rx->etx);
+		return;
+	}
+
+	if (rx->checkSum != calcEVchecksum((uint8_t *)&rx->stx, sizeof(lcdReq_t))) {
+		print("Invalid checkSum\n");
+		return;
+	}
+
+	runLcdCmd(rx->lcdCmd);
 }
 
 void resp_read_meter(void)
@@ -133,12 +156,12 @@ void resp_read_meter(void)
 
 void checkMessage(void)
 {
-	print("checkMsg\n");
-
 	switch (meterRx.buf[1]) {
 	case REQ_READ_METER:
-		print("req read meter\n");
 		req_read_meter();
+		break;
+	case REQ_LCD:
+		req_lcd();
 		break;
 	}
 

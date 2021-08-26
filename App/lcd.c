@@ -6,7 +6,15 @@
 #include "rtc.h"
 #include "metering.h"
 
-uint8_t currentLCDMode = LCD_CURRENT_DATE;
+#define BUTTON_NONE 0
+#define BUTTON_ENTER 4
+#define BUTTON_STOP 5
+#define BUTTON_UP 6
+#define BUTTON_DOWN 7
+
+uint8_t buttonStatus = BUTTON_NONE;
+uint8_t lcdStatus = LCD_STATUS_NORMAR;
+char currentLCDMode = LCD_CURRENT_DATE;
 uint8_t lightMode = 0;
 extern light_t light;
 
@@ -55,6 +63,25 @@ void hal_lcd_updatememory(uint8_t baseposition, uint8_t num_segments)
 	}
 }
 
+void hal_lcd_blinkmemory(uint8_t baseposition, uint8_t num_segments)
+{
+	LCD_C_clearBlinkingMemory(LCD_C_BASE);
+
+	uint8_t i;
+	uint8_t blinkMemMap[HAL_LCD_MEMMAP_SIZE] = { 0 };
+
+	for (i = baseposition; i < num_segments; i++) {
+		blinkMemMap[i * 2 + 0] &= 1;
+		blinkMemMap[i * 2 + 0] |= 0xE0 >> 4;
+		blinkMemMap[i * 2 + 1] = 0x0F;
+	}
+
+	for (i = baseposition; i < num_segments * 2; i++) {
+		LCD_C_setBlinkingMemory(LCD_C_BASE, baseposition + i,
+					blinkMemMap[baseposition + i]);
+	}
+}
+
 void LCD_clearLCD(void)
 {
 	for (int i = 0; i < HAL_LCD_MEMMAP_SIZE; i++) {
@@ -73,10 +100,63 @@ void LCD_fullLCD(void)
 
 void DisplayDay(void)
 {
+#define YEAR 1
+#define MONTH 2
+#define DAY 3
+
+	static char blinkState = 0;
+
 	memset(LCDMemMap, 0, 16);
 	char Array[4] = "";
 
 	rtcData = RTC_C_getCalendarTime(RTC_C_BASE);
+
+	if (lcdStatus == LCD_STATUS_BLINK) {
+		signed char offset = 0;
+
+		if (buttonStatus == BUTTON_ENTER) {
+			blinkState++;
+		}
+
+		if (buttonStatus == BUTTON_UP) {
+			offset++;
+		} else if (buttonStatus == BUTTON_DOWN) {
+			offset--;
+		}
+
+		switch (blinkState) {
+		case YEAR:
+			lcd_blink(0, 4);
+			rtcData.Year += offset;
+			break;
+		case MONTH:
+			lcd_blink(4, 6);
+			rtcData.Month += offset;
+			if (rtcData.Month < 1 || rtcData.Month > 12) {
+				rtcData.Month -= offset;
+			}
+			break;
+		case DAY:
+			lcd_blink(6, 8);
+			rtcData.DayOfMonth += offset;
+			if (rtcData.DayOfMonth < 1 || rtcData.DayOfMonth > 31) {
+				rtcData.DayOfMonth -= offset;
+			}
+			break;
+		default:
+			blinkState = YEAR;
+			lcd_blink(0, 4);
+			rtcData.Year += offset;
+			break;
+		}
+
+		RTC_C_initCalendar(RTC_C_BASE, &rtcData, RTC_C_FORMAT_BINARY);
+		RTC_C_setCalendarEvent(RTC_C_BASE, RTC_C_CALENDAREVENT_NOON);
+		RTC_C_enableInterrupt(RTC_C_BASE, RTC_C_TIME_EVENT_INTERRUPT);
+		RTC_C_startClock(RTC_C_BASE);
+	} else {
+		blinkState = 0;
+	}
 
 	// year
 	sprintf(Array, "%04lu", (unsigned long)rtcData.Year);
@@ -126,6 +206,11 @@ void DisplayTime(uint8_t mode)
 		memcpy(&time, &light.offTime, 2);
 		break;
 	case LCD_CURRENT_TIME:
+		rtcData = RTC_C_getCalendarTime(RTC_C_BASE);
+		time.hour = rtcData.Hours;
+		time.minute = rtcData.Minutes;
+		break;
+	case LCD_CURRENT_MODE:
 		rtcData = RTC_C_getCalendarTime(RTC_C_BASE);
 		time.hour = rtcData.Hours;
 		time.minute = rtcData.Minutes;
@@ -241,7 +326,7 @@ void DisplayArea(void)
 	}
 }
 
-void LCD_SelectMode(uint8_t mode)
+void LCD_SelectMode(char mode)
 {
 	LCDMemMap[18] &= 0b1000;
 	LCDMemMap[17] = 0;
@@ -276,9 +361,15 @@ void LCD_SelectMode(uint8_t mode)
 		LCDMemMap[17] = 0b1000;
 		break;
 	default:
-		mode = 0;
-		LCDMemMap[18] |= 0b0100;
-		DisplayDay();
+		if (mode < 10) {
+			mode = LCD_CURRENT_DATE;
+			LCDMemMap[18] |= 0b0100;
+			DisplayDay();
+		} else {
+			mode = LCD_CURRENT_MODE;
+			LCDMemMap[17] = 0b1000;
+			DisplayTime(mode);
+		}
 		break;
 	}
 
@@ -298,12 +389,50 @@ void LCD_SelectMode(uint8_t mode)
 	lcd_updateAll();
 }
 
+void runBlinkCmd(int button)
+{
+}
+
+void runLcdCmd(unsigned char lcdCmd)
+{
+	buttonStatus = lcdCmd;
+
+	if (lcdStatus == LCD_STATUS_NORMAR) {
+		if (lcdCmd == BUTTON_ENTER) {
+			lcdStatus = LCD_STATUS_BLINK;
+			LCD_SelectMode(currentLCDMode);
+		} else if (lcdCmd == BUTTON_STOP) {
+		} else if (lcdCmd == BUTTON_UP) {
+			LCD_SelectMode(++currentLCDMode);
+		} else if (lcdCmd == BUTTON_DOWN) {
+			LCD_SelectMode(--currentLCDMode);
+		}
+	} else if (lcdStatus == LCD_STATUS_BLINK) {
+		if (lcdCmd == BUTTON_ENTER) {
+			LCD_SelectMode(currentLCDMode);
+		} else if (lcdCmd == BUTTON_STOP) {
+			lcdStatus = LCD_STATUS_NORMAR;
+			LCD_C_clearBlinkingMemory(LCD_C_BASE);
+			LCD_SelectMode(currentLCDMode);
+		} else if (lcdCmd == BUTTON_UP) {
+			LCD_SelectMode(currentLCDMode);
+		} else if (lcdCmd == BUTTON_DOWN) {
+			LCD_SelectMode(currentLCDMode);
+		}
+	}
+
+	buttonStatus = BUTTON_NONE;
+}
+
 void initLCD(void)
 {
 	LCD_C_init(LCD_C_BASE, (LCD_C_initParam *)&LCD_C_INIT_PARAM);
 
 	LCD_C_setPinAsLCDFunctionEx(LCD_C_BASE, LCD_C_SEGMENT_LINE_0, LCD_C_SEGMENT_LINE_18);
 	LCD_C_clearMemory(LCD_C_BASE);
+	LCD_C_setBlinkingControl(LCD_C_BASE, LCD_C_BLINK_FREQ_CLOCK_DIVIDER_6,
+				 LCD_C_BLINK_FREQ_CLOCK_PRESCALAR_1024,
+				 LCD_C_BLINK_MODE_INDIVIDUAL_SEGMENTS);
 
 	// Turn LCD on
 	LCD_C_on(LCD_C_BASE);

@@ -17,6 +17,7 @@
 #define SET_LIGHT_TIME 0xA2
 #define SET_RTC_TIME 0xA3
 #define SET_CALIB_FACTOR 0xA4
+#define REQ_LCD 0xA5
 
 struct Time {
 	uint16_t year; // yearH, yearL
@@ -55,6 +56,14 @@ typedef struct {
 	uint8_t checkSum;
 	uint8_t etx;
 } elecMeterReq_t;
+
+typedef struct {
+	uint8_t stx;
+	uint8_t msgType;
+	uint8_t lcdCmd;
+	uint8_t checkSum;
+	uint8_t etx;
+} lcdReq_t;
 
 /* Meter -> Terminal */
 #define METER_STX 0x5B

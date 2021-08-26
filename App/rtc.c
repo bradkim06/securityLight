@@ -68,8 +68,7 @@ void initRTC(void)
 	// RTC_C_enableInterrupt(RTC_C_BASE, RTC_C_CLOCK_READ_READY_INTERRUPT +
 	// 					  RTC_C_TIME_EVENT_INTERRUPT +
 	// 					  RTC_C_CLOCK_ALARM_INTERRUPT);
-	RTC_C_enableInterrupt(RTC_C_BASE,
-			      RTC_C_CLOCK_READ_READY_INTERRUPT + RTC_C_TIME_EVENT_INTERRUPT);
+	RTC_C_enableInterrupt(RTC_C_BASE, RTC_C_TIME_EVENT_INTERRUPT);
 	//Start RTC C Clock
 	RTC_C_startClock(RTC_C_BASE);
 }
@@ -84,21 +83,16 @@ void __attribute__((interrupt(RTC_VECTOR))) rtc_isr(void)
 #error Compiler not supported!
 #endif
 {
-	static char sec = 0;
 	switch (__even_in_range(RTCIV, 16)) {
 	case RTCIV_NONE: // No interrupts
 		break;
 	case RTCIV_RTCOFIFG: // RTCOFIFG
 		break;
 	case RTCIV_RTCRDYIFG: // RTCRDYIFG second event
-		if (++sec >= 3) {
-			LCD_SelectMode(++currentLCDMode);
-			sec = 0;
-		}
 		break;
 	case RTCIV_RTCTEVIFG: // RTCEVIFG hour event
 		print("noon event, flash write\n");
-		writeFlash();
+		/* writeFlash(); */
 		break;
 	case RTCIV_RTCAIFG: // RTCAIFG alarm event
 		print("alarm event!\n");

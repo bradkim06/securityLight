@@ -61,7 +61,6 @@ int main(void)
 		if (gemResultStatus) {
 			/* print_EMResult(); */
 			/* resp_read_meter(); */
-			// LCD_SelectMode(++currentLCDMode);
 		}
 #endif
 	}
