@@ -4,6 +4,39 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#define LCD_TOGGLE_DAY() LCDMemMap[18] ^= 0b0100;
+#define LCD_TOGGLE_LIGHT_ON() LCDMemMap[18] ^= 0b0010;
+#define LCD_TOGGLE_LIGHT_OFF() LCDMemMap[18] ^= 0b0001;
+#define LCD_TOGGLE_PSM() LCDMemMap[17] ^= 0b0001;
+#define LCD_TOGGLE_AREA() LCDMemMap[17] ^= 0b0010;
+#define LCD_TOGGLE_CURRENT_TIME() LCDMemMap[17] ^= 0b0100;
+#define LCD_TOGGLE_CURRENT_MODE() LCDMemMap[17] ^= 0b1000;
+
+#define LCD_TOGGLE_AUTO_MODE() LCDMemMap[16] ^= 0b1000;
+#define LCD_TOGGLE_SET_MODE() LCDMemMap[16] ^= 0b0100;
+#define LCD_TOGGLE_DIMM_MODE() LCDMemMap[16] ^= 0b0010;
+
+#define LCD_DAY_MODE()                                                                             \
+	{                                                                                          \
+		LCDMemMap[8] |= 1;                                                                 \
+		LCDMemMap[12] |= 1;                                                                \
+	}
+#define LCD_TIME_MODE() LCDMemMap[14] |= 1;
+#define LCD_PSM_ON_MODE()                                                                          \
+	{                                                                                          \
+		LCDMemMap[6] |= 1;                                                                 \
+		LCDMemMap[8] |= 1;                                                                 \
+		LCDMemMap[14] |= 1;                                                                \
+	}
+
+#define LCD_CLEAR_DATA() memset(LCDMemMap, 0, 16);
+#define LCD_CLEAR_MODE()                                                                           \
+	{                                                                                          \
+		LCDMemMap[16] = 0;                                                                 \
+		LCDMemMap[17] = 0;                                                                 \
+		LCDMemMap[18] = 0;                                                                 \
+	}
+
 typedef struct {
 	uint8_t dayMode;
 } lcdStat_t;
@@ -21,7 +54,7 @@ extern lcdStat_t lcdStat;
 #define LCD_CURRENT_DATE 0
 #define LCD_LIGHTON_TIME 1
 #define LCD_LIGHTOFF_TIME 2
-#define LCD_NIGHT_MODE 3
+#define LCD_PSM_MODE 3
 #define LCD_AREA 4
 #define LCD_CURRENT_TIME 5
 #define LCD_CURRENT_MODE 6
@@ -42,7 +75,7 @@ void LCD_fullLCD(void);
 void LCD_testLCD(char num);
 void DisplayDay(void);
 void DisplayLightOn(void);
-void DisplaySaveMode(void);
+void DisplayPsmMode(void);
 
 void LCD_SelectMode(char mode);
 void runLcdCmd(unsigned char lcdCmd);

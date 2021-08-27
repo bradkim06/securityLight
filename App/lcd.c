@@ -258,7 +258,6 @@ static void fixLcdData()
 
 void DisplayDay(void)
 {
-	memset(LCDMemMap, 0, 16);
 	char Array[4] = "";
 
 	rtcData = RTC_C_getCalendarTime(RTC_C_BASE);
@@ -294,13 +293,11 @@ void DisplayDay(void)
 		LCDMemMap[i * 2 + 12 + 1] = (value & 0x0F);
 	}
 
-	LCDMemMap[8] |= 1;
-	LCDMemMap[12] |= 1;
+	LCD_DAY_MODE();
 }
 
 void DisplayTime(uint8_t mode)
 {
-	memset(LCDMemMap, 0, 16);
 	char Array[2] = "";
 	Time_t time;
 
@@ -349,29 +346,33 @@ void DisplayTime(uint8_t mode)
 		LCDMemMap[i * 2 + 12 + 1] = (value & 0x0F);
 	}
 
-	LCDMemMap[14] |= 1;
+	LCD_TIME_MODE();
 }
 
-void DisplaySaveMode(void)
+void DisplayPsmMode(void)
 {
-	memset(LCDMemMap, 0, 16);
 	char Array[2] = "";
 
 	if (light.psm == false) {
-		// O
-		LCDMemMap[10] &= 1;
-		LCDMemMap[10] |= 0b1010;
-		LCDMemMap[11] |= 0b1111;
+		char *string = "OFF";
+		int firstPos = 1;
 
-		// F
-		LCDMemMap[12] &= 1;
-		LCDMemMap[12] |= 0b1110;
-		LCDMemMap[13] |= 0b0001;
+		for (int i = firstPos; i < 4; i++) {
+			uint8_t value = lcd_getCharPattern(*(string + i - firstPos));
 
-		// F
-		LCDMemMap[14] &= 1;
-		LCDMemMap[14] |= 0b1110;
-		LCDMemMap[15] |= 0b0001;
+			LCDMemMap[i * 2 + 0] &= 1;
+			LCDMemMap[i * 2 + 0] |= ((value & 0xE0) >> 4);
+			LCDMemMap[i * 2 + 1] = (value & 0x0F);
+		}
+
+		firstPos = 5;
+		for (int i = firstPos; i < 8; i++) {
+			uint8_t value = lcd_getCharPattern(*(string + i - firstPos));
+
+			LCDMemMap[i * 2 + 0] &= 1;
+			LCDMemMap[i * 2 + 0] |= ((value & 0xE0) >> 4);
+			LCDMemMap[i * 2 + 1] = (value & 0x0F);
+		}
 
 		return;
 	}
@@ -418,14 +419,11 @@ void DisplaySaveMode(void)
 		LCDMemMap[i * 2 + 12 + 1] = (value & 0x0F);
 	}
 
-	LCDMemMap[6] |= 1;
-	LCDMemMap[8] |= 1;
-	LCDMemMap[14] |= 1;
+	LCD_PSM_ON_MODE();
 }
 
 void DisplayArea(void)
 {
-	memset(LCDMemMap, 0, 16);
 	char Array[2] = "";
 
 	sprintf(Array, "%04lu", (unsigned long)light.region);
@@ -440,7 +438,6 @@ void DisplayArea(void)
 
 void DisplayCurrentMode(void)
 {
-	memset(LCDMemMap, 0, 16);
 	fixLcdData();
 
 	if (light.mode == LMODE_INTERNAL) {
@@ -482,47 +479,46 @@ void DisplayCurrentMode(void)
 
 void LCD_SelectMode(char mode)
 {
-	LCDMemMap[18] &= 0b1000;
-	LCDMemMap[17] = 0;
-	LCDMemMap[16] = 0;
+	LCD_CLEAR_MODE();
+	LCD_CLEAR_DATA();
 
 	switch (mode) {
 	case LCD_CURRENT_DATE:
-		LCDMemMap[18] |= 0b0100;
+		LCD_TOGGLE_DAY();
 		DisplayDay();
 		break;
 	case LCD_LIGHTON_TIME:
-		LCDMemMap[18] |= 0b0010;
+		LCD_TOGGLE_LIGHT_ON();
 		DisplayTime(mode);
 		break;
 	case LCD_LIGHTOFF_TIME:
-		LCDMemMap[18] |= 0b0001;
+		LCD_TOGGLE_LIGHT_OFF();
 		DisplayTime(mode);
 		break;
-	case LCD_NIGHT_MODE:
-		LCDMemMap[17] = 0b0001;
-		DisplaySaveMode();
+	case LCD_PSM_MODE:
+		LCD_TOGGLE_PSM();
+		DisplayPsmMode();
 		break;
 	case LCD_AREA:
-		LCDMemMap[17] = 0b0010;
+		LCD_TOGGLE_AREA();
 		DisplayArea();
 		break;
 	case LCD_CURRENT_TIME:
-		LCDMemMap[17] = 0b0100;
+		LCD_TOGGLE_CURRENT_TIME();
 		DisplayTime(mode);
 		break;
 	case LCD_CURRENT_MODE:
-		LCDMemMap[17] = 0b1000;
+		LCD_TOGGLE_CURRENT_MODE();
 		DisplayCurrentMode();
 		break;
 	default:
 		if (mode < 10) {
 			mode = LCD_CURRENT_DATE;
-			LCDMemMap[18] |= 0b0100;
+			LCD_TOGGLE_DAY();
 			DisplayDay();
 		} else {
 			mode = LCD_CURRENT_MODE;
-			LCDMemMap[17] = 0b1000;
+			LCD_TOGGLE_CURRENT_MODE();
 			DisplayCurrentMode();
 		}
 		break;
@@ -530,22 +526,18 @@ void LCD_SelectMode(char mode)
 
 	switch (light.mode) {
 	case LCD_AUTO:
-		LCDMemMap[16] = 0b1000;
+		LCD_TOGGLE_AUTO_MODE();
 		break;
 	case LCD_SETTING:
-		LCDMemMap[16] = 0b0100;
+		LCD_TOGGLE_SET_MODE();
 		break;
 	default:
-		LCDMemMap[16] = 0b1000;
+		LCD_TOGGLE_AUTO_MODE();
 		break;
 	}
 
 	currentLCDMode = mode;
 	lcd_updateAll();
-}
-
-void runBlinkCmd(int button)
-{
 }
 
 void runLcdCmd(unsigned char lcdCmd)
@@ -555,7 +547,7 @@ void runLcdCmd(unsigned char lcdCmd)
 	if (lcdStatus == LCD_STATUS_NORMAR) {
 		if (lcdCmd == BUTTON_ENTER) {
 			switch (currentLCDMode) {
-			case LCD_NIGHT_MODE:
+			case LCD_PSM_MODE:
 				break;
 			case LCD_AREA:
 				break;
@@ -612,4 +604,5 @@ void initLCD(void)
 
 	// Turn LCD on
 	LCD_C_on(LCD_C_BASE);
+	LCD_SelectMode(currentLCDMode);
 }
