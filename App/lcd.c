@@ -162,18 +162,34 @@ static void fixLcdData()
 				switch (blinkState) {
 				case 1:
 					lcd_blink(0, 2);
+					light.psmOnTime[0] += offset;
+					if (light.psmOnTime[0] > 23) {
+						light.psmOnTime[0] -= offset;
+					}
 					break;
 
 				case 2:
 					lcd_blink(2, 4);
+					light.psmOnTime[1] += offset;
+					if (light.psmOnTime[1] > 59) {
+						light.psmOnTime[1] -= offset;
+					}
 					break;
 
 				case 3:
 					lcd_blink(4, 6);
+					light.psmOffTime[0] += offset;
+					if (light.psmOffTime[0] > 23) {
+						light.psmOffTime[0] -= offset;
+					}
 					break;
 
 				case 4:
 					lcd_blink(6, 8);
+					light.psmOffTime[1] += offset;
+					if (light.psmOffTime[1] > 59) {
+						light.psmOffTime[1] -= offset;
+					}
 					break;
 
 				default:
@@ -186,10 +202,18 @@ static void fixLcdData()
 				switch (blinkState) {
 				case 1:
 					lcd_blink(0, 2);
+					light.psmOnTime[0] += offset;
+					if (light.psmOnTime[0] > 23) {
+						light.psmOnTime[0] -= offset;
+					}
 					break;
 
 				case 2:
 					lcd_blink(2, 4);
+					light.psmOnTime[1] += offset;
+					if (light.psmOnTime[1] > 59) {
+						light.psmOnTime[1] -= offset;
+					}
 					break;
 
 				default:
@@ -439,7 +463,6 @@ void DisplayPsmMode(void)
 		char Array[2] = "";
 
 		// saveMode on Time
-		// sprintf(Array, "%02lu", (unsigned long)onTime->hour);
 		sprintf(Array, "%02lu", (unsigned long)light.psmOnTime[0]);
 		for (int i = 0; i < 2; i++) {
 			uint8_t value = lcd_getCharPattern(Array[i]);
@@ -449,7 +472,6 @@ void DisplayPsmMode(void)
 			LCDMemMap[i * 2 + 1] = (value & 0x0F);
 		}
 
-		// sprintf(Array, "%02lu", (unsigned long)onTime->minute);
 		sprintf(Array, "%02lu", (unsigned long)light.psmOnTime[1]);
 		for (int i = 0; i < 2; i++) {
 			uint8_t value = lcd_getCharPattern(Array[i]);
@@ -476,7 +498,6 @@ void DisplayPsmMode(void)
 	char Array[2] = "";
 
 	// saveMode on Time
-	// sprintf(Array, "%02lu", (unsigned long)onTime->hour);
 	sprintf(Array, "%02lu", (unsigned long)light.psmOnTime[0]);
 	for (int i = 0; i < 2; i++) {
 		uint8_t value = lcd_getCharPattern(Array[i]);
@@ -486,7 +507,6 @@ void DisplayPsmMode(void)
 		LCDMemMap[i * 2 + 1] = (value & 0x0F);
 	}
 
-	// sprintf(Array, "%02lu", (unsigned long)onTime->minute);
 	sprintf(Array, "%02lu", (unsigned long)light.psmOnTime[1]);
 	for (int i = 0; i < 2; i++) {
 		uint8_t value = lcd_getCharPattern(Array[i]);
@@ -497,7 +517,6 @@ void DisplayPsmMode(void)
 	}
 
 	// saveMode off Time
-	// sprintf(Array, "%02lu", (unsigned long)offTime->hour);
 	sprintf(Array, "%02lu", (unsigned long)light.psmOffTime[0]);
 	for (int i = 0; i < 2; i++) {
 		uint8_t value = lcd_getCharPattern(Array[i]);
@@ -507,8 +526,7 @@ void DisplayPsmMode(void)
 		LCDMemMap[i * 2 + 8 + 1] = (value & 0x0F);
 	}
 
-	// sprintf(Array, "%02lu", (unsigned long)offTime->minute);
-	sprintf(Array, "%02lu", (unsigned long)light.psmOffTime[0]);
+	sprintf(Array, "%02lu", (unsigned long)light.psmOffTime[1]);
 	for (int i = 0; i < 2; i++) {
 		uint8_t value = lcd_getCharPattern(Array[i]);
 
@@ -537,10 +555,22 @@ void DisplayArea(void)
 void DisplayCurrentMode(void)
 {
 	fixLcdData();
-
-	if (light.mode == LMODE_INTERNAL) {
 #define SUNRISE 1
 #define CIVIL 2
+
+	if (light.mode == LMODE_SETTING) {
+		char *string = "SETTING";
+
+		for (int i = 0; i < 7; i++) {
+			uint8_t value = lcd_getCharPattern(*(string + i));
+
+			LCDMemMap[i * 2 + 0] &= 1;
+			LCDMemMap[i * 2 + 0] |= ((value & 0xE0) >> 4);
+			LCDMemMap[i * 2 + 1] = (value & 0x0F);
+		}
+	} else {
+		light.mode = LMODE_INTERNAL;
+
 		if (light.timeBase == SUNRISE) {
 			char *string = "SUNRISE";
 
@@ -561,16 +591,6 @@ void DisplayCurrentMode(void)
 				LCDMemMap[i * 2 + 0] |= ((value & 0xE0) >> 4);
 				LCDMemMap[i * 2 + 1] = (value & 0x0F);
 			}
-		}
-	} else if (light.mode == LMODE_SETTING) {
-		char *string = "SETTING";
-
-		for (int i = 0; i < 7; i++) {
-			uint8_t value = lcd_getCharPattern(*(string + i));
-
-			LCDMemMap[i * 2 + 0] &= 1;
-			LCDMemMap[i * 2 + 0] |= ((value & 0xE0) >> 4);
-			LCDMemMap[i * 2 + 1] = (value & 0x0F);
 		}
 	}
 }

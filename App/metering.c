@@ -45,9 +45,9 @@ void req_read_meter(void)
 		return;
 	}
 
-	memcpy(&light, &rx->light, sizeof(light_t));
-
 	resp_read_meter();
+
+	memcpy(&light, &rx->light, sizeof(light_t));
 
 	Calendar currentTime;
 
