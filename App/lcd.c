@@ -23,14 +23,15 @@ static uint8_t lcdStatus = LCD_STATUS_NORMAR;
 // Local variable
 typedef struct {
 	char c;
-	int value;
 	uint8_t pattern;
 } lcd_pattern_t;
 
 const lcd_pattern_t lcdPattern[] = {
-	{ '0', 0, 0xAF }, { '1', 1, 0x06 }, { '2', 2, 0xCB }, { '3', 3, 0x4F }, { '4', 4, 0x66 },
-	{ '5', 5, 0x6D }, { '6', 6, 0xEC }, { '7', 7, 0x07 }, { '8', 8, 0xEF }, { '9', 9, 0x67 },
-	{ '-', 0, 0x40 }, { ' ', 0, 0x00 }, { 'O', 0, 0xAF }, { 'F', 0, 0xE8 },
+	{ '0', 0xAF }, { '1', 0x06 }, { '2', 0xCB }, { '3', 0x4F }, { '4', 0x66 },
+	{ '5', 0x6D }, { '6', 0xEC }, { '7', 0x07 }, { '8', 0xEF }, { '9', 0x67 },
+	{ '-', 0x40 }, { ' ', 0x00 }, { 'O', 0xAF }, { 'F', 0xE1 }, { 'S', 0x6D },
+	{ 'U', 0xAE }, { 'N', 0xA7 }, { 'R', 0xE7 }, { 'I', 0xA0 }, { 'E', 0xE9 },
+	{ 'C', 0xA9 }, { 'V', 0xAE }, { 'L', 0xA8 }, { 'T', 0xE8 }, { 'G', 0xAD },
 };
 
 static uint8_t lcd_getCharPattern(char c)
@@ -153,17 +154,52 @@ static void fixLcdData()
 
 		} break;
 
+		case LCD_CURRENT_MODE: {
+			switch (blinkState) {
+			case 1:
+				lcd_blink(0, 8);
+				if (offset) {
+					light.timeBase++;
+
+					if (light.timeBase > 2) {
+						light.timeBase = 1;
+					}
+				}
+				break;
+			case 2:
+				LCD_C_clearBlinkingMemory(LCD_C_BASE);
+				LCD_C_setBlinkingMemory(LCD_C_BASE, 16, 0xf);
+
+				if (offset) {
+					light.mode++;
+
+					if (light.mode > 2) {
+						light.mode = 1;
+					}
+				}
+				break;
+			default:
+				blinkState = 1;
+				lcd_blink(0, 8);
+				break;
+			}
+		} break;
+
 		case LCD_CURRENT_TIME: {
 			hour = &rtcData.Hours;
 			min = &rtcData.Minutes;
 		} break;
 		case LCD_LIGHTON_TIME: {
-			hour = &light.onTime[0];
-			min = &light.onTime[1];
+			if (light.mode == LMODE_SETTING) {
+				hour = &light.setOnTime[0];
+				min = &light.setOnTime[1];
+			}
 		} break;
 		case LCD_LIGHTOFF_TIME: {
-			hour = &light.offTime[0];
-			min = &light.offTime[1];
+			if (light.mode == LMODE_SETTING) {
+				hour = &light.setOffTime[0];
+				min = &light.setOffTime[1];
+			}
 		} break;
 		default:
 			break;
@@ -210,6 +246,7 @@ static void fixLcdData()
 
 			case LCD_LIGHTON_TIME:
 			case LCD_LIGHTOFF_TIME:
+			case LCD_CURRENT_MODE:
 				ChgLightConfig = 1;
 				break;
 			}
@@ -270,20 +307,23 @@ void DisplayTime(uint8_t mode)
 	switch (mode) {
 	case LCD_LIGHTON_TIME:
 		fixLcdData();
-		memcpy(&time, &light.onTime, 2);
+		if (light.mode == LMODE_SETTING) {
+			memcpy(&time, &light.setOnTime, 2);
+		} else {
+			memcpy(&time, &light.onTime, 2);
+		}
 		break;
 	case LCD_LIGHTOFF_TIME:
 		fixLcdData();
-		memcpy(&time, &light.offTime, 2);
+		if (light.mode == LMODE_SETTING) {
+			memcpy(&time, &light.setOffTime, 2);
+		} else {
+			memcpy(&time, &light.offTime, 2);
+		}
 		break;
 	case LCD_CURRENT_TIME:
 		rtcData = RTC_C_getCalendarTime(RTC_C_BASE);
 		fixLcdData();
-		time.hour = rtcData.Hours;
-		time.minute = rtcData.Minutes;
-		break;
-	case LCD_CURRENT_MODE:
-		rtcData = RTC_C_getCalendarTime(RTC_C_BASE);
 		time.hour = rtcData.Hours;
 		time.minute = rtcData.Minutes;
 		break;
@@ -398,6 +438,48 @@ void DisplayArea(void)
 	}
 }
 
+void DisplayCurrentMode(void)
+{
+	memset(LCDMemMap, 0, 16);
+	fixLcdData();
+
+	if (light.mode == LMODE_INTERNAL) {
+#define SUNRISE 1
+#define CIVIL 2
+		if (light.timeBase == SUNRISE) {
+			char *string = "SUNRISE";
+
+			for (int i = 0; i < 7; i++) {
+				uint8_t value = lcd_getCharPattern(*(string + i));
+
+				LCDMemMap[i * 2 + 0] &= 1;
+				LCDMemMap[i * 2 + 0] |= ((value & 0xE0) >> 4);
+				LCDMemMap[i * 2 + 1] = (value & 0x0F);
+			}
+		} else if (light.timeBase == CIVIL) {
+			char *string = "CIVIL";
+
+			for (int i = 0; i < 5; i++) {
+				uint8_t value = lcd_getCharPattern(*(string + i));
+
+				LCDMemMap[i * 2 + 0] &= 1;
+				LCDMemMap[i * 2 + 0] |= ((value & 0xE0) >> 4);
+				LCDMemMap[i * 2 + 1] = (value & 0x0F);
+			}
+		}
+	} else if (light.mode == LMODE_SETTING) {
+		char *string = "SETTING";
+
+		for (int i = 0; i < 7; i++) {
+			uint8_t value = lcd_getCharPattern(*(string + i));
+
+			LCDMemMap[i * 2 + 0] &= 1;
+			LCDMemMap[i * 2 + 0] |= ((value & 0xE0) >> 4);
+			LCDMemMap[i * 2 + 1] = (value & 0x0F);
+		}
+	}
+}
+
 void LCD_SelectMode(char mode)
 {
 	LCDMemMap[18] &= 0b1000;
@@ -431,6 +513,7 @@ void LCD_SelectMode(char mode)
 		break;
 	case LCD_CURRENT_MODE:
 		LCDMemMap[17] = 0b1000;
+		DisplayCurrentMode();
 		break;
 	default:
 		if (mode < 10) {
@@ -440,7 +523,7 @@ void LCD_SelectMode(char mode)
 		} else {
 			mode = LCD_CURRENT_MODE;
 			LCDMemMap[17] = 0b1000;
-			DisplayTime(mode);
+			DisplayCurrentMode();
 		}
 		break;
 	}
@@ -472,16 +555,18 @@ void runLcdCmd(unsigned char lcdCmd)
 	if (lcdStatus == LCD_STATUS_NORMAR) {
 		if (lcdCmd == BUTTON_ENTER) {
 			switch (currentLCDMode) {
-			case LCD_CURRENT_MODE:
-				break;
 			case LCD_NIGHT_MODE:
 				break;
 			case LCD_AREA:
 				break;
-			case LCD_CURRENT_DATE:
 			case LCD_LIGHTON_TIME:
 			case LCD_LIGHTOFF_TIME:
+				if (light.mode == LMODE_INTERNAL) {
+					break;
+				}
+			case LCD_CURRENT_DATE:
 			case LCD_CURRENT_TIME:
+			case LCD_CURRENT_MODE:
 				lcdStatus = LCD_STATUS_BLINK;
 				LCD_SelectMode(currentLCDMode);
 				break;
@@ -527,6 +612,4 @@ void initLCD(void)
 
 	// Turn LCD on
 	LCD_C_on(LCD_C_BASE);
-
-	LCD_SelectMode(currentLCDMode);
 }

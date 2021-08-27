@@ -61,7 +61,7 @@ void initRTC(void)
 	RTC_C_initCalendar(RTC_C_BASE, &currentTime, RTC_C_FORMAT_BINARY);
 	// RTC_C_configureCalendarAlarm(RTC_C_BASE, &alarmParam);
 	//Specify an interrupt to assert every noon
-	RTC_C_setCalendarEvent(RTC_C_BASE, RTC_C_CALENDAREVENT_NOON);
+	RTC_C_setCalendarEvent(RTC_C_BASE, RTC_C_CALENDAREVENT_MINUTECHANGE);
 	//Enable interrupt for RTC C Ready Status, which asserts when the RTC C
 	//Calendar registers are ready to read.
 	//Also, enable interrupts for the Calendar alarm and Calendar event.
@@ -91,11 +91,9 @@ void __attribute__((interrupt(RTC_VECTOR))) rtc_isr(void)
 	case RTCIV_RTCRDYIFG: // RTCRDYIFG second event
 		break;
 	case RTCIV_RTCTEVIFG: // RTCEVIFG hour event
-		print("noon event, flash write\n");
-		/* writeFlash(); */
+		LCD_SelectMode(currentLCDMode);
 		break;
 	case RTCIV_RTCAIFG: // RTCAIFG alarm event
-		print("alarm event!\n");
 		break;
 	case RTCIV_RT0PSIFG: // RT0PSIFG
 		break;

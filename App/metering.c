@@ -60,9 +60,8 @@ void req_read_meter(void)
 		currentTime.Seconds = rx->time.sec;
 
 		RTC_C_initCalendar(RTC_C_BASE, &currentTime, RTC_C_FORMAT_BINARY);
-		RTC_C_setCalendarEvent(RTC_C_BASE, RTC_C_CALENDAREVENT_NOON);
-		RTC_C_enableInterrupt(RTC_C_BASE, RTC_C_CLOCK_READ_READY_INTERRUPT +
-							  RTC_C_TIME_EVENT_INTERRUPT);
+		RTC_C_setCalendarEvent(RTC_C_BASE, RTC_C_CALENDAREVENT_MINUTECHANGE);
+		RTC_C_enableInterrupt(RTC_C_BASE, RTC_C_TIME_EVENT_INTERRUPT);
 		RTC_C_startClock(RTC_C_BASE);
 	}
 
