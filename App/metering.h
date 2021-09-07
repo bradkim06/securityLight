@@ -48,6 +48,7 @@ typedef struct {
 	uint8_t psmOffTime[2]; // Hour, Min
 	uint8_t psmOnDay[2]; // Month, Day
 	uint8_t psmOffDay[2]; // Month, Day
+	uint8_t stabOffset;
 	uint8_t dimmingMode;
 	uint8_t dimmingLv;
 } light_t;

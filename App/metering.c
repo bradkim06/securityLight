@@ -16,7 +16,7 @@ struct receive meterRx;
 static uint8_t calcEVchecksum(uint8_t *from, int size)
 {
 	// size - 2 -> Not Calculate ETX, Checksum
-	size = size - 2;
+	size = size - 3;
 	uint8_t checksum = 0;
 
 	for (int i = 0; i < size; i++) {
@@ -40,8 +40,9 @@ void req_read_meter(void)
 		return;
 	}
 
-	if (rx->checkSum != calcEVchecksum((uint8_t *)&rx->stx, sizeof(elecMeterReq_t))) {
-		print("Invalid checkSum\n");
+	int checksum = calcEVchecksum((uint8_t *)&rx->stx, sizeof(elecMeterReq_t));
+	if (rx->checkSum != checksum) {
+		print("Invalid checkSum recv(0x%02X) calc(0x%02X)\n", rx->checkSum, checksum);
 		return;
 	}
 
