@@ -720,6 +720,7 @@ void initLCD(void)
 	LCD_C_setBlinkingControl(LCD_C_BASE, LCD_C_BLINK_FREQ_CLOCK_DIVIDER_6,
 				 LCD_C_BLINK_FREQ_CLOCK_PRESCALAR_1024,
 				 LCD_C_BLINK_MODE_INDIVIDUAL_SEGMENTS);
+	LCD_C_clearBlinkingMemory(LCD_C_BASE);
 
 	// Turn LCD on
 	LCD_C_on(LCD_C_BASE);
