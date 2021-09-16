@@ -88,7 +88,13 @@ static void req_lcd(void)
 		return;
 	}
 
-	runLcdCmd(rx->lcdCmd);
+	if (rx->lcdCmd == COMM_STATUS_ON) {
+		LCD_COMM_CTRL(rx->lcdCmd);
+	} else if (rx->lcdCmd == COMM_STATUS_OFF) {
+		LCD_COMM_CTRL(rx->lcdCmd);
+	} else {
+		runLcdCmd(rx->lcdCmd);
+	}
 }
 
 void req_lightFix(void)

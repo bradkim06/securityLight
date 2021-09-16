@@ -4,6 +4,20 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#define COMM_STATUS_ON 2
+#define COMM_STATUS_OFF 3
+
+#define BUTTON_NONE 0
+#define BUTTON_ENTER 4
+#define BUTTON_STOP 5
+#define BUTTON_UP 6
+#define BUTTON_DOWN 7
+
+#define COMM_STATUS_TOGGLE 1
+#define LCD_COMM_TOGGLE() LCDMemMap[18] ^= 0b1000;
+#define LCD_COMM_ON() LCDMemMap[18] |= 0b1000;
+#define LCD_COMM_OFF() LCDMemMap[18] &= 0b0111;
+
 #define LCD_TOGGLE_DAY() LCDMemMap[18] ^= 0b0100;
 #define LCD_TOGGLE_LIGHT_ON() LCDMemMap[18] ^= 0b0010;
 #define LCD_TOGGLE_LIGHT_OFF() LCDMemMap[18] ^= 0b0001;
@@ -34,7 +48,7 @@
 	{                                                                                          \
 		LCDMemMap[16] = 0;                                                                 \
 		LCDMemMap[17] = 0;                                                                 \
-		LCDMemMap[18] = 0;                                                                 \
+		LCDMemMap[18] &= 0b1000;                                                           \
 	}
 
 typedef struct {
@@ -79,6 +93,7 @@ void DisplayPsmMode(void);
 
 void LCD_SelectMode(char mode);
 void runLcdCmd(unsigned char lcdCmd);
+void LCD_COMM_CTRL(int status);
 
 typedef struct {
 	uint16_t year;
@@ -104,4 +119,5 @@ typedef struct {
 	Time_t currentTime;
 	savingMode_t saveMode;
 } lcdData_t;
+
 #endif

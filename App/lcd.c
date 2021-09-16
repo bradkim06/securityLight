@@ -6,12 +6,6 @@
 #include "rtc.h"
 #include "metering.h"
 
-#define BUTTON_NONE 0
-#define BUTTON_ENTER 4
-#define BUTTON_STOP 5
-#define BUTTON_UP 6
-#define BUTTON_DOWN 7
-
 #define PSM_NOT_USING 0
 #define PSM_RELIGHT 1
 #define PSM_NOT_RELIGHT 2
@@ -709,6 +703,18 @@ void runLcdCmd(unsigned char lcdCmd)
 	buttonStatus = BUTTON_NONE;
 }
 
+void LCD_COMM_CTRL(int status)
+{
+	if (status == COMM_STATUS_ON) {
+		LCD_COMM_ON();
+	} else if (status == COMM_STATUS_OFF) {
+		LCD_COMM_OFF();
+	} else if (status == COMM_STATUS_TOGGLE) {
+		LCD_COMM_TOGGLE();
+	}
+	lcd_updateAll();
+}
+
 void initLCD(void)
 {
 	lcdStat.dayMode = LCD_AUTO;
@@ -725,4 +731,5 @@ void initLCD(void)
 	// Turn LCD on
 	LCD_C_on(LCD_C_BASE);
 	LCD_SelectMode(currentLCDMode);
+	/* LCD_COMM_ON(); */
 }
