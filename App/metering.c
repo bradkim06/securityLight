@@ -110,7 +110,7 @@ void req_lightFix(void)
 	memset(&data, 0, len);
 
 	data.stx = METER_STX;
-	data.msgType = RESP_METER_CONFIG;
+	data.msgType = RESP_LIGHT_FIX;
 
 	// light status
 	memcpy(&data.light, &light, sizeof(light_t));
