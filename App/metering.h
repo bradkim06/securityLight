@@ -73,6 +73,13 @@ typedef struct {
 typedef struct {
 	uint8_t stx;
 	uint8_t msgType;
+	uint8_t checkSum;
+	uint8_t etx;
+} ReqReport_t;
+
+typedef struct {
+	uint8_t stx;
+	uint8_t msgType;
 	uint8_t lcdCmd;
 	uint8_t checkSum;
 	uint8_t etx;
@@ -84,7 +91,7 @@ typedef struct {
 
 #define RESP_READ_METER 0xB0
 #define RESP_METER_CONFIG 0xB1
-#define RESP_LIGHT_TIME 0xB2
+#define REQ_REPORT 0xB2
 #define RESP_RTC_TIME 0xB3
 #define RESP_CALIB_FACTOR 0xB4
 
@@ -118,5 +125,6 @@ extern struct receive meterRx;
 void req_lightFix(void);
 void req_read_meter(void);
 void resp_read_meter(void);
+void req_report(void);
 void checkMessage(void);
 #endif

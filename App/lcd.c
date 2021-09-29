@@ -677,6 +677,8 @@ void runLcdCmd(unsigned char lcdCmd)
 				break;
 			}
 		} else if (lcdCmd == BUTTON_STOP) {
+			print("req report\n");
+			req_report();
 		} else if (lcdCmd == BUTTON_UP) {
 			LCD_SelectMode(++currentLCDMode);
 		} else if (lcdCmd == BUTTON_DOWN) {

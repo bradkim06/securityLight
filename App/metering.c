@@ -16,10 +16,10 @@ struct receive meterRx;
 static uint8_t calcEVchecksum(uint8_t *from, int size)
 {
 	// size - 2 -> Not Calculate ETX, Checksum
-	size = size - 3;
+	int len = size - 3;
 	uint8_t checksum = 0;
 
-	for (int i = 0; i < size; i++) {
+	for (volatile int i = 0; i < len; i++) {
 		checksum += *(from + i);
 	}
 
@@ -29,6 +29,7 @@ static uint8_t calcEVchecksum(uint8_t *from, int size)
 void req_read_meter(void)
 {
 	elecMeterReq_t *rx = (elecMeterReq_t *)meterRx.buf;
+	int len = sizeof(elecMeterReq_t);
 
 	if (rx->stx != TERMINAL_STX) {
 		print("Invalid STX 0x%02X\n", rx->stx);
@@ -40,7 +41,8 @@ void req_read_meter(void)
 		return;
 	}
 
-	int checksum = calcEVchecksum((uint8_t *)&rx->stx, sizeof(elecMeterReq_t));
+	uint8_t checksum = calcEVchecksum((uint8_t *)&rx->stx, len);
+
 	if (rx->checkSum != checksum) {
 		print("Invalid checkSum recv(0x%02X) calc(0x%02X)\n", rx->checkSum, checksum);
 		return;
@@ -83,8 +85,12 @@ static void req_lcd(void)
 		return;
 	}
 
-	if (rx->checkSum != calcEVchecksum((uint8_t *)&rx->stx, sizeof(lcdReq_t))) {
-		print("Invalid checkSum\n");
+	int checksum = calcEVchecksum((uint8_t *)&rx->stx, sizeof(lcdReq_t));
+	if (rx->checkSum != checksum) {
+		for (int i = 0; i < sizeof(lcdReq_t); i++) {
+			print("i : %d data : 0x%02X\n", i, meterRx.buf[i]);
+		}
+		print("Invalid checkSum recv(0x%02X) calc(0x%02X)\n", rx->checkSum, checksum);
 		return;
 	}
 
@@ -115,6 +121,25 @@ void req_lightFix(void)
 	uint8_t *txBuf = &data.stx;
 	for (int i = 0; i < len; i++) {
 		EUSCI_A_UART_transmitData(METER_PORT, *(txBuf + i));
+	}
+}
+
+void req_report(void)
+{
+	int len = sizeof(ReqReport_t);
+	ReqReport_t data;
+	memset(&data, 0, len);
+
+	data.stx = METER_STX;
+	data.msgType = REQ_REPORT;
+
+	data.checkSum = calcEVchecksum((uint8_t *)&data.stx, len);
+	data.etx = METER_ETX;
+
+	uint8_t *txBuf = &data.stx;
+	for (int i = 0; i < len; i++) {
+		EUSCI_A_UART_transmitData(METER_PORT, *(txBuf + i));
+		print("i : %d data : 0x%02X\n", i, *(txBuf + i));
 	}
 }
 
