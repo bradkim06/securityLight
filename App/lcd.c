@@ -112,14 +112,12 @@ static void fixLcdData()
 		signed char offset = 0;
 		uint8_t *hour, *min;
 
-		if (buttonStatus == BUTTON_ENTER) {
+		if (buttonStatus == BUTTON_DOWN) {
 			blinkState++;
 		}
 
 		if (buttonStatus == BUTTON_UP) {
 			offset++;
-		} else if (buttonStatus == BUTTON_DOWN) {
-			offset--;
 		}
 
 		switch (currentLCDMode) {
@@ -132,15 +130,15 @@ static void fixLcdData()
 			case MONTH:
 				lcd_blink(4, 6);
 				rtcData.Month += offset;
-				if (rtcData.Month < 1 || rtcData.Month > 12) {
-					rtcData.Month -= offset;
+				if (rtcData.Month > 12) {
+					rtcData.Month = 1;
 				}
 				break;
 			case DAY:
 				lcd_blink(6, 8);
 				rtcData.DayOfMonth += offset;
-				if (rtcData.DayOfMonth < 1 || rtcData.DayOfMonth > 31) {
-					rtcData.DayOfMonth -= offset;
+				if (rtcData.DayOfMonth > 31) {
+					rtcData.DayOfMonth = 1;
 				}
 				break;
 			default:
@@ -158,7 +156,7 @@ static void fixLcdData()
 					lcd_blink(0, 2);
 					light.psmOnTime[0] += offset;
 					if (light.psmOnTime[0] > 23) {
-						light.psmOnTime[0] -= offset;
+						light.psmOnTime[0] = 0;
 					}
 					break;
 
@@ -166,7 +164,7 @@ static void fixLcdData()
 					lcd_blink(2, 4);
 					light.psmOnTime[1] += offset;
 					if (light.psmOnTime[1] > 59) {
-						light.psmOnTime[1] -= offset;
+						light.psmOnTime[1] = 0;
 					}
 					break;
 
@@ -174,7 +172,7 @@ static void fixLcdData()
 					lcd_blink(4, 6);
 					light.psmOffTime[0] += offset;
 					if (light.psmOffTime[0] > 23) {
-						light.psmOffTime[0] -= offset;
+						light.psmOffTime[0] = 0;
 					}
 					break;
 
@@ -182,7 +180,7 @@ static void fixLcdData()
 					lcd_blink(6, 8);
 					light.psmOffTime[1] += offset;
 					if (light.psmOffTime[1] > 59) {
-						light.psmOffTime[1] -= offset;
+						light.psmOffTime[1] = 0;
 					}
 					break;
 
@@ -198,7 +196,7 @@ static void fixLcdData()
 					lcd_blink(0, 2);
 					light.psmOnTime[0] += offset;
 					if (light.psmOnTime[0] > 23) {
-						light.psmOnTime[0] -= offset;
+						light.psmOnTime[0] = 0;
 					}
 					break;
 
@@ -206,7 +204,7 @@ static void fixLcdData()
 					lcd_blink(2, 4);
 					light.psmOnTime[1] += offset;
 					if (light.psmOnTime[1] > 59) {
-						light.psmOnTime[1] -= offset;
+						light.psmOnTime[1] = 0;
 					}
 					break;
 
@@ -292,14 +290,14 @@ static void fixLcdData()
 				lcd_blink(4, 6);
 				*hour += offset;
 				if (*hour > 23) {
-					*hour -= offset;
+					*hour = 0;
 				}
 			} break;
 			case MINUTE: {
 				lcd_blink(6, 8);
 				*min += offset;
 				if (*min > 59) {
-					*min -= offset;
+					*min = 0;
 				}
 			} break;
 			default: {
@@ -659,6 +657,12 @@ void runLcdCmd(unsigned char lcdCmd)
 
 	if (lcdStatus == LCD_STATUS_NORMAR) {
 		if (lcdCmd == BUTTON_ENTER) {
+			LCD_SelectMode(++currentLCDMode);
+		} else if (lcdCmd == BUTTON_STOP) {
+			print("req report\n");
+			req_report();
+		} else if (lcdCmd == BUTTON_UP) {
+		} else if (lcdCmd == BUTTON_DOWN) {
 			memcpy(&prevSet, &light, sizeof(light_t));
 			switch (currentLCDMode) {
 			case LCD_AREA:
@@ -676,13 +680,6 @@ void runLcdCmd(unsigned char lcdCmd)
 				LCD_SelectMode(currentLCDMode);
 				break;
 			}
-		} else if (lcdCmd == BUTTON_STOP) {
-			print("req report\n");
-			req_report();
-		} else if (lcdCmd == BUTTON_UP) {
-			LCD_SelectMode(++currentLCDMode);
-		} else if (lcdCmd == BUTTON_DOWN) {
-			LCD_SelectMode(--currentLCDMode);
 		}
 	} else if (lcdStatus == LCD_STATUS_BLINK) {
 		if (lcdCmd == BUTTON_ENTER) {
